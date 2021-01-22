@@ -14,21 +14,26 @@ gallery:
     alt: "placeholder image 2"
     title: "Image 2 title caption"
 ---
+
 As my first post I wanted to write about how I set up this website using GitHub Pages, namecheap and Cloudflare.
+
 # GitHub Pages
+
 [GitHub Pages](https://pages.github.com/) is a free and easy way to host a static website. It also works with [jekyll](https://jekyllrb.com/), making creating a personal blog very easy.
 
 {% include gallery %}
 
 ### Selecting a theme
-There a lot of different themes that you can choose from on [GitHub](https://github.com/topics/jekyll-theme). Just fork the repository and rename it to `yourusername.github.io` and that's it!
 
-In my case I pretty much chose the first one: [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes) and followed its [guide](https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/).
+There a lot of different themes that you can choose from on [GitHub](https://github.com/topics/jekyll-theme).
+
+In my case I pretty much chose the first one: [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes) and used the [starter](https://github.com/mmistakes/mm-github-pages-starter/generate) from its [guide](https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/).
 
 You should see your website up and running at this point.
 
 # Custom Domain
-I wanted to use a custom domain name for my site, so I went to [namecheap](https://www.namecheap.com/) and purchased `xiangchen.dev` given that Google released this domain quite recently.
+
+I wanted to use a custom domain name for my site, so I went to [namecheap](https://www.namecheap.com/) and purchased `xiang.dev` given that Google released this domain quite recently.
 
 I used [Cloudflare](https://www.cloudflare.com/) to handle the redirect and SSL certificates for the site, it is completely free and quite easy to use.
 
