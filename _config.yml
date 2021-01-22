@@ -59,6 +59,7 @@ author:
   name: "Xiang Chen"
   avatar: "/assets/images/bio-photo.jpg"
   bio: "Full time programmer, part time casual"
+  location: "Madrid, Spain"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
