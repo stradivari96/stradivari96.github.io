@@ -9,18 +9,6 @@ comments: true
 tags: [Programming]
 ---
 
-<!--
-https://leetcode.com/discuss/general-discussion/419062/list-of-leetcode-question-to-cover-all-the-concepts-and-type-of-questions
-
-https://leetcode.com/discuss/career/452130/interview-quick-start-leetcode-list-for-training-most-common-techniques-my-must-do-questions
--->
-
-## Links
-
-- https://leetcode.com/
-- https://www.oreilly.com/library/view/algorithms-in-a/9781491912973/
-- http://www.crackingthecodinginterview.com/
-
 ## Steps
 
 1. Listen carefully, write down important information and ask for more details.
@@ -42,11 +30,11 @@ https://leetcode.com/discuss/career/452130/interview-quick-start-leetcode-list-f
 
 - **O(1)**: Constant, primitive operations
 - **O(log n)**: Logarithmic, reducing the size about half each time
-- **O(nd)** for d < 1: Sublinear
+- **O(n^d)** for d < 1: Sublinear
 - **O(n)**: Linear
 - **O(n log n)**: Linearithmic, divide in subproblems and merge in linear time
-- **O(n2)**: Quadratic, nested for loops
-- **O(2^n)**: Exponential, every subset, bruteforce numerical password O(10^n)
+- **O(n^2)**: Quadratic, nested for loops
+- **O(k^n)**: Exponential, every subset, bruteforce numerical password O(10^n)
 - **O(n!)**: Factorial, bruteforce TSP
 
 ## Approaches
@@ -62,3 +50,14 @@ Often recursive, `O(n)` when the resolution is constant, if the resolution step 
 ### Dynamic Programming
 
 Subdividing in simpler subproblems that are solved in a specific order and storing the results for future use. In many cases the solution is optimal.
+
+## Problem types (source: [happygirlzt](https://youtu.be/yUQ4TxPgeys))
+
+![happygirlzt](https://raw.githubusercontent.com/happygirlzt/algorithm-illustrations/master/Get%20Started%20to%20LeetCode.png)
+
+## Links
+
+- https://leetcode.com/
+- http://www.crackingthecodinginterview.com/
+- https://www.teamblind.com/post/New-Year-Gift---Curated-List-of-Top-75-LeetCode-Questions-to-Save-Your-Time-OaM1orEU
+- https://leetcode.com/discuss/career/452130/interview-quick-start-leetcode-list-for-training-most-common-techniques-my-must-do-questions
