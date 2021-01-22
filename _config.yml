@@ -111,3 +111,7 @@ comments:
   provider: "disqus"
   disqus:
     shortname: "stradivari96"
+
+after_footer_scripts:
+  - https://unpkg.com/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js
+  - /assets/js/back-to-top.js
