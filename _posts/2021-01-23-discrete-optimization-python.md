@@ -11,9 +11,7 @@ header:
 tags: [Python, Programming, Operations research]
 ---
 
-<figure>
-	<a href="https://s3.amazonaws.com/coursera_assets/meta_images/generated/XDP/XDP~COURSE!~discrete-optimization/XDP~COURSE!~discrete-optimization.jpeg"><img src="https://s3.amazonaws.com/coursera_assets/meta_images/generated/XDP/XDP~COURSE!~discrete-optimization/XDP~COURSE!~discrete-optimization.jpeg"></a>
-</figure>
+![img](https://s3.amazonaws.com/coursera_assets/meta_images/generated/XDP/XDP~COURSE!~discrete-optimization/XDP~COURSE!~discrete-optimization.jpeg)
 
 ## Constraint programming
 

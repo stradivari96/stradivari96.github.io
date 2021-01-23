@@ -11,9 +11,7 @@ header:
 tags: [Python, Programming, Bokeh, Data Visualization]
 ---
 
-<figure>
-	<a href="https://cdn-7.nikon-cdn.com/Images/Learn-Explore/Photography-Techniques/2012/Bokeh-for-Beginners/Media/Lindsay-Silverman-Bokeh-lights.jpg"><img src="https://cdn-7.nikon-cdn.com/Images/Learn-Explore/Photography-Techniques/2012/Bokeh-for-Beginners/Media/Lindsay-Silverman-Bokeh-lights.jpg"></a>
-</figure>
+![img](https://cdn-7.nikon-cdn.com/Images/Learn-Explore/Photography-Techniques/2012/Bokeh-for-Beginners/Media/Lindsay-Silverman-Bokeh-lights.jpg)
 
 > [**Bokeh**](https://bokeh.pydata.org/en/latest/) is an interactive visualization library that targets modern web browsers for presentation. It can help anyone who would like to quickly and easily create **interactive** plots, **dashboards**, and data **applications**.
 

@@ -9,9 +9,7 @@ comments: true
 tags: [Python, Programming]
 ---
 
-<figure>
-	<a href="https://6lli539m39y3hpkelqsm3c2fg-wpengine.netdna-ssl.com/wp-content/uploads/2017/07/AI-HPC-Converge.jpg"><img src="https://6lli539m39y3hpkelqsm3c2fg-wpengine.netdna-ssl.com/wp-content/uploads/2017/07/AI-HPC-Converge.jpg"></a>
-</figure>
+![img](https://6lli539m39y3hpkelqsm3c2fg-wpengine.netdna-ssl.com/wp-content/uploads/2017/07/AI-HPC-Converge.jpg)
 
 Let's face it, Python is **slow** if you compare it with compiled languages like C or Fortran. But they are some tricks you can use to shorten the gap, let's see some of them:
 

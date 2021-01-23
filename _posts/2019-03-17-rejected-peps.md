@@ -9,9 +9,7 @@ comments: true
 tags: [Python, Programming]
 ---
 
-<figure>
-	<a href="https://files.realpython.com/media/PEP-8-Tutorial-Python-Code-Formatting-Guide_Watermarked.9103cf7be328.jpg"><img src="https://files.realpython.com/media/PEP-8-Tutorial-Python-Code-Formatting-Guide_Watermarked.9103cf7be328.jpg"></a>
-</figure>
+![img](https://files.realpython.com/media/PEP-8-Tutorial-Python-Code-Formatting-Guide_Watermarked.9103cf7be328.jpg)
 
 Ever wandered why there isn't a `switch` statement on Python? Let's take a look of some interesting PEPs that were rejected.
 

@@ -7,13 +7,11 @@ toc: true
 related: true
 comments: true
 header:
-  teaser: "https://pbs.twimg.com/media/DuoN35ZXgAAKzC_.jpg"
+  teaser: "https://witsmind.com/wp-content/uploads/2019/03/or-tool-300x202.jpg"
 tags: [Python, Programming, Operations research, ortools]
 ---
 
-<figure>
-	<a href="https://pbs.twimg.com/media/DuoN35ZXgAAKzC_.jpg"><img src="https://pbs.twimg.com/media/DuoN35ZXgAAKzC_.jpg"></a>
-</figure>
+![img](https://pbs.twimg.com/media/DuoN35ZXgAAKzC_.jpg)
 
 In this post I will try to do a high level explanation of the **CP-SAT** solver.
 
