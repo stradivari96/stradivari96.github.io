@@ -22,6 +22,7 @@ tags: [Data Visualization, Programming, Programming]
 [![GitHub last commit](https://img.shields.io/github/last-commit/recharts/recharts)](https://github.com/recharts/recharts)
 
 <iframe src="https://codesandbox.io/embed/sharp-solomon-16mn0?codemirror=1"
+  loading="lazy"
   style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
   title="sharp-solomon-16mn0"
   allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
@@ -35,6 +36,7 @@ tags: [Data Visualization, Programming, Programming]
 [![GitHub last commit](https://img.shields.io/github/last-commit/reactchartjs/react-chartjs-2)](https://github.com/reactchartjs/react-chartjs-2)
 
 <iframe src="https://codesandbox.io/embed/sleepy-mendeleev-43izk?codemirror=1"
+  loading="lazy"
   style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
   title="sleepy-mendeleev-43izk"
   allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
@@ -48,6 +50,7 @@ tags: [Data Visualization, Programming, Programming]
 [![GitHub last commit](https://img.shields.io/github/last-commit/plouc/nivo)](https://github.com/plouc/nivo)
 
 <iframe src="https://codesandbox.io/embed/nivo-basic-demo-forked-phtz8?codemirror=1"
+  loading="lazy"
   style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
   title="nivo basic demo (forked)"
   allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
@@ -61,6 +64,7 @@ tags: [Data Visualization, Programming, Programming]
 [![GitHub last commit](https://img.shields.io/github/last-commit/FormidableLabs/victory)](https://github.com/FormidableLabs/victory)
 
 <iframe src="https://codesandbox.io/embed/crazy-roentgen-iou24?codemirror=1"
+  loading="lazy"
   style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
   title="crazy-roentgen-iou24"
   allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
@@ -74,6 +78,7 @@ tags: [Data Visualization, Programming, Programming]
 [![GitHub last commit](https://img.shields.io/github/last-commit/uber/react-vis)](https://github.com/uber/react-vis)
 
 <iframe src="https://codesandbox.io/embed/busy-tree-zpm5p?codemirror=1"
+  loading="lazy"
   style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
   title="busy-tree-zpm5p"
   allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
@@ -87,6 +92,7 @@ tags: [Data Visualization, Programming, Programming]
 [![GitHub last commit](https://img.shields.io/github/last-commit/alibaba/BizCharts)](https://github.com/alibaba/BizCharts)
 
 <iframe src="https://codesandbox.io/embed/mutable-firefly-h2ybp?codemirror=1"
+  loading="lazy"
   style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
   title="mutable-firefly-h2ybp"
   allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
