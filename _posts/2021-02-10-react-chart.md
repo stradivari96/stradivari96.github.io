@@ -80,17 +80,6 @@ tags: [Data Visualization, Programming, Programming]
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
-## [react-plotly.js](https://plotly.com/javascript/react/)
-
-[![Downloads](https://img.shields.io/npm/dw/react-plotly.js)](https://www.npmjs.com/package/react-plotly.js)
-[![GitHub stars](https://img.shields.io/github/stars/plotly/react-plotly.js.svg?style=social)](https://github.com/plotly/react-plotly.js)
-[![GitHub last commit](https://img.shields.io/github/last-commit/plotly/react-plotly.js)](https://github.com/plotly/react-plotly.js)
-
-<iframe height="400" style="width: 100%;" scrolling="no" title="react-plotly.js example" src="https://codepen.io/rsreusser/embed/qPgwwJ?height=265&theme-id=light&default-tab=js,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href='https://codepen.io/rsreusser/pen/qPgwwJ'>react-plotly.js example</a> by Ricky
-  (<a href='https://codepen.io/rsreusser'>@rsreusser</a>) on <a href='https://codepen.io'>CodePen</a>.
-</iframe>
-
 ## [BizCharts](https://bizcharts.net/products/bizCharts)
 
 [![Downloads](https://img.shields.io/npm/dw/bizcharts)](https://www.npmjs.com/package/bizcharts)
