@@ -17,7 +17,7 @@ Languages: :es:, :cn:, :uk: and learning :jp:
 
 | Date              | Position                       | Company                                                                                                                                                            |
 | ----------------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 10/2018 - Present | **Full Stack Developer**       | <a href="https://foqum.io"><img src="https://i.imgur.com/NeCw0UF.png" alt="Foqum" width="200"/></a>                                                                |
+| 10/2018 - 01/2021 | **Full Stack Developer**       | <a href="https://foqum.io"><img src="https://i.imgur.com/NeCw0UF.png" alt="Foqum" width="200"/></a>                                                                |
 | 09/2018 - 10/2018 | **Data Science Internship**    | <a href="https://foqum.io"><img src="https://i.imgur.com/NeCw0UF.png" alt="Foqum" width="200"/></a>                                                                |
 | 09/2017 - 12/2017 | **Web Development Internship** | <a href="https://www.accenture.com"><img src="https://www.appian.com/wp-content/uploads/2019/04/Acc_Logo_Black_Purple_RGB-2.png" alt="Accenture" width="200"/></a> |
 
