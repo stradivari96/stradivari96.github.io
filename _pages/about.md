@@ -38,6 +38,7 @@ Languages: :es:, :cn:, :uk: and learning :jp:
 
 | Title                                      | Organization                                                                                                                                                                                  |
 | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Master in Computer Science                 | <a href="https://www.uoc.edu/"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Logo_blau_uoc.png" alt="UOC" width="200"/></a>                                                   |
 | Degree in Mathematics and Computer Science | <a href="https://www.upm.es"><img src="https://www.upm.es/sfs/Rectorado/Gabinete%20del%20Rector/Logos/UPM/CEI/LOGOTIPO%20leyenda%20color%20JPG%20p.png" alt="UPM" width="200"/></a>           |
 | CCNA Routing & Switching                   | <a href="https://www.cisco.com"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/1200px-Cisco_logo_blue_2016.svg.png" alt="UPM" width="200"/></a> |
 
@@ -45,4 +46,6 @@ Languages: :es:, :cn:, :uk: and learning :jp:
 
 ---
 
-- Admin of the [Spanish Hollow Knight Wiki](https://hollowknight.fandom.com/es/wiki/Hollow_Knight_Wiki)
+- Fandom Wiki admin:
+  - [Hollow Knight (ES)](https://hollowknight.fandom.com/es/wiki/Hollow_Knight_Wiki)
+  - [Blasphemous (ES)](https://blasphemous.fandom.com/es/wiki/Blasphemous_Wiki)
