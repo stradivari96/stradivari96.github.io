@@ -5,7 +5,7 @@ title: "About me"
 author_profile: true
 ---
 
-Full stack developer at [Foqum](https://foqum.io).
+Software developer at [MMG](https://mmg-ai.com/).
 
 Avid gamer, reader and anime watcher.
 
@@ -17,6 +17,7 @@ Languages: :es:, :cn:, :uk: and learning :jp:
 
 | Date              | Position                       | Company                                                                                                                                                            |
 | ----------------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 04/2021 - Present | **Software Developer**         | <a href="https://mmg-ai.com"><img src="/assets/images/mmg.png" alt="MMG" width="200"/></a>                                                                         |
 | 10/2018 - 01/2021 | **Full Stack Developer**       | <a href="https://foqum.io"><img src="https://i.imgur.com/NeCw0UF.png" alt="Foqum" width="200"/></a>                                                                |
 | 09/2018 - 10/2018 | **Data Science Internship**    | <a href="https://foqum.io"><img src="https://i.imgur.com/NeCw0UF.png" alt="Foqum" width="200"/></a>                                                                |
 | 09/2017 - 12/2017 | **Web Development Internship** | <a href="https://www.accenture.com"><img src="https://www.appian.com/wp-content/uploads/2019/04/Acc_Logo_Black_Purple_RGB-2.png" alt="Accenture" width="200"/></a> |
@@ -26,11 +27,10 @@ Languages: :es:, :cn:, :uk: and learning :jp:
 ---
 
 - Python / JavaScript / Java
-- ReactJS / React Native
+- ReactJS
 - PyTorch / Keras
-- AWS / Serverless
-- MySQL / Neo4j
-- Oracle WebCenter Sites
+- AWS
+- Neo4j / MySQL
 
 # Education & Certifications
 
@@ -49,3 +49,5 @@ Languages: :es:, :cn:, :uk: and learning :jp:
 - Fandom Wiki admin:
   - [Hollow Knight (ES)](https://hollowknight.fandom.com/es/wiki/Hollow_Knight_Wiki)
   - [Blasphemous (ES)](https://blasphemous.fandom.com/es/wiki/Blasphemous_Wiki)
+- Contributor:
+  - [Google OR-Tools](https://github.com/google/or-tools)
