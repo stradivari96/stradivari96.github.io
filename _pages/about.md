@@ -7,7 +7,7 @@ author_profile: true
 
 Software developer at [MMG](https://mmg-ai.com/).
 
-Avid gamer, reader and anime watcher.
+Avid gamer, reader and weeb.
 
 Languages: :es:, :cn:, :uk: and learning :jp:
 
