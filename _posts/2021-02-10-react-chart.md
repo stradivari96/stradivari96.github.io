@@ -13,7 +13,7 @@ tags: [Data Visualization, Programming, Programming]
 
 ![img](https://miro.medium.com/max/700/0*3gh9AjHufGCzP6aL.png)
 
-**Note**: For lower level things use [visx](https://airbnb.io/visx/) or [D3](https://d3js.org/).
+**Note**: Sorted by number of downloads. For lower level things use [visx](https://airbnb.io/visx/) or [D3](https://d3js.org/).
 
 ## [Recharts](http://recharts.org/en-US/)
 
@@ -21,15 +21,17 @@ tags: [Data Visualization, Programming, Programming]
 [![GitHub stars](https://img.shields.io/github/stars/recharts/recharts.svg?style=social)](https://github.com/recharts/recharts)
 [![GitHub last commit](https://img.shields.io/github/last-commit/recharts/recharts)](https://github.com/recharts/recharts)
 
-<!---
-<iframe src="https://codesandbox.io/embed/sharp-solomon-16mn0?codemirror=1"
-  loading="lazy"
-  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-  title="sharp-solomon-16mn0"
-  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe>
---->
+[Example](https://codesandbox.io/embed/sharp-solomon-16mn0?)
+
+```javascript
+<LineChart width={500} height={300} data={data}>
+  <XAxis dataKey="name" />
+  <YAxis />
+  <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+  <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+  <Line type="monotone" dataKey="pv" stroke="#82ca9d" />
+</LineChart>
+```
 
 ## [react-chartjs-2](https://reactchartjs.github.io/react-chartjs-2)
 
@@ -37,15 +39,11 @@ tags: [Data Visualization, Programming, Programming]
 [![GitHub stars](https://img.shields.io/github/stars/reactchartjs/react-chartjs-2.svg?style=social)](https://github.com/reactchartjs/react-chartjs-2)
 [![GitHub last commit](https://img.shields.io/github/last-commit/reactchartjs/react-chartjs-2)](https://github.com/reactchartjs/react-chartjs-2)
 
-<!---
-<iframe src="https://codesandbox.io/embed/sleepy-mendeleev-43izk?codemirror=1"
-  loading="lazy"
-  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-  title="sleepy-mendeleev-43izk"
-  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe>
---->
+[Example](https://codesandbox.io/embed/sleepy-mendeleev-43izk?codemirror=1)
+
+```javascript
+<Line data={data} options={options} />
+```
 
 ## [Nivo](https://nivo.rocks/)
 
@@ -53,15 +51,11 @@ tags: [Data Visualization, Programming, Programming]
 [![GitHub stars](https://img.shields.io/github/stars/plouc/nivo.svg?style=social)](https://github.com/plouc/nivo)
 [![GitHub last commit](https://img.shields.io/github/last-commit/plouc/nivo)](https://github.com/plouc/nivo)
 
-<!---
-<iframe src="https://codesandbox.io/embed/nivo-basic-demo-forked-phtz8?codemirror=1"
-  loading="lazy"
-  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-  title="nivo basic demo (forked)"
-  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe>
---->
+[Example](https://codesandbox.io/embed/nivo-basic-demo-forked-phtz8?codemirror=1)
+
+```javascript
+<ResponsiveLine data={data} curve="natural" useMesh={true} />
+```
 
 ## [Victory](https://formidable.com/open-source/victory/)
 
@@ -69,15 +63,15 @@ tags: [Data Visualization, Programming, Programming]
 [![GitHub stars](https://img.shields.io/github/stars/FormidableLabs/victory.svg?style=social)](https://github.com/FormidableLabs/victory)
 [![GitHub last commit](https://img.shields.io/github/last-commit/FormidableLabs/victory)](https://github.com/FormidableLabs/victory)
 
-<!---
-<iframe src="https://codesandbox.io/embed/crazy-roentgen-iou24?codemirror=1"
-  loading="lazy"
-  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-  title="crazy-roentgen-iou24"
-  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe>
---->
+[Example](https://codesandbox.io/embed/crazy-roentgen-iou24?codemirror=1)
+
+```javascript
+<VictoryChart>
+  <VictoryAxis />
+  <VictoryAxis dependentAxis />
+  <VictoryLine data={data} interpolation="natural" y="votes" />
+</VictoryChart>
+```
 
 ## [react-vis](https://uber.github.io/react-vis/)
 
@@ -85,15 +79,16 @@ tags: [Data Visualization, Programming, Programming]
 [![GitHub stars](https://img.shields.io/github/stars/uber/react-vis.svg?style=social)](https://github.com/uber/react-vis)
 [![GitHub last commit](https://img.shields.io/github/last-commit/uber/react-vis)](https://github.com/uber/react-vis)
 
-<!---
-<iframe src="https://codesandbox.io/embed/busy-tree-zpm5p?codemirror=1"
-  loading="lazy"
-  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-  title="busy-tree-zpm5p"
-  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe>
---->
+[Example](https://codesandbox.io/embed/busy-tree-zpm5p?codemirror=1)
+
+```javascript
+<XYPlot height={300} width={400}>
+  <HorizontalGridLines />
+  <XAxis title="X" />
+  <YAxis />
+  <LineMarkSeries data={data} curve="curveMonotoneX" />
+</XYPlot>
+```
 
 ## [BizCharts](https://bizcharts.net/products/bizCharts)
 
@@ -101,12 +96,12 @@ tags: [Data Visualization, Programming, Programming]
 [![GitHub stars](https://img.shields.io/github/stars/alibaba/BizCharts.svg?style=social)](https://github.com/alibaba/BizCharts)
 [![GitHub last commit](https://img.shields.io/github/last-commit/alibaba/BizCharts)](https://github.com/alibaba/BizCharts)
 
-<!---
-<iframe src="https://codesandbox.io/embed/mutable-firefly-h2ybp?codemirror=1"
-  loading="lazy"
-  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-  title="mutable-firefly-h2ybp"
-  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe>
---->
+[Example](https://codesandbox.io/embed/mutable-firefly-h2ybp?codemirror=1)
+
+```javascript
+<Chart data={data}>
+  <Line position="x*votes" shape="smooth" />
+  <Point position="x*votes" />
+  <Tooltip showCrosshairs lock />
+</Chart>
+```
