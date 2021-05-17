@@ -34,10 +34,7 @@ class Settings(BaseSettings):
     admin_email: str
     items_per_user: int = 50
 
-    class Config:
-        env_file = ".env"
-
-settings = Settings()
+settings = Settings(_env_file='.env')
 ```
 
 ## [Python-dotenv](https://saurabh-kumar.com/python-dotenv/)
