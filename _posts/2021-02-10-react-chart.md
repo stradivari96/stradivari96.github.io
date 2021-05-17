@@ -8,7 +8,7 @@ related: true
 comments: true
 header:
   teaser: "https://miro.medium.com/max/700/0*3gh9AjHufGCzP6aL.png"
-tags: [Data Visualization, Programming]
+tags: [Data Visualization, Programming, Libraries]
 ---
 
 ![img](https://miro.medium.com/max/700/0*3gh9AjHufGCzP6aL.png)
