@@ -15,12 +15,20 @@ tags: [Data Visualization, Programming, Libraries]
 
 **Note**: Sorted by number of downloads. For lower level things use [visx](https://airbnb.io/visx/) or [D3](https://d3js.org/).
 
+Click on the ![Example](https://img.shields.io/badge/example-codesandbox-brightgreen) badge to try them.
+{: .notice--info}
+
 ## [Recharts](http://recharts.org/en-US/)
 
 [![Downloads](https://img.shields.io/npm/dw/recharts)](https://www.npmjs.com/package/recharts)
 [![GitHub stars](https://img.shields.io/github/stars/recharts/recharts.svg?style=social)](https://github.com/recharts/recharts)
 [![GitHub last commit](https://img.shields.io/github/last-commit/recharts/recharts)](https://github.com/recharts/recharts)
 [![Example](https://img.shields.io/badge/example-codesandbox-brightgreen)](https://codesandbox.io/embed/sharp-solomon-16mn0?)
+
+<center>
+<img src="https://miro.medium.com/max/1418/1*vUH8fvt-Kus9LzDd_3kcMw.png" alt="recharts" width="40%"/>
+<img src="https://miro.medium.com/max/1374/1*4tlEoQUZ2IG1q2zAaGKxKQ.png" alt="recharts" width="50%">
+</center>
 
 ```javascript
 <LineChart width={500} height={300} data={data}>
@@ -38,6 +46,8 @@ tags: [Data Visualization, Programming, Libraries]
 [![GitHub stars](https://img.shields.io/github/stars/reactchartjs/react-chartjs-2.svg?style=social)](https://github.com/reactchartjs/react-chartjs-2)
 [![GitHub last commit](https://img.shields.io/github/last-commit/reactchartjs/react-chartjs-2)](https://github.com/reactchartjs/react-chartjs-2)
 [![Example](https://img.shields.io/badge/example-codesandbox-brightgreen)](https://codesandbox.io/embed/sleepy-mendeleev-43izk?codemirror=1)
+
+React wrapper for Chart.js
 
 ```javascript
 <Line data={data} options={options} />
