@@ -15,6 +15,8 @@ tags: [Data Visualization, Programming, Libraries]
 
 **Note**: Sorted by number of downloads. For lower level things use [visx](https://airbnb.io/visx/) or [D3](https://d3js.org/).
 
+**TODO (Xiang)**: Add vega and echarts.
+
 Click on the ![Example](https://img.shields.io/badge/example-codesandbox-brightgreen) badge to try them.
 {: .notice--info}
 
@@ -47,7 +49,12 @@ Click on the ![Example](https://img.shields.io/badge/example-codesandbox-brightg
 [![GitHub last commit](https://img.shields.io/github/last-commit/reactchartjs/react-chartjs-2)](https://github.com/reactchartjs/react-chartjs-2)
 [![Example](https://img.shields.io/badge/example-codesandbox-brightgreen)](https://codesandbox.io/embed/sleepy-mendeleev-43izk?codemirror=1)
 
-React wrapper for Chart.js
+<center>
+<img src="https://i.imgur.com/i2Ixu1e.png" alt="chartjs" width="45%">
+<img src="https://i.imgur.com/CxIKnuz.png" alt="chartjs" width="45%"/>
+</center>
+
+Wrapper for Chart.js
 
 ```javascript
 <Line data={data} options={options} />
@@ -60,6 +67,11 @@ React wrapper for Chart.js
 [![GitHub last commit](https://img.shields.io/github/last-commit/plouc/nivo)](https://github.com/plouc/nivo)
 [![Example](https://img.shields.io/badge/example-codesandbox-brightgreen)](https://codesandbox.io/embed/nivo-basic-demo-forked-phtz8?codemirror=1)
 
+<center>
+<img src="https://i.imgur.com/YhPiFVc.png" alt="nivo" width="50%">
+<img src="https://i.imgur.com/isL0svO.png" alt="nivo" width="40%"/>
+</center>
+
 ```javascript
 <ResponsiveLine data={data} curve="natural" useMesh={true} />
 ```
@@ -70,6 +82,8 @@ React wrapper for Chart.js
 [![GitHub stars](https://img.shields.io/github/stars/FormidableLabs/victory.svg?style=social)](https://github.com/FormidableLabs/victory)
 [![GitHub last commit](https://img.shields.io/github/last-commit/FormidableLabs/victory)](https://github.com/FormidableLabs/victory)
 [![Example](https://img.shields.io/badge/example-codesandbox-brightgreen)](https://codesandbox.io/embed/crazy-roentgen-iou24?codemirror=1)
+
+![victory](https://i.imgur.com/cUzrQjW.png)
 
 ```javascript
 <VictoryChart>
@@ -101,6 +115,8 @@ React wrapper for Chart.js
 [![GitHub stars](https://img.shields.io/github/stars/alibaba/BizCharts.svg?style=social)](https://github.com/alibaba/BizCharts)
 [![GitHub last commit](https://img.shields.io/github/last-commit/alibaba/BizCharts)](https://github.com/alibaba/BizCharts)
 [![Example](https://img.shields.io/badge/example-codesandbox-brightgreen)](https://codesandbox.io/embed/mutable-firefly-h2ybp?codemirror=1)
+
+Most of the documentation is in Chinese {: .notice--warning}
 
 ```javascript
 <Chart data={data}>
