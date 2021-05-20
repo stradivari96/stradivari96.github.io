@@ -15,7 +15,7 @@ tags: [Data Visualization, Programming, Libraries]
 
 **Note**: Sorted by number of downloads. For lower level things use [visx](https://airbnb.io/visx/) or [D3](https://d3js.org/).
 
-**TODO (Xiang)**: Add vega and echarts.
+Also keep an eye on [vega](https://vega.github.io/vega/) + [react-vega](http://vega.github.io/react-vega/).
 
 Click on the ![Example](https://img.shields.io/badge/example-codesandbox-brightgreen) badge to try them.
 {: .notice--info}
@@ -54,7 +54,7 @@ Click on the ![Example](https://img.shields.io/badge/example-codesandbox-brightg
 <img src="https://i.imgur.com/CxIKnuz.png" alt="chartjs" width="45%"/>
 </center>
 
-Wrapper for Chart.js
+Wrapper for [Chart.js](https://www.chartjs.org/)
 
 ```javascript
 <Line data={data} options={options} />
@@ -93,12 +93,46 @@ Wrapper for Chart.js
 </VictoryChart>
 ```
 
+## [react-plotly.js](https://plotly.com/javascript/react/)
+
+[![Downloads](https://img.shields.io/npm/dw/react-plotly.js)](https://www.npmjs.com/package/react-plotly.js)
+[![GitHub stars](https://img.shields.io/github/stars/plotly/react-plotly.js.svg?style=social)](https://github.com/plotly/react-plotly.js)
+[![GitHub last commit](https://img.shields.io/github/last-commit/plotly/react-plotly.js)](https://github.com/plotly/react-plotly.js)
+
+<center>
+<img src="https://i.imgur.com/oCvlxGp.png" alt="plotly" width="60%"/>
+</center>
+
+Wrapper for [plotly](https://plotly.com/)
+
+{% raw %}
+
+```javascript
+<Plot
+  data={[
+    {
+      x: [1, 2, 3],
+      y: [2, 6, 3],
+      type: "scatter",
+      mode: "lines+markers",
+      marker: { color: "red" },
+    },
+    { type: "bar", x: [1, 2, 3], y: [2, 5, 3] },
+  ]}
+  layout={{ width: 320, height: 240, title: "A Fancy Plot" }}
+/>
+```
+
+{% endraw %}
+
 ## [react-vis](https://uber.github.io/react-vis/)
 
 [![Downloads](https://img.shields.io/npm/dw/react-vis)](https://www.npmjs.com/package/react-vis)
 [![GitHub stars](https://img.shields.io/github/stars/uber/react-vis.svg?style=social)](https://github.com/uber/react-vis)
 [![GitHub last commit](https://img.shields.io/github/last-commit/uber/react-vis)](https://github.com/uber/react-vis)
 [![Example](https://img.shields.io/badge/example-codesandbox-brightgreen)](https://codesandbox.io/embed/busy-tree-zpm5p?codemirror=1)
+
+![react-vis](https://i.imgur.com/pob24MD.png)
 
 ```javascript
 <XYPlot height={300} width={400}>
@@ -109,6 +143,42 @@ Wrapper for Chart.js
 </XYPlot>
 ```
 
+## [echarts-for-react](https://git.hust.cc/echarts-for-react/)
+
+[![Downloads](https://img.shields.io/npm/dw/echarts-for-react)](https://www.npmjs.com/package/echarts-for-react)
+[![GitHub stars](https://img.shields.io/github/stars/hustcc/echarts-for-react.svg?style=social)](https://github.com/hustcc/echarts-for-react)
+[![GitHub last commit](https://img.shields.io/github/last-commit/hustcc/echarts-for-react)](https://github.com/hustcc/echarts-for-react)
+
+<center>
+<img src="https://miro.medium.com/max/700/1*Jt7E1KKUPzRIuZXscBi2nw.png" alt="echarts" width="80%">
+</center>
+
+Wrapper for [echarts](https://echarts.apache.org/en/index.html).
+
+{% raw %}
+
+```javascript
+<ReactEcharts
+  option={{
+    xAxis: {
+      type: "category",
+      data: months,
+    },
+    yAxis: {
+      type: "value",
+    },
+    series: [
+      {
+        data: data,
+        type: "line",
+      },
+    ],
+  }}
+/>
+```
+
+{% endraw %}
+
 ## [BizCharts](https://bizcharts.net/products/bizCharts)
 
 [![Downloads](https://img.shields.io/npm/dw/bizcharts)](https://www.npmjs.com/package/bizcharts)
@@ -116,7 +186,10 @@ Wrapper for Chart.js
 [![GitHub last commit](https://img.shields.io/github/last-commit/alibaba/BizCharts)](https://github.com/alibaba/BizCharts)
 [![Example](https://img.shields.io/badge/example-codesandbox-brightgreen)](https://codesandbox.io/embed/mutable-firefly-h2ybp?codemirror=1)
 
-Most of the documentation is in Chinese {: .notice--warning}
+<center>
+<img src="https://img.alicdn.com/tfs/TB1GPKEJHj1gK0jSZFuXXcrHpXa-1080-800.png" alt="bizcharts" width="40%">
+<img src="https://img.alicdn.com/tfs/TB13QqIJRr0gK0jSZFnXXbRRXXa-1080-800.png" alt="bizcharts" width="40%"/>
+</center>
 
 ```javascript
 <Chart data={data}>
@@ -125,3 +198,6 @@ Most of the documentation is in Chinese {: .notice--warning}
   <Tooltip showCrosshairs lock />
 </Chart>
 ```
+
+Most of the documentation is in Chinese.
+{: .notice--warning}
