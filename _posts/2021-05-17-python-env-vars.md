@@ -116,6 +116,8 @@ EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
 [![GitHub stars](https://img.shields.io/github/stars/sloria/environs.svg?style=social)](https://github.com/sloria/environs)
 [![GitHub last commit](https://img.shields.io/github/last-commit/sloria/environs)](https://github.com/sloria/environs)
 
+- Used by [cookiecutter-flask](https://github.com/cookiecutter-flask/cookiecutter-flask)
+
 ```python
 from environs import Env
 
