@@ -93,38 +93,6 @@ Wrapper for [Chart.js](https://www.chartjs.org/)
 </VictoryChart>
 ```
 
-## [react-plotly.js](https://plotly.com/javascript/react/)
-
-[![Downloads](https://img.shields.io/npm/dw/react-plotly.js)](https://www.npmjs.com/package/react-plotly.js)
-[![GitHub stars](https://img.shields.io/github/stars/plotly/react-plotly.js.svg?style=social)](https://github.com/plotly/react-plotly.js)
-[![GitHub last commit](https://img.shields.io/github/last-commit/plotly/react-plotly.js)](https://github.com/plotly/react-plotly.js)
-
-<center>
-<img src="https://i.imgur.com/oCvlxGp.png" alt="plotly" width="60%"/>
-</center>
-
-Wrapper for [plotly](https://plotly.com/)
-
-{% raw %}
-
-```javascript
-<Plot
-  data={[
-    {
-      x: [1, 2, 3],
-      y: [2, 6, 3],
-      type: "scatter",
-      mode: "lines+markers",
-      marker: { color: "red" },
-    },
-    { type: "bar", x: [1, 2, 3], y: [2, 5, 3] },
-  ]}
-  layout={{ width: 320, height: 240, title: "A Fancy Plot" }}
-/>
-```
-
-{% endraw %}
-
 ## [react-vis](https://uber.github.io/react-vis/)
 
 [![Downloads](https://img.shields.io/npm/dw/react-vis)](https://www.npmjs.com/package/react-vis)
@@ -174,6 +142,38 @@ Wrapper for [echarts](https://echarts.apache.org/en/index.html).
       },
     ],
   }}
+/>
+```
+
+{% endraw %}
+
+## [react-plotly.js](https://plotly.com/javascript/react/)
+
+[![Downloads](https://img.shields.io/npm/dw/react-plotly.js)](https://www.npmjs.com/package/react-plotly.js)
+[![GitHub stars](https://img.shields.io/github/stars/plotly/react-plotly.js.svg?style=social)](https://github.com/plotly/react-plotly.js)
+[![GitHub last commit](https://img.shields.io/github/last-commit/plotly/react-plotly.js)](https://github.com/plotly/react-plotly.js)
+
+<center>
+<img src="https://i.imgur.com/oCvlxGp.png" alt="plotly" width="60%"/>
+</center>
+
+Wrapper for [plotly](https://plotly.com/)
+
+{% raw %}
+
+```javascript
+<Plot
+  data={[
+    {
+      x: [1, 2, 3],
+      y: [2, 6, 3],
+      type: "scatter",
+      mode: "lines+markers",
+      marker: { color: "red" },
+    },
+    { type: "bar", x: [1, 2, 3], y: [2, 5, 3] },
+  ]}
+  layout={{ width: 320, height: 240, title: "A Fancy Plot" }}
 />
 ```
 
