@@ -21,6 +21,10 @@ author_profile: true
 
 Here are some of my personal projects.
 
+## [Github](http://github.com/stradivari96/)
+
+* [Google OR-Tools](https://github.com/google/or-tools/issues?page=1&q=author%3Astradivari96)
+
 ## [Hollow Knight Wikia](https://hollowknight.fandom.com/es/wiki/Hollow_Knight_Wiki)
 
 Loved that game and decided to translate the english wikia into spanish.
@@ -42,6 +46,3 @@ Generating quality 2D polygon meshes using Restricted [Delaunay Triangulations](
 <img src="/assets/images/TFG.gif" width="400" height="300" />
 </div>
 
-## [Coding Theory Project](/teoria-codigos) (University)
-
-JavaScript implementation of some error-detecting codes.
