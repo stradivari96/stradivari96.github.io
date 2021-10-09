@@ -11,6 +11,8 @@ tags: [Python, Programming]
 
 ![img](https://media.istockphoto.com/photos/reticulated-python-picture-id487506120?k=20&m=487506120&s=612x612&w=0&h=KsdD4vIOGsCTwHuDyoljO6Dbp4tBEW_W1gDASzK8KnY=)
 
+This is a work in progress...
+
 ## General
 
 Books:
@@ -30,9 +32,9 @@ Other:
 Read [Getting started with the web](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web) and tryout these frameworks.
 
 - [Flask](https://flask.palletsprojects.com/en/2.0.x/):
-  - TODO
+  - https://flask.palletsprojects.com/en/2.0.x/tutorial/index.html
 - [FastAPI](https://fastapi.tiangolo.com/):
-  - TODO
+  - https://fastapi.tiangolo.com/tutorial/
 - [Django](https://www.djangoproject.com/):
   - https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django
   - https://tutorial.djangogirls.org/en/
@@ -41,8 +43,10 @@ Read [Getting started with the web](https://developer.mozilla.org/en-US/docs/Lea
 
 ## Data Science
 
-TODO
+Courses:
+
+- https://www.coursera.org/learn/machine-learning
 
 ## Data Engineering
 
-TODO
+https://dataengineering.wiki/Index
