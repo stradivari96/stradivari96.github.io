@@ -26,6 +26,7 @@ Courses:
 Other:
 
 - https://www.xiang.dev/python/
+- https://github.com/practical-tutorials/project-based-learning#python
 
 ## Web
 
