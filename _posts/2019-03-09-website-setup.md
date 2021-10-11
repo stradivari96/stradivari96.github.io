@@ -25,7 +25,7 @@ As my first post I wanted to write about how I set up this website using GitHub 
 
 ### Selecting a theme
 
-There a lot of different themes that you can choose from on [GitHub](https://github.com/topics/jekyll-theme).
+There are a lot of different themes that you can choose from on [GitHub](https://github.com/topics/jekyll-theme).
 
 In my case I pretty much chose the first one: [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes) and used the [starter](https://github.com/mmistakes/mm-github-pages-starter/generate) from its [guide](https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/).
 
