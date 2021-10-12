@@ -1,6 +1,6 @@
 ---
 title: Getting started with Python 🐍
-excerpt: "Roadmap for python programming"
+excerpt: "Opinionated roadmap for python"
 read_time: true
 share: true
 toc: true
@@ -11,7 +11,17 @@ tags: [Python, Programming]
 
 ![img](https://media.istockphoto.com/photos/reticulated-python-picture-id487506120?k=20&m=487506120&s=612x612&w=0&h=KsdD4vIOGsCTwHuDyoljO6Dbp4tBEW_W1gDASzK8KnY=)
 
-This is a work in progress...
+An opinionated guide.
+
+Work in progress :construction:
+
+## Tools
+
+- [VSCode](https://code.visualstudio.com/)
+- [Python](https://www.python.org/downloads/)
+
+Switch to [Pycharm](https://www.jetbrains.com/pycharm/download/) after learning the basics of Python.
+{: .notice--info}
 
 ## General
 
@@ -23,14 +33,13 @@ Courses:
 
 - [Python for Everybody](https://www.coursera.org/specializations/python)
 
-Other:
+Projects:
 
-- https://www.xiang.dev/python/
 - https://github.com/practical-tutorials/project-based-learning#python
 
 ## Web
 
-Read [Getting started with the web](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web) and tryout these frameworks.
+Read ["Getting started with the web"](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web) and tryout these frameworks.
 
 - [Flask](https://flask.palletsprojects.com/en/2.0.x/):
   - https://flask.palletsprojects.com/en/2.0.x/tutorial/index.html
@@ -38,16 +47,13 @@ Read [Getting started with the web](https://developer.mozilla.org/en-US/docs/Lea
   - https://fastapi.tiangolo.com/tutorial/
 - [Django](https://www.djangoproject.com/):
   - https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django
-  - https://tutorial.djangogirls.org/en/
+- [DRF](https://www.django-rest-framework.org/)
   - https://www.django-rest-framework.org/tutorial/quickstart/
-  - https://docs.djangoproject.com/en/3.2/intro/tutorial01/
 
 ## Data Science
-
-Courses:
 
 - https://www.coursera.org/learn/machine-learning
 
 ## Data Engineering
 
-https://dataengineering.wiki/Index
+- https://dataengineering.wiki/Index
