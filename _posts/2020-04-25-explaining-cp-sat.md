@@ -8,7 +8,7 @@ related: true
 comments: true
 header:
   teaser: "https://witsmind.com/wp-content/uploads/2019/03/or-tool-300x202.jpg"
-tags: [Python, Programming, Operations research, ortools]
+tags: [Python, Programming, Operations research, ortools, CP-SAT]
 ---
 
 ![img](https://pbs.twimg.com/media/DuoN35ZXgAAKzC_.jpg)
