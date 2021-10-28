@@ -1,5 +1,5 @@
 ---
-title: Website Setup
+title: 🔧 Website Setup
 excerpt: "How I set up this website using GitHub Pages, namecheap and Cloudflare"
 read_time: true
 share: true

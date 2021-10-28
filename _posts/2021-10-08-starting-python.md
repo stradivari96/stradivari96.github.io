@@ -1,5 +1,5 @@
 ---
-title: Getting started with Python 🐍
+title: 🐍 Getting started with Python
 excerpt: "Opinionated roadmap for python"
 read_time: true
 share: true

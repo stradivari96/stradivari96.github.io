@@ -1,5 +1,5 @@
 ---
-title: Environment variables in Python
+title: 🐍 Environment variables in Python
 excerpt: Some libraries for handling environment variables
 read_time: true
 share: true

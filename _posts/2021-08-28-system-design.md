@@ -1,5 +1,5 @@
 ---
-title: System Design notes
+title: 📝 System Design notes
 excerpt: "Some notes about system design"
 read_time: true
 share: true

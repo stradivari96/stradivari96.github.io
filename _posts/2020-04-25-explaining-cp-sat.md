@@ -1,5 +1,5 @@
 ---
-title: How the CP-SAT solver works
+title: 🎓 How the CP-SAT solver works
 excerpt: "Overview of the CP-SAT solver from Google OR-Tools"
 read_time: true
 share: true

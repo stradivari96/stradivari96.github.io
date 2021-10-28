@@ -1,5 +1,5 @@
 ---
-title: Charting libraries for React
+title: 📈 Charting libraries for React
 excerpt: Some charting libraries for React
 read_time: true
 share: true
