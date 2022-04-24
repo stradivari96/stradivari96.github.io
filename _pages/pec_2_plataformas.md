@@ -10,11 +10,21 @@ disallow: true
 Esta página no se encuentra indexada en Google
 {: .notice--warning}
 
-[Descargar ZIP]()
+[Descargar ZIP](https://drive.google.com/file/d/1NrAdgxKXFhgi6yHLNWDf3IFzRl9IJcyx/view?usp=sharing)
 
 ## Ejercicio 1: Contenido estático
 
+<div style="text-align:center">
+<iframe src="/assets/videos/asset-01.mp4" width="426" height="240"> </iframe>
+</div>
+
 ### Tarea 1.1: Tipo de codificación
+
+<div style="text-align:center">
+<img src="/assets/images/asset-01.png" width="200" />
+</div>
+
+<br/>
 
 El vídeo se encuentra codificado en **H.264**/**AVC**,
 también conocido como **MPEG-4 Part 10**.
@@ -22,7 +32,7 @@ también conocido como **MPEG-4 Part 10**.
 Se trata de una codificación **con pérdidas**
 que hace uso del concepto de **GOP** (grupo de imágenes).
 
-Teóricamente también se podría utilizar para codificar vídeos sin pérdida
+Teóricamente también se podría utilizar para codificar vídeos sin pérdida.
 {: .notice}
 
 ### Tarea 1.2: Calcular peso en bytes sin comprimir.
@@ -84,7 +94,7 @@ Avidemux trata este problema de dos [maneras](http://avidemux.sourceforge.net/do
 En **lossless-cut**, un programa donde he contribuido en el pasado,
 hubo problemas relacionados con este [tema](https://github.com/mifi/lossless-cut/pull/13)
 debido a que en un principio se cortaba **directamente** en el cuadro elegido y
-esto hacía que los primeros segundos de los clips generados **tuviesen audio pero
+esto hacía que, en ocasiones, los primeros segundos de los clips generados **tuviesen audio pero
 no vídeo**.
 {: .notice--info}
 
@@ -97,6 +107,10 @@ Además contiene información adicional relacionado con los parámetros de la
 codificación y el tratamiento del color.
 
 ## Ejercicio 2: Contenido dinámico
+
+<div style="text-align:center">
+<iframe src="/assets/videos/asset-02.mp4" width="426" height="240"> </iframe>
+</div>
 
 ### Tarea 2.1: Calcular peso en bytes sin comprimir.
 
@@ -113,7 +127,7 @@ En MediaInfo vemos que el archivo pesa 24.8 MiB = 26.004.684,8 bytes
 
 ### Tarea 2.3: Factor de compresión
 
-De manera que el factor de compresión es:
+El factor de compresión es por tanto:
 
 1.922.281.115,67 / 26.004.684,8 = 73.92
 
@@ -125,7 +139,7 @@ El primer fotograma es de tipo I, y el segundo fotograma es de tipo B.
 
 En este clip existen un total de 11 cuadros de tipo I, al igual que el asset-01.
 
-Por otro lado, aquí se ve claramente la mejora de calidad de la imagen en cuadros de tipo I.
+Sin embargo, aquí se ve claramente la mejora de calidad de la imagen en cuadros de tipo I.
 
 <div style="text-align:center">
 <img src="/assets/images/cuadro_i.png" width="250" />
@@ -168,7 +182,14 @@ Para mantener la duración seleccionamos la opción de **remuestrear los FPS**.
 
 ### Tarea 3.3: Factor de compresión
 
-TODO
+[pec2_dvd.mpg](/assets/videos/pec2_dvd.mpg)
+
+El factor de compresión es:
+
+1.922.281.115,67 / 12.052.480 = 159.492578761
+
+En el apartado 2.3 obtuvimos 73.92, este aumento se debe a que
+hemos reducido el número de píxeles, fps y bitrate.
 
 ### Tarea 3.4: Campos Número de fotogramas B y Tamaño del GOP para M=2 y N=6.
 
@@ -181,45 +202,110 @@ Para obtener M=2 y N=6:
 
 ### Tarea 3.5: Factor de compresión
 
-TODO
+[pec2_dvd_m2_n6.mpg](/assets/videos/pec2_dvd_m2_n6.mpg)
+
+El factor de compresión es:
+
+1.922.281.115,67 / 12.083.200 = 159.087
+
+Es similar al calculado en el apartado 3.3, la pequeña diferencia
+podría deberse al aumento de cuadros I al disminuir el tamaño del GOP.
 
 ## Ejercicio 4: Codificación en Blu Ray y codificación en 4K
 
 ### Tarea 4.1: HEVC. Novedades H.265/HEVC respecto a H.264/MPEG-4 AVC.
 
-TODO
+HEVC son las siglas de High Efficiency Video Coding, es también conocido como
+H.265 o MPEG-H Part 2.
 
-### Tarea 4.2: Nivels y los perfiles de H.265/HEVC, comparar con H.264/MPEG-4 AVC.
+Según [ADSLZone](https://www.adslzone.net/reportajes/tecnologia/que-es-hevc/)
+las principales mejoras sobre H.264 son:
 
-TODO
+- El límite de resolución pasa de 4K 60fps a 8K 300fps.
+- Proporciona mejor calidad al mismo bitrate gracias a la utilización de
+  **unidades de codificación** en lugar de macrobloques (a cambio, la etapa de decodificación es mucho más costosa).
+- Mejora el seguimiento del movimiento al utilizar vectores de movimiento de hasta 16 bits.
+
+### Tarea 4.2: Niveles y los perfiles de H.265/HEVC, comparar con H.264/MPEG-4 AVC.
+
+En [Wikipedia](https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Profiles) podemos ver los distintos perfiles y niveles que se han introducido cada versión del estándar H.265/HEVC:
+
+- Versión 1: Main, Main 10 y Main Still Picture.
+- Versión 2: Monochrome, Monochrome 12, Monochrome 16, Main 12, Main 4:2:2 10, Main 4:2:2 12, Main 4:4:4, Main 4:4:4 10, Main 4:4:4 12, Monochrome 12 Intra, Monochrome 16 Intra, Main 12 Intra, Main 4:2:2 10 Intra, Main 4:2:2 12 Intra, Main 4:4:4 Intra, Main 4:4:4 10 Intra, Main 4:4:4 12 Intra, Main 4:4:4 16 Intra, Main 4:4:4 Still Picture, Main 4:4:4 16 Still Picture, High Throughput 4:4:4 16 Intra, Scalable Main, Scalable Main 10 y Multiview Main.
+- Versión 3: Screen-Extended Main, Screen-Extended Main 10, Screen-Extended Main 4:4:4, Screen-Extended Main 4:4:4 10, Screen-Extended High Throughput 4:4:4, Screen-Extended High Throughput 4:4:4 10, Screen-Extended High Throughput 4:4:4 14, High Throughput 4:4:4, High Throughput 4:4:4 10, High Throughput 4:4:4 14, Scalable Monochrome, Scalable Monochrome 12, Scalable Monochrome 16 y Scalable Main 4:4:4
 
 ### Tarea 4.3: Nivel de codificación.
 
-TODO
+El nivel se indica en el selector de de IDC Level.
 
 ### Tarea 4.4: Perfiles en Avidemux para H.264 y H.265.
 
-TODO
+- Para H.264 se pueden seleccionar los perfiles: baseline, main, high, high10, high422 y high444.
+- Para H.265: main y mainstillpicture.
+
+En nuestro caso también podemos utilizar la GPU y configurar como salida
+NVIDIA H264 (perfiles baseline, main, high) y NVIDIA HECV (main, main10).
+{: .notice--info}
 
 ### Tarea 4.5: Factor de compresión con respecto el fichero asset-02.
 
-TODO
+[hevc-80.mkv](/assets/videos/hevc-80.mkv)
+
+Peso del fichero (reportado por Windows): 25.983.830 bytes
+Duración (reportado por MediaInfo): 10,263 s
+Bitrate: 25.983.830 x 8 / 10,263 = 20254373,9647 bps = 20254,374 kbit/s
+
+Nuevo bitrate = 20254,374 kbit/s \* 0.8 = 16203.4992 kbit/s
+
+El factor de compresión es:
+25.983.830 / 21.749.074 = 1,1947
+
+Su inversa es 0.83, es decir, el segundo fichero pesa en torno un 83% del primer fichero.
+{: .notice--info}
 
 ### Tarea 4.6: Factor de compresión con respecto a un hipotético clip sin comprimir.
 
-TODO
+Utilizando el valor calculado en el ejercicio 2.2:
+1.922.281.115,67 / 21.749.074 = 88.3845
 
 ### Tarea 4.7: 60% de velocidad con modo Tasa de bits media o Average Bit Rate (Two Pass)
 
-TODO
+[hevc-60.mkv](/assets/videos/hevc-60.mkv)
+
+Nuevo bitrate = 20254,374 kbit/s \* 0.6 = 12152.6244 kbit/s
+
+Con respecto a asset-02:
+25.983.830 / 15.529.367 = 1,673
+
+Con respecto a un vídeo sin comprimir:
+1.922.281.115,67 / 15.529.367 = 123,78
+
+El peso ha disminuido considerablemente y la calidad no parece haber disminuido, esto
+podría deberse a que permitiendo que el bit rate varíe, el codificador es más inteligente
+comprimiendo más los segmentos más estáticos y menos los de mayor movimiento.
 
 ### Tarea 4.8: Efecto visual pérdidad de libertad de elección de su medida y compresión.
 
-TODO
+[hevc-60-gop-30.mkv](/assets/videos/hevc-60-gop-30.mkv)
+
+El tamaño del archivo ha aumentado muy ligeramente (quizás por el aumento de cuadros I)
+y la calidad ha disminuido.
 
 ### Tarea 4.9: Comparar los 3 casos. Variación GOP: calidad visual y compresión.
 
-TODO
+[hevc-60-gop-10.mkv](/assets/videos/hevc-60-gop-10.mkv)
+
+Es algo difícil de comparar, pero exportando el frame inicial vemos que cuando disminuimos el tamaño del GOP:
+
+- La calidad visual disminuye debido a que necesitamos guardar más cuadros I (a expensas del número
+  de cuadros P y B, más eficientes) manteniendo el mismo bit rate.
+- Los tamaños de los ficheros son similares debido a que el bit rate medio es el mismo.
+
+<div style="text-align:center">
+<img src="/assets/images/hevc-60.png" width="250" />
+<img src="/assets/images/hevc-60-gop-30.png" width="250" />
+<img src="/assets/images/hevc-60-gop-10.png" width="250" />
+</div>
 
 ## Ejercicio 5: Codificación de vídeo mediante un CDN
 
