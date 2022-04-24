@@ -10,6 +10,8 @@ disallow: true
 Esta página no se encuentra indexada en Google
 {: .notice--warning}
 
+[Descargar ZIP]()
+
 ## Ejercicio 1: Contenido estático
 
 ### Tarea 1.1: Tipo de codificación
@@ -18,8 +20,10 @@ El vídeo se encuentra codificado en **H.264**/**AVC**,
 también conocido como **MPEG-4 Part 10**.
 
 Se trata de una codificación **con pérdidas**
-(aunque teóricamente también se podría generar sin pérdida)
 que hace uso del concepto de **GOP** (grupo de imágenes).
+
+Teóricamente también se podría utilizar para codificar vídeos sin pérdida
+{: .notice}
 
 ### Tarea 1.2: Calcular peso en bytes sin comprimir.
 
@@ -44,7 +48,9 @@ El factor real es algo mayor, ya que estamos ignorando el peso de la pista de au
 El contenedor es **MP4**, de manera que concuerda con los contenedores
 compatibles con MPEG-4 AVC que se muestran en la tabla.
 
-{% include figure image_path="/assets/images/tabla_contenedores.png" %}
+<div style="text-align:center">
+<img src="/assets/images/tabla_contenedores.png" width="200" />
+</div>
 
 ### Tarea 1.5: Tipo primer y segundo fotograma
 
@@ -52,26 +58,28 @@ El primer fotograma es de tipo I, y el segundo fotograma es de tipo B.
 
 ### Tarea 1.6: Cantidad de cuadros de este tipo. Relación entre contenido y existencia de cuadros tipo I.
 
-En este clip existen un total de 11 cuadros de tipo I.
+En este clip existen un total de **11 cuadros de tipo I**.
+
 A simple vista es complicado diferenciar cuadros de tipo I y cuadros de tipo B o P.
 
 ### Tarea 1.7: Tipo de estructuras GOP
 
-Dado que la distancia entre cuadros I es 29, deducimos que el valor N es 29,
-en cuanto al valor M, vemos que todos los cuadros I están seguidos de uno B e
+Dado que la distancia entre cuadros I es 29, deducimos que el valor N es 29.
+
+En cuanto al valor M, vemos que todos los cuadros I están seguidos de uno B e
 inmediatamente de un cuadro P, de manera que intuimos que el valor de M es 2.
 
 ### Tarea 1.8: GOP. Qué hace Avidemux cuando corta un clip para ensamblarlo a otro.
 
 El problema al cortar un clip basado en GOP es que si cortamos un segmento
-[A, B) y B no es un cuadro I, los cuadros siguientes que dependan de él
+**[A, B)** y B **no** es un cuadro I, los cuadros siguientes que dependan de él
 estarán rotos al haber perdido su referencia.
 
 Avidemux trata este problema de dos [maneras](http://avidemux.sourceforge.net/doc/en/cutting.xml.html):
 
-- Proporciona herramientas para que el usuario pueda cortar justo antes de un cuadro I.
-- El modo smart copy mantiene el contenido de las partes no modificadas
-  y recodifica únicamente los segmentos que hayan perdido sus cuadros de referencia.
+- Proporciona herramientas para que el usuario pueda cortar justo **antes** de un cuadro I.
+- El modo **smart copy** mantiene el contenido de las partes no modificadas
+  y **recodifica** únicamente los segmentos que hayan perdido sus cuadros de referencia.
 
 En **lossless-cut**, un programa donde he contribuido en el pasado,
 hubo problemas relacionados con este [tema](https://github.com/mifi/lossless-cut/pull/13)
@@ -88,7 +96,7 @@ MediaInfo proporciona **todos** los campos que muestra Avidemux
 Además contiene información adicional relacionado con los parámetros de la
 codificación y el tratamiento del color.
 
-## Ejercicio 2: contenido dinámico
+## Ejercicio 2: Contenido dinámico
 
 ### Tarea 2.1: Calcular peso en bytes sin comprimir.
 
@@ -119,13 +127,20 @@ En este clip existen un total de 11 cuadros de tipo I, al igual que el asset-01.
 
 Por otro lado, aquí se ve claramente la mejora de calidad de la imagen en cuadros de tipo I.
 
+<div style="text-align:center">
+<img src="/assets/images/cuadro_i.png" width="250" />
+<img src="/assets/images/cuadro_p.png" width="250" />
+</div>
+
+<br/>
+
 Dado que la distancia entre cuadros I es 29, deducimos que el valor N es 29,
 en cuanto al valor M, vemos que todos los cuadros I están seguidos por cuadros B + P o directamente P.
-De manera que intuimos que el valor de M es también 2.
+De manera que el valor de M debe ser también 2.
 
 ### Tarea 2.5: Diferencias entre asset-01 y asset-02.
 
-- La diferencia de peso / factor de compresión entre asset-01 y asset-02 es debido
+- La diferencia de peso / factor de compresión entre asset-01 y asset-02 se debe
   a que en el primer vídeo, al ser estático, los cuadros de tipo P y B son prácticamente
   nulos y ocupan muy poco.
 - Por otro lado, también vemos que en el segundo clip existen más cuadros de tipo P y
@@ -137,13 +152,13 @@ De manera que intuimos que el valor de M es también 2.
 
 ### Tarea 3.1: Formato de codificación DVD y Blu-ray
 
-Los DVD aceptan tanto H.262/MPEG-2 como MPEG-1 Part 2.
+Los DVD aceptan tanto **H.262/MPEG-2** como MPEG-1 Part 2.
 Generalmente están en formato MPEG-2 siguiendo uno de los siguientes estándares:
 
-- NTSC: Usado en EE.UU., Canadá y Japón. 720 x 480 (29.97 fps)
-- PAL: Resto del mundo. 720 x 576 (25 fps)
+- **NTSC**: Usado en EE.UU., Canadá y Japón. 720 x 480 (29.97 fps)
+- **PAL**: Resto del mundo. 720 x 576 (25 fps)
 
-En caso de que el cliente hubiese pedido Blu-Ray, hubiesemos optado por
+En caso de que el cliente hubiese pedido Blu-Ray, hubiesemos optado por el
 formato original de asset-02, ya que este es compatible (MPEG-4 AVC 1920x1080 30fps) y
 nos ahorraríamos tener que recodificar el clip.
 
@@ -159,9 +174,9 @@ TODO
 
 Para obtener M=2 y N=6:
 
-- M: el número de fotogramas B debe ser 1, de manera que entre un fotograma I
-  y el siguiente P/I habrá como mucho 1 fotograma B (distancia = 2).
-- N: el tamaño del GOP debe ser 6, para que la distancia entre fotogramas I sea
+- **M**: el número de fotogramas B debe ser 1, esto aseguraría que entre un fotograma I
+  y el siguiente P/I haya como mucho un único fotograma B (distancia = 2).
+- **N**: el tamaño del GOP debe ser 6, para que la distancia entre fotogramas I sea
   exactamente 6.
 
 ### Tarea 3.5: Factor de compresión
