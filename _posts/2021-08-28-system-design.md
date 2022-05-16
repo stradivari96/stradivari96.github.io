@@ -10,7 +10,16 @@ tags: [System Design, Software Engineering, Programming]
 ---
 
 - https://github.com/donnemartin/system-design-primer
-- https://www.youtube.com/c/ExponentTV/videos
+- http://highscalability.squarespace.com/blog/category/example
+
+## Examples:
+
+- Twitter: [Primer](https://github.com/donnemartin/system-design-primer/blob/master/solutions/system_design/twitter/README.md), [CodelyTV](https://youtu.be/6o0usvW5bqY), [Exponent](https://youtu.be/QF8JNSoJD8E)
+  - Fanout
+- Pastebin: [Primer](https://github.com/donnemartin/system-design-primer/blob/master/solutions/system_design/pastebin/README.md)
+- Dropbox: [Stanford](https://youtu.be/PE4gwstWhmc),
+- TikTok: [Exponent](https://youtu.be/Z-0g_aJL5Fw)
+- Instagram: [Exponent](https://www.youtube.com/watch?v=VJpfO6KdyWE)
 
 ## [The Twelve-Factor App](https://12factor.net/)
 
@@ -37,3 +46,17 @@ tags: [System Design, Software Engineering, Programming]
 - Async
   - Precomputing (pre-render static html for CDN)
   - Job queues
+
+## [Blogs]
+
+- [Cloudflare](https://blog.cloudflare.com/)
+- [Uber](https://eng.uber.com/)
+- [Airbnb](https://medium.com/airbnb-engineering/airbnb-engineering-infrastructure/home)
+- [Discord](https://discord.com/category/engineering)
+- [Twitter](https://blog.twitter.com/engineering/en_us)
+- [Meta](https://engineering.fb.com/)
+- [Linkedin](https://engineering.linkedin.com/blog)
+- [Pinterest](https://medium.com/pinterest-engineering)
+- [Dropbox](https://dropbox.tech/infrastructure)
+- [Stripe](https://stripe.com/blog/engineering)
+- [Riot](https://technology.riotgames.com/)

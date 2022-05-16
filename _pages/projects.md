@@ -23,7 +23,7 @@ Here are some of my personal projects.
 
 ## [Github](http://github.com/stradivari96/)
 
-* [Google OR-Tools](https://github.com/google/or-tools/issues?page=1&q=author%3Astradivari96)
+- [Google OR-Tools](https://github.com/google/or-tools/issues?page=1&q=author%3Astradivari96)
 
 ## [Hollow Knight Wikia](https://hollowknight.fandom.com/es/wiki/Hollow_Knight_Wiki)
 
@@ -46,3 +46,7 @@ Generating quality 2D polygon meshes using Restricted [Delaunay Triangulations](
 <img src="/assets/images/TFG.gif" width="400" height="300" />
 </div>
 
+## Other
+
+- Acknowledged:
+  - [Towards Explainability of On-board Satellite Scheduling for End User Interactions](https://strathprints.strath.ac.uk/79038/13/Powell_Riccardi_IAC_2021_Towards_explainability_of_on_board_satellite_scheduling_for_end_user_interactions.pdf)
