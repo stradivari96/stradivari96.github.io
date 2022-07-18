@@ -9,17 +9,35 @@ comments: true
 tags: [System Design, Software Engineering, Programming]
 ---
 
-- https://github.com/donnemartin/system-design-primer
-- http://highscalability.squarespace.com/blog/category/example
+- [System design primer](https://github.com/donnemartin/system-design-primer)
+- [High Scalability](http://highscalability.squarespace.com/blog/category/example)
+- [Designing data intensive](https://www.goodreads.com/book/show/23463279-designing-data-intensive-applications?ref=nav_sb_ss_1_15)
 
-## Examples:
+## [System design interview](https://www.goodreads.com/book/show/54109255-system-design-interview-an-insider-s-guide)
+### Scaling
+- NoSQL for:
+  - low latency
+  - unstructured or non relational data
+  - only need to serialize and deserialize (json, xml, yaml, etc)
+  - store massive amount of data
+- Cache:
+  - read frequenly, modified infrequently
+  - implement expiration policy
+  - consistency is hard for multiple regions
+  - eviction policy: LRU, LFU, FIFO
+- CDN:
+  - Dynamic content caching??
+  - Cache static content near the user
+  - The origin returns TTL to describe how long to cache.
+- Move session data out of web servers and into a cache / NoSQL.
+- Message queue for async tasks, pub/sub.
+- Sharding: choose a good sharding key / partition key
+  - reshard when a single shard is not enough, have exhausted shards due to uneven distribution.
+  - beware of celebrity problem, what if Justin Bieber and Lady gaga are in the same shard.
+  - joins are hard in sharded databases, try denormalizing.
+### Back of the envelope estimation
+- TODO
 
-- Twitter: [Primer](https://github.com/donnemartin/system-design-primer/blob/master/solutions/system_design/twitter/README.md), [CodelyTV](https://youtu.be/6o0usvW5bqY), [Exponent](https://youtu.be/QF8JNSoJD8E)
-  - Fanout
-- Pastebin: [Primer](https://github.com/donnemartin/system-design-primer/blob/master/solutions/system_design/pastebin/README.md)
-- Dropbox: [Stanford](https://youtu.be/PE4gwstWhmc),
-- TikTok: [Exponent](https://youtu.be/Z-0g_aJL5Fw)
-- Instagram: [Exponent](https://www.youtube.com/watch?v=VJpfO6KdyWE)
 
 ## [The Twelve-Factor App](https://12factor.net/)
 
@@ -47,7 +65,16 @@ tags: [System Design, Software Engineering, Programming]
   - Precomputing (pre-render static html for CDN)
   - Job queues
 
-## [Blogs]
+## Examples:
+
+- Twitter: [Primer](https://github.com/donnemartin/system-design-primer/blob/master/solutions/system_design/twitter/README.md), [CodelyTV](https://youtu.be/6o0usvW5bqY), [Exponent](https://youtu.be/QF8JNSoJD8E)
+  - Fanout
+- Pastebin: [Primer](https://github.com/donnemartin/system-design-primer/blob/master/solutions/system_design/pastebin/README.md)
+- Dropbox: [Stanford](https://youtu.be/PE4gwstWhmc),
+- TikTok: [Exponent](https://youtu.be/Z-0g_aJL5Fw)
+- Instagram: [Exponent](https://www.youtube.com/watch?v=VJpfO6KdyWE)
+
+## Blogs
 
 - [Cloudflare](https://blog.cloudflare.com/)
 - [Uber](https://eng.uber.com/)
