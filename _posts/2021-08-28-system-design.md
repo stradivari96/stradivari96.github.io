@@ -12,8 +12,8 @@ tags: [System Design, Software Engineering, Programming]
 - [System design primer](https://github.com/donnemartin/system-design-primer)
 - [High Scalability](http://highscalability.squarespace.com/blog/category/example)
 - [Designing data intensive](https://www.goodreads.com/book/show/23463279-designing-data-intensive-applications?ref=nav_sb_ss_1_15)
+- [System design interview](https://www.goodreads.com/book/show/54109255-system-design-interview-an-insider-s-guide)
 
-## [System design interview](https://www.goodreads.com/book/show/54109255-system-design-interview-an-insider-s-guide)
 ### Scaling
 - NoSQL for:
   - low latency
@@ -127,14 +127,15 @@ Notes
 
 ## Blogs
 
-- [Cloudflare](https://blog.cloudflare.com/)
-- [Uber](https://eng.uber.com/)
 - [Airbnb](https://medium.com/airbnb-engineering/airbnb-engineering-infrastructure/home)
+- [Cloudflare](https://blog.cloudflare.com/)
 - [Discord](https://discord.com/category/engineering)
-- [Twitter](https://blog.twitter.com/engineering/en_us)
-- [Meta](https://engineering.fb.com/)
-- [Linkedin](https://engineering.linkedin.com/blog)
-- [Pinterest](https://medium.com/pinterest-engineering)
+- [DoorDash](https://doordash.engineering/blog/)
 - [Dropbox](https://dropbox.tech/infrastructure)
-- [Stripe](https://stripe.com/blog/engineering)
+- [Linkedin](https://engineering.linkedin.com/blog)
+- [Meta](https://engineering.fb.com/)
+- [Pinterest](https://medium.com/pinterest-engineering)
 - [Riot](https://technology.riotgames.com/)
+- [Stripe](https://stripe.com/blog/engineering)
+- [Twitter](https://blog.twitter.com/engineering/en_us)
+- [Uber](https://eng.uber.com/)
