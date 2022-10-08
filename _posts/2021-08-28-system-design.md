@@ -15,11 +15,13 @@ tags: [System Design, Software Engineering, Programming]
 - [System design interview](https://www.goodreads.com/book/show/54109255-system-design-interview-an-insider-s-guide)
 
 ### Scaling
+
 - NoSQL for:
   - low latency
   - unstructured or non relational data
   - only need to serialize and deserialize (json, xml, yaml, etc)
   - store massive amount of data
+  - consistency is not a big deal, consistent scaling.
 - Cache:
   - read frequenly, modified infrequently
   - implement expiration policy
@@ -37,7 +39,9 @@ tags: [System Design, Software Engineering, Programming]
   - joins are hard in sharded databases, try denormalizing.
 
 ### Back of the envelope estimation
+
 Powers of two
+
 ```
 Power           Exact Value         Approx Value        Bytes
 ---------------------------------------------------------------
@@ -52,6 +56,7 @@ Power           Exact Value         Approx Value        Bytes
 ```
 
 Latency
+
 ```
 Latency Comparison Numbers
 --------------------------
@@ -80,15 +85,13 @@ Notes
 
 ![](https://camo.githubusercontent.com/77f72259e1eb58596b564d1ad823af1853bc60a3/687474703a2f2f692e696d6775722e636f6d2f6b307431652e706e67)
 
-| Availability %      | Downtime per day    | Downtime per year  |
-|---------------------|---------------------|--------------------|
-| 99%                 | 14.40 minutes       | 3.65 days          |
-| 99.9%               | 1.44 minutes        | 8.77 hours         |
-| 99.99%              | 8.64 seconds        | 52.60 minutes      |
-| 99.999%             | 864.00 milliseconds | 5.26 minutes       |
-| 99.9999%            | 86.40 milliseconds  | 31.56 seconds      |
-
-
+| Availability % | Downtime per day    | Downtime per year |
+| -------------- | ------------------- | ----------------- |
+| 99%            | 14.40 minutes       | 3.65 days         |
+| 99.9%          | 1.44 minutes        | 8.77 hours        |
+| 99.99%         | 8.64 seconds        | 52.60 minutes     |
+| 99.999%        | 864.00 milliseconds | 5.26 minutes      |
+| 99.9999%       | 86.40 milliseconds  | 31.56 seconds     |
 
 ## [The Twelve-Factor App](https://12factor.net/)
 
