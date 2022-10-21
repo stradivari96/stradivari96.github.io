@@ -5,7 +5,7 @@ title: "About me"
 author_profile: true
 ---
 
-Software developer at [Paradigma Digital](https://www.paradigmadigital.com/).
+Software engineer at [Paradigma Digital](https://www.paradigmadigital.com/).
 
 Avid gamer, reader and weeb.
 
@@ -17,10 +17,9 @@ Languages: :es:, :cn:, :uk: and learning :jp:
 
 | Date              | Position                   | Company                                                                                                                                                                                                         |
 | ----------------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 09/2021 - Present | **Software Developer**     | <a href="https://www.paradigmadigital.com/"><img src="https://www.paradigmadigital.com/assets/img/logo/paradigma-logos/horizontal/paradigma_digital_logo_default.svg" alt="Paradigma Digital" width="200"/></a> |
-| 04/2021 - 09/2021 | **Software Developer**     | <a href="https://mmg-ai.com"><img src="/assets/images/mmg.png" alt="MMG" width="200"/></a>                                                                                                                      |
-| 10/2018 - 01/2021 | **Full Stack Developer**   | <a href="https://foqum.io"><img src="https://i.imgur.com/NeCw0UF.png" alt="Foqum" width="200"/></a>                                                                                                             |
-| 09/2018 - 10/2018 | **Data Science Intern**    | <a href="https://foqum.io"><img src="https://i.imgur.com/NeCw0UF.png" alt="Foqum" width="200"/></a>                                                                                                             |
+| 09/2021 - Present | **Software Engineer**      | <a href="https://www.paradigmadigital.com/"><img src="https://www.paradigmadigital.com/assets/img/logo/paradigma-logos/horizontal/paradigma_digital_logo_default.svg" alt="Paradigma Digital" width="200"/></a> |
+| 04/2021 - 09/2021 | **Software Engineer**      | <a href="https://mmg-ai.com"><img src="/assets/images/mmg.png" alt="MMG" width="200"/></a>                                                                                                                      |
+| 09/2018 - 01/2021 | **Full Stack Engineer**    | <a href="https://foqum.io"><img src="https://i.imgur.com/NeCw0UF.png" alt="Foqum" width="200"/></a>                                                                                                             |
 | 09/2017 - 12/2017 | **Web Development Intern** | <a href="https://www.accenture.com"><img src="https://www.appian.com/wp-content/uploads/2019/04/Acc_Logo_Black_Purple_RGB-2.png" alt="Accenture" width="200"/></a>                                              |
 
 # Education
@@ -40,4 +39,5 @@ Languages: :es:, :cn:, :uk: and learning :jp:
   - [Hollow Knight (ES)](https://hollowknight.fandom.com/es/wiki/Hollow_Knight_Wiki)
   - [Blasphemous (ES)](https://blasphemous.fandom.com/es/wiki/Blasphemous_Wiki)
 - Contributor:
-  - [Google OR-Tools](https://github.com/google/or-tools)
+  <!-- prettier-ignore -->
+  - [Google OR-Tools](https://github.com/google/or-tools): Open Source Peer Bonus [winner](https://opensource.googleblog.com/2022/09/announcing-the-second-group-of-open-source-peer-bonus-winners-in-2022.html)

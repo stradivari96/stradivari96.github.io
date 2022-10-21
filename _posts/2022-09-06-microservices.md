@@ -30,7 +30,7 @@ Also, if the team is small, the time spent on deployment and management might no
 
 A valid default choice, doesn't mean legacy.
 
-- Single-process monoliths: most common, single process that talks to a database (monolIthic Django, Rails, etc).
+- Single-process monoliths: most common, single process that talks to a database (monolithic Django, Rails, etc).
 - Modular monoliths: single process with separate modules that can be worked on independently ([shopify](https://www.youtube.com/watch?v=ISYKx8sa53g)).
 - Distributed monolith: multiple services that must be deployed together (disadvages of distributed systems and single-process monoliths,
   not enough focus on information hiding and cohesion of business functionality).
