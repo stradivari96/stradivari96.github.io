@@ -1,4 +1,4 @@
-baseURL: http://example.org/
+baseURL: https://xiang.dev/
 languageCode: en-us
 title: Just another developer
 theme: ["hugo-notice", "PaperMod"]
