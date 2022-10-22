@@ -6,6 +6,9 @@ paginate: 5
 
 menu:
   main:
+    - name: Search
+      url: search/
+      weight: 9
     - name: Tags
       url: tags/
       weight: 10
@@ -48,3 +51,9 @@ markup:
       unsafe: true
 
 disqusShortname: stradivari96
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # is necessary
