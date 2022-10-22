@@ -1,0 +1,31 @@
+baseURL: http://example.org/
+languageCode: en-us
+title: Just another developer
+theme: ["hugo-notice", "PaperMod"]
+
+menu:
+  main:
+    - identifier: About
+      name: About
+      url: /about/
+
+params:
+  env: production
+  title: ExampleSite
+  description: "ExampleSite description"
+  keywords: [Blog, Portfolio]
+  author: Xiang Chen
+
+  homeInfoParams:
+    Title: Hi there wave
+    Content: Can be Info, links, about...
+
+  ShowReadingTime: true
+  showToc: true
+  TocOpen: false
+  hideSummary: false
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
