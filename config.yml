@@ -31,6 +31,8 @@ params:
   TocOpen: false
   hideSummary: false
   ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowCodeCopyButtons: true
   comments: true
 
   socialIcons:
