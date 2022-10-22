@@ -11,19 +11,31 @@ menu:
 
 params:
   env: production
-  title: ExampleSite
-  description: "ExampleSite description"
-  keywords: [Blog, Portfolio]
+  title: Just another developer
+  description: "Personal website of Xiang Chen, software engineer based in Spain"
+  keywords: [Blog, Portfolio, Xiang Chen]
   author: Xiang Chen
 
   homeInfoParams:
-    Title: Hi there wave
-    Content: Can be Info, links, about...
+    Title: Xiang Chen
+    Content: Full time programmer, part time casual
 
   ShowReadingTime: true
   showToc: true
   TocOpen: false
   hideSummary: false
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/stradivari96"
+    - name: email
+      url: "mailto:chen@xiang.dev"
+    - name: linkedin
+      url: "https://www.linkedin.com/in/xiang-chen-chen/"
+    - name: twitter
+      url: "https://twitter.com/xiang_96"
+    - name: Rss
+      url: "index.xml"
 
 markup:
   goldmark:
