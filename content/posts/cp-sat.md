@@ -4,7 +4,7 @@ date: 2020-12-14
 draft: false
 
 aliases:
-  - /ddd
+  - /cp-sat
 
 tags: ["Python", "Operations research", "ortools", "CP-SAT"]
 ---
