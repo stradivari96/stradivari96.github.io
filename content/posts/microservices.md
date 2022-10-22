@@ -3,9 +3,6 @@ title: "📝 Microservices notes"
 date: 2022-09-06
 draft: false
 
-aliases:
-  - /microservices
-
 tags: ["System Design", "Software Engineering"]
 ---
 

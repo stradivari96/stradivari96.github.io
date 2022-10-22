@@ -3,9 +3,6 @@ title: "📝 Domain Driven Design notes"
 date: 2022-08-27
 draft: false
 
-aliases:
-  - /ddd
-
 tags: ["Software Engineering", "Programming", "Python"]
 ---
 

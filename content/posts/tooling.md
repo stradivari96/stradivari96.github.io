@@ -4,10 +4,7 @@ date: 2022-04-03
 draft: false
 weight: 2
 
-aliases:
-  - /tooling
-
-tags: ["Programming"]
+tags: ["Software Engineering"]
 ---
 
 List of tools I use (almost) daily

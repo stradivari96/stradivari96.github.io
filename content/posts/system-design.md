@@ -3,9 +3,6 @@ title: "📝 System Design notes"
 date: 2021-08-28
 draft: false
 
-aliases:
-  - /system-design
-
 tags: ["Software Engineering"]
 ---
 

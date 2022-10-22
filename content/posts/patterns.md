@@ -3,9 +3,6 @@ title: "📝 Design Patterns notes"
 date: 2021-08-28
 draft: false
 
-aliases:
-  - /ddd
-
 tags: ["Software Engineering", "Programming", "Python"]
 cover:
   image: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?cs=srgb&dl=pexels-picjumbocom-196644.jpg&fm=jpg"
