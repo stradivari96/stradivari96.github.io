@@ -1,4 +1,1 @@
-_site
-.sass-cache
-.jekyll-metadata
-Gemfile.lock
+.hugo_build.lock
