@@ -8,13 +8,13 @@ aliases:
   - /cp-sat
 
 tags: ["Python", "Operations research", "ortools", "CP-SAT"]
+cover:
+  image: "https://pbs.twimg.com/media/DuoN35ZXgAAKzC_.jpg"
 ---
 
 Some tips and tricks for the CP-SAT solver.
 
 <!--more-->
-
-![img](https://pbs.twimg.com/media/DuoN35ZXgAAKzC_.jpg)
 
 Resources:
 
