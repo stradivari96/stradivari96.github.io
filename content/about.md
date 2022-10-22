@@ -3,6 +3,8 @@ title: "About me"
 
 showToc: false
 ShowReadingTime: false
+comments: false
+disableShare: true
 ---
 
 Software engineer at [Paradigma Digital](https://www.paradigmadigital.com/).

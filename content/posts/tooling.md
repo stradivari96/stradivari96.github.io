@@ -2,6 +2,7 @@
 title: "🔨 My Development Tools"
 date: 2022-04-03
 draft: false
+weight: 2
 
 aliases:
   - /tooling

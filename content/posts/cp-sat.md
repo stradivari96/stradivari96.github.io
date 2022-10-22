@@ -2,6 +2,7 @@
 title: "✨ Recipes for Google OR-Tools"
 date: 2020-12-14
 draft: false
+weight: 1
 
 aliases:
   - /cp-sat

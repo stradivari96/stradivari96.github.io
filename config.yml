@@ -2,11 +2,14 @@ baseURL: https://xiang.dev/
 languageCode: en-us
 title: Just another developer
 theme: ["hugo-notice", "PaperMod"]
+paginate: 5
 
 menu:
   main:
-    - identifier: About
-      name: About
+    - name: Tags
+      url: tags/
+      weight: 10
+    - name: About
       url: /about/
 
 params:
