@@ -9,7 +9,7 @@ Software engineer at [Paradigma Digital](https://www.paradigmadigital.com/).
 
 Avid gamer, reader and weeb.
 
-Languages: :es:, :cn:, :uk: and learning :jp:
+Languages: 🇪🇸, 🇨🇳, 🇬🇧 and learning 🇯🇵
 
 ## Experience
 
