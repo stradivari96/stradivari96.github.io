@@ -13,6 +13,7 @@ Here are some of my personal projects.
 
 - [**Google OR-Tools contibutions**](https://github.com/google/or-tools/issues?page=1&q=author%3Astradivari96): Some contributions to the Google OR-Tools project.
 - [**Awesome OR**](https://github.com/stradivari96/awesome-or): A curated list of awesome Operations Research resources.
+- [**Python Web Frameworks stars**](https://github.com/stradivari96/python-web-framework-stars)
 
 ### Hollow Knight
 
