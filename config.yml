@@ -52,8 +52,6 @@ params:
 
 markup:
   highlight:
-    codeFences: true
-    guessSyntax: true
     lineNos: true
     style: monokai
   goldmark:
