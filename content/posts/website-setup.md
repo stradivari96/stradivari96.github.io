@@ -25,9 +25,12 @@ and [how to host on Github](https://gohugo.io/hosting-and-deployment/hosting-on-
 
 There are a lot of different themes that you can choose from on [GitHub](https://github.com/topics/jekyll-theme).
 
-In my case I pretty much chose the first one: [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes) and used the [starter](https://github.com/mmistakes/mm-github-pages-starter/generate) from its [guide](https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/).
+In my case I pretty much chose the first one: [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes)
+and used the [starter](https://github.com/mmistakes/mm-github-pages-starter/generate)
+from its [guide](https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/).
 
-You should see your website up and running at this point.
+After setting `stradivari96.github.io` as the repository name and enabling github pages
+in the settings, the website was up and running.
 
 # Custom Domain
 
