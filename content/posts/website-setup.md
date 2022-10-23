@@ -13,7 +13,7 @@ How I set up this website using GitHub Pages, namecheap and Cloudflare
 {{< notice info >}}
 I have migrated my website to [Hugo PaperMod](https://github.com/adityatelange/hugo-PaperMod).
 
-Read the [hugo documentation](https://gohugo.io/getting-started/quick-start/#step-1-install-hugo), the [Papermod Guide](https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-installation/#guide)
+Read the [Papermod Guide](https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-installation/#guide)
 and [how to host on Github](https://gohugo.io/hosting-and-deployment/hosting-on-github/) for more info.
 {{< /notice >}}
 
