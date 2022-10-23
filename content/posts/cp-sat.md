@@ -16,10 +16,14 @@ Some tips and tricks for the CP-SAT solver.
 
 <!--more-->
 
-Resources:
+## Resources:
 
 - https://github.com/or-tools/awesome_or-tools
 - https://stackoverflow.com/questions/tagged/or-tools
+- https://or.stackexchange.com/questions/tagged/or-tools
+- https://groups.google.com/g/or-tools-discuss
+- https://github.com/google/or-tools/discussions
+- https://discord.gg/ENkQrdf
 
 ## Solver Parameters
 
