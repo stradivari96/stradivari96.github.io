@@ -20,7 +20,7 @@ Languages: 🇪🇸, 🇨🇳, 🇬🇧 and learning 🇯🇵
 | 09/2021 - Present | **Software Engineer**      | <a href="https://www.paradigmadigital.com/"><img src="https://www.paradigmadigital.com/assets/img/logo/paradigma-logos/horizontal/paradigma_digital_logo_default.svg" alt="Paradigma Digital" width="200"/></a> |
 | 04/2021 - 09/2021 | **Software Engineer**      | <a href="https://dezzai.com/"><img src="https://dezzai.com/en/wp-content/uploads/2021/10/dezzai_logo_morado.png" alt="dezzai" width="200"/></a>                                                                 |
 | 09/2018 - 01/2021 | **Full Stack Engineer**    | <a href="https://foqum.io"><img src="https://i.imgur.com/NeCw0UF.png" alt="Foqum" width="200"/></a>                                                                                                             |
-| 09/2017 - 12/2017 | **Web Development Intern** | <a href="https://www.accenture.com"><img src="https://www.appian.com/wp-content/uploads/2019/04/Acc_Logo_Black_Purple_RGB-2.png" alt="Accenture" width="200"/></a>                                              |
+| 09/2017 - 12/2017 | **Web Development Intern** | <a href="https://www.accenture.com"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Accenture.svg/320px-Accenture.svg.png" alt="Accenture" width="200"/></a>                                |
 
 # Education
 
