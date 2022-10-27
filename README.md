@@ -1,5 +1,7 @@
 ## Personal blog: https://xiang.dev/
 
+Clone with `--recursive` flag.
+
 Install [Hugo](https://gohugo.io/getting-started/installing/).
 
 And run:
