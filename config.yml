@@ -54,7 +54,7 @@ params:
 
 markup:
   highlight:
-    lineNos: true
+    lineNos: false
     style: monokai
   goldmark:
     renderer:

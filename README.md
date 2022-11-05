@@ -2,12 +2,10 @@
 
 Clone with `--recursive` flag.
 
-Install [Hugo](https://gohugo.io/getting-started/installing/).
-
 And run:
 
 ```
-hugo server -D
+docker-compose up
 ```
 
 Visit http://localhost:1313/

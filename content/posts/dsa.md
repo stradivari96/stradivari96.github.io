@@ -1,7 +1,8 @@
 ---
 title: "📝 Data structures and algorithms"
 date: 2022-10-27
-draft: false
+draft: true
+TocOpen: true
 
 tags: ["Software Engineering", "Programming", "Python"]
 ---
@@ -16,46 +17,84 @@ Some notes about DSA
 - [Project Euler](https://projecteuler.net/)
 - [HackerRank](https://www.hackerrank.com/)
 
+### Big O
+
+- [Neetcode](https://youtu.be/BgLTDT03QtU)
+- [Big O Cheat Sheet](https://www.bigocheatsheet.com/)
+- Recursive with multiple branches: O(branches^depth), if not repeated work, O(n).
+- Fibonacci: O(2^n), with memoization: O(n)
+- Permutations, TSP: O(n!)
+- Binary search: O(log n) (divide search space)
+
 ### Arrays & Hashing
 
-- [**Contains Duplicate**](https://leetcode.com/problems/contains-duplicate/):
+- ✅[**Contains Duplicate**](https://leetcode.com/problems/contains-duplicate/):
   Naive, Sort, Set
-- [**Valid Anagram**](https://leetcode.com/problems/valid-anagram/):
+- ✅[**Valid Anagram**](https://leetcode.com/problems/valid-anagram/):
   Two (one) Hashmap, Sort
-- [**Two Sum**](https://leetcode.com/problems/two-sum/):
+- ✅[**Two Sum**](https://leetcode.com/problems/two-sum/):
   Hashmap (seen)
-- [**Group Anagrams**](https://leetcode.com/problems/group-anagrams/):
+- ✅[**Group Anagrams**](https://leetcode.com/problems/group-anagrams/):
   Hashmap (counter as key)
-- [**Top K Frequent Elements**](https://leetcode.com/problems/top-k-frequent-elements/):
-  Count, List of frequency
-- [**Product of Array Except Self**](https://leetcode.com/problems/product-of-array-except-self/):
-  Prefix product, Suffix product
-- [**Encode and Decode Strings**](https://www.lintcode.com/problem/659/):
+- ✅[**Top K Frequent Elements**](https://leetcode.com/problems/top-k-frequent-elements/):
+  Count, List of frequency `groups_by_freq = [[] for _ in range(len(nums)+1)]`
+- ✅[**Product of Array Except Self**](https://leetcode.com/problems/product-of-array-except-self/):
+  Multiply all and divide by each / Prefix product, Suffix product.
+- ✅[**Encode and Decode Strings**](https://www.lintcode.com/problem/659/):
   Length + Separator
-- [**Longest Consecutive Sequence**](https://leetcode.com/problems/longest-consecutive-sequence/):
+- ✅[**Longest Consecutive Sequence**](https://leetcode.com/problems/longest-consecutive-sequence/):
   Set and start if n-1 not in set
 
-Other:
+**Other**:
 
-TODO
+- ✅[**Valid Sudoku**](https://leetcode.com/problems/valid-sudoku/): `squares[(r // 3, c // 3)].add(board[r][c])`
 
 ### Two Pointers
 
-- [**Valid Palindrome**](https://leetcode.com/problems/valid-palindrome/):
+- ✅[**Valid Palindrome**](https://leetcode.com/problems/valid-palindrome/):
   2 pointers
-- [**3Sum**](https://leetcode.com/problems/3sum/):
-  sort and use 2 pointers, from n^3 to n^2
-- [**Container With Most Water**](https://leetcode.com/problems/container-with-most-water/):
+- ✅[**3Sum**](https://leetcode.com/problems/3sum/) / [s](https://github.com/neetcode-gh/leetcode/blob/main/python/15-3Sum.py):
+  sort and use 2 pointers, from n^3 to n^2, or go case by case (1 zero on the list, 3 zeros, 2 neg 1 pos, 2 pos 1 neg).
+
+  ```python
+  res = set()
+  nums.sort()
+
+  for i, a in enumerate(nums):
+      l, r = i + 1, len(nums) - 1
+      while l < r:
+          threeSum = a + nums[l] + nums[r]
+          if threeSum > 0: r -= 1
+          elif threeSum < 0: l += 1
+          else:
+              res.add((a, nums[l], nums[r]))
+              l += 1
+  return res
+  ```
+
+- ✅[**Container With Most Water**](https://leetcode.com/problems/container-with-most-water/):
   start from both ends, move the smaller one
 
-Other:
+**Other**:
 
-TODO
+- ✅[**Two Sum II**](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+- [**Trapping Rain Water**](https://leetcode.com/problems/trapping-rain-water/):
+  DP, can optimize to O(1) space by using 2 pointers
+- ✅[**String Compression**](https://leetcode.com/problems/string-compression/):
+  2 pointers, slow and fast.
 
 ### Sliding Window
 
 - [**Best Time to Buy and Sell Stock**](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/):
   [Kadane's algorithm](https://raw.githubusercontent.com/neetcode-gh/leetcode/main/python/121-Best-Time-To-Buy-and-Sell-Stock.py)
+  ```python
+  l = 0
+  for r in range(1, len(prices)):
+      if prices[r] < prices[l]:
+          l = r
+      res = max(res, prices[r] - prices[l])
+  return res
+  ```
 - [**Longest Substring Without Repeating Characters**](https://leetcode.com/problems/longest-substring-without-repeating-characters/):
   Hashmap (seen, index), `ans = max(ans, i - start + 1)`
 - [**Longest Repeating Character Replacement**](https://leetcode.com/problems/longest-repeating-character-replacement/):
@@ -63,16 +102,16 @@ TODO
 - [**Minimum Window Substring**](https://leetcode.com/problems/minimum-window-substring/):
   ???
 
-Other:
+**Other**:
 
 TODO
 
 ### Stack
 
-- [**Valid Parentheses**](https://leetcode.com/problems/valid-parentheses/):
+- ✅[**Valid Parentheses**](https://leetcode.com/problems/valid-parentheses/):
   store last opened in stack
 
-Other:
+**Other**:
 
 TODO
 
@@ -89,7 +128,7 @@ while l <= r:
 - [**Find Minimum in Rotated Sorted Array**](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/):
   stop `if nums[l] < nums[r]`.
 
-Other:
+**Other**:
 
 TODO
 
@@ -103,7 +142,7 @@ TODO
 - [**Linked List Cycle**](https://leetcode.com/problems/linked-list-cycle/)
 - [**Merge K Sorted Lists**](https://leetcode.com/problems/merge-k-sorted-lists/)
 
-Other:
+**Other**:
 
 TODO
 
@@ -116,11 +155,11 @@ TODO
 - [**Same Tree**](https://leetcode.com/problems/same-tree/): `isSameTree(p.left, q.left) and isSameTree(p.right, q.right)`
 - [**Subtree of Another Tree**](https://leetcode.com/problems/subtree-of-another-tree/): O(n+m)
 
-```python
-if self.sameTree(s, t):
-  return True
-return self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
-```
+  ```python
+  if self.sameTree(s, t):
+    return True
+  return self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
+  ```
 
 - [**Lowest Common Ancestor of a Binary Search Tree**](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)
 - [**Binary Tree Level Order Traversal**](https://leetcode.com/problems/binary-tree-level-order-traversal/)
@@ -130,7 +169,7 @@ return self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
 - [**Binary Tree Maximum Path Sum**](https://leetcode.com/problems/binary-tree-maximum-path-sum/)
 - [**Serialize and Deserialize Binary Tree**](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/)
 
-Other:
+**Other**:
 
 TODO
 
@@ -141,7 +180,7 @@ TODO
 - [**Design Add And Search Words Data Structure**](https://leetcode.com/problems/design-add-and-search-words-data-structure/):
 - [**Word Search II**](https://leetcode.com/problems/word-search-ii/)
 
-Other:
+**Other**:
 
 TODO
 
@@ -149,7 +188,7 @@ TODO
 
 - [**Find Median from Data Stream**](https://leetcode.com/problems/find-median-from-data-stream/)
 
-Other:
+**Other**:
 
 TODO
 
@@ -158,9 +197,34 @@ TODO
 - [**Combination Sum**](https://leetcode.com/problems/combination-sum/)
 - [**Word Search**](https://leetcode.com/problems/word-search/)
 
-Other:
+**Other**:
 
-TODO
+- [**Sudoku Solver**](https://leetcode.com/problems/sudoku-solver/): `if board[3 * (i // 3) + k // 3][ 3 * (j // 3) + k % 3] == n:`
+
+  ```python
+  def solveSudoku(self, board: List[List[str]]) -> None:
+    for i in range(9):
+        for j in range(9):
+            if board[i][j] != ".":
+                continue
+            for n in range(1, 10):
+                n = str(n)
+                if self.is_valid(board, i, j, n):
+                    board[i][j] = n
+                    if self.solveSudoku(board):
+                        return True
+                    board[i][j] = "."
+            return False
+    return True
+
+  def is_valid(self, board, i, j, n):
+    for k in range(9):
+        if board[i][k] == n: return False
+        if board[k][j] == n: return False
+        if board[3 * (i // 3) + k // 3][ 3 * (j // 3) + k % 3] == n:
+            return False
+    return True
+  ```
 
 ### Graphs
 
@@ -174,30 +238,30 @@ TODO
   BFS topological sort / DFS cycle detection (visited set, graph[c] = []).
 - [**Number of Connected Components in an Undirected Graph**](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/):
 
-```python
-class UnionFind:
-    def __init__(self):
-        self.f = {}
-    def findParent(self, x):
-        y = self.f.get(x, x)
-        if x != y:
-            y = self.f[x] = self.findParent(y)
-        return y
-    def union(self, x, y):
-        self.f[self.findParent(x)] = self.findParent(y)
+  ```python
+  class UnionFind:
+      def __init__(self):
+          self.f = {}
+      def findParent(self, x):
+          y = self.f.get(x, x)
+          if x != y:
+              y = self.f[x] = self.findParent(y)
+          return y
+      def union(self, x, y):
+          self.f[self.findParent(x)] = self.findParent(y)
 
-class Solution:
-    def countComponents(self, n: int, edges: List[List[int]]) -> int:
-        dsu = UnionFind()
-        for a, b in edges:
-            dsu.union(a, b)
-        return len(set(dsu.findParent(x) for x in range(n)))
-```
+  class Solution:
+      def countComponents(self, n: int, edges: List[List[int]]) -> int:
+          dsu = UnionFind()
+          for a, b in edges:
+              dsu.union(a, b)
+          return len(set(dsu.findParent(x) for x in range(n)))
+  ```
 
 - [**Graph Valid Tree**](https://leetcode.com/problems/graph-valid-tree/):
   DFS cycle detection, `dfs(0, prev=-1) and n == len(visit)`
 
-Other:
+**Other**:
 
 TODO
 
@@ -206,7 +270,7 @@ TODO
 - [**Alien Dictionary**](https://www.lintcode.com/problem/892):
   topological sort, DFS cycle detection.
 
-Other:
+**Other**:
 
 TODO
 
@@ -230,7 +294,7 @@ TODO
 - [**Word Break**](https://leetcode.com/problems/word-break/)
 - [**Longest Increasing Subsequence**](https://leetcode.com/problems/longest-increasing-subsequence/)
 
-Other:
+**Other**:
 
 TODO
 
@@ -239,7 +303,7 @@ TODO
 - [**Unique Paths**](https://leetcode.com/problems/unique-paths/)
 - [**Longest Common Subsequence**](https://leetcode.com/problems/longest-common-subsequence/)
 
-Other:
+**Other**:
 
 TODO
 
@@ -250,7 +314,7 @@ TODO
 - [**Jump Game**](https://leetcode.com/problems/jump-game/):
   `if i + nums[i] >= target: target = i`
 
-Other:
+**Other**:
 
 TODO
 
@@ -295,17 +359,71 @@ TODO
   return res
   ```
 
-Other:
+**Other**:
 
 TODO
 
 ### Math & Geometry
 
 - [**Rotate Image**](https://leetcode.com/problems/rotate-image/)
+
+  ```python
+  l, r = 0, len(matrix) - 1
+  while l < r:
+      for i in range(r - l):
+          top, bottom = l, r
+
+          # save the topleft
+          topLeft = matrix[top][l + i]
+
+          # move bottom left into top left
+          matrix[top][l + i] = matrix[bottom - i][l]
+
+          # move bottom right into bottom left
+          matrix[bottom - i][l] = matrix[bottom][r - i]
+
+          # move top right into bottom right
+          matrix[bottom][r - i] = matrix[top + i][r]
+
+          # move top left into top right
+          matrix[top + i][r] = topLeft
+      r -= 1
+      l += 1
+  ```
+
 - [**Spiral Matrix**](https://leetcode.com/problems/spiral-matrix/)
+
+  ```python
+  res = []
+  left, right = 0, len(matrix[0])
+  top, bottom = 0, len(matrix)
+
+  while left < right and top < bottom:
+      # get every i in the top row
+      for i in range(left, right):
+          res.append(matrix[top][i])
+      top += 1
+      # get every i in the right col
+      for i in range(top, bottom):
+          res.append(matrix[i][right - 1])
+      right -= 1
+      if not (left < right and top < bottom):
+          break
+      # get every i in the bottom row
+      for i in range(right - 1, left - 1, -1):
+          res.append(matrix[bottom - 1][i])
+      bottom -= 1
+      # get every i in the left col
+      for i in range(bottom - 1, top - 1, -1):
+          res.append(matrix[i][left])
+      left += 1
+
+  return res
+  ```
+
 - [**Set Matrix Zeroes**](https://leetcode.com/problems/set-matrix-zeroes/)
 
-Other:
+**Other**:
 
 TODO
 
@@ -340,23 +458,63 @@ TODO
   return a
   ```
 
-  Other:
+  **Other**:
 
   TODO
 
 ### Extra
 
-- [**Cheapest Flights Within K Stops**](https://leetcode.com/problems/cheapest-flights-within-k-stops/):
-  Dijkstra.
 - [**Path with Minimum Effort**](https://leetcode.com/problems/path-with-minimum-effort/):
+  Dijkstra.
+
+  ```python
+  dist, heap = {...}, [(0, 0, 0)]
+
+  while heap:
+      d, i, j = heapq.heappop(heap)
+      if i == len(heights)-1 and j == len(heights[0])-1: return d
+      for ...:
+          newDist = ...
+          if newDist < dist[ii,jj]:
+              dist[ii,jj] = newDist
+              heapq.heappush(heap, (newDist, ii, jj))
+  ```
+
+- [**Cheapest Flights Within K Stops**](https://leetcode.com/problems/cheapest-flights-within-k-stops/):
   Dijkstra.
 - [**Shortest Path in Binary Matrix**](https://leetcode.com/problems/shortest-path-in-binary-matrix/):
   A\*.
 - [**Find the Index of the First Occurrence in a String**](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/):
-  KMP pattern matching.
+  [KMP](https://www.youtube.com/watch?v=GTJr8OvyEVQ) pattern matching, O(m+n).
+
+  ```python
+  def kmp_table(self, needle):
+      table = [-1]+[0]*len(needle)
+      i, j = 1, 0
+      while i < len(needle):
+          if j == -1 or needle[i] == needle[j]:   
+              i += 1
+              j += 1
+              table[i] = j
+          else:
+              j = table[j]
+      return table
+
+  def strStr(self, haystack: str, needle: str) -> int:
+      table = self.kmp_table(needle)
+      i, j = 0, 0
+      while i < len(haystack) and j < len(needle):
+          if j == -1 or haystack[i] == needle[j]:
+              i += 1
+              j += 1
+          else:
+              j = table[j]
+      return i-j if j == len(needle) else -1
+  ```
+
 - [**Maximum Length of Repeated Subarray**](https://leetcode.com/problems/maximum-length-of-repeated-subarray/):
   Rabin–Karp algorithm / Rolling Hash.
-- [**Longest Duplicate Substring**](https://leetcode.com/problems/longest-duplicate-substring/):
+- [**Longest Duplicate Substring**](https://leetcode.com/problems/longest-duplicate-substring/) / [s](https://leetcode.com/problems/longest-duplicate-substring/solutions/695029/python-binary-search-o-n-log-n-average-with-rabin-karp-explained/):
   Rabin Karp + Binary Search.
-- [**Edit Distance**](https://leetcode.com/problems/edit-distance/):
+- [**Edit Distance**](https://leetcode.com/problems/edit-distance/) / [s](https://leetcode.com/problems/edit-distance/solutions/1475220/python-3-solutions-top-down-dp-bottom-up-dp-o-n-in-space-clean-concise/):
   DP.
