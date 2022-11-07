@@ -390,7 +390,7 @@ class ObjectiveEarlyStopping(cp_model.CpSolverSolutionCallback):
         super(ObjectiveEarlyStopping, self).__init__()
         self._timer_limit = timer_limit
         self._timer = None
-        self._reset_timer()
+        self._reset_timer() # Remove to guarantee a solution
 
     def on_solution_callback(self):
         self._reset_timer()

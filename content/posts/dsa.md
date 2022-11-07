@@ -39,7 +39,7 @@ Some notes about DSA
 - ✅[**Top K Frequent Elements**](https://leetcode.com/problems/top-k-frequent-elements/):
   Count, List of frequency `groups_by_freq = [[] for _ in range(len(nums)+1)]`
 - ✅[**Product of Array Except Self**](https://leetcode.com/problems/product-of-array-except-self/):
-  Multiply all and divide by each / Prefix product, Suffix product.
+  Prefix product, Suffix product.
 - ✅[**Encode and Decode Strings**](https://www.lintcode.com/problem/659/):
   Length + Separator
 - ✅[**Longest Consecutive Sequence**](https://leetcode.com/problems/longest-consecutive-sequence/):
@@ -48,6 +48,7 @@ Some notes about DSA
 **Other**:
 
 - ✅[**Valid Sudoku**](https://leetcode.com/problems/valid-sudoku/): `squares[(r // 3, c // 3)].add(board[r][c])`
+- ✅[**Close strings**](https://leetcode.com/problems/determine-if-two-strings-are-close): same set of chars and same count.values()
 
 ### Two Pointers
 
@@ -77,7 +78,8 @@ Some notes about DSA
 
 **Other**:
 
-- ✅[**Two Sum II**](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+- ✅[**Two Sum II**](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/):
+  2 pointers.
 - [**Trapping Rain Water**](https://leetcode.com/problems/trapping-rain-water/):
   DP, can optimize to O(1) space by using 2 pointers
 - ✅[**String Compression**](https://leetcode.com/problems/string-compression/):
@@ -85,22 +87,44 @@ Some notes about DSA
 
 ### Sliding Window
 
-- [**Best Time to Buy and Sell Stock**](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/):
+- ✅[**Best Time to Buy and Sell Stock**](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/):
   [Kadane's algorithm](https://raw.githubusercontent.com/neetcode-gh/leetcode/main/python/121-Best-Time-To-Buy-and-Sell-Stock.py)
   ```python
-  l = 0
-  for r in range(1, len(prices)):
-      if prices[r] < prices[l]:
-          l = r
-      res = max(res, prices[r] - prices[l])
+  for p in prices:
+      min_price = min(min_price, p)
+      res = max(res, p-min_price)
   return res
   ```
 - [**Longest Substring Without Repeating Characters**](https://leetcode.com/problems/longest-substring-without-repeating-characters/):
   Hashmap (seen, index), `ans = max(ans, i - start + 1)`
+  ```python
+  for i, c in enumerate(s):
+      if c in seen and start <= seen[c]: start = seen[c] + 1
+      else: ans = max(ans, i - start + 1)
+      seen[c] = i
+  ```
 - [**Longest Repeating Character Replacement**](https://leetcode.com/problems/longest-repeating-character-replacement/):
-  Find the window with most repeating characters and `end - start + 1 - maxCount < k`, `ans = max(ans, end - start + 1)`
+  Window with most repeating.
+  ```python
+  res, l, maxf = 0, 0, 0
+  for r in range(len(s)):
+      count[s[r]] = 1 + count.get(s[r], 0)
+      maxf = max(maxf, count[s[r]])
+      if (r - l + 1) - maxf > k:
+          count[s[l]] -= 1; l += 1
+      res = max(res, r - l + 1)
+  ```
 - [**Minimum Window Substring**](https://leetcode.com/problems/minimum-window-substring/):
-  ???
+  ```python
+  min_len = float("inf")
+  min_left = 0
+  win_start = 0
+  win_count = {}
+  for i, c in enumerate(s):
+      win_count[c] = win_count.get(c, 0)+1
+      while all(win_count.get(char, 0) >= n for char, n in count_t.items()):
+          # update result and shrink window
+  ```
 
 **Other**:
 
@@ -113,7 +137,8 @@ TODO
 
 **Other**:
 
-TODO
+- ✅[**Reverse Polish Notation**](https://leetcode.com/problems/evaluate-reverse-polish-notation/):
+  operator_map[str, lambda], stack.
 
 ### Binary Search
 
@@ -134,25 +159,25 @@ TODO
 
 ### Linked List
 
-- [**Reverse Linked List**](https://leetcode.com/problems/reverse-linked-list/):
-  while cur: ..., return prev
+- ✅[**Reverse Linked List**](https://leetcode.com/problems/reverse-linked-list/):
+  while cur: ..., tmp, update prev and cur,  return prev
+- ✅[**Linked List Cycle**](https://leetcode.com/problems/linked-list-cycle/): slow = fast = head, while fast and fast.next:
 - [**Merge Two Sorted Lists**](https://leetcode.com/problems/merge-two-sorted-lists/)
 - [**Reorder List**](https://leetcode.com/problems/reorder-list/)
 - [**Remove Nth Node From End of List**](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
-- [**Linked List Cycle**](https://leetcode.com/problems/linked-list-cycle/)
 - [**Merge K Sorted Lists**](https://leetcode.com/problems/merge-k-sorted-lists/)
 
 **Other**:
 
-TODO
+- [**Linked List Cycle II**](https://leetcode.com/problems/linked-list-cycle-ii/): slow1 = head, and intersect with old slow.
 
 ### Trees
 
-- [**Invert Binary Tree**](https://leetcode.com/problems/invert-binary-tree/):
+- ✅[**Invert Binary Tree**](https://leetcode.com/problems/invert-binary-tree/):
   `root.right, root.left = self.invertTree(root.left), self.invertTree(root.right) `
-- [**Maximum Depth of Binary Tree**](https://leetcode.com/problems/maximum-depth-of-binary-tree/):
+- ✅[**Maximum Depth of Binary Tree**](https://leetcode.com/problems/maximum-depth-of-binary-tree/):
   `return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1`
-- [**Same Tree**](https://leetcode.com/problems/same-tree/): `isSameTree(p.left, q.left) and isSameTree(p.right, q.right)`
+- ✅[**Same Tree**](https://leetcode.com/problems/same-tree/): `isSameTree(p.left, q.left) and isSameTree(p.right, q.right)`
 - [**Subtree of Another Tree**](https://leetcode.com/problems/subtree-of-another-tree/): O(n+m)
 
   ```python
@@ -160,14 +185,23 @@ TODO
     return True
   return self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
   ```
-
-- [**Lowest Common Ancestor of a Binary Search Tree**](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)
 - [**Binary Tree Level Order Traversal**](https://leetcode.com/problems/binary-tree-level-order-traversal/)
-- [**Validate Binary Search Tree**](https://leetcode.com/problems/validate-binary-search-tree/)
-- [**Kth Smallest Element in a BST**](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
 - [**Construct Binary Tree from Preorder and Inorder Traversal**](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
 - [**Binary Tree Maximum Path Sum**](https://leetcode.com/problems/binary-tree-maximum-path-sum/)
 - [**Serialize and Deserialize Binary Tree**](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/)
+
+> BST: nodes left < node < nodes right
+
+- ✅[**Lowest Common Ancestor of a Binary Search Tree**](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/):
+  ```python
+  while cur:
+      if p.val < cur.val and q.val < cur.val: cur = cur.left
+      elif p.val > cur.val and q.val > cur.val: cur = cur.right
+      else: return cur
+  ```
+- ✅[**Validate Binary Search Tree**](https://leetcode.com/problems/validate-binary-search-tree/):
+`validate(node.left, min_val, node.val) and validate(node.right, node.val, max_val)`
+- [**Kth Smallest Element in a BST**](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
 
 **Other**:
 
@@ -186,11 +220,14 @@ TODO
 
 ### Heap & Priority Queue
 
+> Heap invariant: each node is <= than its children.
+
 - [**Find Median from Data Stream**](https://leetcode.com/problems/find-median-from-data-stream/)
 
 **Other**:
 
-TODO
+- ✅[**Kth Largest Element in an Stream**](https://leetcode.com/problems/kth-largest-element-in-a-stream/):
+  `while len(self.heap) > k: heapq.heappop(self.heap)`
 
 ### Backtracking
 
@@ -309,10 +346,10 @@ TODO
 
 ### Greedy
 
-- [**Maximum Subarray**](https://leetcode.com/problems/maximum-subarray/):
-  `current_sum = max(current_sum+n, n)`
-- [**Jump Game**](https://leetcode.com/problems/jump-game/):
-  `if i + nums[i] >= target: target = i`
+- ✅[**Maximum Subarray**](https://leetcode.com/problems/maximum-subarray/):
+  `current_sum = max(current_sum+n, n)`, Kadane. 
+- ✅[**Jump Game**](https://leetcode.com/problems/jump-game/):
+  `if i + nums[i] >= target: target = i`, start from end.
 
 **Other**:
 
@@ -372,20 +409,10 @@ TODO
   while l < r:
       for i in range(r - l):
           top, bottom = l, r
-
-          # save the topleft
           topLeft = matrix[top][l + i]
-
-          # move bottom left into top left
           matrix[top][l + i] = matrix[bottom - i][l]
-
-          # move bottom right into bottom left
           matrix[bottom - i][l] = matrix[bottom][r - i]
-
-          # move top right into bottom right
           matrix[bottom][r - i] = matrix[top + i][r]
-
-          # move top left into top right
           matrix[top + i][r] = topLeft
       r -= 1
       l += 1
@@ -399,21 +426,17 @@ TODO
   top, bottom = 0, len(matrix)
 
   while left < right and top < bottom:
-      # get every i in the top row
       for i in range(left, right):
           res.append(matrix[top][i])
       top += 1
-      # get every i in the right col
       for i in range(top, bottom):
           res.append(matrix[i][right - 1])
       right -= 1
       if not (left < right and top < bottom):
           break
-      # get every i in the bottom row
       for i in range(right - 1, left - 1, -1):
           res.append(matrix[bottom - 1][i])
       bottom -= 1
-      # get every i in the left col
       for i in range(bottom - 1, top - 1, -1):
           res.append(matrix[i][left])
       left += 1
