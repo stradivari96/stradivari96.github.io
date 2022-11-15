@@ -32,7 +32,7 @@ Some notes about DSA
 ---
 
 - ✅[**Two Sum**](https://leetcode.com/problems/two-sum/):
-  [💡](https://github.com/neetcode-gh/leetcode/blob/main/python/1-Two-Sum.py)
+  [💡](https://youtu.be/KLlXCFG5TnA)
   - `nums = [2,7,11,15], target = 9` => `[0,1]`
   - HashMap `{n: i}`
   - O(n) time, O(n) space
@@ -69,7 +69,7 @@ Some notes about DSA
   - Hashmap `{char: [(word_idx, current_idx)]}`
   - O(s.length+sumcharwords) time, O(#words) space
 - ✅[**Text Justification**](https://leetcode.com/problems/text-justification/):
-  [💡]
+  [💡](https://leetcode.com/problems/text-justification/solutions/24891/concise-python-solution-10-lines/?orderBy=most_votes)
   - `words = ["This", "is", "an", "example", "of", "text", "justification."] w = 16` => `["This    is    an", "example  of text", "justification.  "]`
   - `if num_of_letters + len(w) + len(cur) > maxWidth:`, round robin
 - ✅[**Find original array from doubled array**](https://leetcode.com/problems/find-original-array-from-doubled-array/):
@@ -87,7 +87,6 @@ Some notes about DSA
 - [**Valid Palindrome**](https://leetcode.com/problems/valid-palindrome/):
   2 pointers
 - [**3Sum**](https://leetcode.com/problems/3sum/):
-  [💡](https://github.com/neetcode-gh/leetcode/blob/main/python/15-3Sum.py)
 - [**Container With Most Water**](https://leetcode.com/problems/container-with-most-water/):
   start from both ends, move the smaller one
 
@@ -116,12 +115,15 @@ Some notes about DSA
 **Other**:
 
 - ✅[**Maximum Points You Can Obtain from Cards**](https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/):
-  [💡]
+  [💡](https://www.youtube.com/watch?v=TsA4vbtfCvo)
   - `cardPoints = [1,2,3,4,5,6,1], k = 3` => `12`
   - Sliding window, minimum subarray of size n-k.
+  - O(n) time, O(1) space
 - ✅[**Subarray Sum Equals K**](https://leetcode.com/problems/subarray-sum-equals-k/):
-  [💡]
+  [💡](https://youtu.be/fFVZt-6sgyo)
   - `nums = [1,1,1], k = 2` => `2` ([1, 1] and [1, 1])
+  - prefix sum, if increase by k, we found one, initialize `d[0] = 1`
+  - O(n) time, O(n) space
 
 ## Stack
 
@@ -133,12 +135,14 @@ Some notes about DSA
 **Other**:
 
 - ✅[**Reverse Polish Notation**](https://leetcode.com/problems/evaluate-reverse-polish-notation/):
-  [💡]
+  [💡](https://youtu.be/iu0082c4HDE)
   - `tokens = ["2","1","+","3","*"]` => `9`
   - `b, a = stack.pop(), stack.pop()` ... `return stack[0]`
 - ✅[**Decode String**](https://leetcode.com/problems/decode-string/):
-  [💡]
+  [💡](https://youtu.be/qB0zZpBJlh8)
   - `s = "3[a]2[bc]"` => `"aaabcbc"`
+  - append to stack `if != ']'`, pop and multiply
+  - O(n_output) time, O(n_output) space
 
 ## Binary Search
 
@@ -157,19 +161,24 @@ while l <= r:
 
 **Other**:
 
+- ✅[**First Bad Version**](https://leetcode.com/problems/first-bad-version/):
+  [💡](https://leetcode.com/problems/first-bad-version/solutions/71324/python-understand-easily-from-binary-search-idea/?orderBy=most_votes)
+  - `n = 5`, `isBadVersion(3) = false`, `isBadVersion(4) = true`
+  - binary search.
 - ✅[**Median of Two Sorted Arrays**](https://leetcode.com/problems/median-of-two-sorted-arrays/):
-  [💡]
+  [💡](https://youtu.be/q6IEA26hvXc)
   - `nums1 = [1,2], nums2 = [3,4]` => `2.5`
   - Binary search on the shorter array until `Aleft <= Bright and Bleft <= Aright`.
+  - O(log(m+n)) time, O(1) space
 - ✅[**Snapshot Array**](https://leetcode.com/problems/snapshot-array/):
-  [💡]
+  [💡](https://leetcode.com/problems/snapshot-array/solutions/350562/java-python-binary-search/?orderBy=most_votes)
+  - `SnapshotArray(int length)`, `set(index, val)`, `snap()`, `get(index, snap_id)`
   - Dict[int, array], binary search on the list of snapshots.
 - ✅[**Random Pick with Weight**](https://leetcode.com/problems/random-pick-with-weight/):
-  [💡]
+  [💡](https://leetcode.com/problems/random-pick-with-weight/solutions/154044/java-accumulated-freq-sum-binary-search/?orderBy=most_votes)
+  - `[1,3]`, `pickIndex()` => `0` with 25% probability, `1` with 75% probability
   - binary search (random (1, total)) on the prefix sum.
-- ✅[**First Bad Version**](https://leetcode.com/problems/first-bad-version/):
-  [💡]
-  - binary search.
+
 
 ## Linked List
 
