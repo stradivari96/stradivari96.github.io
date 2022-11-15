@@ -33,9 +33,9 @@ Some notes about DSA
 
 - ✅[**Two Sum**](https://leetcode.com/problems/two-sum/):
   [💡](https://github.com/neetcode-gh/leetcode/blob/main/python/1-Two-Sum.py)
-  O(n) time, O(n) space
   - `nums = [2,7,11,15], target = 9` => `[0,1]`
   - HashMap `{n: i}`
+  - O(n) time, O(n) space
 - [**Contains Duplicate**](https://leetcode.com/problems/contains-duplicate/):
   Naive, Sort, Set
 - [**Valid Anagram**](https://leetcode.com/problems/valid-anagram/):
@@ -54,23 +54,29 @@ Some notes about DSA
 **Other**:
 
 - ✅[**Minimum Time Difference**](https://leetcode.com/problems/minimum-time-difference/):
-  [💡]
+  [💡](https://leetcode.com/problems/minimum-time-difference/solutions/100637/python-straightforward-with-explanation/comments/104667)
   - `timePoints = ["23:59","00:00"]` => `1`
   - map to minutes & sort, `(time[i]-time[i-1])%(24*60)`
+  - O(nlogn) time, O(n) space
 - ✅[**Logger Rate Limiter**](https://gist.github.com/kuntalchandra/7822e388e0d2d78ec27f566266584b49):
-  [💡]
+  [💡](https://gist.github.com/kuntalchandra/7822e388e0d2d78ec27f566266584b49)
   - `shouldPrintMessage(1, "foo"), shouldPrintMessage(3, "foo")` => `true, false`
   - Hashmap `{message: timestamp}`, `if self.cache[message] + 10 > timestamp`
+  - O(1) time, O(n) space
 - ✅[**Number of matching subsequence**](https://leetcode.com/problems/number-of-matching-subsequences/):
-  [💡]
+  [💡](https://leetcode.com/problems/number-of-matching-subsequences/solutions/117634/efficient-and-simple-go-through-words-in-parallel-with-explanation/)
   - `s = "abcde", words = ["a","bb","acd","ace"]` => `3`
   - Hashmap `{char: [(word_idx, current_idx)]}`
+  - O(s.length+sumcharwords) time, O(#words) space
 - ✅[**Text Justification**](https://leetcode.com/problems/text-justification/):
   [💡]
+  - `words = ["This", "is", "an", "example", "of", "text", "justification."] w = 16` => `["This    is    an", "example  of text", "justification.  "]`
+  - `if num_of_letters + len(w) + len(cur) > maxWidth:`, round robin
 - ✅[**Find original array from doubled array**](https://leetcode.com/problems/find-original-array-from-doubled-array/):
-  [💡]
+  [💡](https://leetcode.com/problems/find-original-array-from-doubled-array/solutions/1470959/java-c-python-match-from-the-smallest-or-biggest-100/)
   - `changed = [1,3,4,2,6,8]` => `[1,3,4]`
   - iterate sorted count, `if count[x*2] >= count[x]`, handle 0, `cnt[2 * x] -= cnt[x]`
+  - O(n + mlogm) time, O(m) space
 - [**Valid Sudoku**](https://leetcode.com/problems/valid-sudoku/): `squares[(r // 3, c // 3)].add(board[r][c])`
 - [**Close strings**](https://leetcode.com/problems/determine-if-two-strings-are-close): same set of chars and same count.values()
 
