@@ -70,7 +70,7 @@ Some notes about DSA
   - O(s.length+sumcharwords) time, O(#words) space
 - ✅[**Text Justification**](https://leetcode.com/problems/text-justification/):
   [💡](https://leetcode.com/problems/text-justification/solutions/24891/concise-python-solution-10-lines/?orderBy=most_votes)
-  - `words = ["This", "is", "an", "example", "of", "text", "justification."] w = 16` => `["This    is    an", "example  of text", "justification.  "]`
+  - `words = ["This", "is", "an", "example", "of", "text", "justification."] w = 16` => `["This is an", "example of text", "justification. "]`
   - `if num_of_letters + len(w) + len(cur) > maxWidth:`, round robin
 - ✅[**Find original array from doubled array**](https://leetcode.com/problems/find-original-array-from-doubled-array/):
   [💡](https://leetcode.com/problems/find-original-array-from-doubled-array/solutions/1470959/java-c-python-match-from-the-smallest-or-biggest-100/)
@@ -111,7 +111,6 @@ Some notes about DSA
   Window with most repeating.
 - [**Minimum Window Substring**](https://leetcode.com/problems/minimum-window-substring/):
 
-
 **Other**:
 
 - ✅[**Maximum Points You Can Obtain from Cards**](https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/):
@@ -122,7 +121,7 @@ Some notes about DSA
 - ✅[**Subarray Sum Equals K**](https://leetcode.com/problems/subarray-sum-equals-k/):
   [💡](https://youtu.be/fFVZt-6sgyo)
   - `nums = [1,1,1], k = 2` => `2` ([1, 1] and [1, 1])
-  - prefix sum, if increase by k, we found one, initialize `d[0] = 1`
+  - prefix sum, if increase by k, we found one (subarray in between), initialize `d[0] = 1`
   - O(n) time, O(n) space
 
 ## Stack
@@ -138,6 +137,7 @@ Some notes about DSA
   [💡](https://youtu.be/iu0082c4HDE)
   - `tokens = ["2","1","+","3","*"]` => `9`
   - `b, a = stack.pop(), stack.pop()` ... `return stack[0]`
+  - O(2n) time, O(n) space
 - ✅[**Decode String**](https://leetcode.com/problems/decode-string/):
   [💡](https://youtu.be/qB0zZpBJlh8)
   - `s = "3[a]2[bc]"` => `"aaabcbc"`
@@ -165,6 +165,7 @@ while l <= r:
   [💡](https://leetcode.com/problems/first-bad-version/solutions/71324/python-understand-easily-from-binary-search-idea/?orderBy=most_votes)
   - `n = 5`, `isBadVersion(3) = false`, `isBadVersion(4) = true`
   - binary search.
+  - O(logn) time, O(1) space
 - ✅[**Median of Two Sorted Arrays**](https://leetcode.com/problems/median-of-two-sorted-arrays/):
   [💡](https://youtu.be/q6IEA26hvXc)
   - `nums1 = [1,2], nums2 = [3,4]` => `2.5`
@@ -178,7 +179,6 @@ while l <= r:
   [💡](https://leetcode.com/problems/random-pick-with-weight/solutions/154044/java-accumulated-freq-sum-binary-search/?orderBy=most_votes)
   - `[1,3]`, `pickIndex()` => `0` with 25% probability, `1` with 75% probability
   - binary search (random (1, total)) on the prefix sum.
-
 
 ## Linked List
 
@@ -224,7 +224,6 @@ while l <= r:
   [💡]
   - dfs, post-order, return layer.
 
-
 ## Tries
 
 ---
@@ -246,7 +245,6 @@ TODO
 
 - [**Find Median from Data Stream**](https://leetcode.com/problems/find-median-from-data-stream/)
 
-
 **Other**:
 
 - ✅[**Stock Price Fluctuation**](https://leetcode.com/problems/stock-price-fluctuation/):
@@ -266,7 +264,6 @@ TODO
 **Other**:
 
 - [**Sudoku Solver**](https://leetcode.com/problems/sudoku-solver/): `if board[3 * (i // 3) + k // 3][ 3 * (j // 3) + k % 3] == n:`
-
 
 ## Graphs
 
@@ -308,6 +305,7 @@ TODO
 ---
 
 https://youtu.be/mBNrRy2_hVs
+
 - Fibonacci: `dp[i] = dp[i-1] + dp[i-2]`
 - Zero / One Knapsack:
 - Unbounded Knapsack:
@@ -317,8 +315,10 @@ https://youtu.be/mBNrRy2_hVs
 ### 1D
 
 - ✅[**Coin Change**](https://leetcode.com/problems/coin-change/):
-  - ...
-  - Unbounded Knapsack
+  [💡](https://www.youtube.com/watch?v=H9bfqozjoqs)
+  - `coins = [1,2,5], amount = 11` => `3`
+  - Unbounded Knapsack, recursive is O(coins^amount)
+  - O(coins\*amount) time, O(amount) space
 - [**Climbing Stairs**](https://leetcode.com/problems/climbing-stairs/):
   - `n = 2` => `2`, `n = 3` => `3`
   - fibonnaci, `temp = n1 + n2`
@@ -340,7 +340,6 @@ https://youtu.be/mBNrRy2_hVs
 
 ### 2D
 
-
 - ✅[**Unique Paths**](https://leetcode.com/problems/unique-paths/)
   [💡]
   - `m = 3, n = 2` => `3`
@@ -355,7 +354,7 @@ https://youtu.be/mBNrRy2_hVs
 - ✅[**Target Sum**](https://leetcode.com/problems/target-sum/):
   [💡](https://www.youtube.com/watch?v=g0npyaQtAQM)
   - assign + or - `nums = [1, 1, 1, 1, 1], target = 3` => `5`
-  - 0/1 Knapsack, O(2^n) -> O(n*sum(nums))) 
+  - 0/1 Knapsack, O(2^n) -> O(n\*sum(nums)))
 
 ## Greedy
 
@@ -438,8 +437,8 @@ TODO
   A\*.
 - [**Find the Index of the First Occurrence in a String**](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/):
   [💡]
-  - [KMP](https://www.youtube.com/watch?v=GTJr8OvyEVQ) pattern matching, O(m+n).
 
+  - [KMP](https://www.youtube.com/watch?v=GTJr8OvyEVQ) pattern matching, O(m+n).
 
 - [**Maximum Length of Repeated Subarray**](https://leetcode.com/problems/maximum-length-of-repeated-subarray/):
   Rabin–Karp algorithm / Rolling Hash.
