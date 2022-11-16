@@ -303,18 +303,30 @@ TODO
 - [**Course Schedule II**](https://leetcode.com/problems/course-schedule-ii/):
   ...
 
-## 1-D Dynamic Programming
+## Dynamic Programming
 
 ---
 
+https://youtu.be/mBNrRy2_hVs
+- Fibonacci: `dp[i] = dp[i-1] + dp[i-2]`
+- Zero / One Knapsack:
+- Unbounded Knapsack:
+- Longest Common Subsequence:
+- Palindromes:
+
+### 1D
+
+- ✅[**Coin Change**](https://leetcode.com/problems/coin-change/):
+  - ...
+  - Unbounded Knapsack
 - [**Climbing Stairs**](https://leetcode.com/problems/climbing-stairs/):
-  fibonnaci, `temp = n1 + n2`
+  - `n = 2` => `2`, `n = 3` => `3`
+  - fibonnaci, `temp = n1 + n2`
 - [**House Robber**](https://leetcode.com/problems/house-robber/):
 - [**House Robber II**](https://leetcode.com/problems/house-robber-ii/)
 - [**Longest Palindromic Substring**](https://leetcode.com/problems/longest-palindromic-substring/)
 - [**Palindrome Substrings**](https://leetcode.com/problems/palindromic-substrings/)
 - [**Decode Ways**](https://leetcode.com/problems/decode-ways/)
-- [**Coin Change**](https://leetcode.com/problems/coin-change/)
 - [**Maximum Product Subarray**](https://leetcode.com/problems/maximum-product-subarray/)
 - [**Word Break**](https://leetcode.com/problems/word-break/)
 - [**Longest Increasing Subsequence**](https://leetcode.com/problems/longest-increasing-subsequence/)
@@ -326,9 +338,8 @@ TODO
   [💡]
   - `n = 2` => `8` ("PP", "AP", "PA", "LP", "PL", "AL", "LA", "LL")
 
-## 2-D Dynamic Programming
+### 2D
 
----
 
 - ✅[**Unique Paths**](https://leetcode.com/problems/unique-paths/)
   [💡]
@@ -337,7 +348,14 @@ TODO
 
 **Other**:
 
-TODO
+- ✅[**Coin Change 2**](https://leetcode.com/problems/coin-change-2/):
+  [💡](https://www.youtube.com/watch?v=Mjy4hd2xgrs)
+  - `amount = 5, coins = [1, 2, 5]` => `4`
+  - Unbounded Knapsack
+- ✅[**Target Sum**](https://leetcode.com/problems/target-sum/):
+  [💡](https://www.youtube.com/watch?v=g0npyaQtAQM)
+  - assign + or - `nums = [1, 1, 1, 1, 1], target = 3` => `5`
+  - 0/1 Knapsack, O(2^n) -> O(n*sum(nums))) 
 
 ## Greedy
 
