@@ -184,16 +184,33 @@ while l <= r:
 
 ---
 
+- ✅[**Merge Two Sorted Lists**](https://leetcode.com/problems/merge-two-sorted-lists/):
+  [💡](https://www.youtube.com/watch?v=XIdigk956u0)
+  - `l1 = [1,2,4], l2 = [1,3,4]` => `[1,1,2,3,4,4]`
+  - dummy first node, curr node, while l1 and l2, add remaining
+  - O(n) time, O(1) space
+- ✅[**Merge K Sorted Lists**](https://leetcode.com/problems/merge-k-sorted-lists/):
+  [💡](https://www.youtube.com/watch?v=q5a5OiGbT6Q)
+  - `lists = [[1,4,5],[1,3,4],[2,6]]` => `[1,1,2,3,4,4,5,6]`
+  - Merge two lists at a time.
+  - O(nlogk) time, O(1) space
+- ✅[**Remove Nth Node From End of List**](https://leetcode.com/problems/remove-nth-node-from-end-of-list/):
+  [💡](https://www.youtube.com/watch?v=XVuQxVej6y8)
+  - `head = [1,2,3,4,5], n = 2` => `[1,2,3,5]`
+  - Two pointers, move one n steps ahead.
+  - O(n) time, O(1) space
 - [**Reverse Linked List**](https://leetcode.com/problems/reverse-linked-list/):
   while cur: ..., tmp, update prev and cur, return prev
 - [**Linked List Cycle**](https://leetcode.com/problems/linked-list-cycle/): slow = fast = head, while fast and fast.next:
-- [**Merge Two Sorted Lists**](https://leetcode.com/problems/merge-two-sorted-lists/)
 - [**Reorder List**](https://leetcode.com/problems/reorder-list/)
-- [**Remove Nth Node From End of List**](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
-- [**Merge K Sorted Lists**](https://leetcode.com/problems/merge-k-sorted-lists/)
 
 **Other**:
 
+- ✅[**Middle of the Linked List**](https://leetcode.com/problems/middle-of-the-linked-list/):
+  [💡]()
+  - `1->2->3->4->5` => `3`
+  - slow = fast = head, while fast and fast.next: ..., return slow
+  - O(n) time, O(1) space
 - [**Linked List Cycle II**](https://leetcode.com/problems/linked-list-cycle-ii/): slow1 = head, and intersect with old slow.
 
 ## Trees
