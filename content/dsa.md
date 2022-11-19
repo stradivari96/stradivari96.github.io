@@ -258,9 +258,20 @@ while l <= r:
   - Two pointers, move one n steps ahead.
   - O(n) time, O(1) space
 - 👀[**Reverse Linked List**](https://leetcode.com/problems/reverse-linked-list/):
-  while cur: ..., tmp, update prev and cur, return prev
-- 👀[**Linked List Cycle**](https://leetcode.com/problems/linked-list-cycle/): slow = fast = head, while fast and fast.next:
+  [💡](https://www.youtube.com/watch?v=G0_I-ZF0S38)
+  - `head = [1,2]` => `[2,1]`
+  - while cur: ..., tmp, update prev and cur, return prev
+  - O(n) time, O(1) space
+- 👀[**Linked List Cycle**](https://leetcode.com/problems/linked-list-cycle/):
+  [💡](https://www.youtube.com/watch?v=gBTe7lFR3vc)
+  - `head = [3,2,0,-4], -4 -> 2` => `true`
+  - slow = fast = head, while fast and fast.next:
+  - O(n) time, O(1) space
 - 👀[**Reorder List**](https://leetcode.com/problems/reorder-list/)
+  [💡](https://www.youtube.com/watch?v=S5bfdUTrKLM)
+  - `head = [1,2,3,4]` => `[1,4,2,3]` (L0 -> Ln -> L1 -> Ln-1 -> L2...)
+  - find mid, reverse second half, merge two lists
+  - O(n) time, O(1) space
 
 ---
 
@@ -269,8 +280,11 @@ while l <= r:
   - `1->2->3->4->5` => `3`
   - slow = fast = head, while fast and fast.next: ..., return slow
   - O(n) time, O(1) space
-- [**Linked List Cycle II**](https://leetcode.com/problems/linked-list-cycle-ii/): slow1 = head, and intersect with old slow.
-
+- ✅[**Linked List Cycle II**](https://leetcode.com/problems/linked-list-cycle-ii/):
+  [💡](https://leetcode.com/problems/linked-list-cycle-ii/solutions/1701128/c-java-python-slow-and-fast-image-explanation-beginner-friendly/?orderBy=most_votes)
+  - `head = [3,2,0,-4], -4 -> 2` => `2`
+  - dist(intersect, cycle) == dist(head, cycle)
+  - O(n) time, O(1) space
 ## Trees
 
 ---
