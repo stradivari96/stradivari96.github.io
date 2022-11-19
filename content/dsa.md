@@ -480,14 +480,28 @@ https://youtu.be/mBNrRy2_hVs
 
 - 👀[**Number of 1 Bits**](https://leetcode.com/problems/number-of-1-bits/):
   [💡](https://www.youtube.com/watch?v=5Km3utixwZs)
+  - `n = 11` => `3` (1011)
+  - either `res += n & 1` and `n >> 1` or just `n = n & (n-1)` and `res += 1`
+  - O(logn) time, O(1) space
 - 👀[**Counting Bits**](https://leetcode.com/problems/counting-bits/):
   [💡](https://www.youtube.com/watch?v=RyBM56RIWrM)
+  - `n = 2` => `[0,1,1]`
+  - `if offset * 2 == i: offset *= i`, `dp[i] = dp[i-offset] + 1`
+  - O(n) time, O(n) space
 - 👀[**Reverse Bits**](https://leetcode.com/problems/reverse-bits/):
   [💡](https://www.youtube.com/watch?v=UcoN6UjAI64)
+  - `00000000000000000000000000000110` => `01100000000000000000000000000000`
+  - `for i in range(32): bit = (n >> i) & 1`, `res |= bit << (31-i)`
+  - O(1) time, O(1) space (32 bit)
 - 👀[**Missing Number**](https://leetcode.com/problems/missing-number/):
   [💡](https://www.youtube.com/watch?v=WnPLSRLSANE)
+  - `nums = [3,0,1]` => `2`
+  - `for i, n in enumerate(nums): res ^= n; res ^= i+1`
+  - O(n) time, O(1) space
 - 👀[**Sum of Two Integers**](https://leetcode.com/problems/sum-of-two-integers/):
   [💡](https://www.youtube.com/watch?v=gVUrDV4tZfY)
+  - `a = 1, b = 2` => `3`
+  - `return a if b == 0 else getSum(a^b, (a&b)<<1)`
 
 ## Extra
 
