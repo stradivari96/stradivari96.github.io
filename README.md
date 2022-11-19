@@ -1,4 +1,4 @@
-## Personal blog: https://xiang.dev/
+## Personal blog: https://xiang.es/
 
 Clone with `--recursive` flag.
 
