@@ -31,27 +31,34 @@ Some notes about DSA
 
 ---
 
-- ✅[**Two Sum**](https://leetcode.com/problems/two-sum/):
+- 👀[**Two Sum**](https://leetcode.com/problems/two-sum/):
   [💡](https://youtu.be/KLlXCFG5TnA)
   - `nums = [2,7,11,15], target = 9` => `[0,1]`
   - HashMap `{n: i}`
   - O(n) time, O(n) space
-- [**Contains Duplicate**](https://leetcode.com/problems/contains-duplicate/):
+- 👀[**Contains Duplicate**](https://leetcode.com/problems/contains-duplicate/):
+  [💡](https://www.youtube.com/watch?v=3OamzN90kPg)
   Naive, Sort, Set
-- [**Valid Anagram**](https://leetcode.com/problems/valid-anagram/):
-  Two (one) Hashmap, Sort
-- [**Group Anagrams**](https://leetcode.com/problems/group-anagrams/):
-  Hashmap (counter as key)
-- [**Top K Frequent Elements**](https://leetcode.com/problems/top-k-frequent-elements/):
-  Count, List of frequency `groups_by_freq = [[] for _ in range(len(nums)+1)]`
-- [**Product of Array Except Self**](https://leetcode.com/problems/product-of-array-except-self/):
+- 👀[**Valid Anagram**](https://leetcode.com/problems/valid-anagram/):
+  [💡](https://www.youtube.com/watch?v=9UtInBqnCgA)
+  Two Hashmap (or 1 and substract), Sort
+- 👀[**Group Anagrams**](https://leetcode.com/problems/group-anagrams/):
+  [💡](https://www.youtube.com/watch?v=vzdNOK2oB2E)
+  Hashmap (sorted counter as key)
+- 👀[**Top K Frequent Elements**](https://leetcode.com/problems/top-k-frequent-elements/):
+  [💡](https://www.youtube.com/watch?v=YPTqKIgVk-k)
+  Count, Group by frequency (list of lists)
+- 👀[**Product of Array Except Self**](https://leetcode.com/problems/product-of-array-except-self/):
+  [💡](https://www.youtube.com/watch?v=bNvIQI2wAjk)
   Prefix product, Suffix product.
-- [**Encode and Decode Strings**](https://www.lintcode.com/problem/659/):
+- 👀[**Encode and Decode Strings**](https://www.lintcode.com/problem/659/):
+  [💡](https://www.youtube.com/watch?v=B1k_sxOSgv8)
   Length + Separator
-- [**Longest Consecutive Sequence**](https://leetcode.com/problems/longest-consecutive-sequence/):
+- 👀[**Longest Consecutive Sequence**](https://leetcode.com/problems/longest-consecutive-sequence/):
+  [💡](https://www.youtube.com/watch?v=P6RZZMu_maU)
   Set and start if n-1 not in set
 
-**Other**:
+---
 
 - ✅[**Minimum Time Difference**](https://leetcode.com/problems/minimum-time-difference/):
   [💡](https://leetcode.com/problems/minimum-time-difference/solutions/100637/python-straightforward-with-explanation/comments/104667)
@@ -76,21 +83,29 @@ Some notes about DSA
   [💡](https://leetcode.com/problems/find-original-array-from-doubled-array/solutions/1470959/java-c-python-match-from-the-smallest-or-biggest-100/)
   - `changed = [1,3,4,2,6,8]` => `[1,3,4]`
   - iterate sorted count, `if count[x*2] >= count[x]`, handle 0, `cnt[2 * x] -= cnt[x]`
-  - O(n + mlogm) time, O(m) space
-- [**Valid Sudoku**](https://leetcode.com/problems/valid-sudoku/): `squares[(r // 3, c // 3)].add(board[r][c])`
-- [**Close strings**](https://leetcode.com/problems/determine-if-two-strings-are-close): same set of chars and same count.values()
+  - O(n + mlogm) time, O(m) space (m = unique elements)
+- [**Valid Sudoku**](https://leetcode.com/problems/valid-sudoku/):
+  [💡](https://www.youtube.com/watch?v=TjFXEUCMqI8)
+  `squares[(r // 3, c // 3)].add(board[r][c])`
+- [**Close strings**](https://leetcode.com/problems/determine-if-two-strings-are-close):
+  [💡](https://leetcode.com/problems/determine-if-two-strings-are-close/solutions/1029064/python-oneliner-with-counter-explained/?orderBy=most_votes)
+`set(w1) == set(w2) and Counter(Counter(w1).values()) == Counter(Counter(w2).values()`
 
 ## Two Pointers
 
 ---
 
-- [**Valid Palindrome**](https://leetcode.com/problems/valid-palindrome/):
+- 👀[**Valid Palindrome**](https://leetcode.com/problems/valid-palindrome/):
+  [💡](https://www.youtube.com/watch?v=jJXJ16kPFWg)
   2 pointers
-- [**3Sum**](https://leetcode.com/problems/3sum/):
-- [**Container With Most Water**](https://leetcode.com/problems/container-with-most-water/):
+- 👀[**3Sum**](https://leetcode.com/problems/3sum/):
+  [💡](https://www.youtube.com/watch?v=jzZsG8n2R9A)
+  sort, 2 pointers
+- 👀[**Container With Most Water**](https://leetcode.com/problems/container-with-most-water/):
+  [💡](https://www.youtube.com/watch?v=UuiTKBwPgAo)
   start from both ends, move the smaller one
 
-**Other**:
+---
 
 - [**Two Sum II**](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/):
   2 pointers.
@@ -103,15 +118,18 @@ Some notes about DSA
 
 ---
 
-- [**Best Time to Buy and Sell Stock**](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/):
+- 👀[**Best Time to Buy and Sell Stock**](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/):
+  [💡](https://www.youtube.com/watch?v=1pkOgXD63yU)
   [Kadane's algorithm](https://raw.githubusercontent.com/neetcode-gh/leetcode/main/python/121-Best-Time-To-Buy-and-Sell-Stock.py)
-- [**Longest Substring Without Repeating Characters**](https://leetcode.com/problems/longest-substring-without-repeating-characters/):
+- 👀[**Longest Substring Without Repeating Characters**](https://leetcode.com/problems/longest-substring-without-repeating-characters/):
+  [💡](https://www.youtube.com/watch?v=wiGpQwVHdE0)
   Hashmap (seen, index), `ans = max(ans, i - start + 1)`
-- [**Longest Repeating Character Replacement**](https://leetcode.com/problems/longest-repeating-character-replacement/):
+- 👀[**Longest Repeating Character Replacement**](https://leetcode.com/problems/longest-repeating-character-replacement/):
+  [💡](https://www.youtube.com/watch?v=gqXU1UyA8pk)
   Window with most repeating.
-- [**Minimum Window Substring**](https://leetcode.com/problems/minimum-window-substring/):
-
-**Other**:
+- 👀[**Minimum Window Substring**](https://leetcode.com/problems/minimum-window-substring/):
+  [💡](https://www.youtube.com/watch?v=jSto0O4AJbM)
+---
 
 - ✅[**Maximum Points You Can Obtain from Cards**](https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/):
   [💡](https://www.youtube.com/watch?v=TsA4vbtfCvo)
@@ -128,10 +146,10 @@ Some notes about DSA
 
 ---
 
-- [**Valid Parentheses**](https://leetcode.com/problems/valid-parentheses/):
+- 👀[**Valid Parentheses**](https://leetcode.com/problems/valid-parentheses/):
   store last opened in stack
 
-**Other**:
+---
 
 - ✅[**Reverse Polish Notation**](https://leetcode.com/problems/evaluate-reverse-polish-notation/):
   [💡](https://youtu.be/iu0082c4HDE)
@@ -159,7 +177,7 @@ while l <= r:
 - [**Find Minimum in Rotated Sorted Array**](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/):
   stop `if nums[l] < nums[r]`.
 
-**Other**:
+---
 
 - ✅[**First Bad Version**](https://leetcode.com/problems/first-bad-version/):
   [💡](https://leetcode.com/problems/first-bad-version/solutions/71324/python-understand-easily-from-binary-search-idea/?orderBy=most_votes)
@@ -204,7 +222,7 @@ while l <= r:
 - [**Linked List Cycle**](https://leetcode.com/problems/linked-list-cycle/): slow = fast = head, while fast and fast.next:
 - [**Reorder List**](https://leetcode.com/problems/reorder-list/)
 
-**Other**:
+---
 
 - ✅[**Middle of the Linked List**](https://leetcode.com/problems/middle-of-the-linked-list/):
   [💡]()
@@ -235,7 +253,7 @@ while l <= r:
   `validate(node.left, min_val, node.val) and validate(node.right, node.val, max_val)`
 - [**Kth Smallest Element in a BST**](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
 
-**Other**:
+---
 
 - ✅[**Find Leaves of Binary Tree**](https://www.lintcode.com/problem/650/):
   [💡]
@@ -250,7 +268,7 @@ while l <= r:
 - [**Design Add And Search Words Data Structure**](https://leetcode.com/problems/design-add-and-search-words-data-structure/):
 - [**Word Search II**](https://leetcode.com/problems/word-search-ii/)
 
-**Other**:
+---
 
 TODO
 
@@ -262,7 +280,7 @@ TODO
 
 - [**Find Median from Data Stream**](https://leetcode.com/problems/find-median-from-data-stream/)
 
-**Other**:
+---
 
 - ✅[**Stock Price Fluctuation**](https://leetcode.com/problems/stock-price-fluctuation/):
   [💡]
@@ -278,7 +296,7 @@ TODO
 - [**Combination Sum**](https://leetcode.com/problems/combination-sum/)
 - [**Word Search**](https://leetcode.com/problems/word-search/)
 
-**Other**:
+---
 
 - [**Sudoku Solver**](https://leetcode.com/problems/sudoku-solver/): `if board[3 * (i // 3) + k // 3][ 3 * (j // 3) + k % 3] == n:`
 
@@ -299,7 +317,7 @@ TODO
 - [**Graph Valid Tree**](https://www.lintcode.com/problem/graph-valid-tree/description):
   DFS cycle detection, `dfs(0, prev=-1) and n == len(visit)`
 
-**Other**:
+---
 
 TODO
 
@@ -312,7 +330,7 @@ TODO
 - [**Alien Dictionary**](https://www.lintcode.com/problem/892):
   topological sort, DFS cycle detection.
 
-**Other**:
+---
 
 - [**Course Schedule II**](https://leetcode.com/problems/course-schedule-ii/):
   ...
@@ -331,14 +349,16 @@ https://youtu.be/mBNrRy2_hVs
 
 ### 1D
 
-- ✅[**Coin Change**](https://leetcode.com/problems/coin-change/):
-  [💡](https://www.youtube.com/watch?v=H9bfqozjoqs)
+- ✅[**Coin Change**](https://leetcode.com/problems/coin-change/): 
+  [💡](https://www.youtube.com/watch?v=H9bfqozjoqs) Unbounded Knapsack
   - `coins = [1,2,5], amount = 11` => `3`
-  - Unbounded Knapsack, recursive is O(coins^amount)
+  - Cache and iterate `range(amount+1)`, recursive is O(coins^amount)
   - O(coins\*amount) time, O(amount) space
-- [**Climbing Stairs**](https://leetcode.com/problems/climbing-stairs/):
+- ✅[**Climbing Stairs**](https://leetcode.com/problems/climbing-stairs/):
+  [💡](https://www.youtube.com/watch?v=Y0lT9Fck7qI) Fibonacci
   - `n = 2` => `2`, `n = 3` => `3`
-  - fibonnaci, `temp = n1 + n2`
+  - `temp = n1 + n2`
+  - O(n) time, O(1) space
 - [**House Robber**](https://leetcode.com/problems/house-robber/):
 - [**House Robber II**](https://leetcode.com/problems/house-robber-ii/)
 - [**Longest Palindromic Substring**](https://leetcode.com/problems/longest-palindromic-substring/)
@@ -348,7 +368,7 @@ https://youtu.be/mBNrRy2_hVs
 - [**Word Break**](https://leetcode.com/problems/word-break/)
 - [**Longest Increasing Subsequence**](https://leetcode.com/problems/longest-increasing-subsequence/)
 
-**Other**:
+---
 
 - ✅[**Student Attendance Record II**](https://leetcode.com/problems/student-attendance-record-ii/):
   Fewer than 2 A, no 3 or more consecutive L.
@@ -358,11 +378,13 @@ https://youtu.be/mBNrRy2_hVs
 ### 2D
 
 - ✅[**Unique Paths**](https://leetcode.com/problems/unique-paths/)
-  [💡]
+  [💡](https://www.youtube.com/watch?v=IlEsdxuD4lY)
   - `m = 3, n = 2` => `3`
+  - `cache[i, j] = cache.get((i-1, j), 0) + cache.get((i, j-1), 0)`
+  - O(m\*n) time, O(m\*n) space
 - [**Longest Common Subsequence**](https://leetcode.com/problems/longest-common-subsequence/)
 
-**Other**:
+---
 
 - ✅[**Coin Change 2**](https://leetcode.com/problems/coin-change-2/):
   [💡](https://www.youtube.com/watch?v=Mjy4hd2xgrs)
@@ -382,7 +404,7 @@ https://youtu.be/mBNrRy2_hVs
 - [**Jump Game**](https://leetcode.com/problems/jump-game/):
   `if i + nums[i] >= target: target = i`, start from end.
 
-**Other**:
+---
 
 TODO
 
@@ -403,7 +425,7 @@ TODO
 - [**Meeting Rooms**](https://www.lintcode.com/problem/920/): if any
   overlap, return false.
 
-**Other**:
+---
 
 TODO
 
@@ -415,7 +437,7 @@ TODO
 - [**Spiral Matrix**](https://leetcode.com/problems/spiral-matrix/)
 - [**Set Matrix Zeroes**](https://leetcode.com/problems/set-matrix-zeroes/)
 
-**Other**:
+---
 
 - ✅[**Happy Number**](https://leetcode.com/problems/happy-number/):
   [💡]
@@ -436,7 +458,7 @@ TODO
 - [**Missing Number**](https://leetcode.com/problems/missing-number/):
 - [**Sum of Two Integers**](https://leetcode.com/problems/sum-of-two-integers/):
 
-  **Other**:
+  ---
 
   TODO
 
