@@ -34,29 +34,43 @@ Some notes about DSA
 - 👀[**Two Sum**](https://leetcode.com/problems/two-sum/):
   [💡](https://youtu.be/KLlXCFG5TnA)
   - `nums = [2,7,11,15], target = 9` => `[0,1]`
-  - HashMap `{n: i}`
+  - Hashmap seen with index
   - O(n) time, O(n) space
 - 👀[**Contains Duplicate**](https://leetcode.com/problems/contains-duplicate/):
   [💡](https://www.youtube.com/watch?v=3OamzN90kPg)
-  Naive, Sort, Set
+  - `nums = [1,2,3,1]` => `true`
+  - Hashmap seen
+  - O(n) time, O(n) space
 - 👀[**Valid Anagram**](https://leetcode.com/problems/valid-anagram/):
   [💡](https://www.youtube.com/watch?v=9UtInBqnCgA)
-  Two Hashmap (or 1 and substract), Sort
+  - `s = "anagram", t = "nagaram"` => `true`
+  - Counter for each string
+  - O(s+t) time, O(1) space
 - 👀[**Group Anagrams**](https://leetcode.com/problems/group-anagrams/):
   [💡](https://www.youtube.com/watch?v=vzdNOK2oB2E)
-  Hashmap (sorted counter as key)
+  - `strs = ["tea","tan","ate","nat"]` => `[["nat","tan"],["ate","tea"]]`
+  - Counter for each string, use tuple as key
+  - O(strings*average_lenth) time, O(strings) space
 - 👀[**Top K Frequent Elements**](https://leetcode.com/problems/top-k-frequent-elements/):
   [💡](https://www.youtube.com/watch?v=YPTqKIgVk-k)
-  Count, Group by frequency (list of lists)
+  - `nums = [1,1,1,2,2,3], k = 2` => `[1,2]`
+  - Counter, list of frequencies (len(nums)), iterate from end
+  - O(n) time, O(n) space
 - 👀[**Product of Array Except Self**](https://leetcode.com/problems/product-of-array-except-self/):
   [💡](https://www.youtube.com/watch?v=bNvIQI2wAjk)
-  Prefix product, Suffix product.
+  - `nums = [1,2,3,4]` => `[24,12,8,6]`
+  - Prefix product, Suffix product.
+  - O(n) time, O(1) space
 - 👀[**Encode and Decode Strings**](https://www.lintcode.com/problem/659/):
   [💡](https://www.youtube.com/watch?v=B1k_sxOSgv8)
-  Length + Separator
+  - Create single string and split it back
+  - Length + Separator
+  - O(n) encode, O(n) decode
 - 👀[**Longest Consecutive Sequence**](https://leetcode.com/problems/longest-consecutive-sequence/):
   [💡](https://www.youtube.com/watch?v=P6RZZMu_maU)
-  Set and start if n-1 not in set
+  - `nums = [100,4,200,1,3,2]` => `4`
+  - Set and start if n-1 not in set
+  - O(n) time, O(n) space
 
 ---
 
@@ -129,6 +143,7 @@ Some notes about DSA
   Window with most repeating.
 - 👀[**Minimum Window Substring**](https://leetcode.com/problems/minimum-window-substring/):
   [💡](https://www.youtube.com/watch?v=jSto0O4AJbM)
+  Counter, if all window counter >= counter, shrink
 ---
 
 - ✅[**Maximum Points You Can Obtain from Cards**](https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/):
@@ -147,6 +162,7 @@ Some notes about DSA
 ---
 
 - 👀[**Valid Parentheses**](https://leetcode.com/problems/valid-parentheses/):
+  [💡](https://www.youtube.com/watch?v=WTzjTskDFMg)
   store last opened in stack
 
 ---
@@ -174,9 +190,11 @@ while l <= r:
     if target == nums[mid]
 ```
 
-- [**Search in Rotated Sorted Array**](https://leetcode.com/problems/search-in-rotated-sorted-array/):
+- 👀[**Search in Rotated Sorted Array**](https://leetcode.com/problems/search-in-rotated-sorted-array/):
+  [💡](https://www.youtube.com/watch?v=U8XENwh8Oy8)
   see which side is sorted.
-- [**Find Minimum in Rotated Sorted Array**](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/):
+- 👀[**Find Minimum in Rotated Sorted Array**](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/):
+  [💡](https://www.youtube.com/watch?v=nIVW4P8b1VA)
   stop `if nums[l] < nums[r]`.
 
 ---
@@ -204,25 +222,25 @@ while l <= r:
 
 ---
 
-- ✅[**Merge Two Sorted Lists**](https://leetcode.com/problems/merge-two-sorted-lists/):
+- 👀[**Merge Two Sorted Lists**](https://leetcode.com/problems/merge-two-sorted-lists/):
   [💡](https://www.youtube.com/watch?v=XIdigk956u0)
   - `l1 = [1,2,4], l2 = [1,3,4]` => `[1,1,2,3,4,4]`
   - dummy first node, curr node, while l1 and l2, add remaining
   - O(n) time, O(1) space
-- ✅[**Merge K Sorted Lists**](https://leetcode.com/problems/merge-k-sorted-lists/):
+- 👀[**Merge K Sorted Lists**](https://leetcode.com/problems/merge-k-sorted-lists/):
   [💡](https://www.youtube.com/watch?v=q5a5OiGbT6Q)
   - `lists = [[1,4,5],[1,3,4],[2,6]]` => `[1,1,2,3,4,4,5,6]`
   - Merge two lists at a time.
   - O(nlogk) time, O(1) space
-- ✅[**Remove Nth Node From End of List**](https://leetcode.com/problems/remove-nth-node-from-end-of-list/):
+- 👀[**Remove Nth Node From End of List**](https://leetcode.com/problems/remove-nth-node-from-end-of-list/):
   [💡](https://www.youtube.com/watch?v=XVuQxVej6y8)
   - `head = [1,2,3,4,5], n = 2` => `[1,2,3,5]`
   - Two pointers, move one n steps ahead.
   - O(n) time, O(1) space
-- [**Reverse Linked List**](https://leetcode.com/problems/reverse-linked-list/):
+- 👀[**Reverse Linked List**](https://leetcode.com/problems/reverse-linked-list/):
   while cur: ..., tmp, update prev and cur, return prev
-- [**Linked List Cycle**](https://leetcode.com/problems/linked-list-cycle/): slow = fast = head, while fast and fast.next:
-- [**Reorder List**](https://leetcode.com/problems/reorder-list/)
+- 👀[**Linked List Cycle**](https://leetcode.com/problems/linked-list-cycle/): slow = fast = head, while fast and fast.next:
+- 👀[**Reorder List**](https://leetcode.com/problems/reorder-list/)
 
 ---
 
@@ -237,23 +255,23 @@ while l <= r:
 
 ---
 
-- [**Invert Binary Tree**](https://leetcode.com/problems/invert-binary-tree/):
+- 👀[**Invert Binary Tree**](https://leetcode.com/problems/invert-binary-tree/):
   `root.right, root.left = self.invertTree(root.left), self.invertTree(root.right) `
-- [**Maximum Depth of Binary Tree**](https://leetcode.com/problems/maximum-depth-of-binary-tree/):
+- 👀[**Maximum Depth of Binary Tree**](https://leetcode.com/problems/maximum-depth-of-binary-tree/):
   `return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1`
-- [**Same Tree**](https://leetcode.com/problems/same-tree/): `isSameTree(p.left, q.left) and isSameTree(p.right, q.right)`
-- [**Subtree of Another Tree**](https://leetcode.com/problems/subtree-of-another-tree/): O(n+m)
-- [**Binary Tree Level Order Traversal**](https://leetcode.com/problems/binary-tree-level-order-traversal/)
-- [**Construct Binary Tree from Preorder and Inorder Traversal**](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
-- [**Binary Tree Maximum Path Sum**](https://leetcode.com/problems/binary-tree-maximum-path-sum/)
-- [**Serialize and Deserialize Binary Tree**](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/)
+- 👀[**Same Tree**](https://leetcode.com/problems/same-tree/): `isSameTree(p.left, q.left) and isSameTree(p.right, q.right)`
+- 👀[**Subtree of Another Tree**](https://leetcode.com/problems/subtree-of-another-tree/): O(n+m)
+- 👀[**Binary Tree Level Order Traversal**](https://leetcode.com/problems/binary-tree-level-order-traversal/)
+- 👀[**Construct Binary Tree from Preorder and Inorder Traversal**](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+- 👀[**Binary Tree Maximum Path Sum**](https://leetcode.com/problems/binary-tree-maximum-path-sum/)
+- 👀[**Serialize and Deserialize Binary Tree**](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/)
 
 > BST: nodes left < node < nodes right
 
-- [**Lowest Common Ancestor of a Binary Search Tree**](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/):
-- [**Validate Binary Search Tree**](https://leetcode.com/problems/validate-binary-search-tree/):
+- 👀[**Lowest Common Ancestor of a Binary Search Tree**](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/):
+- 👀[**Validate Binary Search Tree**](https://leetcode.com/problems/validate-binary-search-tree/):
   `validate(node.left, min_val, node.val) and validate(node.right, node.val, max_val)`
-- [**Kth Smallest Element in a BST**](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
+- 👀[**Kth Smallest Element in a BST**](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
 
 ---
 
@@ -265,14 +283,11 @@ while l <= r:
 
 ---
 
-- [**Implement Trie (Prefix Tree)**](https://leetcode.com/problems/implement-trie-prefix-tree/):
+- 👀[**Implement Trie (Prefix Tree)**](https://leetcode.com/problems/implement-trie-prefix-tree/):
   node with dict[char, node] and a bool isWord.
-- [**Design Add And Search Words Data Structure**](https://leetcode.com/problems/design-add-and-search-words-data-structure/):
-- [**Word Search II**](https://leetcode.com/problems/word-search-ii/)
+- 👀[**Design Add And Search Words Data Structure**](https://leetcode.com/problems/design-add-and-search-words-data-structure/):
+- 👀[**Word Search II**](https://leetcode.com/problems/word-search-ii/)
 
----
-
-TODO
 
 ## Heap & Priority Queue
 
@@ -280,7 +295,7 @@ TODO
 
 > Heap invariant: each node is <= than its children.
 
-- [**Find Median from Data Stream**](https://leetcode.com/problems/find-median-from-data-stream/)
+- 👀[**Find Median from Data Stream**](https://leetcode.com/problems/find-median-from-data-stream/)
 
 ---
 
@@ -295,8 +310,8 @@ TODO
 
 ---
 
-- [**Combination Sum**](https://leetcode.com/problems/combination-sum/)
-- [**Word Search**](https://leetcode.com/problems/word-search/)
+- 👀[**Combination Sum**](https://leetcode.com/problems/combination-sum/)
+- 👀[**Word Search**](https://leetcode.com/problems/word-search/)
 
 ---
 
@@ -306,30 +321,26 @@ TODO
 
 ---
 
-- ✅[**Number of Islands**](https://leetcode.com/problems/number-of-islands/):
+- 👀[**Number of Islands**](https://leetcode.com/problems/number-of-islands/):
   [💡]
   - `grid = [["1", "0"], ["0", "1"]]` => `2`
   - skip visited (mark 0 or set), dfs (4 directions) on 1s.
-- [**Clone Graph**](https://leetcode.com/problems/clone-graph/):
+- 👀[**Clone Graph**](https://leetcode.com/problems/clone-graph/):
   cache of cloned nodes, dfs (neighbors) on original nodes.
-- [**Pacific Atlantic Water Flow**](https://leetcode.com/problems/pacific-atlantic-water-flow/):
+- 👀[**Pacific Atlantic Water Flow**](https://leetcode.com/problems/pacific-atlantic-water-flow/):
   start from edge and dfs (4 directions) to higher cells.
-- [**Number of Connected Components in an Undirected Graph**](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/):
+- 👀[**Number of Connected Components in an Undirected Graph**](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/):
 
-- [**Graph Valid Tree**](https://www.lintcode.com/problem/graph-valid-tree/description):
+- 👀[**Graph Valid Tree**](https://www.lintcode.com/problem/graph-valid-tree/description):
   DFS cycle detection, `dfs(0, prev=-1) and n == len(visit)`
-
----
-
-TODO
 
 ## Topological Sort
 
 ---
 
-- [**Course Schedule**](https://leetcode.com/problems/course-schedule/):
+- 👀[**Course Schedule**](https://leetcode.com/problems/course-schedule/):
   BFS topological sort / DFS cycle detection (visited set, graph[c] = []).
-- [**Alien Dictionary**](https://www.lintcode.com/problem/892):
+- 👀[**Alien Dictionary**](https://www.lintcode.com/problem/892):
   topological sort, DFS cycle detection.
 
 ---
@@ -351,24 +362,24 @@ https://youtu.be/mBNrRy2_hVs
 
 ### 1D
 
-- ✅[**Coin Change**](https://leetcode.com/problems/coin-change/): 
+- 👀[**Coin Change**](https://leetcode.com/problems/coin-change/): 
   [💡](https://www.youtube.com/watch?v=H9bfqozjoqs) Unbounded Knapsack
   - `coins = [1,2,5], amount = 11` => `3`
   - Cache and iterate `range(amount+1)`, recursive is O(coins^amount)
   - O(coins\*amount) time, O(amount) space
-- ✅[**Climbing Stairs**](https://leetcode.com/problems/climbing-stairs/):
+- 👀[**Climbing Stairs**](https://leetcode.com/problems/climbing-stairs/):
   [💡](https://www.youtube.com/watch?v=Y0lT9Fck7qI) Fibonacci
   - `n = 2` => `2`, `n = 3` => `3`
   - `temp = n1 + n2`
   - O(n) time, O(1) space
-- [**House Robber**](https://leetcode.com/problems/house-robber/):
-- [**House Robber II**](https://leetcode.com/problems/house-robber-ii/)
-- [**Longest Palindromic Substring**](https://leetcode.com/problems/longest-palindromic-substring/)
-- [**Palindrome Substrings**](https://leetcode.com/problems/palindromic-substrings/)
-- [**Decode Ways**](https://leetcode.com/problems/decode-ways/)
-- [**Maximum Product Subarray**](https://leetcode.com/problems/maximum-product-subarray/)
-- [**Word Break**](https://leetcode.com/problems/word-break/)
-- [**Longest Increasing Subsequence**](https://leetcode.com/problems/longest-increasing-subsequence/)
+- 👀[**House Robber**](https://leetcode.com/problems/house-robber/):
+- 👀[**House Robber II**](https://leetcode.com/problems/house-robber-ii/)
+- 👀[**Longest Palindromic Substring**](https://leetcode.com/problems/longest-palindromic-substring/)
+- 👀[**Palindrome Substrings**](https://leetcode.com/problems/palindromic-substrings/)
+- 👀[**Decode Ways**](https://leetcode.com/problems/decode-ways/)
+- 👀[**Maximum Product Subarray**](https://leetcode.com/problems/maximum-product-subarray/)
+- 👀[**Word Break**](https://leetcode.com/problems/word-break/)
+- 👀[**Longest Increasing Subsequence**](https://leetcode.com/problems/longest-increasing-subsequence/)
 
 ---
 
@@ -379,12 +390,12 @@ https://youtu.be/mBNrRy2_hVs
 
 ### 2D
 
-- ✅[**Unique Paths**](https://leetcode.com/problems/unique-paths/)
+- 👀[**Unique Paths**](https://leetcode.com/problems/unique-paths/)
   [💡](https://www.youtube.com/watch?v=IlEsdxuD4lY)
   - `m = 3, n = 2` => `3`
   - `cache[i, j] = cache.get((i-1, j), 0) + cache.get((i, j-1), 0)`
   - O(m\*n) time, O(m\*n) space
-- [**Longest Common Subsequence**](https://leetcode.com/problems/longest-common-subsequence/)
+- 👀[**Longest Common Subsequence**](https://leetcode.com/problems/longest-common-subsequence/)
 
 ---
 
@@ -401,43 +412,38 @@ https://youtu.be/mBNrRy2_hVs
 
 ---
 
-- [**Maximum Subarray**](https://leetcode.com/problems/maximum-subarray/):
+- 👀[**Maximum Subarray**](https://leetcode.com/problems/maximum-subarray/):
   `current_sum = max(current_sum+n, n)`, Kadane.
-- [**Jump Game**](https://leetcode.com/problems/jump-game/):
+- 👀[**Jump Game**](https://leetcode.com/problems/jump-game/):
   `if i + nums[i] >= target: target = i`, start from end.
-
----
-
-TODO
 
 ## Intervals
 
 ---
 
-- ✅[**Merge Intervals**](https://leetcode.com/problems/merge-intervals/):
+- 👀[**Merge Intervals**](https://leetcode.com/problems/merge-intervals/):
   [💡]
   - `intervals = [[1,3],[2,6],[8,10],[15,18]]` => `[[1,6],[8,10],[15,18]]`
-- ✅[**Meeting Rooms II**](https://www.lintcode.com/problem/919/):
+- 👀[**Meeting Rooms II**](https://www.lintcode.com/problem/919/):
   [💡]
   min number of conference rooms.
   - `intervals = [(0,30),(5,10),(15,20)]` => `2`
-- [**Insert Interval**](https://leetcode.com/problems/insert-interval/):
-- [**Non-overlapping Intervals**](https://leetcode.com/problems/non-overlapping-intervals/):
+- 👀[**Insert Interval**](https://leetcode.com/problems/insert-interval/):
+- 👀[**Non-overlapping Intervals**](https://leetcode.com/problems/non-overlapping-intervals/):
   sort by end, update if start >= end.
-- [**Meeting Rooms**](https://www.lintcode.com/problem/920/): if any
+- 👀[**Meeting Rooms**](https://www.lintcode.com/problem/920/): if any
   overlap, return false.
-
----
-
-TODO
 
 ## Math & Geometry
 
 ---
 
-- [**Rotate Image**](https://leetcode.com/problems/rotate-image/)
-- [**Spiral Matrix**](https://leetcode.com/problems/spiral-matrix/)
-- [**Set Matrix Zeroes**](https://leetcode.com/problems/set-matrix-zeroes/)
+- 👀[**Rotate Image**](https://leetcode.com/problems/rotate-image/):
+  [💡](https://www.youtube.com/watch?v=fMSJSS7eO1w)
+- 👀[**Spiral Matrix**](https://leetcode.com/problems/spiral-matrix/):
+  [💡](https://www.youtube.com/watch?v=BJnMZNwUk1M)
+- 👀[**Set Matrix Zeroes**](https://leetcode.com/problems/set-matrix-zeroes/):
+  [💡](https://www.youtube.com/watch?v=T41rL0L3Pnw)
 
 ---
 
@@ -446,23 +452,22 @@ TODO
   - `n = 19` => `true` (`12 + 92 = 82 |...| 12 + 02 + 02 = 1`)
   - Hashset seen or Floyd's cycle detection
 
-## Bit Manipulation
+## Bit Manipulation (rare)
 
 ---
 
 [Summary](https://leetcode.com/problems/sum-of-two-integers/discuss/84278/A-summary%3A-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently)
 
-- [**Number of 1 Bits**](https://leetcode.com/problems/number-of-1-bits/):
-  `res += n % 2; n = n >> 1;` or `n = n & (n - 1); res++;` (rightmost 1)
-- [**Counting Bits**](https://leetcode.com/problems/counting-bits/):
-  dp with `memo[n] = n % 2 + solve(n / 2, memo);`
-- [**Reverse Bits**](https://leetcode.com/problems/reverse-bits/):
-- [**Missing Number**](https://leetcode.com/problems/missing-number/):
-- [**Sum of Two Integers**](https://leetcode.com/problems/sum-of-two-integers/):
-
-  ---
-
-  TODO
+- 👀[**Number of 1 Bits**](https://leetcode.com/problems/number-of-1-bits/):
+  [💡](https://www.youtube.com/watch?v=5Km3utixwZs)
+- 👀[**Counting Bits**](https://leetcode.com/problems/counting-bits/):
+  [💡](https://www.youtube.com/watch?v=RyBM56RIWrM)
+- 👀[**Reverse Bits**](https://leetcode.com/problems/reverse-bits/):
+  [💡](https://www.youtube.com/watch?v=UcoN6UjAI64)
+- 👀[**Missing Number**](https://leetcode.com/problems/missing-number/):
+  [💡](https://www.youtube.com/watch?v=WnPLSRLSANE)
+- 👀[**Sum of Two Integers**](https://leetcode.com/problems/sum-of-two-integers/):
+  [💡](https://www.youtube.com/watch?v=gVUrDV4tZfY)
 
 ## Extra
 
