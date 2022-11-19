@@ -111,13 +111,19 @@ Some notes about DSA
 
 - 👀[**Valid Palindrome**](https://leetcode.com/problems/valid-palindrome/):
   [💡](https://www.youtube.com/watch?v=jJXJ16kPFWg)
-  2 pointers
+  - `s = "A man, a plan, a canal: Panama"` => `true`
+  - Two pointers, `if not s[i].isalnum(): i += 1`
+  - O(n) time, O(1) space
 - 👀[**3Sum**](https://leetcode.com/problems/3sum/):
   [💡](https://www.youtube.com/watch?v=jzZsG8n2R9A)
-  sort, 2 pointers
+  - `nums = [-1,0,1,2,-1,-4]` => `[[-1,-1,2],[-1,0,1]]`
+  - sort, 2 pointers
+  - O(n^2) time, O(n) space (sorting)
 - 👀[**Container With Most Water**](https://leetcode.com/problems/container-with-most-water/):
   [💡](https://www.youtube.com/watch?v=UuiTKBwPgAo)
-  start from both ends, move the smaller one
+  - `height = [1,8,6,2,5,4,8,3,7]` => `49`
+  - start from both ends, move the smaller one
+  - O(n) time, O(1) space
 
 ---
 
@@ -134,16 +140,24 @@ Some notes about DSA
 
 - 👀[**Best Time to Buy and Sell Stock**](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/):
   [💡](https://www.youtube.com/watch?v=1pkOgXD63yU)
-  [Kadane's algorithm](https://raw.githubusercontent.com/neetcode-gh/leetcode/main/python/121-Best-Time-To-Buy-and-Sell-Stock.py)
+  - `prices = [7,1,5,3,6,4]` => `5`
+  - [Kadane's algorithm](https://raw.githubusercontent.com/neetcode-gh/leetcode/main/python/121-Best-Time-To-Buy-and-Sell-Stock.py)
+  - O(n) time, O(1) space
 - 👀[**Longest Substring Without Repeating Characters**](https://leetcode.com/problems/longest-substring-without-repeating-characters/):
   [💡](https://www.youtube.com/watch?v=wiGpQwVHdE0)
-  Hashmap (seen, index), `ans = max(ans, i - start + 1)`
+  - `s = "abcabcbb"` => `3` ("abc")
+  - Hashmap (seen, index), `ans = max(ans, i - start + 1)`, update start
+  - O(n) time, O(1) space
 - 👀[**Longest Repeating Character Replacement**](https://leetcode.com/problems/longest-repeating-character-replacement/):
   [💡](https://www.youtube.com/watch?v=gqXU1UyA8pk)
-  Window with most repeating.
+  - `s = "ABAB", k = 2` => `4` (replace both A with B)
+  - Window with most repeating, shrink `if windowLen - max(count.values()) > k`
+  - O(n) time, O(1) space
 - 👀[**Minimum Window Substring**](https://leetcode.com/problems/minimum-window-substring/):
   [💡](https://www.youtube.com/watch?v=jSto0O4AJbM)
-  Counter, if all window counter >= counter, shrink
+  - `s = "ADOBECODEBANC", t = "ABC"` => `"BANC"`
+  - Counter, if all window counter >= counter, shrink
+  - O(n) time, O(1) space
 ---
 
 - ✅[**Maximum Points You Can Obtain from Cards**](https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/):
@@ -154,7 +168,7 @@ Some notes about DSA
 - ✅[**Subarray Sum Equals K**](https://leetcode.com/problems/subarray-sum-equals-k/):
   [💡](https://youtu.be/fFVZt-6sgyo)
   - `nums = [1,1,1], k = 2` => `2` ([1, 1] and [1, 1])
-  - prefix sum, if increase by k, we found one (subarray in between), initialize `d[0] = 1`
+  - prefix sum, if increase by k, found (subarray in between), initialize `d[0] = 1`
   - O(n) time, O(n) space
 
 ## Stack
@@ -163,7 +177,9 @@ Some notes about DSA
 
 - 👀[**Valid Parentheses**](https://leetcode.com/problems/valid-parentheses/):
   [💡](https://www.youtube.com/watch?v=WTzjTskDFMg)
-  store last opened in stack
+  - `s = "()[]{}"` => `true`
+  - store last opened in stack
+  - O(n) time, O(n) space
 
 ---
 
@@ -192,10 +208,14 @@ while l <= r:
 
 - 👀[**Search in Rotated Sorted Array**](https://leetcode.com/problems/search-in-rotated-sorted-array/):
   [💡](https://www.youtube.com/watch?v=U8XENwh8Oy8)
-  see which side is sorted.
+  - `nums = [4,5,6,7,0,1,2], target = 0` => `4`
+  - see which side is sorted and then `if target > nums[mid] or target < nums[l]`
+  - O(logn) time, O(1) space
 - 👀[**Find Minimum in Rotated Sorted Array**](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/):
   [💡](https://www.youtube.com/watch?v=nIVW4P8b1VA)
-  stop `if nums[l] < nums[r]`.
+  - `nums = [3,4,5,1,2]` => `1`
+  - stop `if nums[l] < nums[r]`, move `l` if `nums[mid] >= nums[l]`
+  - O(logn) time, O(1) space
 
 ---
 
