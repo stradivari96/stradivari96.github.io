@@ -289,24 +289,71 @@ while l <= r:
 
 ---
 
+Careful with recursion limit (bound to the application stack)
+
 - 👀[**Invert Binary Tree**](https://leetcode.com/problems/invert-binary-tree/):
-  `root.right, root.left = self.invertTree(root.left), self.invertTree(root.right) `
+  [💡](https://leetcode.com/problems/invert-binary-tree/solutions/62705/python-solutions-recursively-dfs-bfs/?orderBy=most_votes)
+  - `root = [4,2,7,1,3,6,9]` => `[4,7,2,9,6,3,1]`
+  - `r.right, r.left = self.invert(r.left), self.invert(r.right)` or stack
+  - O(n) time, O(height) space
 - 👀[**Maximum Depth of Binary Tree**](https://leetcode.com/problems/maximum-depth-of-binary-tree/):
-  `return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1`
-- 👀[**Same Tree**](https://leetcode.com/problems/same-tree/): `isSameTree(p.left, q.left) and isSameTree(p.right, q.right)`
-- 👀[**Subtree of Another Tree**](https://leetcode.com/problems/subtree-of-another-tree/): O(n+m)
-- 👀[**Binary Tree Level Order Traversal**](https://leetcode.com/problems/binary-tree-level-order-traversal/)
-- 👀[**Construct Binary Tree from Preorder and Inorder Traversal**](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
-- 👀[**Binary Tree Maximum Path Sum**](https://leetcode.com/problems/binary-tree-maximum-path-sum/)
-- 👀[**Serialize and Deserialize Binary Tree**](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/)
+  [💡](https://www.youtube.com/watch?v=hTM3phVI6YQ)
+  - `root = [3,9,20,null,null,15,7]` => `3`
+  - `return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1`
+  -  O(n) time, O(height) space
+- 👀[**Same Tree**](https://leetcode.com/problems/same-tree/):
+  [💡](https://www.youtube.com/watch?v=vRbbcKXCxOw)
+  - `p = [1,2,3], q = [1,2,3]` => `true`
+  - `isSameTree(p.left, q.left) and isSameTree(p.right, q.right)`
+  - O(n) time, O(height) space
+- 👀[**Subtree of Another Tree**](https://leetcode.com/problems/subtree-of-another-tree/):
+  [💡](https://www.youtube.com/watch?v=E36O5SWp-LE)
+  - `s = [3,4,5,1,2], t = [4,1,2]` => `true`
+  - `isSameTree(s, t) or isSubtree(s.left, t) or isSubtree(s.right, t)`
+  - O(nm) time, O(n+m) space
+- 👀[**Binary Tree Level Order Traversal**](https://leetcode.com/problems/binary-tree-level-order-traversal/):
+  [💡](https://leetcode.com/problems/binary-tree-level-order-traversal/solutions/33464/5-6-lines-fast-python-solution-48-ms/)
+  - `root = [3,9,20,null,null,15,7]` => `[[3],[9,20],[15,7]]`
+  - `while level: ans.append([node.val for node in level]); level = [...]` or queue
+  - O(n) time, O(n) space
+- 👀[**Construct Binary Tree from Preorder and Inorder Traversal**](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/):
+  [💡](https://www.youtube.com/watch?v=ihj4IQGZ2zc)
+  - `preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]` => `[3,9,20,null,null,15,7]`
+  ```python
+  root = TreeNode(preorder[0])
+  i = inorder.index(root.val)
+  root.left = self.buildTree(preorder[1:i+1], inorder[:i])
+  root.right = self.buildTree(preorder[i+1:], inorder[i+1:])
+  ```
+  - O(n) time, O(n) space
+- 👀[**Binary Tree Maximum Path Sum**](https://leetcode.com/problems/binary-tree-maximum-path-sum/):
+  [💡](https://leetcode.com/problems/binary-tree-maximum-path-sum/solutions/603423/python-recursion-stack-thinking-process-diagram/)
+  - `root = [1,2,3]` => `6`
+  - dfs, allow split or not, nonlocal max
+  - O(n) time, O(height) space
+- 👀[**Serialize and Deserialize Binary Tree**](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/):
+  [💡](https://www.youtube.com/watch?v=u4JAi2JJhI8)
+  - `serialize(self, root)` and `deserialize(self, data)`
+  - Preorder travelsal, `"1,2,N,N,3,4,N,N,5,N,N"`
+  - O(n) time, O(n) space
 
 > BST: nodes left < node < nodes right
 
 - 👀[**Lowest Common Ancestor of a Binary Search Tree**](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/):
+  [💡](https://www.youtube.com/watch?v=gs2LMfuOR9k)
+  - `root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8` => `6`
+  - cur, left `if p<cur and q<cur`, right `if p>cur and q>cur` else return
+  - O(n) time, O(1) space
 - 👀[**Validate Binary Search Tree**](https://leetcode.com/problems/validate-binary-search-tree/):
-  `validate(node.left, min_val, node.val) and validate(node.right, node.val, max_val)`
+  [💡](https://www.youtube.com/watch?v=s6ATEkipzow)
+  - `root = [2,1,3]` => `true`
+  - `validate(n.left, min_val, n.val) and validate(n.right, n.val, max_val)`
+  - O(n) time, O(height) space
 - 👀[**Kth Smallest Element in a BST**](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
-
+  [💡](https://www.youtube.com/watch?v=5LUXSvjmGCw)
+  - `root = [3,1,4,null,2], k = 1` => `1`
+  - inorder traversal, return res[k-1] (or iterative inorder with stack)
+  - O(n) time, O(height) space
 ---
 
 - ✅[**Find Leaves of Binary Tree**](https://www.lintcode.com/problem/650/):
