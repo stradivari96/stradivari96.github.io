@@ -365,10 +365,12 @@ Careful with recursion limit (bound to the application stack)
 ---
 
 - 👀[**Implement Trie (Prefix Tree)**](https://leetcode.com/problems/implement-trie-prefix-tree/):
-  node with dict[char, node] and a bool isWord.
+  [💡](https://www.youtube.com/watch?v=oobqoCJlHA0)
+  - node with dict[char, node] and a bool isWord.
 - 👀[**Design Add And Search Words Data Structure**](https://leetcode.com/problems/design-add-and-search-words-data-structure/):
+  [💡](https://www.youtube.com/watch?v=BTf05gs_8iU)
 - 👀[**Word Search II**](https://leetcode.com/problems/word-search-ii/)
-
+  [💡](https://www.youtube.com/watch?v=asbcE9mZz_U)
 
 ## Heap & Priority Queue
 
@@ -377,7 +379,7 @@ Careful with recursion limit (bound to the application stack)
 > Heap invariant: each node is <= than its children.
 
 - 👀[**Find Median from Data Stream**](https://leetcode.com/problems/find-median-from-data-stream/)
-
+  [💡](https://www.youtube.com/watch?v=itmhHWaHupI)
 ---
 
 - ✅[**Stock Price Fluctuation**](https://leetcode.com/problems/stock-price-fluctuation/):
@@ -392,8 +394,9 @@ Careful with recursion limit (bound to the application stack)
 ---
 
 - 👀[**Combination Sum**](https://leetcode.com/problems/combination-sum/)
+  [💡](https://www.youtube.com/watch?v=GBKI9VSKdGg)
 - 👀[**Word Search**](https://leetcode.com/problems/word-search/)
-
+  [💡](https://www.youtube.com/watch?v=pfiQ_PS1g8E)
 ---
 
 - [**Sudoku Solver**](https://leetcode.com/problems/sudoku-solver/): `if board[3 * (i // 3) + k // 3][ 3 * (j // 3) + k % 3] == n:`
@@ -403,16 +406,19 @@ Careful with recursion limit (bound to the application stack)
 ---
 
 - 👀[**Number of Islands**](https://leetcode.com/problems/number-of-islands/):
-  [💡]
+  [💡](https://www.youtube.com/watch?v=pV2kpPD66nE)
   - `grid = [["1", "0"], ["0", "1"]]` => `2`
   - skip visited (mark 0 or set), dfs (4 directions) on 1s.
 - 👀[**Clone Graph**](https://leetcode.com/problems/clone-graph/):
-  cache of cloned nodes, dfs (neighbors) on original nodes.
+  [💡](https://www.youtube.com/watch?v=mQeF6bN8hMk)
+  - cache of cloned nodes, dfs (neighbors) on original nodes.
 - 👀[**Pacific Atlantic Water Flow**](https://leetcode.com/problems/pacific-atlantic-water-flow/):
+  [💡](https://www.youtube.com/watch?v=s-VkcjHqkGI)
   start from edge and dfs (4 directions) to higher cells.
 - 👀[**Number of Connected Components in an Undirected Graph**](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/):
-
+  [💡](https://www.youtube.com/watch?v=8f1XPm4WOUc)
 - 👀[**Graph Valid Tree**](https://www.lintcode.com/problem/graph-valid-tree/description):
+  [💡](https://www.youtube.com/watch?v=bXsUuownnoQ)
   DFS cycle detection, `dfs(0, prev=-1) and n == len(visit)`
 
 ## Topological Sort
@@ -420,9 +426,11 @@ Careful with recursion limit (bound to the application stack)
 ---
 
 - 👀[**Course Schedule**](https://leetcode.com/problems/course-schedule/):
-  BFS topological sort / DFS cycle detection (visited set, graph[c] = []).
+  [💡](https://www.youtube.com/watch?v=EgI5nU9etnU)
+  - BFS topological sort / DFS cycle detection (visited set, graph[c] = []).
 - 👀[**Alien Dictionary**](https://www.lintcode.com/problem/892):
-  topological sort, DFS cycle detection.
+  [💡](https://www.youtube.com/watch?v=6kTZYvNNyps)
+  - topological sort, DFS cycle detection.
 
 ---
 
@@ -454,13 +462,21 @@ https://youtu.be/mBNrRy2_hVs
   - `temp = n1 + n2`
   - O(n) time, O(1) space
 - 👀[**House Robber**](https://leetcode.com/problems/house-robber/):
-- 👀[**House Robber II**](https://leetcode.com/problems/house-robber-ii/)
-- 👀[**Longest Palindromic Substring**](https://leetcode.com/problems/longest-palindromic-substring/)
-- 👀[**Palindrome Substrings**](https://leetcode.com/problems/palindromic-substrings/)
-- 👀[**Decode Ways**](https://leetcode.com/problems/decode-ways/)
-- 👀[**Maximum Product Subarray**](https://leetcode.com/problems/maximum-product-subarray/)
-- 👀[**Word Break**](https://leetcode.com/problems/word-break/)
-- 👀[**Longest Increasing Subsequence**](https://leetcode.com/problems/longest-increasing-subsequence/)
+  [💡](https://www.youtube.com/watch?v=73r3KWiEvyk)
+- 👀[**House Robber II**](https://leetcode.com/problems/house-robber-ii/):
+  [💡](https://www.youtube.com/watch?v=rWAJCfYYOvM)
+- 👀[**Longest Palindromic Substring**](https://leetcode.com/problems/longest-palindromic-substring/):
+  [💡](https://www.youtube.com/watch?v=XYQecbcd6_c)
+- 👀[**Palindrome Substrings**](https://leetcode.com/problems/palindromic-substrings/):
+  [💡](https://www.youtube.com/watch?v=4RACzI5-du8)
+- 👀[**Decode Ways**](https://leetcode.com/problems/decode-ways/):
+  [💡](https://www.youtube.com/watch?v=6aEyTjOwlJU)
+- 👀[**Maximum Product Subarray**](https://leetcode.com/problems/maximum-product-subarray/):
+  [💡](https://www.youtube.com/watch?v=lXVy6YWFcRM)
+- 👀[**Word Break**](https://leetcode.com/problems/word-break/):
+  [💡](https://www.youtube.com/watch?v=Sx9NNgInc3A)
+- 👀[**Longest Increasing Subsequence**](https://leetcode.com/problems/longest-increasing-subsequence/):
+  [💡](https://www.youtube.com/watch?v=cjWnW0hdF1Y)
 
 ---
 
@@ -477,7 +493,7 @@ https://youtu.be/mBNrRy2_hVs
   - `cache[i, j] = cache.get((i-1, j), 0) + cache.get((i, j-1), 0)`
   - O(m\*n) time, O(m\*n) space
 - 👀[**Longest Common Subsequence**](https://leetcode.com/problems/longest-common-subsequence/)
-
+  [💡](https://www.youtube.com/watch?v=Ua0GhsJSlWM)
 ---
 
 - ✅[**Coin Change 2**](https://leetcode.com/problems/coin-change-2/):
@@ -494,9 +510,11 @@ https://youtu.be/mBNrRy2_hVs
 ---
 
 - 👀[**Maximum Subarray**](https://leetcode.com/problems/maximum-subarray/):
-  `current_sum = max(current_sum+n, n)`, Kadane.
+  [💡](https://www.youtube.com/watch?v=5WZl3MMT0Eg)
+  - `current_sum = max(current_sum+n, n)`, Kadane.
 - 👀[**Jump Game**](https://leetcode.com/problems/jump-game/):
-  `if i + nums[i] >= target: target = i`, start from end.
+  [💡](https://www.youtube.com/watch?v=Yan0cv2cLy8)
+  - `if i + nums[i] >= target: target = i`, start from end.
 
 ## Intervals
 
