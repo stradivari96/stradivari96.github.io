@@ -472,21 +472,44 @@ https://youtu.be/mBNrRy2_hVs
   - O(n) time, O(1) space
 - 👀[**House Robber**](https://leetcode.com/problems/house-robber/):
   [💡](https://www.youtube.com/watch?v=73r3KWiEvyk)
+  - `nums = [2,7,9,3,1]` => `12` (2, 9, 1)
+  - `rob1, rob2 = 0, 0`, `tmp = max(rob1 + n, rob2)`, `return rob2`
+  - O(n) time, O(1) space
 - 👀[**House Robber II**](https://leetcode.com/problems/house-robber-ii/):
   [💡](https://www.youtube.com/watch?v=rWAJCfYYOvM)
+  - `nums = [2,3,2]` => `3` (circular)
+  - `max(nums[0], rob1(nums[1:]), rob1(nums[:-1]))`
+  - O(n) time, O(1) space
 - 👀[**Longest Palindromic Substring**](https://leetcode.com/problems/longest-palindromic-substring/):
   [💡](https://www.youtube.com/watch?v=XYQecbcd6_c)
+  - `s = "babad"` => `"bab"` or `"aba"`
+  - for i in range(len(s)): expand around l, r = 1, 1 and l, r = i, i+1
+  - O(n^2) time, O(1) space
 - 👀[**Palindrome Substrings**](https://leetcode.com/problems/palindromic-substrings/):
   [💡](https://www.youtube.com/watch?v=4RACzI5-du8)
+  - `s = "abc"` => `3` (a, b, c)
+  - similar to the preview one, expand and add to count
+  - O(n^2) time, O(1) space
 - 👀[**Decode Ways**](https://leetcode.com/problems/decode-ways/):
   [💡](https://www.youtube.com/watch?v=6aEyTjOwlJU)
+  - `s = "12"` => `2` ("AB" or "L")
+  - start from end, `dp[i] = dp[i+1]` add `dp[i+2]` if `dp[i:i+2]` is valid
+  - O(n) time, O(n) space
 - 👀[**Maximum Product Subarray**](https://leetcode.com/problems/maximum-product-subarray/):
   [💡](https://www.youtube.com/watch?v=lXVy6YWFcRM)
+  - `nums = [2,3,-2,4]` => `6` (2, 3)
+  - `cur_max, cur_min, max_prod = 1, 1, float('-inf')`, reset if n == 0
+  - O(n) time, O(1) space
 - 👀[**Word Break**](https://leetcode.com/problems/word-break/):
   [💡](https://www.youtube.com/watch?v=Sx9NNgInc3A)
+  - `s = "leetcode", words = ["leet", "code"]` => `true`
+  - start from end, `dp[i] = any(dp[i+len(w)] for w in words if s[i:i+len(w)] == w)`
+  - O(n^2) time, O(n) space
 - 👀[**Longest Increasing Subsequence**](https://leetcode.com/problems/longest-increasing-subsequence/):
   [💡](https://www.youtube.com/watch?v=cjWnW0hdF1Y)
-
+  - `nums = [10,9,2,5,3,7,101,18]` => `4` (2, 3, 7, 101)
+  - start from end, `if nums[i] < nums[j]: dp[i] = max(dp[i], dp[j] + 1)`
+  - O(n^2) time, O(n) space
 ---
 
 - ✅[**Student Attendance Record II**](https://leetcode.com/problems/student-attendance-record-ii/):
@@ -503,6 +526,9 @@ https://youtu.be/mBNrRy2_hVs
   - O(m\*n) time, O(m\*n) space
 - 👀[**Longest Common Subsequence**](https://leetcode.com/problems/longest-common-subsequence/)
   [💡](https://www.youtube.com/watch?v=Ua0GhsJSlWM)
+  - `text1 = "abcde", text2 = "ace"` => `3` ("ace")
+  - start from end, `if eq: dp[i, j] = dp[i+1, j+1] + 1` else `dp[i, j] = max(dp[i+1, j], dp[i, j+1])`
+  - O(m\*n) time, O(m\*n) space
 ---
 
 - ✅[**Coin Change 2**](https://leetcode.com/problems/coin-change-2/):
@@ -520,11 +546,14 @@ https://youtu.be/mBNrRy2_hVs
 
 - 👀[**Maximum Subarray**](https://leetcode.com/problems/maximum-subarray/):
   [💡](https://www.youtube.com/watch?v=5WZl3MMT0Eg)
+  - `nums = [-2,1,-3,4,-1,2,1,-5,4]` => `6` (`[4,-1,2,1]`)
   - `current_sum = max(current_sum+n, n)`, Kadane.
+  - O(n) time, O(1) space
 - 👀[**Jump Game**](https://leetcode.com/problems/jump-game/):
   [💡](https://www.youtube.com/watch?v=Yan0cv2cLy8)
-  - `if i + nums[i] >= target: target = i`, start from end.
-
+  - `nums = [2,3,1,1,4]` => `true` (can reach last index)
+  - start from end, `if i + nums[i] >= target: target = i`.
+  - O(n) time, O(1) space
 ## Intervals
 
 ---
