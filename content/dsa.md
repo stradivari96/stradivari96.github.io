@@ -503,17 +503,31 @@ https://youtu.be/mBNrRy2_hVs
 ---
 
 - 👀[**Merge Intervals**](https://leetcode.com/problems/merge-intervals/):
-  [💡]
+  [💡](https://www.youtube.com/watch?v=44H3cEC2fFM)
   - `intervals = [[1,3],[2,6],[8,10],[15,18]]` => `[[1,6],[8,10],[15,18]]`
+  - Sort by start, append to result and merge `if start <= result[-1][1]`
+  - O(nlogn) time, O(n) space
 - 👀[**Meeting Rooms II**](https://www.lintcode.com/problem/919/):
-  [💡]
+  [💡](https://www.youtube.com/watch?v=FdzJmTCVyJU)
   min number of conference rooms.
   - `intervals = [(0,30),(5,10),(15,20)]` => `2`
+  - sorted starts and ends, s and e pointers, increment count `if start[s] < end[e]`
+  - O(nlogn) time, O(n) space
 - 👀[**Insert Interval**](https://leetcode.com/problems/insert-interval/):
+  [💡](https://www.youtube.com/watch?v=A8NUOmlwOlM)
+  - `intervals = [[1,3],[6,9]], newInterval = [2,5]` => `[[1,5],[6,9]]` (sorted)
+  - `if newInterval[1] < interval[0]`, `if newInterval[0] > interval[1]`, else merge
+  - O(n) time, O(n) space
 - 👀[**Non-overlapping Intervals**](https://leetcode.com/problems/non-overlapping-intervals/):
-  sort by end, update if start >= end.
-- 👀[**Meeting Rooms**](https://www.lintcode.com/problem/920/): if any
-  overlap, return false.
+  [💡](https://www.youtube.com/watch?v=nONCGxWoUfM)
+  - `intervals = [[1,2],[2,3],[3,4],[1,3]]` => `1` (number of intervals to remove)
+  - sort, update if start >= prev.end, else increase count
+  - O(nlogn) time, O(1) space
+- 👀[**Meeting Rooms**](https://www.lintcode.com/problem/920/):
+  [💡](https://www.youtube.com/watch?v=PaJxqZVPhbg)
+  - `intervals = [(0,30),(5,10),(15,20)]` => `false`
+  - sort, if start < prev.end, return false
+  - O(nlogn) time, O(n) space
 
 ## Math & Geometry
 
