@@ -409,18 +409,27 @@ Careful with recursion limit (bound to the application stack)
   [💡](https://www.youtube.com/watch?v=pV2kpPD66nE)
   - `grid = [["1", "0"], ["0", "1"]]` => `2`
   - skip visited (mark 0 or set), dfs (4 directions) on 1s.
+  - O(cells) time, O(cells) space
 - 👀[**Clone Graph**](https://leetcode.com/problems/clone-graph/):
   [💡](https://www.youtube.com/watch?v=mQeF6bN8hMk)
-  - cache of cloned nodes, dfs (neighbors) on original nodes.
+  - Node with val, neighbors.
+  - cache[old] = copy, for n in neighbors: copy.neighbors.append(dfs(n))).
+  - O(v+e) time, O(v) space
 - 👀[**Pacific Atlantic Water Flow**](https://leetcode.com/problems/pacific-atlantic-water-flow/):
   [💡](https://www.youtube.com/watch?v=s-VkcjHqkGI)
-  start from edge and dfs (4 directions) to higher cells.
+  - grid of heights.
+  - start from edge and dfs(x, y, ocean, last_height) to higher, return set intersection
+  - O(mn) time, O(mn) space
 - 👀[**Number of Connected Components in an Undirected Graph**](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/):
   [💡](https://www.youtube.com/watch?v=8f1XPm4WOUc)
+  - `n = 5, edges = [[0, 1], [1, 2], [3, 4]]` => `2`
+  - union find
+  - ???
 - 👀[**Graph Valid Tree**](https://www.lintcode.com/problem/graph-valid-tree/description):
   [💡](https://www.youtube.com/watch?v=bXsUuownnoQ)
-  DFS cycle detection, `dfs(0, prev=-1) and n == len(visit)`
-
+  - `n = 5, edges = [[0, 1], [0, 2], [0, 3], [1, 4]]` => `true`
+  - adj list, DFS cycle detection, `dfs(0, prev=-1) and n == len(visit)`
+  - O(e+v) time, O(e+v) space
 ## Topological Sort
 
 ---
