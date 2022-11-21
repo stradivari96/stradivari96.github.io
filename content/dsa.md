@@ -605,11 +605,19 @@ https://youtu.be/mBNrRy2_hVs
 
 - 👀[**Rotate Image**](https://leetcode.com/problems/rotate-image/):
   [💡](https://www.youtube.com/watch?v=fMSJSS7eO1w)
+  - `matrix = [[1,2,3],[4,5,6],[7,8,9]]` => `[[7,4,1],[8,5,2],[9,6,3]]`
+  - while l < r, swap 4 corners, move inwards
+  - O(n^2) time, O(1) space
 - 👀[**Spiral Matrix**](https://leetcode.com/problems/spiral-matrix/):
   [💡](https://www.youtube.com/watch?v=BJnMZNwUk1M)
+  - `matrix = [[1,2,3],[4,5,6],[7,8,9]]` => `[1,2,3,6,9,8,7,4,5]`
+  - 4 pointers, left, right, top, bottom, while l <= r and t <= b
+  - O(n^2) time, O(1) space
 - 👀[**Set Matrix Zeroes**](https://leetcode.com/problems/set-matrix-zeroes/):
   [💡](https://www.youtube.com/watch?v=T41rL0L3Pnw)
-
+  - `matrix = [[1,1,1],[1,0,1],[1,1,1]]` => `[[1,0,1],[0,0,0],[1,0,1]]`
+  - use first row and column to store if row or column should be zeroed
+  - O(mn) time, O(1) space
 ---
 
 - ✅[**Happy Number**](https://leetcode.com/problems/happy-number/):
