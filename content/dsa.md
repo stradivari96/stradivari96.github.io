@@ -10,6 +10,20 @@ Some notes about DSA
 
 <!--more-->
 
+<script>
+    function openRandomLink() {
+        var links = document.querySelectorAll("a");
+        links = Array.from(links)
+        links = links.filter(a => a.href.startsWith("https://leetcode.com/problems/") && !a.href.includes("solutions"));
+        var randomLink = links[Math.floor(Math.random() * links.length)];
+        window.open(randomLink.href, "_blank");
+    }
+</script>
+<button onclick="openRandomLink()" style="border: solid; border-width:1px" >
+Random problem
+</button>
+
+
 ### Links
 
 - [Cracking the coding interview](https://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/0984782850)
