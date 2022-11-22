@@ -18,7 +18,14 @@ Some notes about DSA
         randomLink.scrollIntoView();
         window.open(randomLink.href, "_blank");
     }
+    window.onload = function() {
+        var links = document.querySelectorAll("a");
+        links = Array.from(links)
+        links = links.filter(a => a.href.startsWith("https://leetcode.com/") || a.href.includes("youtu"));
+        links.forEach(a => a.target = "_blank");
+    }
 </script>
+
 <button onclick="openRandomLink()" style="border: solid; border-width:1px" >
 Random problem
 </button>
@@ -331,7 +338,7 @@ Careful with recursion limit (bound to the application stack)
   - `while level: ans.append([node.val for node in level]); level = [...]` or queue
   - O(n) time, O(n) space
 - 👀[**Construct Binary Tree from Preorder and Inorder Traversal**](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/):
-  [💡](https://www.youtube.com/watch?v=ihj4IQGZ2zc)
+  [💡](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/solutions/34579/python-short-recursive-solution/)
   - `preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]` => `[3,9,20,null,null,15,7]`
   ```python
   root = TreeNode(preorder[0])
@@ -402,7 +409,7 @@ Careful with recursion limit (bound to the application stack)
 ---
 
 - ✅[**Stock Price Fluctuation**](https://leetcode.com/problems/stock-price-fluctuation/):
-  [💡]
+  [💡](https://leetcode.com/problems/stock-price-fluctuation/solutions/1513293/python-clean-2-heaps-commented-code/?orderBy=most_votes)
   - `update(int timestamp, int price)`, `current()`, `maximum()`, `minimum()`
   - 2 heaps, timestamps[time, price], self.highest_timestamp.
 - [**Kth Largest Element in an Stream**](https://leetcode.com/problems/kth-largest-element-in-a-stream/):
@@ -414,8 +421,14 @@ Careful with recursion limit (bound to the application stack)
 
 - 👀[**Combination Sum**](https://leetcode.com/problems/combination-sum/)
   [💡](https://www.youtube.com/watch?v=GBKI9VSKdGg)
+  - `candidates = [2,3,6,7], target = 7` => `[[7],[2,2,3]]`
+  - dfs, backtracking, append path to global res
+  - O(2^target) time, O(target) space
 - 👀[**Word Search**](https://leetcode.com/problems/word-search/)
   [💡](https://www.youtube.com/watch?v=pfiQ_PS1g8E)
+  - `board = [["A","B","C","E"],["S","F","C","S"],...], word = "ABCCED"` => `true`
+  - dfs, backtracking, mark visited
+  - O(mn*4^l) time, O(l) space
 ---
 
 - [**Sudoku Solver**](https://leetcode.com/problems/sudoku-solver/): `if board[3 * (i // 3) + k // 3][ 3 * (j // 3) + k % 3] == n:`
@@ -479,6 +492,8 @@ https://youtu.be/mBNrRy2_hVs
 
 ### 1D
 
+https://youtu.be/_i4Yxeh5ceQ
+
 - 👀[**Coin Change**](https://leetcode.com/problems/coin-change/): 
   [💡](https://www.youtube.com/watch?v=H9bfqozjoqs) Unbounded Knapsack
   - `coins = [1,2,5], amount = 11` => `3`
@@ -490,7 +505,7 @@ https://youtu.be/mBNrRy2_hVs
   - `temp = n1 + n2`
   - O(n) time, O(1) space
 - 👀[**House Robber**](https://leetcode.com/problems/house-robber/):
-  [💡](https://www.youtube.com/watch?v=73r3KWiEvyk)
+  [💡](https://leetcode.com/problems/house-robber/solutions/1605797/c-python-4-simple-solutions-w-explanation-optimization-from-brute-force-to-dp/)
   - `nums = [2,7,9,3,1]` => `12` (2, 9, 1)
   - `rob1, rob2 = 0, 0`, `tmp = max(rob1 + n, rob2)`, `return rob2`
   - O(n) time, O(1) space
@@ -509,16 +524,16 @@ https://youtu.be/mBNrRy2_hVs
   - `s = "abc"` => `3` (a, b, c)
   - similar to the preview one, expand and add to count
   - O(n^2) time, O(1) space
-- 👀[**Decode Ways**](https://leetcode.com/problems/decode-ways/):
-  [💡](https://www.youtube.com/watch?v=6aEyTjOwlJU)
-  - `s = "12"` => `2` ("AB" or "L")
-  - start from end, `dp[i] = dp[i+1]` add `dp[i+2]` if `dp[i:i+2]` is valid
-  - O(n) time, O(n) space
 - 👀[**Maximum Product Subarray**](https://leetcode.com/problems/maximum-product-subarray/):
   [💡](https://www.youtube.com/watch?v=lXVy6YWFcRM)
   - `nums = [2,3,-2,4]` => `6` (2, 3)
   - `cur_max, cur_min, max_prod = 1, 1, float('-inf')`, reset if n == 0
   - O(n) time, O(1) space
+- 👀[**Decode Ways**](https://leetcode.com/problems/decode-ways/):
+  [💡](https://www.youtube.com/watch?v=6aEyTjOwlJU)
+  - `s = "12"` => `2` ("AB" or "L")
+  - start from end, `dp[i] = dp[i+1]` add `dp[i+2]` if `dp[i:i+2]` is valid
+  - O(n) time, O(n) space
 - 👀[**Word Break**](https://leetcode.com/problems/word-break/):
   [💡](https://www.youtube.com/watch?v=Sx9NNgInc3A)
   - `s = "leetcode", words = ["leet", "code"]` => `true`
@@ -526,11 +541,16 @@ https://youtu.be/mBNrRy2_hVs
   - O(n^2) time, O(n) space
 - 👀[**Longest Increasing Subsequence**](https://leetcode.com/problems/longest-increasing-subsequence/):
   [💡](https://www.youtube.com/watch?v=cjWnW0hdF1Y)
-  - `nums = [10,9,2,5,3,7,101,18]` => `4` (2, 3, 7, 101)
+  - `nums = [10,9,2,5,3,7,101,18]` => `4` (2, 3, 7, 101) strict
   - start from end, `if nums[i] < nums[j]: dp[i] = max(dp[i], dp[j] + 1)`
   - O(n^2) time, O(n) space
 ---
 
+- [**Min cost climbing stairs**](https://leetcode.com/problems/min-cost-climbing-stairs/):
+  [💡](https://youtu.be/ktmzAZWkEZ0)
+  - `cost = [10, 15, 20]` => `15` (start from 0 or 1, 1 or 2 steps)
+  - `new = min(prev1+c[i-2], prev2+c[i-1]); prev1 = prev2; prev2 = new`
+  - O(n) time, O(1) space
 - ✅[**Student Attendance Record II**](https://leetcode.com/problems/student-attendance-record-ii/):
   Fewer than 2 A, no 3 or more consecutive L.
   [💡]
@@ -541,13 +561,13 @@ https://youtu.be/mBNrRy2_hVs
 - 👀[**Unique Paths**](https://leetcode.com/problems/unique-paths/)
   [💡](https://www.youtube.com/watch?v=IlEsdxuD4lY)
   - `m = 3, n = 2` => `3`
-  - `cache[i, j] = cache.get((i-1, j), 0) + cache.get((i, j-1), 0)`
+  - `cache[0, 0] = 1; cache[i, j] = cache.get((i-1, j), 0) + cache.get((i, j-1), 0)`
   - O(m\*n) time, O(m\*n) space
 - 👀[**Longest Common Subsequence**](https://leetcode.com/problems/longest-common-subsequence/)
   [💡](https://www.youtube.com/watch?v=Ua0GhsJSlWM)
   - `text1 = "abcde", text2 = "ace"` => `3` ("ace")
-  - start from end, `if eq: dp[i, j] = dp[i+1, j+1] + 1` else `dp[i, j] = max(dp[i+1, j], dp[i, j+1])`
-  - O(m\*n) time, O(m\*n) space
+  - dp/recursive, add one and increase both if equal, else get the max of i+1 and j+1
+  - O(m\*n) time, O(m\*n) space (can be reduced)
 ---
 
 - ✅[**Coin Change 2**](https://leetcode.com/problems/coin-change-2/):
@@ -558,6 +578,11 @@ https://youtu.be/mBNrRy2_hVs
   [💡](https://www.youtube.com/watch?v=g0npyaQtAQM)
   - assign + or - `nums = [1, 1, 1, 1, 1], target = 3` => `5`
   - 0/1 Knapsack, O(2^n) -> O(n\*sum(nums)))
+- ✅[**Edit Distance**](https://leetcode.com/problems/edit-distance/):
+  [💡](https://leetcode.com/problems/edit-distance/solutions/159295/python-solutions-and-intuition/?orderBy=most_votes)
+  - `word1 = "horse", word2 = "ros"` => `3`
+  - lru_cache, `dp(len(s1), len(s2))`
+  - O(m\*n) time, O(m\*n) space
 
 ## Greedy
 
@@ -683,5 +708,3 @@ https://youtu.be/mBNrRy2_hVs
   Rabin–Karp algorithm / Rolling Hash.
 - [**Longest Duplicate Substring**](https://leetcode.com/problems/longest-duplicate-substring/) / [s](https://leetcode.com/problems/longest-duplicate-substring/solutions/695029/python-binary-search-o-n-log-n-average-with-rabin-karp-explained/):
   Rabin Karp + Binary Search.
-- [**Edit Distance**](https://leetcode.com/problems/edit-distance/) / [s](https://leetcode.com/problems/edit-distance/solutions/1475220/python-3-solutions-top-down-dp-bottom-up-dp-o-n-in-space-clean-concise/):
-  DP.
