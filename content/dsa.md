@@ -2,7 +2,6 @@
 title: "📝 Data structures and algorithms"
 date: 2022-10-27
 searchHidden: true
-TocOpen: true
 robotsNoIndex: true
 ---
 
@@ -16,6 +15,7 @@ Some notes about DSA
         links = Array.from(links)
         links = links.filter(a => a.href.startsWith("https://leetcode.com/problems/") && !a.href.includes("solutions"));
         var randomLink = links[Math.floor(Math.random() * links.length)];
+        randomLink.scrollIntoView();
         window.open(randomLink.href, "_blank");
     }
 </script>
@@ -380,7 +380,9 @@ Careful with recursion limit (bound to the application stack)
 
 - 👀[**Implement Trie (Prefix Tree)**](https://leetcode.com/problems/implement-trie-prefix-tree/):
   [💡](https://www.youtube.com/watch?v=oobqoCJlHA0)
+  - `insert(word)`, `search(word)`, `startsWith(prefix)`
   - node with dict[char, node] and a bool isWord.
+  - O(n) time, O(n) space
 - 👀[**Design Add And Search Words Data Structure**](https://leetcode.com/problems/design-add-and-search-words-data-structure/):
   [💡](https://www.youtube.com/watch?v=BTf05gs_8iU)
 - 👀[**Word Search II**](https://leetcode.com/problems/word-search-ii/)
@@ -393,7 +395,10 @@ Careful with recursion limit (bound to the application stack)
 > Heap invariant: each node is <= than its children.
 
 - 👀[**Find Median from Data Stream**](https://leetcode.com/problems/find-median-from-data-stream/)
-  [💡](https://www.youtube.com/watch?v=itmhHWaHupI)
+  [💡](https://leetcode.com/problems/find-median-from-data-stream/solutions/74047/java-python-two-heap-solution-o-log-n-add-o-1-find/)
+  - `addNum(num)` and `findMedian()`
+  - 2 heaps, max heap for left, min heap for right, balance
+  - O(logn) time, O(n) space
 ---
 
 - ✅[**Stock Price Fluctuation**](https://leetcode.com/problems/stock-price-fluctuation/):
@@ -663,7 +668,8 @@ https://youtu.be/mBNrRy2_hVs
 - [**Network Delay Time**](https://leetcode.com/problems/network-delay-time/):
   Dijkstra.
 - [**Path with Maximum Probability**](https://leetcode.com/problems/path-with-maximum-probability/):
-  Dijkstra.
+  [💡](https://leetcode.com/problems/path-with-maximum-probability/solutions/731767/java-python-3-2-codes-bellman-ford-and-dijkstra-s-algorithm-w-brief-explanation-and-analysis/)
+  - Dijkstra.
 - [**Swim in Rising Water**](https://leetcode.com/problems/swim-in-rising-water/):
   Dijkstra.
 - [**Shortest Path in Binary Matrix**](https://leetcode.com/problems/shortest-path-in-binary-matrix/):
