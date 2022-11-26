@@ -214,13 +214,13 @@ Random problem
 - 🇳[**Search a 2D Matrix**](https://leetcode.com/problems/search-a-2d-matrix/):
   [💡](https://www.youtube.com/watch?v=Ber2pi2C0j0)
   - `matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 3` => `true`
-  - TODO
-  - ...
+  - `row = mid // len(matrix[0])`, `col = mid % len(matrix[0])`
+  - O(logmn) time, O(1) space
 - 🇳[**Koko Eating Bananas**](https://leetcode.com/problems/koko-eating-bananas/):
   [💡](https://www.youtube.com/watch?v=U2SozAs9RzA)
   - `piles = [3,6,7,11], H = 8` => `4`
-  - TODO
-  - ...
+  - `l, r = 1, max(piles)`, `sum(math.ceil(p/mid) for p in piles) <= h`
+  - O(nlogm) time, O(1) space
 - 🅱️[**Search in Rotated Sorted Array**](https://leetcode.com/problems/search-in-rotated-sorted-array/):
   [💡](https://www.youtube.com/watch?v=U8XENwh8Oy8)
   - `nums = [4,5,6,7,0,1,2], target = 0` => `4`
@@ -234,8 +234,8 @@ Random problem
 - 🇳[**Time Based Key-Value Store**](https://leetcode.com/problems/time-based-key-value-store/):
   [💡](https://www.youtube.com/watch?v=fu2cD_6E8Hw)
   - `set(k, v, time)`, `get(k, time)`
-  - TODO
-  - ...
+  - `if values[m][1] <= timestamp: res = values[m][0], l = m + 1`
+  - O(logn) time, O(n) space
 - 🇳[**Median of Two Sorted Arrays**](https://leetcode.com/problems/median-of-two-sorted-arrays/):
   [💡](https://youtu.be/q6IEA26hvXc)
   - `nums1 = [1,2], nums2 = [3,4]` => `2.5`
