@@ -30,7 +30,6 @@ Some notes about DSA
 Random problem
 </button>
 
-
 ### Links
 
 - [Cracking the coding interview](https://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/0984782850)
@@ -71,7 +70,7 @@ Random problem
   [💡](https://www.youtube.com/watch?v=vzdNOK2oB2E)
   - `strs = ["tea","tan","ate","nat"]` => `[["nat","tan"],["ate","tea"]]`
   - Counter for each string, use tuple as key
-  - O(strings*average_lenth) time, O(strings) space
+  - O(strings\*average_lenth) time, O(strings) space
 - 🅱️[**Top K Frequent Elements**](https://leetcode.com/problems/top-k-frequent-elements/):
   [💡](https://www.youtube.com/watch?v=YPTqKIgVk-k)
   - `nums = [1,1,1,2,2,3], k = 2` => `[1,2]`
@@ -97,35 +96,6 @@ Random problem
   - `nums = [100,4,200,1,3,2]` => `4`
   - Set and start if n-1 not in set
   - O(n) time, O(n) space
----
-
-- 🇬[**Minimum Time Difference**](https://leetcode.com/problems/minimum-time-difference/):
-  [💡](https://leetcode.com/problems/minimum-time-difference/solutions/100637/python-straightforward-with-explanation/comments/104667)
-  - `timePoints = ["23:59","00:00"]` => `1`
-  - map to minutes & sort, `(time[i]-time[i-1])%(24*60)`
-  - O(nlogn) time, O(n) space
-- 🇬[**Logger Rate Limiter**](https://gist.github.com/kuntalchandra/7822e388e0d2d78ec27f566266584b49):
-  [💡](https://gist.github.com/kuntalchandra/7822e388e0d2d78ec27f566266584b49)
-  - `shouldPrintMessage(1, "foo"), shouldPrintMessage(3, "foo")` => `true, false`
-  - Hashmap `{message: timestamp}`, `if self.cache[message] + 10 > timestamp`
-  - O(1) time, O(n) space
-- 🇬[**Number of matching subsequence**](https://leetcode.com/problems/number-of-matching-subsequences/):
-  [💡](https://leetcode.com/problems/number-of-matching-subsequences/solutions/117634/efficient-and-simple-go-through-words-in-parallel-with-explanation/)
-  - `s = "abcde", words = ["a","bb","acd","ace"]` => `3`
-  - Hashmap `{char: [(word_idx, current_idx)]}`
-  - O(s.length+sumcharwords) time, O(#words) space
-- 🇬[**Text Justification**](https://leetcode.com/problems/text-justification/):
-  [💡](https://leetcode.com/problems/text-justification/solutions/24891/concise-python-solution-10-lines/?orderBy=most_votes)
-  - `words = ["This", "is", "an", "example", "of", "text", "justification."] w = 16` => `["This is an", "example of text", "justification. "]`
-  - `if num_of_letters + len(w) + len(cur) > maxWidth:`, round robin
-- 🇬[**Find original array from doubled array**](https://leetcode.com/problems/find-original-array-from-doubled-array/):
-  [💡](https://leetcode.com/problems/find-original-array-from-doubled-array/solutions/1470959/java-c-python-match-from-the-smallest-or-biggest-100/)
-  - `changed = [1,3,4,2,6,8]` => `[1,3,4]`
-  - iterate sorted count, `if count[x*2] >= count[x]`, handle 0, `cnt[2 * x] -= cnt[x]`
-  - O(n + mlogm) time, O(m) space (m = unique elements)
-- 🦠[**Close strings**](https://leetcode.com/problems/determine-if-two-strings-are-close):
-  [💡](https://leetcode.com/problems/determine-if-two-strings-are-close/solutions/1029064/python-oneliner-with-counter-explained/?orderBy=most_votes)
-`set(w1) == set(w2) and Counter(Counter(w1).values()) == Counter(Counter(w2).values()`
 
 ## Two Pointers
 
@@ -156,10 +126,6 @@ Random problem
   - `height = [0,1,0,2,1,0,1,3,2,1,2,1]` => `6`
   - DP, can optimize to O(1) space by using 2 pointers
   - O(n) time, O(n) space
----
-
-- [**String Compression**](https://leetcode.com/problems/string-compression/):
-  2 pointers, slow and fast.
 
 ## Sliding Window
 
@@ -195,18 +161,6 @@ Random problem
   - `nums = [1,3,-1,-3,5,3,6,7], k = 3` => `[3,3,5,5,6,7]`
   - l, r pointers, Monotonic dec deque, store idx, pop everything smaller than current
   - O(n) time, O(k) space
----
-
-- 🇬[**Maximum Points You Can Obtain from Cards**](https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/):
-  [💡](https://www.youtube.com/watch?v=TsA4vbtfCvo)
-  - `cardPoints = [1,2,3,4,5,6,1], k = 3` => `12`
-  - Sliding window, minimum subarray of size n-k.
-  - O(n) time, O(1) space
-- 🇬[**Subarray Sum Equals K**](https://leetcode.com/problems/subarray-sum-equals-k/):
-  [💡](https://youtu.be/fFVZt-6sgyo)
-  - `nums = [1,1,1], k = 2` => `2` ([1, 1] and [1, 1])
-  - prefix sum, if increase by k, found (subarray in between), initialize `d[0] = 1`
-  - O(n) time, O(n) space
 
 ## Stack
 
@@ -245,30 +199,18 @@ Random problem
 - 🇳[**Largest Rectangle in Histogram**](https://leetcode.com/problems/largest-rectangle-in-histogram/):
   [💡](https://www.youtube.com/watch?v=zx5Sw9130L0)
   - `heights = [2,1,5,6,2,3]` => `10`
-  - TODO
-  - ...
----
-
-- 🇬[**Decode String**](https://leetcode.com/problems/decode-string/):
-  [💡](https://youtu.be/qB0zZpBJlh8)
-  - `s = "3[a]2[bc]"` => `"aaabcbc"`
-  - append to stack `if != ']'`, pop and multiply
-  - O(n_output) time, O(n_output) space
+  - stack, pop bigger than current, calculate area
+  - O(n) time, O(n) space
 
 ## Binary Search
 
 ---
 
-```python
-while l <= r:
-    mid = (l+r)//2
-    if target == nums[mid]
-```
 - 🇳[**Binary Search**](https://leetcode.com/problems/binary-search/):
   [💡](https://www.youtube.com/watch?v=s4DPM8ct1pI)
   - `nums = [-1,0,3,5,9,12], target = 9` => `4`
-  - TODO
-  - ...
+  - while l <= r, mid = (l+r)//2
+  - O(logn) time, O(1) space
 - 🇳[**Search a 2D Matrix**](https://leetcode.com/problems/search-a-2d-matrix/):
   [💡](https://www.youtube.com/watch?v=Ber2pi2C0j0)
   - `matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 3` => `true`
@@ -299,21 +241,6 @@ while l <= r:
   - `nums1 = [1,2], nums2 = [3,4]` => `2.5`
   - Binary search on the shorter array until `Aleft <= Bright and Bleft <= Aright`.
   - O(log(m+n)) time, O(1) space
----
-
-- 🇬[**First Bad Version**](https://leetcode.com/problems/first-bad-version/):
-  [💡](https://leetcode.com/problems/first-bad-version/solutions/71324/python-understand-easily-from-binary-search-idea/?orderBy=most_votes)
-  - `n = 5`, `isBadVersion(3) = false`, `isBadVersion(4) = true`
-  - binary search.
-  - O(logn) time, O(1) space
-- 🇬[**Snapshot Array**](https://leetcode.com/problems/snapshot-array/):
-  [💡](https://leetcode.com/problems/snapshot-array/solutions/350562/java-python-binary-search/?orderBy=most_votes)
-  - `SnapshotArray(int length)`, `set(index, val)`, `snap()`, `get(index, snap_id)`
-  - Dict[int, array], binary search on the list of snapshots.
-- 🇬[**Random Pick with Weight**](https://leetcode.com/problems/random-pick-with-weight/):
-  [💡](https://leetcode.com/problems/random-pick-with-weight/solutions/154044/java-accumulated-freq-sum-binary-search/?orderBy=most_votes)
-  - `[1,3]`, `pickIndex()` => `0` with 25% probability, `1` with 75% probability
-  - binary search (random (1, total)) on the prefix sum.
 
 ## Linked List
 
@@ -375,19 +302,6 @@ while l <= r:
   - TODO
   - ...
 
-
----
-
-- 🇬[**Middle of the Linked List**](https://leetcode.com/problems/middle-of-the-linked-list/):
-  [💡]()
-  - `1->2->3->4->5` => `3`
-  - slow = fast = head, while fast and fast.next: ..., return slow
-  - O(n) time, O(1) space
-- 🇬[**Linked List Cycle II**](https://leetcode.com/problems/linked-list-cycle-ii/):
-  [💡](https://leetcode.com/problems/linked-list-cycle-ii/solutions/1701128/c-java-python-slow-and-fast-image-explanation-beginner-friendly/?orderBy=most_votes)
-  - `head = [3,2,0,-4], -4 -> 2` => `2`
-  - dist(intersect, cycle) == dist(head, cycle)
-  - O(n) time, O(1) space
 ## Trees
 
 ---
@@ -403,7 +317,7 @@ Careful with recursion limit (bound to the application stack)
   [💡](https://www.youtube.com/watch?v=hTM3phVI6YQ)
   - `root = [3,9,20,null,null,15,7]` => `3`
   - `return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1`
-  -  O(n) time, O(height) space
+  - O(n) time, O(height) space
 - 🇳[**Diameter of Binary Tree**](https://leetcode.com/problems/diameter-of-binary-tree/):
   [💡](https://www.youtube.com/watch?v=bkxqA8Rfv04)
   - `root = [1,2,3,4,5]` => `3`
@@ -477,11 +391,6 @@ Careful with recursion limit (bound to the application stack)
   - `root = [3,1,4,null,2], k = 1` => `1`
   - inorder traversal, return res[k-1] (or iterative inorder with stack)
   - O(n) time, O(height) space
----
-
-- 🇬[**Find Leaves of Binary Tree**](https://www.lintcode.com/problem/650/):
-  [💡]
-  - dfs, post-order, return layer.
 
 ## Tries
 
@@ -538,12 +447,6 @@ Careful with recursion limit (bound to the application stack)
   - `addNum(num)` and `findMedian()`
   - 2 heaps, max heap for left, min heap for right, balance
   - O(logn) time, O(n) space
----
-
-- 🇬[**Stock Price Fluctuation**](https://leetcode.com/problems/stock-price-fluctuation/):
-  [💡](https://leetcode.com/problems/stock-price-fluctuation/solutions/1513293/python-clean-2-heaps-commented-code/?orderBy=most_votes)
-  - `update(int timestamp, int price)`, `current()`, `maximum()`, `minimum()`
-  - 2 heaps, timestamps[time, price], self.highest_timestamp.
 
 ## Backtracking
 
@@ -552,8 +455,8 @@ Careful with recursion limit (bound to the application stack)
 - 🇳[**Subsets**](https://leetcode.com/problems/subsets/):
   [💡](https://www.youtube.com/watch?v=REOH22Xwdkk)
   - `nums = [1,2,3]` => `[[3],[1],[2],[1,2,3],[1,3],[2,3],[1,2],[]]`
-  - TODO
-  - ...
+  - dfs with backtracking, result and path
+  - O(n \* 2^n) time, O(n) space
 - 🅱️[**Combination Sum**](https://leetcode.com/problems/combination-sum/)
   [💡](https://www.youtube.com/watch?v=GBKI9VSKdGg)
   - `candidates = [2,3,6,7], target = 7` => `[[7],[2,2,3]]`
@@ -578,7 +481,7 @@ Careful with recursion limit (bound to the application stack)
   [💡](https://www.youtube.com/watch?v=pfiQ_PS1g8E)
   - `board = [["A","B","C","E"],["S","F","C","S"],...], word = "ABCCED"` => `true`
   - dfs, backtracking, mark visited
-  - O(mn*4^l) time, O(l) space
+  - O(mn\*4^l) time, O(l) space
 - 🇳[**Palindrome Partitioning**](https://leetcode.com/problems/palindrome-partitioning/):
   [💡](https://www.youtube.com/watch?v=3jvWodd7ht0)
   - `s = "aab"` => `[["a","a","b"],["aa","b"]]`
@@ -594,9 +497,6 @@ Careful with recursion limit (bound to the application stack)
   - `n = 4` => `[[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]]`
   - TODO
   - ...
----
-
-- [**Sudoku Solver**](https://leetcode.com/problems/sudoku-solver/): `if board[3 * (i // 3) + k // 3][ 3 * (j // 3) + k % 3] == n:`
 
 ## Graphs
 
@@ -684,7 +584,7 @@ Careful with recursion limit (bound to the application stack)
   - `times = [[2,1,1],[2,3,1],[3,4,1]]`, `N = 4`, `K = 2` => `2`
   - TODO
   - ...
-- 🇳[**Swim in Rising Water**](https://leetcode.com/problems/swim-in-rising-water/):
+- 🇳 🇬[**Swim in Rising Water**](https://leetcode.com/problems/swim-in-rising-water/):
   [💡](https://www.youtube.com/watch?v=amvrKlMLuGY)
   - `grid = [[0,2],[1,3]]` => `3`
   - TODO
@@ -749,7 +649,7 @@ https://youtu.be/_i4Yxeh5ceQ
   - `s = "12"` => `2` ("AB" or "L")
   - start from end, `dp[i] = dp[i+1]` add `dp[i+2]` if `dp[i:i+2]` is valid
   - O(n) time, O(n) space
-- 🅱️[**Coin Change**](https://leetcode.com/problems/coin-change/): 
+- 🅱️[**Coin Change**](https://leetcode.com/problems/coin-change/):
   [💡](https://www.youtube.com/watch?v=H9bfqozjoqs) Unbounded Knapsack
   - `coins = [1,2,5], amount = 11` => `3`
   - Cache and iterate `range(amount+1)`, recursive is O(coins^amount)
@@ -774,12 +674,6 @@ https://youtu.be/_i4Yxeh5ceQ
   - `nums = [1,5,11,5]` => `true` (1, 5, 5) and (11)
   - TODO
   - ...
----
-
-- 🇬[**Student Attendance Record II**](https://leetcode.com/problems/student-attendance-record-ii/):
-  Fewer than 2 A, no 3 or more consecutive L.
-  [💡]
-  - `n = 2` => `8` ("PP", "AP", "PA", "LP", "PL", "AL", "LA", "LL")
 
 ### 2D
 
@@ -811,7 +705,7 @@ https://youtu.be/_i4Yxeh5ceQ
   - `s1 = "aabcc", s2 = "dbbca", s3 = "aadbbcbc
   - TODO
   - ...
-- 🇳[**Longest Increasing Path in a Matrix**](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/):
+- 🇳 🇬[**Longest Increasing Path in a Matrix**](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/):
   [💡](https://www.youtube.com/watch?v=wCc_nd-GiEc)
   - `matrix = [[9,9,4],[6,6,8],[2,1,1]]` => `4` (1, 2, 6, 9)
   - TODO
@@ -836,6 +730,7 @@ https://youtu.be/_i4Yxeh5ceQ
   - `s = "aa", p = "a"` => `false`
   - TODO
   - ...
+
 ## Greedy
 
 ---
@@ -904,7 +799,7 @@ https://youtu.be/_i4Yxeh5ceQ
   - `intervals = [(0,30),(5,10),(15,20)]` => `false`
   - sort, if start < prev.end, return false
   - O(nlogn) time, O(n) space
-- 🅱️[**Meeting Rooms II**](https://www.lintcode.com/problem/919/):
+- 🅱️🇬[**Meeting Rooms II**](https://www.lintcode.com/problem/919/):
   [💡](https://www.youtube.com/watch?v=FdzJmTCVyJU)
   min number of conference rooms.
   - `intervals = [(0,30),(5,10),(15,20)]` => `2`
@@ -1009,3 +904,179 @@ https://youtu.be/_i4Yxeh5ceQ
   Rabin–Karp algorithm / Rolling Hash.
 - [**Longest Duplicate Substring**](https://leetcode.com/problems/longest-duplicate-substring/) / [s](https://leetcode.com/problems/longest-duplicate-substring/solutions/695029/python-binary-search-o-n-log-n-average-with-rabin-karp-explained/):
   Rabin Karp + Binary Search.
+
+---
+
+- 🇬https://leetcode.com/problems/number-of-good-paths/
+- 🇬https://leetcode.com/problems/robot-room-cleaner/
+- 🇬https://leetcode.com/problems/employee-free-time/
+- 🇬https://leetcode.com/problems/meeting-rooms-iii/
+- 🇬https://leetcode.com/problems/guess-the-word/
+- 🇬https://leetcode.com/problems/battleships-in-a-board/
+- 🇬https://leetcode.com/problems/maximum-and-sum-of-array/
+- 🇬https://leetcode.com/problems/find-and-replace-in-string/
+- 🇬https://leetcode.com/problems/maximum-number-of-visible-points/
+- 🇬https://leetcode.com/problems/number-of-atoms/
+- 🇬https://leetcode.com/problems/detect-squares/
+- 🇬https://leetcode.com/problems/maximum-number-of-points-with-cost/
+- 🇬https://leetcode.com/problems/expression-add-operators/
+- 🇬https://leetcode.com/problems/shortest-distance-from-all-buildings/
+- 🇬https://leetcode.com/problems/swap-adjacent-in-lr-string/
+- 🇬https://leetcode.com/problems/detonate-the-maximum-bombs/
+- 🇬https://leetcode.com/problems/amount-of-new-area-painted-each-day/
+- 🇬https://leetcode.com/problems/sort-integers-by-the-power-value/
+- 🇬https://leetcode.com/problems/the-earliest-moment-when-everyone-become-friends/
+- 🇬https://leetcode.com/problems/filling-bookcase-shelves/
+- 🇬https://leetcode.com/problems/shortest-way-to-form-string/
+- 🇬https://leetcode.com/problems/sum-of-prefix-scores-of-strings/
+- 🇬https://leetcode.com/problems/check-if-word-can-be-placed-in-crossword/
+- 🇬https://leetcode.com/problems/rle-iterator/
+- 🇬https://leetcode.com/problems/sentence-screen-fitting/
+- 🇬https://leetcode.com/problems/parallel-courses/
+- 🇬https://leetcode.com/problems/longest-line-of-consecutive-one-in-matrix/
+
+- 🇬[**The Number of Weak Characters in the Game**](https://leetcode.com/problems/the-number-of-weak-characters-in-the-game/):
+  [💡](https://www.youtube.com/watch?v=9Y4ZQZ0YQ0o)
+  - `properties = [[5,5],[6,3],[3,6]]` => `0`
+  - sort by `-x[0],x[1]`, then iterate and keep max y
+  - O(nlogn) time, O(1) space
+- 🇬[**Minimum Time Difference**](https://leetcode.com/problems/minimum-time-difference/):
+  [💡](https://leetcode.com/problems/minimum-time-difference/solutions/100637/python-straightforward-with-explanation/comments/104667)
+  - `timePoints = ["23:59","00:00"]` => `1`
+  - map to minutes & sort, `(time[i]-time[i-1])%(24*60)`
+  - O(nlogn) time, O(n) space
+- 🇬[**Logger Rate Limiter**](https://gist.github.com/kuntalchandra/7822e388e0d2d78ec27f566266584b49):
+  [💡](https://gist.github.com/kuntalchandra/7822e388e0d2d78ec27f566266584b49)
+  - `shouldPrintMessage(1, "foo"), shouldPrintMessage(3, "foo")` => `true, false`
+  - Hashmap `{message: timestamp}`, `if self.cache[message] + 10 > timestamp`
+  - O(1) time, O(n) space
+- 🇬[**Number of matching subsequences**](https://leetcode.com/problems/number-of-matching-subsequences/):
+  [💡](https://leetcode.com/problems/number-of-matching-subsequences/solutions/117634/efficient-and-simple-go-through-words-in-parallel-with-explanation/)
+  - `s = "abcde", words = ["a","bb","acd","ace"]` => `3`
+  - Hashmap `{char: [(word_idx, current_idx)]}`
+  - O(s.length+sumcharwords) time, O(#words) space
+- 🇬[**Text Justification**](https://leetcode.com/problems/text-justification/):
+  [💡](https://leetcode.com/problems/text-justification/solutions/24891/concise-python-solution-10-lines/?orderBy=most_votes)
+  - `words = ["This", "is", "an", "example", "of", "text", "justification."] w = 16` => `["This is an", "example of text", "justification. "]`
+  - `if num_of_letters + len(w) + len(cur) > maxWidth:`, round robin
+- [**Find original array from doubled array**](https://leetcode.com/problems/find-original-array-from-doubled-array/):
+  [💡](https://leetcode.com/problems/find-original-array-from-doubled-array/solutions/1470959/java-c-python-match-from-the-smallest-or-biggest-100/)
+  - `changed = [1,3,4,2,6,8]` => `[1,3,4]`
+  - iterate sorted count, `if count[x*2] >= count[x]`, handle 0, `cnt[2 * x] -= cnt[x]`
+  - O(n + mlogm) time, O(m) space (m = unique elements)
+- 🦠[**Close strings**](https://leetcode.com/problems/determine-if-two-strings-are-close):
+  [💡](https://leetcode.com/problems/determine-if-two-strings-are-close/solutions/1029064/python-oneliner-with-counter-explained/?orderBy=most_votes)
+  - `set(w1) == set(w2) and Counter(Counter(w1).values()) == Counter(Counter(w2).values()`
+- [**String Compression**](https://leetcode.com/problems/string-compression/):
+  2 pointers, slow and fast.
+
+- 🇬[**Maximum Points You Can Obtain from Cards**](https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/):
+  [💡](https://www.youtube.com/watch?v=TsA4vbtfCvo)
+  - `cardPoints = [1,2,3,4,5,6,1], k = 3` => `12`
+  - Sliding window, minimum subarray of size n-k.
+  - O(n) time, O(1) space
+- [**Subarray Sum Equals K**](https://leetcode.com/problems/subarray-sum-equals-k/):
+  [💡](https://youtu.be/fFVZt-6sgyo)
+
+  - `nums = [1,1,1], k = 2` => `2` ([1, 1] and [1, 1])
+  - prefix sum, if increase by k, found (subarray in between), initialize `d[0] = 1`
+  - O(n) time, O(n) space
+
+- 🇬[**Decode String**](https://leetcode.com/problems/decode-string/):
+  [💡](https://youtu.be/qB0zZpBJlh8)
+  - `s = "3[a]2[bc]"` => `"aaabcbc"`
+  - append to stack `if != ']'`, pop and multiply
+  - O(n_output) time, O(n_output) space
+
+---
+
+- 🇬[**My Calendar I**](https://leetcode.com/problems/my-calendar-i/):
+  [💡](https://www.youtube.com/watch?v=2SjzRBfXeN0)
+  - `book(start, end)`, `book(10, 20)`, `book(15, 25)`, `book(20, 30)`
+  - TODO
+  - ...
+- [**First Bad Version**](https://leetcode.com/problems/first-bad-version/):
+  [💡](https://leetcode.com/problems/first-bad-version/solutions/71324/python-understand-easily-from-binary-search-idea/?orderBy=most_votes)
+  - `n = 5`, `isBadVersion(3) = false`, `isBadVersion(4) = true`
+  - binary search.
+  - O(logn) time, O(1) space
+- 🇬[**Snapshot Array**](https://leetcode.com/problems/snapshot-array/):
+  [💡](https://leetcode.com/problems/snapshot-array/solutions/350562/java-python-binary-search/?orderBy=most_votes)
+  - `SnapshotArray(int length)`, `set(index, val)`, `snap()`, `get(index, snap_id)`
+  - Dict[int, array], binary search on the list of snapshots.
+- 🇬[**Random Pick with Weight**](https://leetcode.com/problems/random-pick-with-weight/):
+  [💡](https://leetcode.com/problems/random-pick-with-weight/solutions/154044/java-accumulated-freq-sum-binary-search/?orderBy=most_votes)
+
+  - `[1,3]`, `pickIndex()` => `0` with 25% probability, `1` with 75% probability
+  - binary search (random (1, total)) on the prefix sum.
+
+- [**Middle of the Linked List**](https://leetcode.com/problems/middle-of-the-linked-list/):
+  [💡]()
+  - `1->2->3->4->5` => `3`
+  - slow = fast = head, while fast and fast.next: ..., return slow
+  - O(n) time, O(1) space
+- [**Linked List Cycle II**](https://leetcode.com/problems/linked-list-cycle-ii/):
+  [💡](https://leetcode.com/problems/linked-list-cycle-ii/solutions/1701128/c-java-python-slow-and-fast-image-explanation-beginner-friendly/?orderBy=most_votes)
+  - `head = [3,2,0,-4], -4 -> 2` => `2`
+  - dist(intersect, cycle) == dist(head, cycle)
+  - O(n) time, O(1) space
+
+---
+
+- 🇬[**Find Leaves of Binary Tree**](https://www.lintcode.com/problem/650/):
+  [💡]
+  - dfs, post-order, return layer.
+- 🇬[**Step-By-Step Directions From a Binary Tree Node to Another**](https://leetcode.com/problems/step-by-step-directions-from-a-binary-tree-node-to-another/):
+  [💡]
+
+  - TODO
+  - ...
+
+- 🇬[**Stock Price Fluctuation**](https://leetcode.com/problems/stock-price-fluctuation/):
+  [💡](https://leetcode.com/problems/stock-price-fluctuation/solutions/1513293/python-clean-2-heaps-commented-code/?orderBy=most_votes)
+  - `update(int timestamp, int price)`, `current()`, `maximum()`, `minimum()`
+  - 2 heaps, timestamps[time, price], self.highest_timestamp.
+
+---
+
+- [**Sudoku Solver**](https://leetcode.com/problems/sudoku-solver/): `if board[3 * (i // 3) + k // 3][ 3 * (j // 3) + k % 3] == n:`
+
+---
+
+- 🇬[**Race Car**](https://leetcode.com/problems/race-car/):
+  [💡](https://leetcode.com/problems/race-car/solutions/124326/summary-of-the-bfs-and-dp-solutions-with-intuitive-explanation/)
+  - TODO
+  - ...
+- 🇬[**Shortest Path in a Grid with Obstacles Elimination**](https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/):
+  [💡](https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/solutions/451787/python-o-m-n-k-bfs-solution-with-explanation/?orderBy=most_votes)
+  - TODO
+  - ...
+- 🇬[**Find All Possible Recipes from Given Supplies**](https://leetcode.com/problems/find-all-possible-recipes-from-given-supplies/description/):
+  [💡](https://leetcode.com/discuss/interview-question/124658/Find-All-Possible-Recipes-from-Given-Supplies/127000)
+  - TODO
+  - ...
+
+---
+
+- 🇬[**Longest String Chain**](https://leetcode.com/problems/longest-string-chain/):
+  [💡](https://leetcode.com/problems/longest-string-chain/solutions/2153007/c-python-simple-solution-w-explanation-dp/?orderBy=most_votes)
+  - `words = ["a","b","ba","bca","bda","bdca"]` => `4` (a, b, ba, bda)
+  - TODO
+  - ...
+- 🇬[**Student Attendance Record II**](https://leetcode.com/problems/student-attendance-record-ii/):
+  Fewer than 2 A, no 3 or more consecutive L.
+  [💡]
+
+  - `n = 2` => `8` ("PP", "AP", "PA", "LP", "PL", "AL", "LA", "LL")
+
+- 🇬[**Range Module**](https://leetcode.com/problems/range-module/)
+  [💡](https://www.youtube.com/watch?v=QhPdNS143Qg)
+
+  - TODO
+  - ...
+
+- 🇬[**Poor Pigs**](https://leetcode.com/problems/poor-pigs/):
+  [💡](https://www.youtube.com/watch?v=6Z0rZ1J3Z8E)
+  - `buckets = 1000, minutesToDie = 15, minutesToTest = 60` => `5`
+  - TODO
+  - ...
