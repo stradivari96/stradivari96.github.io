@@ -10,11 +10,12 @@ Some notes about DSA
 <!--more-->
 
 <script>
-    function openRandomLink() {
+    function openRandomLink(neetcode) {
         var links = document.querySelectorAll("a");
         links = Array.from(links)
         links = links.filter(a => a.href.startsWith("https://leetcode.com/problems/") && !a.href.includes("solutions"));
-        var randomLink = links[Math.floor(Math.random() * links.length)];
+        var limit = neetcode ? 150 : links.length;
+        var randomLink = links[Math.floor(Math.random() * limit)];
         randomLink.scrollIntoView();
         window.open(randomLink.href, "_blank");
     }
@@ -26,8 +27,11 @@ Some notes about DSA
     }
 </script>
 
-<button onclick="openRandomLink()" style="border: solid; border-width:1px" >
-Random problem
+<button onclick="openRandomLink(true)" style="border: solid; border-width:1px" >
+Random Neetcode
+</button>
+<button onclick="openRandomLink(false)" style="border: solid; border-width:1px" >
+Random
 </button>
 
 ### Links
@@ -86,7 +90,7 @@ Random problem
   - partially filled 9x9 grid
   - sets, `squares[(r // 3, c // 3)].add(board[r][c])`
   - O(1) time, O(1) space
-- 🅱️[**Encode and Decode Strings**](https://www.lintcode.com/problem/659/):
+- 🅱️[**Encode and Decode Strings**](https://leetcode.com/problems/encode-and-decode-strings/):
   [💡](https://www.youtube.com/watch?v=B1k_sxOSgv8)
   - Create single string and split it back
   - Length + Separator
@@ -269,13 +273,13 @@ Random problem
 - 🇳[**Copy List with Random Pointer**](https://leetcode.com/problems/copy-list-with-random-pointer/):
   [💡](https://www.youtube.com/watch?v=5Y2EiZST97Y)
   - `head = [[3,null],[3,0],[3,null]]` => `[[3,null],[3,0],[3,null]]`
-  - TODO
-  - ...
+  - two passes, copy and then update next and random, `old_to_new = {None: None}`
+  - O(n) time, O(n) space
 - 🇳[**Add Two Numbers**](https://leetcode.com/problems/add-two-numbers/):
   [💡](https://www.youtube.com/watch?v=wgFPrzTjm7s)
   - `l1 = [2,4,3], l2 = [5,6,4]` => `[7,0,8]`
-  - TODO
-  - ...
+  - carry = sum_ // 10, remain = p1 or p2, etc.
+  - O(max(m,n)) time, O(max(m,n)) space
 - 🅱️[**Linked List Cycle**](https://leetcode.com/problems/linked-list-cycle/):
   [💡](https://www.youtube.com/watch?v=gBTe7lFR3vc)
   - `head = [3,2,0,-4], -4 -> 2` => `true`
@@ -284,13 +288,13 @@ Random problem
 - 🇳[**Find The Duplicate Number**](https://leetcode.com/problems/find-the-duplicate-number/):
   [💡](https://www.youtube.com/watch?v=wjYnzkAhcNk)
   - `nums = [1,3,4,2,2]` => `2`
-  - TODO
-  - ...
+  - Floyd's cycle detection, `slow = nums[slow]; fast = nums[nums[fast]]`, slow2
+  - O(n) time, O(1) space
 - 🇳[**LRU Cache**](https://leetcode.com/problems/lru-cache/):
   [💡](https://www.youtube.com/watch?v=7ABFKPK2hD4)
   - `LRUCache(int capacity)`, `get(int key)`, `put(int key, int value)`
-  - TODO
-  - ...
+  - double linked list, cache of key to node, dummy head and tail
+  - O(1) time, O(capacity) space
 - 🅱️[**Merge K Sorted Lists**](https://leetcode.com/problems/merge-k-sorted-lists/):
   [💡](https://www.youtube.com/watch?v=q5a5OiGbT6Q)
   - `lists = [[1,4,5],[1,3,4],[2,6]]` => `[1,1,2,3,4,4,5,6]`
@@ -299,8 +303,8 @@ Random problem
 - 🇳[**Reverse Nodes in k-Group**](https://leetcode.com/problems/reverse-nodes-in-k-group/):
   [💡](https://www.youtube.com/watch?v=1UOPsfP85V4)
   - `head = [1,2,3,4,5], k = 2` => `[2,1,4,3,5]`
-  - TODO
-  - ...
+  - groupPrev, groupNext, reverse `while curr != groupNext`
+  - O(n) time, O(1) space
 
 ## Trees
 
@@ -321,13 +325,13 @@ Careful with recursion limit (bound to the application stack)
 - 🇳[**Diameter of Binary Tree**](https://leetcode.com/problems/diameter-of-binary-tree/):
   [💡](https://www.youtube.com/watch?v=bkxqA8Rfv04)
   - `root = [1,2,3,4,5]` => `3`
-  - TODO
-  - ...
+  - dfs, path: `res = max(res, left+right)`, max length: `return max(left, right) + 1`
+  - O(n) time, O(height) space
 - 🇳[**Balanced Binary Tree**](https://leetcode.com/problems/balanced-binary-tree/):
   [💡](https://www.youtube.com/watch?v=QfJsau0ItOY)
   - `root = [3,9,20,null,null,15,7]` => `true`
-  - TODO
-  - ...
+  - dfs return tuple: `(is_balanced, height)`
+  - O(n) time, O(height) space
 - 🅱️[**Same Tree**](https://leetcode.com/problems/same-tree/):
   [💡](https://www.youtube.com/watch?v=vRbbcKXCxOw)
   - `p = [1,2,3], q = [1,2,3]` => `true`
@@ -346,13 +350,13 @@ Careful with recursion limit (bound to the application stack)
 - 🇳[**Binary Tree Right Side View**](https://leetcode.com/problems/binary-tree-right-side-view/):
   [💡](https://www.youtube.com/watch?v=d4zLyf32e3I)
   - `root = [1,2,3,null,5,null,4]` => `[1,3,4]`
-  - TODO
-  - ...
+  - Level order, right most
+  - O(n) time, O(n) space
 - 🇳[**Count Good Nodes in Binary Tree**](https://leetcode.com/problems/count-good-nodes-in-binary-tree/):
   [💡](https://www.youtube.com/watch?v=7cp5imvDzl4)
   - `root = [3,1,4,3,null,1,5]` => `4`
-  - TODO
-  - ...
+  - dfs, stack = [(node, max_so_far)]
+  - O(n) time, O(height) space
 - 🅱️[**Construct Binary Tree from Preorder and Inorder Traversal**](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/):
   [💡](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/solutions/34579/python-short-recursive-solution/)
   - `preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]` => `[3,9,20,null,null,15,7]`
@@ -420,8 +424,8 @@ Careful with recursion limit (bound to the application stack)
 - 🇳[**Last Stone Weight**](https://leetcode.com/problems/last-stone-weight/):
   [💡](https://www.youtube.com/watch?v=B-QCq79-Vfw)
   - `stones = [2,7,4,1,8,1]` => `1`
-  - TODO
-  - ...
+  - Heapify, pop 2 largest, push diff, repeat while len > 1
+  - O(nlogn) time, O(n) space
 - 🇳[**K Closests Points to Origin**](https://leetcode.com/problems/k-closest-points-to-origin/):
   [💡](https://www.youtube.com/watch?v=rI2EBUEMfTk)
   - `points = [[1,3],[-2,2]], K = 1` => `[[-2,2]]`
@@ -435,8 +439,8 @@ Careful with recursion limit (bound to the application stack)
 - 🇳[**Task Scheduler**](https://leetcode.com/problems/task-scheduler/):
   [💡](https://www.youtube.com/watch?v=s8p8ukTyA2I)
   - `tasks = ["A","A","A","B","B","B"], n = 2` => `8`
-  - TODO
-  - ...
+  - max_heap of times, `while max_heap or q`, increase time
+  - O(n) time, O(1) space
 - 🇳[**Design Twitter**](https://leetcode.com/problems/design-twitter/):
   [💡](https://www.youtube.com/watch?v=pNichitDD2E)
   - `postTweet`, `getNewsFeed`, `follow`, `unfollow`
@@ -554,7 +558,7 @@ Careful with recursion limit (bound to the application stack)
   - `n = 5, edges = [[0, 1], [1, 2], [3, 4]]` => `2`
   - union find
   - ???
-- 🅱️[**Graph Valid Tree**](https://www.lintcode.com/problem/graph-valid-tree/description):
+- 🅱️[**Graph Valid Tree**](https://leetcode.com/problems/graph-valid-tree/):
   [💡](https://www.youtube.com/watch?v=bXsUuownnoQ)
   - `n = 5, edges = [[0, 1], [0, 2], [0, 3], [1, 4]]` => `true`
   - adj list, DFS cycle detection, `dfs(0, prev=-1) and n == len(visit)`
@@ -589,7 +593,7 @@ Careful with recursion limit (bound to the application stack)
   - `grid = [[0,2],[1,3]]` => `3`
   - TODO
   - ...
-- 🅱️[**Alien Dictionary**](https://www.lintcode.com/problem/892):
+- 🅱️[**Alien Dictionary**](https://leetcode.com/problems/alien-dictionary/):
   [💡](https://www.youtube.com/watch?v=6kTZYvNNyps)
   - topological sort, DFS cycle detection.
 - 🇳[**Cheapest Flights Within K Stops**](https://leetcode.com/problems/cheapest-flights-within-k-stops/):
@@ -723,13 +727,13 @@ https://youtu.be/_i4Yxeh5ceQ
 - 🇳[**Burst Balloons**](https://leetcode.com/problems/burst-balloons/):
   [💡](https://www.youtube.com/watch?v=VFskby7lUbw)
   - `nums = [3,1,5,8]` => `167` (3\*1\*5 + 3\*5\*8 + 1\*3\*8 + 1\*8\*1)
-  - TODO
-  - ...
+  - `nums = [1] + nums + [1]`, `dfs(1, lens(nums)-2)`
+  - O(n^3) time, O(n^2) space
 - 🇳[**Regular Expression Matching**](https://leetcode.com/problems/regular-expression-matching/):
   [💡](https://www.youtube.com/watch?v=HAA8mgxlov8)
   - `s = "aa", p = "a"` => `false`
-  - TODO
-  - ...
+  - `match = s[i] == p[j] or p[j] == '.'`, handle `*`, recursive
+  - O(m\*n) time, O(m\*n) space (with cache)
 
 ## Greedy
 
@@ -753,8 +757,8 @@ https://youtu.be/_i4Yxeh5ceQ
 - 🇳[**Gas Station**](https://leetcode.com/problems/gas-station/):
   [💡](https://www.youtube.com/watch?v=lJwbPZGo05A)
   - `gas = [1,2,3,4,5], cost = [3,4,5,1,2]` => `3` (start at index 3)
-  - TODO
-  - ...
+  - check `sum(gas) >= sum(cost)`, if total is negative, reset and start from next index.
+  - O(n) time, O(1) space
 - 🇳[**Hand of Straights**](https://leetcode.com/problems/hand-of-straights/):
   [💡](https://www.youtube.com/watch?v=amnrMCVd2YI)
   - `hand = [1,2,3,6,2,3,4,7,8], W = 3` => `true`
@@ -772,8 +776,8 @@ https://youtu.be/_i4Yxeh5ceQ
 - 🇳[**Valid Parenthesis String**](https://leetcode.com/problems/valid-parenthesis-string/):
   [💡](https://www.youtube.com/watch?v=QhPdNS143Qg)
   - `s = "(*)"` => `true`
-  - TODO
-  - ...
+  - left_min, left_max, `if l_max < 0: return False`, `if l_min < 0: l_min = 0`.
+  - O(3^n)->O(n³)->O()
 
 ## Intervals
 
@@ -794,12 +798,12 @@ https://youtu.be/_i4Yxeh5ceQ
   - `intervals = [[1,2],[2,3],[3,4],[1,3]]` => `1` (number of intervals to remove)
   - sort, update if start >= prev.end, else increase count
   - O(nlogn) time, O(1) space
-- 🅱️[**Meeting Rooms**](https://www.lintcode.com/problem/920/):
+- 🅱️[**Meeting Rooms**](https://leetcode.com/problems/meeting-rooms/):
   [💡](https://www.youtube.com/watch?v=PaJxqZVPhbg)
   - `intervals = [(0,30),(5,10),(15,20)]` => `false`
   - sort, if start < prev.end, return false
   - O(nlogn) time, O(n) space
-- 🅱️🇬[**Meeting Rooms II**](https://www.lintcode.com/problem/919/):
+- 🅱️🇬[**Meeting Rooms II**](https://leetcode.com/problems/meeting-rooms-ii/):
   [💡](https://www.youtube.com/watch?v=FdzJmTCVyJU)
   min number of conference rooms.
   - `intervals = [(0,30),(5,10),(15,20)]` => `2`
@@ -858,9 +862,16 @@ https://youtu.be/_i4Yxeh5ceQ
 ## Bit Manipulation (rare)
 
 ---
+[Summary](http://leetcode.com/problems/sum-of-two-integers/discuss/84278/A-summary%3A-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently)
 
-[Summary](https://leetcode.com/problems/sum-of-two-integers/discuss/84278/A-summary%3A-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently)
+<details>
+  <summary>Click to expand</summary>
 
+- 🇳[**Single Number**](https://leetcode.com/problems/single-number/):
+  [💡](https://www.youtube.com/watch?v=qMPX1AOa83k)
+  - `nums = [2,2,1]` => `1`
+  - TODO
+  - ...
 - 🅱️[**Number of 1 Bits**](https://leetcode.com/problems/number-of-1-bits/):
   [💡](https://www.youtube.com/watch?v=5Km3utixwZs)
   - `n = 11` => `3` (1011)
@@ -885,6 +896,13 @@ https://youtu.be/_i4Yxeh5ceQ
   [💡](https://www.youtube.com/watch?v=gVUrDV4tZfY)
   - `a = 1, b = 2` => `3`
   - `return a if b == 0 else getSum(a^b, (a&b)<<1)`
+- 🇳[**Reverse Integer**](https://leetcode.com/problems/reverse-integer/):
+  [💡](https://www.youtube.com/watch?v=HAgLH58IgJQ)
+  - `x = 123` => `321`
+  - TODO
+  - ...
+
+</details>
 
 ## Extra
 
