@@ -143,7 +143,7 @@ Random
 - 🅱️[**Longest Substring Without Repeating Characters**](https://leetcode.com/problems/longest-substring-without-repeating-characters/):
   [💡](https://www.youtube.com/watch?v=wiGpQwVHdE0)
   - `s = "abcabcbb"` => `3` ("abc")
-  - Hashmap (seen, index), `ans = max(ans, i - start + 1)`, update start
+  - Hashmap (seen, index), `ans = max(ans, i - start + 1)`, update start if < index+1
   - O(n) time, O(1) space
 - 🅱️[**Longest Repeating Character Replacement**](https://leetcode.com/problems/longest-repeating-character-replacement/):
   [💡](https://www.youtube.com/watch?v=gqXU1UyA8pk)
@@ -494,13 +494,13 @@ Careful with recursion limit (bound to the application stack)
 - 🇳[**Letter Combinations of a Phone Number**](https://leetcode.com/problems/letter-combinations-of-a-phone-number/):
   [💡](https://www.youtube.com/watch?v=0snEunUacZY)
   - `digits = "23"` => `["ad","ae","af","bd","be","bf","cd","ce","cf"]`
-  - TODO
-  - ...
+  - digit_to_char map, dfs, backtracking
+  - O(n \* 4^n) time, O(n) space
 - 🇳[**N Queens**](https://leetcode.com/problems/n-queens/):
   [💡](https://www.youtube.com/watch?v=Ph95IHmRp5M)
   - `n = 4` => `[[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]]`
-  - TODO
-  - ...
+  - dfs(row): for c in range(n), col, pos_diag, neg_diag sets
+  - O(n!) time, O(n²) space
 
 ## Graphs
 
@@ -519,8 +519,8 @@ Careful with recursion limit (bound to the application stack)
 - 🇳[**Max Area of Island**](https://leetcode.com/problems/max-area-of-island/):
   [💡](https://www.youtube.com/watch?v=iJGr1OtmH0c)
   - `grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],...,[0,0,0,0,0,0,0,1,1,1,0,0,0]]` => `6`
-  - TODO
-  - ...
+  - return 1 + dfs(4 directions), max_area = max(max_area, dfs)
+  - O(mn) time, O(mn) space
 - 🅱️[**Pacific Atlantic Water Flow**](https://leetcode.com/problems/pacific-atlantic-water-flow/):
   [💡](https://www.youtube.com/watch?v=s-VkcjHqkGI)
   - grid of heights.
@@ -586,8 +586,8 @@ Careful with recursion limit (bound to the application stack)
 - 🇳[**Network delay time**](https://leetcode.com/problems/network-delay-time/):
   [💡](https://www.youtube.com/watch?v=EaphyqKU4PQ)
   - `times = [[2,1,1],[2,3,1],[3,4,1]]`, `N = 4`, `K = 2` => `2`
-  - TODO
-  - ...
+  - Dijkstra's algorithm, visited set instead of dist
+  - O(elogv) time, O(e+v) space
 - 🇳 🇬[**Swim in Rising Water**](https://leetcode.com/problems/swim-in-rising-water/):
   [💡](https://www.youtube.com/watch?v=amvrKlMLuGY)
   - `grid = [[0,2],[1,3]]` => `3`
