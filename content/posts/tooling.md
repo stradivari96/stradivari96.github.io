@@ -11,6 +11,19 @@ List of tools I use (almost) daily
 
 <!--more-->
 
+### Workstation
+
+- Logitech TKL keyboard
+- Logitech G903 mouse + Powerplay
+- Logitech C922 Pro Webcam
+- Astro A50 headset
+- Nox Hummer ZX
+- Asus VG278Q 144Hz
+- MSI GTX 1060 GAMING X 6GB
+- MSI Z270 Gaming M3
+- Intel Core i7-7700K
+- 2x HyperX Fury RAM de 8 GB (2133 MHz)
+
 ### Coding
 
 - **IDE**: [PyCharm](https://www.jetbrains.com/pycharm/) / [VS Code](https://code.visualstudio.com/)

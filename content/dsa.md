@@ -462,7 +462,7 @@ Careful with recursion limit (bound to the application stack)
   - `postTweet`, `getNewsFeed`, `follow`, `unfollow`
   - heap([count, tweetid, foloweeid, index-1])
   - O(nlogn) time, O(n) space
-- 🅱️[**Find Median from Data Stream**](https://leetcode.com/problems/find-median-from-data-stream/?md)⛈️
+- 🅱️[**Find Median from Data Stream**](https://leetcode.com/problems/find-median-from-data-stream/?hd)⛈️
   [💡](https://leetcode.com/problems/find-median-from-data-stream/solutions/74047/java-python-two-heap-solution-o-log-n-add-o-1-find/)
   - `addNum(num)` and `findMedian()`
   - 2 heaps, max heap for left, min heap for right, balance
@@ -485,13 +485,13 @@ Careful with recursion limit (bound to the application stack)
 - 🇳[**Permutations**](https://leetcode.com/problems/permutations/?md)⛅:
   [💡](https://www.youtube.com/watch?v=s7AvT7cGdSo)
   - `nums = [1,2,3]` => `[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]`
-  - TODO
-  - ...
+  - divide and conquer, remove first, recursive, add back
+  - O(n!) time, O(n) space
 - 🇳[**Subsets II**](https://leetcode.com/problems/subsets-ii/?md)⛅:
   [💡](https://www.youtube.com/watch?v=Vn2v6ajA7U0)
   - `nums = [1,2,2]` => `[[2],[1],[1,2,2],[2,2],[1,2],[]]`
-  - TODO
-  - ...
+  - dfs(i, path), backtracking, add or not add + duplicates(sort?)
+  - O(n \* 2^n) time, O(n) space
 - 🇳[**Combination Sum II**](https://leetcode.com/problems/combination-sum-ii/?md)⛅:
   [💡](https://www.youtube.com/watch?v=rSA3t6BDDwg)
   - `candidates = [10,1,2,7,6,1,5], target = 8` => `[[1,1,6],[1,2,5],[1,7],[2,6]]`
@@ -573,7 +573,7 @@ Careful with recursion limit (bound to the application stack)
   [💡](https://www.youtube.com/watch?v=8f1XPm4WOUc)
   - `n = 5, edges = [[0, 1], [1, 2], [3, 4]]` => `2`
   - union find
-  - ???
+  - O(n+m) time, O(n) space
 - 🅱️[**Graph Valid Tree**](https://leetcode.com/problems/graph-valid-tree/?md)⛅:
   [💡](https://www.youtube.com/watch?v=bXsUuownnoQ)
   - `n = 5, edges = [[0, 1], [0, 2], [0, 3], [1, 4]]` => `true`
@@ -829,8 +829,8 @@ https://youtu.be/_i4Yxeh5ceQ
 - 🇳[**Minimum Interval to Include Each Query**](https://leetcode.com/problems/minimum-interval-to-include-each-query/?md)⛈️:
   [💡](https://www.youtube.com/watch?v=5hQ5WWW5awQ)
   - `intervals = [[1,4],[2,4],[3,6],[4,4]], queries = [2,3,4,5]` => `[3,-1,3,4]`
-  - TODO
-  - ...
+  - sort intervals & queries, heap (length, end), pop if end < query, dict[query] = length
+  - O(nlogn + qlogq) time, O(n+q) space
 
 ## Math & Geometry
 
@@ -965,7 +965,7 @@ https://youtu.be/_i4Yxeh5ceQ
 - 🇬[**Find original array from doubled array**](https://leetcode.com/problems/find-original-array-from-doubled-array/?md):
   [💡](https://leetcode.com/problems/find-original-array-from-doubled-array/solutions/1470959/java-c-python-match-from-the-smallest-or-biggest-100/)
   - `changed = [1,3,4,2,6,8]` => `[1,3,4]`
-  - iterate sorted count, `if count[x*2] >= count[x]`, handle 0, `cnt[2 * x] -= cnt[x]`
+  - iterate sorted count, `if count[2*x] >= count[x]`, handle 0, `cnt[2*x] -= cnt[x]`
   - O(n + mlogm) time, O(m) space (m = unique elements)
 - 🇬[**Decode String**](https://leetcode.com/problems/decode-string/?md):
   [💡](https://youtu.be/qB0zZpBJlh8)
@@ -975,12 +975,13 @@ https://youtu.be/_i4Yxeh5ceQ
 - 🇬[**My Calendar I**](https://leetcode.com/problems/my-calendar-i/):
   [💡](https://www.youtube.com/watch?v=2SjzRBfXeN0)
   - `book(start, end)`, `book(10, 20)`, `book(15, 25)`, `book(20, 30)`
-  - TODO
-  - ...
+  - List (deque) + binary search
+  - O(n) time, O(n) space
 - 🇬[**Random Pick with Weight**](https://leetcode.com/problems/random-pick-with-weight/?md):
   [💡](https://leetcode.com/problems/random-pick-with-weight/solutions/154044/java-accumulated-freq-sum-binary-search/?orderBy=most_votes)
   - `[1,3]`, `pickIndex()` => `0` with 25% probability, `1` with 75% probability
   - binary search (random (1, total)) on the prefix sum.
+  - O(n) time, O(n) space
 - 🇬[**Number of matching subsequences**](https://leetcode.com/problems/number-of-matching-subsequences/?md):
   [💡](https://leetcode.com/problems/number-of-matching-subsequences/solutions/117634/efficient-and-simple-go-through-words-in-parallel-with-explanation/)
   - `s = "abcde", words = ["a","bb","acd","ace"]` => `3`
