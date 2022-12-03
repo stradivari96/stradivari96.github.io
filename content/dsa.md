@@ -64,9 +64,36 @@ Random
 - Permutations, TSP: O(n!)
 - Binary search: O(log n) (divide search space)
 
-## Arrays & Hashing
+## Arrays
 
 ---
+
+- [Kadane's algorithm](https://neetcode.io/courses/advanced-algorithms/0):
+grow and check when to shrink
+```python
+for n in nums:
+    # need to shrink?
+    if cur_sum+n < n: ...
+    # update result
+    if cur_sum > max_sum: ...
+```
+- [Sliding window fixed size](https://neetcode.io/courses/advanced-algorithms/1):
+l, r pointers and current window set
+```python
+for r in range(len(nums)):
+    if r-l+1 == k:
+        ...
+```
+- [Sliding window variable size](https://neetcode.io/courses/advanced-algorithms/2):
+l, r pointers, iterate over r, grow while possible and shrink
+- [Two pointers](https://neetcode.io/courses/advanced-algorithms/3):
+Palindrome, l, r extreme, choose which to move
+- [Prefix Sums](https://neetcode.io/courses/advanced-algorithms/4):
+Get sum of any subarray in O(1), prefix / suffix products, etc
+- [Sorting]():
+  - 
+
+### Basic & Hashing
 
 - 🅱️[**Contains Duplicate**](https://leetcode.com/problems/contains-duplicate/?ez)☀️:
   [💡](https://www.youtube.com/watch?v=3OamzN90kPg)
@@ -114,9 +141,7 @@ Random
   - Set and start if n-1 not in set
   - O(n) time, O(n) space
 
-## Two Pointers
-
----
+### Two Pointers
 
 - 🅱️[**Valid Palindrome**](https://leetcode.com/problems/valid-palindrome/?ez)☀️:
   [💡](https://www.youtube.com/watch?v=jJXJ16kPFWg)
@@ -144,9 +169,7 @@ Random
   - DP, can optimize to O(1) space by using 2 pointers
   - O(n) time, O(n) space
 
-## Sliding Window
-
----
+### Sliding Window
 
 - 🅱️🇬[**Best Time to Buy and Sell Stock**](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/?ez)☀️:
   [💡](https://www.youtube.com/watch?v=1pkOgXD63yU)
@@ -425,6 +448,9 @@ Careful with recursion limit (bound to the application stack)
   - O(n) time, O(n) space
 - 🅱️[**Word Search II**](https://leetcode.com/problems/word-search-ii/?md)⛈️
   [💡](https://www.youtube.com/watch?v=asbcE9mZz_U)
+  - `board, words = ["oath","pea","eat","rain"]` => `["eat","oath"]` 
+  - build words trie from each cell, dfs
+  - O(mn\*4^mn) time, O(n) space (brute force O(wmn*4^mn))
 
 ## Heap & Priority Queue
 
@@ -522,6 +548,12 @@ Careful with recursion limit (bound to the application stack)
 
 ---
 
+- Dijkstra's Algorithm
+- Prim's Algorithm / MST (undirected connected graph)
+- Topological Sort
+
+### Basic
+
 - 🅱️🇬[**Number of Islands**](https://leetcode.com/problems/number-of-islands/?md)⛅:
   [💡](https://www.youtube.com/watch?v=pV2kpPD66nE)
   - `grid = [["1", "0"], ["0", "1"]]` => `2`
@@ -545,18 +577,18 @@ Careful with recursion limit (bound to the application stack)
 - 🇳[**Surrounded Regions**](https://leetcode.com/problems/surrounded-regions/?md)⛅:
   [💡](https://www.youtube.com/watch?v=9z2BunfoZ5Y)
   - `board = [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]]`
-  - TODO
-  - ...
+  - dfs regions connected to edge, mark temporary, flip rest.
+  - O(mn) time, O(1) space
 - 🇳[**Rotting Oranges**](https://leetcode.com/problems/rotting-oranges/?md)⛅:
   [💡](https://www.youtube.com/watch?v=y704fEOx0s0)
   - `grid = [[2,1,1],[1,1,0],[0,1,1]]` => `4`
-  - TODO
-  - ...
+  - BFS, `while queue: minutes+=1 for i in range(len(queue))`, check if any remain
+  - O(nm) time, O(nm) space
 - 🇳[**Walls and Gates**](https://leetcode.com/problems/walls-and-gates/?md)⛅:
   [💡](https://www.youtube.com/watch?v=e69C6xhiSQE)
   - `rooms = [[2147483647,-1,0,2147483647],...,[2147483647,2147483647,2147483647,-1]]`
-  - TODO
-  - ...
+  - BFS, `while queue` pop left, add to queue if `rooms[r][c] > rooms[i][j]+1`
+  - O(nm) time, O(nm) space
 - 🅱️[**Course Schedule**](https://leetcode.com/problems/course-schedule/?md)⛅:
   [💡](https://www.youtube.com/watch?v=EgI5nU9etnU)
   - BFS topological sort / DFS cycle detection (visited set, graph[c] = []).
@@ -585,19 +617,17 @@ Careful with recursion limit (bound to the application stack)
   - TODO
   - ...
 
-## Advanced Graphs
-
----
+### Advanced
 
 - 🇳[**Reconstruct Itinerary**](https://leetcode.com/problems/reconstruct-itinerary/?md)⛈️:
   [💡](https://www.youtube.com/watch?v=ZyB_gQ8vqGA)
   - `tickets = [["MUC","LHR"],["JFK","MUC"],["SFO","SJC"],["LHR","SFO"]]` => `["JFK","MUC","LHR","SFO","SJC"]`
-  - TODO
-  - ...
+  - adj list, sort (lexico), dfs
+  - O(n_flights^max_airport_f) time, O(n_airports+n_flights) space
 - 🇳[**Min Cost to Connect All Points**](https://leetcode.com/problems/min-cost-to-connect-all-points/?md)⛅:
   [💡](https://www.youtube.com/watch?v=f7JOBJIC-NA)
   - `points = [[0,0],[2,2],[3,10],[5,2],[7,0]]` => `20`
-  - TODO
+  - Prim's algorithm
   - ...
 - 🇳[**Network delay time**](https://leetcode.com/problems/network-delay-time/?md)⛅:
   [💡](https://www.youtube.com/watch?v=EaphyqKU4PQ)
@@ -607,16 +637,16 @@ Careful with recursion limit (bound to the application stack)
 - 🇳 🇬[**Swim in Rising Water**](https://leetcode.com/problems/swim-in-rising-water/?md)⛈️:
   [💡](https://www.youtube.com/watch?v=amvrKlMLuGY)
   - `grid = [[0,2],[1,3]]` => `3`
-  - TODO
-  - ...
+  - Simple Dijkstra, `heapq.heappush(heap, (max(t, grid[r][c]), r, c))`
+  - O(n^2 log n) time, O(n^2) space
 - 🅱️[**Alien Dictionary**](https://leetcode.com/problems/alien-dictionary/?md)⛈️:
   [💡](https://www.youtube.com/watch?v=6kTZYvNNyps)
   - topological sort, DFS cycle detection.
 - 🇳[**Cheapest Flights Within K Stops**](https://leetcode.com/problems/cheapest-flights-within-k-stops/?md)⛅:
   [💡](https://www.youtube.com/watch?v=5eIK3zUdYmE)
   - `n = 3, edges = [[0,1,100],[1,2,100],[0,2,500]]`, `src = 0`, `dst = 2`, `k = 1` => `200`
-  - TODO
-  - ...
+  - BellmanFord, BFS (k+1 times), create `tmp_dist` and `distances = tmp_dist` at the end
+  - O(k\*e) time, O(k\*e) space
 
 ## Dynamic Programming
 
@@ -863,13 +893,13 @@ https://youtu.be/_i4Yxeh5ceQ
 - 🇳[**Pow(x, n)**](https://leetcode.com/problems/powx-n/?md)⛅:
   [💡](https://www.youtube.com/watch?v=g9YQyYi4IQQ)
   - `x = 2.00000, n = 10` => `1024.00000`
-  - TODO
-  - ...
+  - `helper(x, abs(n))`, recursive helper
+  - O(n) time, O(n) space
 - 🇳[**Multiply Strings**](https://leetcode.com/problems/multiply-strings/?md)⛅:
   [💡](https://www.youtube.com/watch?v=1vZswirL8Y8)
   - `num1 = "2", num2 = "3"` => `"6"`
-  - TODO
-  - ...
+  - Manual multiplication, reverse, for in for
+  - O(nm) time, O(n+m) space
 - 🇳 🇬[**Detect Squares**](https://leetcode.com/problems/detect-squares/?md)⛅:
   [💡](https://www.youtube.com/watch?v=bahebearrDc)
   - `points = [[3,10],[11,5],[11,10]]` => `[true,false,true]`
