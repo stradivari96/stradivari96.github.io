@@ -69,7 +69,8 @@ Random
 ---
 
 - [Kadane's algorithm](https://neetcode.io/courses/advanced-algorithms/0):
-grow and check when to shrink
+  grow and check when to shrink
+
 ```python
 for n in nums:
     # need to shrink?
@@ -77,21 +78,22 @@ for n in nums:
     # update result
     if cur_sum > max_sum: ...
 ```
+
 - [Sliding window fixed size](https://neetcode.io/courses/advanced-algorithms/1):
-l, r pointers and current window set
+  l, r pointers and current window set
+
 ```python
 for r in range(len(nums)):
     if r-l+1 == k:
         ...
 ```
+
 - [Sliding window variable size](https://neetcode.io/courses/advanced-algorithms/2):
-l, r pointers, iterate over r, grow while possible and shrink
+  l, r pointers, iterate over r, grow while possible and shrink
 - [Two pointers](https://neetcode.io/courses/advanced-algorithms/3):
-Palindrome, l, r extreme, choose which to move
+  Palindrome, l, r extreme, choose which to move
 - [Prefix Sums](https://neetcode.io/courses/advanced-algorithms/4):
-Get sum of any subarray in O(1), prefix / suffix products, etc
-- [Sorting]():
-  - 
+  Get sum of any subarray in O(1), prefix / suffix products, etc
 
 ### Basic & Hashing
 
@@ -314,7 +316,7 @@ Get sum of any subarray in O(1), prefix / suffix products, etc
 - 🇳 🇬[**Add Two Numbers**](https://leetcode.com/problems/add-two-numbers/?md)⛅:
   [💡](https://www.youtube.com/watch?v=wgFPrzTjm7s)
   - `l1 = [2,4,3], l2 = [5,6,4]` => `[7,0,8]`
-  - carry = sum_ // 10, remain = p1 or p2, etc.
+  - carry = sum\_ // 10, remain = p1 or p2, etc.
   - O(max(m,n)) time, O(max(m,n)) space
 - 🅱️[**Linked List Cycle**](https://leetcode.com/problems/linked-list-cycle/?ez)☀️:
   [💡](https://www.youtube.com/watch?v=gBTe7lFR3vc)
@@ -448,9 +450,9 @@ Careful with recursion limit (bound to the application stack)
   - O(n) time, O(n) space
 - 🅱️[**Word Search II**](https://leetcode.com/problems/word-search-ii/?md)⛈️
   [💡](https://www.youtube.com/watch?v=asbcE9mZz_U)
-  - `board, words = ["oath","pea","eat","rain"]` => `["eat","oath"]` 
+  - `board, words = ["oath","pea","eat","rain"]` => `["eat","oath"]`
   - build words trie from each cell, dfs
-  - O(mn\*4^mn) time, O(n) space (brute force O(wmn*4^mn))
+  - O(mn\*4^mn) time, O(n) space (brute force O(wmn\*4^mn))
 
 ## Heap & Priority Queue
 
@@ -476,7 +478,7 @@ Careful with recursion limit (bound to the application stack)
 - 🇳[**Kth Largest Element in an Array**](https://leetcode.com/problems/kth-largest-element-in-an-array/?md)⛅:
   [💡](https://www.youtube.com/watch?v=XEmy13g1Qxc)
   - `nums = [3,2,1,5,6,4], k = 2` => `5`
-  - quickselect, 
+  - quickselect,
   - O(2n) average, O(n^2) worst case time, O(1) space
 - 🇳[**Task Scheduler**](https://leetcode.com/problems/task-scheduler/?md)⛅:
   [💡](https://www.youtube.com/watch?v=s8p8ukTyA2I)
@@ -909,6 +911,7 @@ https://youtu.be/_i4Yxeh5ceQ
 ## Bit Manipulation (rare)
 
 ---
+
 [Summary](http://leetcode.com/problems/sum-of-two-integers/discuss/84278/A-summary%3A-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently)
 
 <details>
@@ -955,7 +958,12 @@ https://youtu.be/_i4Yxeh5ceQ
 
 ---
 
+**Sorting**:
+
+-
+
 **Easy**:
+
 - 🇬[**Logger Rate Limiter**](https://leetcode.com/problems/logger-rate-limiter/?md):
   [💡](https://gist.github.com/kuntalchandra/7822e388e0d2d78ec27f566266584b49)
   - `shouldPrintMessage(1, "foo"), shouldPrintMessage(3, "foo")` => `true, false`
@@ -974,7 +982,7 @@ https://youtu.be/_i4Yxeh5ceQ
 - 🇬[**Tic tac toe**](https://leetcode.com/problems/find-winner-on-a-tic-tac-toe-game/):
   [💡](https://leetcode.com/problems/find-winner-on-a-tic-tac-toe-game/solutions/1429722/find-winner-on-a-tic-tac-toe-game/)
   - `moves = [[0,0],[2,0],[1,1],[2,1],[2,2]]` => `"A"`
-  - 
+  -
 - 🇬[**Palindrome Number**](https://leetcode.com/problems/palindrome-number/?ez):
   [💡](https://www.youtube.com/watch?v=yubRKwixN-U)
   - `x = 121` => `true`
@@ -987,6 +995,7 @@ https://youtu.be/_i4Yxeh5ceQ
   - O(n) time, O(1) space
 
 **Medium**:
+
 - 🇬[**Subarray Sum Equals K**](https://leetcode.com/problems/subarray-sum-equals-k/):
   [💡](https://youtu.be/fFVZt-6sgyo)
   - `nums = [1,1,1], k = 2` => `2` ([1, 1] and [1, 1])
@@ -1075,6 +1084,7 @@ https://youtu.be/_i4Yxeh5ceQ
 - 🇬https://leetcode.com/problems/time-needed-to-inform-all-employees/
 
 **Hard**:
+
 - 🇬[**Race Car**](https://leetcode.com/problems/race-car/?hd):
   [💡](https://leetcode.com/problems/race-car/solutions/124326/summary-of-the-bfs-and-dp-solutions-with-intuitive-explanation/)
   - TODO
@@ -1114,7 +1124,6 @@ https://youtu.be/_i4Yxeh5ceQ
 - 🇬https://leetcode.com/problems/sum-of-prefix-scores-of-strings/?hd
 - 🇬https://leetcode.com/problems/basic-calculator/
 
-
 ---
 
 - [**Shortest Path in Binary Matrix**](https://leetcode.com/problems/shortest-path-in-binary-matrix/):
@@ -1131,7 +1140,6 @@ https://youtu.be/_i4Yxeh5ceQ
   - `set(w1) == set(w2) and Counter(Counter(w1).values()) == Counter(Counter(w2).values()`
 - [**String Compression**](https://leetcode.com/problems/string-compression/):
   2 pointers, slow and fast.
-
 
 - [**Middle of the Linked List**](https://leetcode.com/problems/middle-of-the-linked-list/):
   [💡]()
