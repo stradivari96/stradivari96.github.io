@@ -47,14 +47,6 @@ Random Neetcode
 Random
 </button>
 
-### Links
-
-- [Cracking the coding interview](https://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/0984782850)
-- [Neetcode](https://neetcode.io/practice)
-- [Leetcode](https://leetcode.com/)
-- [Project Euler](https://projecteuler.net/)
-- [HackerRank](https://www.hackerrank.com/)
-
 ### Big O
 
 - [Neetcode](https://youtu.be/BgLTDT03QtU)
@@ -65,8 +57,6 @@ Random
 - Binary search: O(log n) (divide search space)
 
 ## Arrays
-
----
 
 - [Kadane's algorithm](https://neetcode.io/courses/advanced-algorithms/0):
   grow and check when to shrink
@@ -94,6 +84,8 @@ for r in range(len(nums)):
   Palindrome, l, r extreme, choose which to move
 - [Prefix Sums](https://neetcode.io/courses/advanced-algorithms/4):
   Get sum of any subarray in O(1), prefix / suffix products, etc
+
+---
 
 ### Basic & Hashing
 
@@ -245,6 +237,8 @@ for r in range(len(nums)):
   - O(n) time, O(n) space
 
 ## Binary Search
+
+Remember it can be used on a range.
 
 ---
 
@@ -458,7 +452,9 @@ Careful with recursion limit (bound to the application stack)
 
 ---
 
-> Heap invariant: each node is <= than its children.
+> - Binary Tree
+> - Heap invariant: each node is <= than its children.
+> - Implemented as array: root at `0`, children `2i+1` & `2i+2`, parent at `(i-1)//2`
 
 - 🇳[**Kth Largest Element in a Stream**](https://leetcode.com/problems/kth-largest-element-in-a-stream/?ez)☀️:
   [💡](https://www.youtube.com/watch?v=hOjcdrqMoQ8)
@@ -498,13 +494,34 @@ Careful with recursion limit (bound to the application stack)
 
 ## Backtracking
 
+- [Subsets](https://neetcode.io/courses/advanced-algorithms/11):
+  - append to path, dfs, pop, dfs
+  - if don't want duplicates while loop to increase idx before second dfs
+- [Combinations](https://neetcode.io/courses/advanced-algorithms/12):
+  ```python
+  for j in range(i, n+1):
+      path.append(j)
+      dfs(j+1)
+      path.pop()
+  ```
+- [Permutations](https://neetcode.io/courses/advanced-algorithms/13):
+  ```python
+  def backtrack(first = 0):
+      if first == n:
+          output.append(nums[:])
+      for i in range(first, n):
+          nums[first], nums[i] = nums[i], nums[first]
+          backtrack(first + 1)
+          nums[first], nums[i] = nums[i], nums[first]
+  ```
+
 ---
 
 - 🇳[**Subsets**](https://leetcode.com/problems/subsets/?md)⛅:
   [💡](https://www.youtube.com/watch?v=REOH22Xwdkk)
   - `nums = [1,2,3]` => `[[3],[1],[2],[1,2,3],[1,3],[2,3],[1,2],[]]`
   - dfs with backtracking, result and path
-  - O(n \* 2^n) time, O(n) space
+  - O(n \* 2^n) time, O(n) space (recursion stack)
 - 🅱️[**Combination Sum**](https://leetcode.com/problems/combination-sum/?md)⛅
   [💡](https://www.youtube.com/watch?v=GBKI9VSKdGg)
   - `candidates = [2,3,6,7], target = 7` => `[[7],[2,2,3]]`
@@ -514,11 +531,11 @@ Careful with recursion limit (bound to the application stack)
   [💡](https://www.youtube.com/watch?v=s7AvT7cGdSo)
   - `nums = [1,2,3]` => `[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]`
   - divide and conquer, remove first, recursive, add back
-  - O(n!) time, O(n) space
+  - O(n^2\*n!) time, O(n) space
 - 🇳[**Subsets II**](https://leetcode.com/problems/subsets-ii/?md)⛅:
   [💡](https://www.youtube.com/watch?v=Vn2v6ajA7U0)
   - `nums = [1,2,2]` => `[[2],[1],[1,2,2],[2,2],[1,2],[]]`
-  - dfs(i, path), backtracking, add or not add + duplicates(sort?)
+  - sort, `while i+1 < len(nums) and nums[i] == nums[i+1]:`
   - O(n \* 2^n) time, O(n) space
 - 🇳[**Combination Sum II**](https://leetcode.com/problems/combination-sum-ii/?md)⛅:
   [💡](https://www.youtube.com/watch?v=rSA3t6BDDwg)
@@ -550,9 +567,55 @@ Careful with recursion limit (bound to the application stack)
 
 ---
 
-- Dijkstra's Algorithm
-- Prim's Algorithm / MST (undirected connected graph)
-- Topological Sort
+- [Dijkstra's Algorithm](https://neetcode.io/courses/advanced-algorithms/14): shortest path algo, greedy, O(ElogV) time
+
+  ```python
+  shortest = {}
+  heap = [(0, src)]
+  while heap:
+      w, node = heapq.heappop(heap)
+      if node in shortest:
+          continue
+      shortest[node] = w
+      for d, w2 in adj[node]:
+          if d not in shortest:
+              heapq.heappush(heap, (w + w2, d))
+  ```
+
+- [Prim's Algorithm](https://neetcode.io/courses/advanced-algorithms/15): MST, O(ElogV) time, O(V) space
+
+  ```python
+  heap = []
+  for n, w in adj[0]:
+      heapq.heappush(heap, (w, 0, n))
+  visited = set()
+  while heap:
+      w, s, d = heapq.heappop(heap)
+      if d in visited:
+          continue
+      mst.append((s, d))
+      visited.add(d)
+      for n, w2 in adj[d]:
+          if n not in visited:
+              heapq.heappush(heap, (w2, d, n))
+  ```
+
+- Kruskal: Union Find
+- [Topological Sort](https://neetcode.io/courses/advanced-algorithms/17): Alien dict, dfs to the end and reverse, O(V+E) time, O(V) space
+  ```python
+  result = []
+  visited = set()
+  def dfs(node):
+      if node in visited:
+          return
+      visited.add(node)
+      for n in adj[node]:
+          dfs(n)
+      result.append(node)
+  for i in range(...):
+      dfs(i)
+  return result[::-1]
+  ```
 
 ### Basic
 
@@ -960,7 +1023,7 @@ https://youtu.be/_i4Yxeh5ceQ
 
 **Sorting**:
 
--
+- ...
 
 **Easy**:
 
@@ -1152,3 +1215,11 @@ https://youtu.be/_i4Yxeh5ceQ
   - dist(intersect, cycle) == dist(head, cycle)
   - O(n) time, O(1) space
 - [**Sudoku Solver**](https://leetcode.com/problems/sudoku-solver/): `if board[3 * (i // 3) + k // 3][ 3 * (j // 3) + k % 3] == n:`
+
+### Links
+
+- [Cracking the coding interview](https://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/0984782850)
+- [Neetcode](https://neetcode.io/practice)
+- [Leetcode](https://leetcode.com/)
+- [Project Euler](https://projecteuler.net/)
+- [HackerRank](https://www.hackerrank.com/)
