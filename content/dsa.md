@@ -40,11 +40,8 @@ Neetcode md
 Neetcode hard
 </button>
 <br/>
-<button onclick="openRandomLink(true)" style="border: solid; border-width:1px; margin: 5px; padding: 5px" >
-Random Neetcode
-</button>
-<button onclick="openRandomLink(false)" style="border: solid; border-width:1px; margin: 5px; padding: 5px" >
-Random
+<button onclick="openRandomLink(false, '?md')" style="border: solid; border-width:1px; margin: 5px; padding: 5px" >
+Random md
 </button>
 
 ### Big O
@@ -360,9 +357,9 @@ Careful with recursion limit (bound to the application stack)
   - dfs, path: `res = max(res, left+right)`, max length: `return max(left, right) + 1`
   - O(n) time, O(height) space
 - 🇳[**Balanced Binary Tree**](https://leetcode.com/problems/balanced-binary-tree/?ez)☀️:
-  [💡](https://www.youtube.com/watch?v=QfJsau0ItOY)
+  [💡](https://leetcode.com/problems/balanced-binary-tree/solutions/407546/balanced-binary-tree/?ez=&orderBy=most_votes)
   - `root = [3,9,20,null,null,15,7]` => `true`
-  - dfs return tuple: `(is_balanced, height)`
+  - recursive, `abs(height(left)-height(right)) <= 1`
   - O(n) time, O(height) space
 - 🅱️[**Same Tree**](https://leetcode.com/problems/same-tree/?ez)☀️:
   [💡](https://www.youtube.com/watch?v=vRbbcKXCxOw)
@@ -604,6 +601,7 @@ Careful with recursion limit (bound to the application stack)
 - [Topological Sort](https://neetcode.io/courses/advanced-algorithms/17): Alien dict, dfs to the end and reverse, O(V+E) time, O(V) space
   ```python
   result = []
+  #cycle = set()
   visited = set()
   def dfs(node):
       if node in visited:
@@ -612,6 +610,7 @@ Careful with recursion limit (bound to the application stack)
       for n in adj[node]:
           dfs(n)
       result.append(node)
+      #cycle.remove(node)
   for i in range(...):
       dfs(i)
   return result[::-1]
@@ -656,16 +655,18 @@ Careful with recursion limit (bound to the application stack)
   - O(nm) time, O(nm) space
 - 🅱️[**Course Schedule**](https://leetcode.com/problems/course-schedule/?md)⛅:
   [💡](https://www.youtube.com/watch?v=EgI5nU9etnU)
-  - BFS topological sort / DFS cycle detection (visited set, graph[c] = []).
+  - DFS cycle detection (visited set, cycle set).
+  - O(v+e) time, O(v) space
 - 🇳 🇬[**Course Schedule II**](https://leetcode.com/problems/course-schedule-ii/?md)⛅:
   [💡](https://www.youtube.com/watch?v=Akt3glAwyfY)
-  - TODO
-  - ...
+  - `numCourses = 2, prerequisites = [[1,0]]` => `[0,1]`
+  - DFS topological sort, return [] if cycle, visited and cycle set
+  - O(v+e) time, O(v) space
 - 🇳[**Redundant Connection**](https://leetcode.com/problems/redundant-connection/?md)⛅:
   [💡](https://www.youtube.com/watch?v=FXWRE67PLL0)
   - `edges = [[1,2], [1,3], [2,3]]` => `[2,3]`
-  - TODO
-  - ...
+  - union find, return edge if cycle (parent[x] == parent[y])
+  - O(n+m) time, O(n) space
 - 🅱️[**Number of Connected Components in an Undirected Graph**](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/?md)⛅:
   [💡](https://www.youtube.com/watch?v=8f1XPm4WOUc)
   - `n = 5, edges = [[0, 1], [1, 2], [3, 4]]` => `2`
@@ -823,13 +824,13 @@ https://youtu.be/_i4Yxeh5ceQ
 - 🇳 🇬[**Longest Increasing Path in a Matrix**](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/?md)⛈️:
   [💡](https://www.youtube.com/watch?v=wCc_nd-GiEc)
   - `matrix = [[9,9,4],[6,6,8],[2,1,1]]` => `4` (1, 2, 6, 9)
-  - TODO
-  - ...
+  - `result = max(result, 1+dfs(ii, jj))`, dfs every cell
+  - O(m\*n) time, O(m\*n) space
 - 🇳[**Distinct Subsequences**](https://leetcode.com/problems/distinct-subsequences/?md)⛈️:
   [💡](https://www.youtube.com/watch?v=-RDzMJ33nx8)
   - `s = "rabbbit", t = "rabbit"` => `3` (rabbbit, rabbbit, rabbbit)
-  - TODO
-  - ...
+  - `if same: dfs(i+1, j+1) + dfs(i+1, j)` else `dfs(i+1, j)`
+  - O(n\*m) time, O(n\*m) space
 - 🇳[**Edit Distance**](https://leetcode.com/problems/edit-distance/?md)⛈️:
   [💡](https://leetcode.com/problems/edit-distance/solutions/159295/python-solutions-and-intuition/?orderBy=most_votes)
   - `word1 = "horse", word2 = "ros"` => `3`
@@ -873,13 +874,13 @@ https://youtu.be/_i4Yxeh5ceQ
 - 🇳[**Hand of Straights**](https://leetcode.com/problems/hand-of-straights/?md)⛅:
   [💡](https://www.youtube.com/watch?v=amnrMCVd2YI)
   - `hand = [1,2,3,6,2,3,4,7,8], W = 3` => `true`
-  - TODO
-  - ...
+  - counter, iterate keys
+  - O(n+klogk) time, O(n) space
 - 🇳[**Merge Triplets to Form Target Triplet**](https://leetcode.com/problems/merge-triplets-to-form-target-triplet/?md)⛅:
   [💡](https://www.youtube.com/watch?v=kShkQLQZ9K4)
   - `triplets = [[2,5,3],[1,8,4],[1,7,5]], target = [2,7,5]` => `true`
-  - TODO
-  - ...
+  - `if any(triplet[i] > target[i] for i in range(3)):` continue, update found[i]
+  - O(n) time, O(1) space
 - 🇳[**Partition Labels**](https://leetcode.com/problems/partition-labels/?md)⛅
   [💡](https://www.youtube.com/watch?v=B7m8UmZE-vw)
   - `s = "ababcbacadefegdehijhklij"` => `[9,7,8]`
@@ -1059,6 +1060,20 @@ https://youtu.be/_i4Yxeh5ceQ
 
 **Medium**:
 
+- 🇬[**Range Sum Query - Mutable**](https://leetcode.com/problems/range-sum-query-mutable/description/):
+  [💡](https://leetcode.com/problems/range-sum-query-mutable/solutions/75784/python-well-commented-solution-using-segment-trees/?orderBy=most_votes)
+  - `update(i, val)`, `sumRange(i, j)`
+  - Segment tree
+  ```python
+  class Node(object):
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
+        self.total = 0
+        self.left = None
+        self.right = None
+  ```
+  - O(logn) time, O(n) space
 - 🇬[**Subarray Sum Equals K**](https://leetcode.com/problems/subarray-sum-equals-k/):
   [💡](https://youtu.be/fFVZt-6sgyo)
   - `nums = [1,1,1], k = 2` => `2` ([1, 1] and [1, 1])
@@ -1092,8 +1107,8 @@ https://youtu.be/_i4Yxeh5ceQ
 - 🇬[**Longest String Chain**](https://leetcode.com/problems/longest-string-chain/?md):
   [💡](https://leetcode.com/problems/longest-string-chain/solutions/2153007/c-python-simple-solution-w-explanation-dp/?orderBy=most_votes)
   - `words = ["a","b","ba","bca","bda","bdca"]` => `4` (a, b, ba, bda)
-  - TODO
-  - ...
+  - start with shortest, for each word, check if word[:i]+word[i+1:] in dp
+  - O(nlog(n) + nll) time, O(ns) space
 - 🇬[**Step-By-Step Directions From a Binary Tree Node to Another**](https://leetcode.com/problems/step-by-step-directions-from-a-binary-tree-node-to-another/?md):
   [💡]
   - TODO
@@ -1142,9 +1157,9 @@ https://youtu.be/_i4Yxeh5ceQ
 - 🇬https://leetcode.com/problems/sentence-screen-fitting/?md
 - 🇬https://leetcode.com/problems/parallel-courses/?md
 - 🇬https://leetcode.com/problems/longest-line-of-consecutive-one-in-matrix/?md
-- 🇬https://leetcode.com/problems/find-duplicate-subtrees/
-- 🇬https://leetcode.com/problems/bulls-and-cows/
-- 🇬https://leetcode.com/problems/time-needed-to-inform-all-employees/
+- 🇬https://leetcode.com/problems/find-duplicate-subtrees/?md
+- 🇬https://leetcode.com/problems/bulls-and-cows/?md
+- 🇬https://leetcode.com/problems/time-needed-to-inform-all-employees/?md
 
 **Hard**:
 
