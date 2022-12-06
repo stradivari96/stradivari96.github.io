@@ -30,6 +30,8 @@ Some notes about DSA
     }
 </script>
 
+https://leetcode.com/assessment/
+
 <button onclick="openRandomLink(true, '?ez')" style="border: solid; border-width:1px; margin: 5px; padding: 5px" >
 Neetcode ez
 </button>
