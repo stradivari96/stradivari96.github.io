@@ -159,7 +159,7 @@ for r in range(len(nums)):
 - 🇳[**Trapping Rain Water**](https://leetcode.com/problems/trapping-rain-water/?md)⛈️:
   [💡](https://www.youtube.com/watch?v=ZI2z5pq0TqA)
   - `height = [0,1,0,2,1,0,1,3,2,1,2,1]` => `6`
-  - DP, can optimize to O(1) space by using 2 pointers
+  - DP, can optimize to O(1) space by using 2 pointers (move `l` if leftmax < rightmax)
   - O(n) time, O(n) space
 
 ### Sliding Window
@@ -790,8 +790,8 @@ https://youtu.be/_i4Yxeh5ceQ
 - 🇳[**Partition Equal Subset Sum**](https://leetcode.com/problems/partition-equal-subset-sum/?md)⛅:
   [💡](https://www.youtube.com/watch?v=IsvocB5BJhw)
   - `nums = [1,5,11,5]` => `true` (1, 5, 5) and (11)
-  - TODO
-  - ...
+  - target is sum//2, `possible = possible.union({p+n for p in possible})`
+  - O(n\*target) time, O(target) space
 
 ### 2D
 
@@ -808,19 +808,20 @@ https://youtu.be/_i4Yxeh5ceQ
 - 🇳[**Best Time to Buy and Sell Stock with Cooldown**](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/?md)⛅:
   [💡](https://www.youtube.com/watch?v=I7j0F7AHpb8)
   - `prices = [1,2,3,0,2]` => `3` (buy at 1, sell at 3, buy at 0, sell at 2)
-  - TODO
-  - ...
+  - cache[i, can_buy], handle cooldown, can_buy and not can_buy
+  - O(n) time, O(n) space
 - 🇳[**Coin Change 2**](https://leetcode.com/problems/coin-change-2/?md)⛅:
   [💡](https://www.youtube.com/watch?v=Mjy4hd2xgrs)
   - `amount = 5, coins = [1, 2, 5]` => `4`
-  - Unbounded Knapsack
+  - Unbounded Knapsack, dfs(i, amount) = dfs(i+1, amount) + dfs(i, amount-coins[i])
+  - O(n\*amount) time, O(n\*amount) space
 - 🇳[**Target Sum**](https://leetcode.com/problems/target-sum/?md)⛅:
   [💡](https://www.youtube.com/watch?v=g0npyaQtAQM)
   - assign + or - `nums = [1, 1, 1, 1, 1], target = 3` => `5`
   - 0/1 Knapsack, O(2^n) -> O(n\*sum(nums)))
 - 🇳[**Interleaving String**](https://leetcode.com/problems/interleaving-string/?md)⛅:
   [💡](https://www.youtube.com/watch?v=3Rw3p9LrgvE)
-  - `s1 = "aabcc", s2 = "dbbca", s3 = "aadbbcbc
+  - `s1 = "aabcc", s2 = "dbbca", s3 = "aadbbcbc`
   - TODO
   - ...
 - 🇳 🇬[**Longest Increasing Path in a Matrix**](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/?md)⛈️:
