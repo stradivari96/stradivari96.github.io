@@ -682,8 +682,8 @@ Careful with recursion limit (bound to the application stack)
 - 🇳[**Word Ladder**](https://leetcode.com/problems/word-ladder/?md)⛈️:
   [💡](https://www.youtube.com/watch?v=h9iTnkgv05E)
   - `beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"]` => `5`
-  - TODO
-  - ...
+  - BFS, queue, create adj list with patterns `pattern = word[:i] + '*' + word[i+1:]`
+  - O(m^2*n) time, O(m^2*n) space
 
 ### Advanced
 
@@ -695,8 +695,8 @@ Careful with recursion limit (bound to the application stack)
 - 🇳[**Min Cost to Connect All Points**](https://leetcode.com/problems/min-cost-to-connect-all-points/?md)⛅:
   [💡](https://www.youtube.com/watch?v=f7JOBJIC-NA)
   - `points = [[0,0],[2,2],[3,10],[5,2],[7,0]]` => `20`
-  - Prim's algorithm
-  - ...
+  - Prim's algorithm, `weigth, s, d = heapq.heappop(heap)`
+  - O(n^2) time, O(n) space
 - 🇳[**Network delay time**](https://leetcode.com/problems/network-delay-time/?md)⛅:
   [💡](https://www.youtube.com/watch?v=EaphyqKU4PQ)
   - `times = [[2,1,1],[2,3,1],[3,4,1]]`, `N = 4`, `K = 2` => `2`
@@ -822,8 +822,8 @@ https://youtu.be/_i4Yxeh5ceQ
 - 🇳[**Interleaving String**](https://leetcode.com/problems/interleaving-string/?md)⛅:
   [💡](https://www.youtube.com/watch?v=3Rw3p9LrgvE)
   - `s1 = "aabcc", s2 = "dbbca", s3 = "aadbbcbc`
-  - TODO
-  - ...
+  - check lengths, `if i < len(s1) and s1[i] == s3[i+j] and dfs(i+1, j): True`
+  - O(n\*m) time, O(n\*m) space
 - 🇳 🇬[**Longest Increasing Path in a Matrix**](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/?md)⛈️:
   [💡](https://www.youtube.com/watch?v=wCc_nd-GiEc)
   - `matrix = [[9,9,4],[6,6,8],[2,1,1]]` => `4` (1, 2, 6, 9)
