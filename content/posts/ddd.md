@@ -30,8 +30,9 @@ Some notes about DDD
 - For simple cases this abstraction is unnecessary, you can just stick with ORMs.
 - Create an in-memory `FakeRepository` for testing.
 
+{{< notice info>}}
 Some people consider "monkeypatching" a code smell and prefer using Fakes.
-{: .notice--warning}
+{{< /notice >}}
 
 ## Service
 

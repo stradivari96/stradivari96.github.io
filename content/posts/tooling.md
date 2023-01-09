@@ -7,22 +7,13 @@ weight: 2
 tags: ["Software Engineering"]
 ---
 
-List of tools I use (almost) daily
+List of tools I use daily
 
 <!--more-->
 
-### Workstation
+### Coding
 
-- Logitech TKL keyboard
-- Logitech G903 mouse + Powerplay
-- Logitech C922 Pro Webcam
-- Astro A50 headset
-- Nox Hummer ZX
-- Asus VG278Q 144Hz
-- MSI GTX 1060 GAMING X 6GB
-- MSI Z270 Gaming M3
-- Intel Core i7-7700K
-- 2x HyperX Fury RAM de 8 GB (2133 MHz)
+- **IDE**:
 
 ### Coding
 
@@ -77,3 +68,19 @@ List of tools I use (almost) daily
 - **Browser Plugins**: [Awesome Screen](https://www.awesomescreenshot.com/) / [Json viewer](https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh)
 - **Music**: [Spotify](https://www.spotify.com/) / [Lofi Girl](https://www.youtube.com/channel/UCSJ4gkVC6NrvII8umztf0Ow)
 - **Stock images**: [Unsplash](https://unsplash.com/) / [Pexels](https://www.pexels.com/) / [FreePik](https://www.freepik.com/)
+
+### Workstation
+
+- Nox Hummer ZX
+- Asus VG278Q 144Hz
+- MSI GTX 1060 GAMING X 6GB
+- MSI Z270 Gaming M3
+- Intel Core i7-7700K
+- 2x HyperX Fury RAM 8 GB (2133 MHz)
+
+---
+
+- Logitech TKL keyboard
+- Logitech G903 mouse + Powerplay
+- Logitech C922 Pro Webcam
+- Astro A50 headset
