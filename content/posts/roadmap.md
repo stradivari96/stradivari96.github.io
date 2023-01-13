@@ -55,7 +55,8 @@ Switch to [PyCharm](https://www.jetbrains.com/pycharm/) once you are familiar wi
   - [Latest Python features](https://docs.python.org/3/whatsnew/index.html): read summaries
   - [Reddit](https://www.reddit.com/r/Python/top/?t=month): Check top posts by year or month
   - [Top libraries](https://tryolabs.com/blog/2022/12/26/top-python-libraries-2022): by year
-- Checkout the code from some Open Source projects:
+- Checkout some Open Source projects, bonus you have used them before:
+  - [arrow](https://github.com/arrow-py/arrow): highly recommended
   - [minecraft](https://github.com/fogleman/Minecraft): 900 lines
   - [requests](https://github.com/psf/requests) and [httpx](https://github.com/encode/httpx)
   - [arq](https://github.com/samuelcolvin/arq): small project, take a good look at every file
@@ -85,7 +86,11 @@ git push
 
 ## Web Development
 
-TODO
+### Basics
 
 - [How does the Internet work?](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/How_does_the_Internet_work)
 - [What is a web server?](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_web_server)
+- [What is a domain name?](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_domain_name)
+- [What is HTTP?](https://www.cloudflare.com/en-gb/learning/ddos/glossary/hypertext-transfer-protocol-http/)
+- [How browsers work](https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work)
+- [What is DNS?](https://www.cloudflare.com/en-gb/learning/dns/what-is-dns/)
