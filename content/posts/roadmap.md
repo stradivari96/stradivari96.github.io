@@ -85,7 +85,7 @@ git push
 
 ## Web Development
 
+TODO
+
 - [How does the Internet work?](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/How_does_the_Internet_work)
 - [What is a web server?](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_web_server)
-
-https://xiang.es/posts/microservices/
