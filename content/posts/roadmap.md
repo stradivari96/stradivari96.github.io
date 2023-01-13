@@ -19,6 +19,7 @@ References and things to learn.
 
 - [The Pragmatic Programmer](https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/)
 - [Software Engineering at Google](https://abseil.io/resources/swe-book/html/toc.html)
+- [Clean Code Summary](https://gist.github.com/wojteklu/73c6914cc446146b8b533c0988cf8d29): don't read the book
 
 ## Python
 
