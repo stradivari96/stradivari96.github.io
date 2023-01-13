@@ -2,6 +2,7 @@
 title: "🗺️ Personal Roadmap"
 date: 2023-01-01
 draft: false
+weight: 2
 
 tags: ["Software Engineering"]
 ---
@@ -71,8 +72,10 @@ Avoid [pipenv](https://github.com/pypa/pipenv).
   [MyPy](https://mypy.readthedocs.io/en/stable/),
   [Black](https://black.readthedocs.io/en/stable/),
   [isort](https://pycqa.github.io/isort/),
-  [flake8](https://flake8.pycqa.org/en/latest/).
-  Full [example](https://github.com/arrow-py/arrow/blob/74a759b88447b6ecd9fd5de610f272c8fb6130a2/.pre-commit-config.yaml)
+  [flake8](https://flake8.pycqa.org/en/latest/),
+  [pip-audit](https://github.com/pypa/pip-audit),
+  [bandit](https://bandit.readthedocs.io/en/latest/).
+  - [Example](https://github.com/arrow-py/arrow/blob/74a759b88447b6ecd9fd5de610f272c8fb6130a2/.pre-commit-config.yaml)
 - 🧰Learn about [Design Patterns](https://refactoring.guru/design-patterns) and their implementation in [python](https://github.com/faif/python-patterns), don't overdo it.
 - 📜Checkout some Open Source projects, bonus you have used them before:
   - [arrow](https://github.com/arrow-py/arrow): highly recommended
