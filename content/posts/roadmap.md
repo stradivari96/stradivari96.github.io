@@ -3,6 +3,7 @@ title: "🗺️ Personal Roadmap"
 date: 2023-01-01
 draft: false
 weight: 2
+TocOpen: true
 
 tags: ["Software Engineering"]
 ---
@@ -23,6 +24,30 @@ References and things to learn.
 - [The Pragmatic Programmer](https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/)
 - [Software Engineering at Google](https://abseil.io/resources/swe-book)
 - [Clean Code](https://gist.github.com/wojteklu/73c6914cc446146b8b533c0988cf8d29): read a summary, avoid the book
+
+---
+
+## Version Control (Git)
+
+- 📺[Git for Poets](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV)
+- 🔒️[Generate and add SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+- 📚[Github Quickstart](https://docs.github.com/en/get-started/quickstart/hello-world)
+- ✨[Cheatsheet](https://training.github.com/downloads/github-git-cheat-sheet/)
+- 🌐Conventions: [Conventional](https://www.conventionalcommits.org/) / [Gitmoji](https://gitmoji.dev/)
+
+```
+git checkout develop
+git pull
+git checkout -b feature/new-feature
+git add .
+git commit -m ":sparkles: Some new thing"
+git push
+# And Open Pull Request
+```
+
+{{< notice info >}}
+💩 https://ohshitgit.com/
+{{< /notice >}}
 
 ---
 
@@ -103,25 +128,21 @@ News:
 
 ---
 
-## Version Control (Git)
+## Terminal
 
-- 🔒️[Generate and add SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
-- 📚[Github Quickstart](https://docs.github.com/en/get-started/quickstart/hello-world)
-- ✨[Cheatsheet](https://training.github.com/downloads/github-git-cheat-sheet/)
-- 🌐Conventions: [Conventional](https://www.conventionalcommits.org/) / [Gitmoji](https://gitmoji.dev/)
+TODO
 
-```
-git checkout develop
-git pull
-git checkout -b feature/new-feature
-git add .
-git commit -m ":sparkles: Some new thing"
-git push
-```
+---
 
-{{< notice info >}}
-💩 https://ohshitgit.com/
-{{< /notice >}}
+## Containerization
+
+TODO
+
+---
+
+## Databases
+
+TODO
 
 ---
 
@@ -140,6 +161,10 @@ https://wizardzines.com/comics/
 - [Inspect network activity](https://developer.chrome.com/docs/devtools/network/)
 
 ### HTML, CSS & JS
+
+TODO
+
+### APIs
 
 TODO
 
