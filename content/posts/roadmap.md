@@ -53,9 +53,9 @@ git push
 
 ## Python
 
-✨[Cheatsheet](https://gto76.github.io/python-cheatsheet/)
-
 ### Basics
+
+✨[Cheatsheet](https://gto76.github.io/python-cheatsheet/)
 
 Download [Python](https://www.python.org/downloads/) and [Visual Studio Code](https://code.visualstudio.com/) with the Python extension.
 
@@ -112,13 +112,11 @@ Avoid [pipenv](https://github.com/pypa/pipenv).
 - 🧰Learn about [Design Patterns](https://refactoring.guru/design-patterns) and their implementation in [python](https://github.com/faif/python-patterns), don't overdo it.
 - 📜Checkout some Open Source projects, better if you have used them before:
   - [arrow](https://github.com/arrow-py/arrow): highly recommended
-  - [minecraft](https://github.com/fogleman/Minecraft): 900 lines
-  - [requests](https://github.com/psf/requests) and [httpx](https://github.com/encode/httpx)
-  - [arq](https://github.com/samuelcolvin/arq): small project, take a good look at every file
-  - [typer](https://github.com/tiangolo/typer)
+  - [minecraft](https://github.com/fogleman/Minecraft): 900 lines of clean code
+  - [requests](https://github.com/psf/requests) and [httpx](https://github.com/encode/httpx): probably familiar with them
+  - [arq](https://github.com/samuelcolvin/arq): small modern project, take a good look at every file
 
-{{< notice note >}}
-News:
+{{< notice tip >}}
 
 - [Latest Python features](https://docs.python.org/3/whatsnew/index.html): read summaries
 - [Reddit](https://www.reddit.com/r/Python/top/?t=month): Check top posts by year or month
@@ -130,17 +128,23 @@ News:
 
 ## Terminal
 
-TODO
-
----
-
-## Containerization
-
-TODO
+- 🌐[Command Line Crash Course](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Command_line)
+- 📚[The Linux Command Line](https://nostarch.com/tlcl2)
 
 ---
 
 ## Databases
+
+ORMs are great, but you should know how to use raw SQL.
+
+- 📚[Practical SQL](https://www.practicalsql.com/)
+- ✨[PostgreSQL Tutorial](https://www.postgresqltutorial.com/)
+- 📚[MongoDB Manual](https://www.mongodb.com/docs/manual)
+- 📚[Redis Documentation](https://redis.io/docs/data-types/tutorial/)
+
+---
+
+## Containerization
 
 TODO
 
