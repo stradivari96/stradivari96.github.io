@@ -27,20 +27,13 @@ References and things to learn.
 
 ## Version Control (Git)
 
+✨[Cheatsheet](https://training.github.com/downloads/github-git-cheat-sheet/)
+
 - 📺[Git for Poets](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV)
 - 🔒️[Generate and add SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 - 📝[Github Quickstart](https://docs.github.com/en/get-started/quickstart/hello-world)
-- ✨[Cheatsheet](https://training.github.com/downloads/github-git-cheat-sheet/)
-- 🌐Conventions: [Conventional](https://www.conventionalcommits.org/) / [Gitmoji](https://gitmoji.dev/)
-
-```
-git checkout develop
-git pull
-git checkout -b feature/new-feature
-git add .
-git commit -m ":sparkles: Some new thing"
-git push
-```
+- 🌐[Git Flow](https://nvie.com/posts/a-successful-git-branching-model/) / [Github Flow](https://docs.github.com/en/get-started/quickstart/github-flow)
+  / [Gitmoji](https://gitmoji.dev/)
 
 {{< notice info >}}
 💩 https://ohshitgit.com/
@@ -48,7 +41,9 @@ git push
 
 ---
 
-## Python 🐍
+## Python [💼](https://www.linkedin.com/jobs/search/?keywords=python&location=Spain)
+
+https://lp.jetbrains.com/python-developers-survey-2021
 
 ### Basics
 
@@ -151,7 +146,7 @@ ORMs are great, but you should know how to use raw SQL.
 
 ---
 
-## Containerization 🐋
+## Containerization
 
 - 📝[Docker for beginners](https://testdriven.io/blog/docker-for-beginners/)
 - 📝[Docker Best Practices](https://testdriven.io/blog/docker-best-practices/)
@@ -161,47 +156,37 @@ ORMs are great, but you should know how to use raw SQL.
 
 ## Web Development
 
-🚧 WORK IN PROGRESS
-
-https://wizardzines.com/comics/
-
 ### Basics
 
-- [How does the Internet work?](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/How_does_the_Internet_work)
+- [How does the Internet work?](https://tutorial.djangogirls.org/en/how_the_internet_works/)
 - [What is a web server?](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_web_server)
-- [What is a domain name?](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_domain_name)
 - [What is HTTP?](https://www.cloudflare.com/en-gb/learning/ddos/glossary/hypertext-transfer-protocol-http/)
-- [What is DNS?](https://www.cloudflare.com/en-gb/learning/dns/what-is-dns/)
-- [How browsers work](https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work)
 - [Inspect network activity](https://developer.chrome.com/docs/devtools/network/)
 
-### HTML, CSS & JS
+### Web Frameworks & Tutorials
 
-TODO
-
-### APIs
-
-TODO
-
-### Web Frameworks
-
+- [Django](https://www.djangoproject.com/): [tutorial](https://tutorial.djangogirls.org/en/) for beginners
+- [Flask](https://flask.palletsprojects.com/): [tutorial](https://flask.palletsprojects.com/tutorial/) for beginners
 - [FastAPI](https://fastapi.tiangolo.com/)
-- [Django](https://www.djangoproject.com/)
 
 ---
 
 ## More Languages
 
-### JavaScript
+### JavaScript [💼](https://www.linkedin.com/jobs/search/?keywords=nodejs&location=Spain)
 
-TODO
+https://stateofjs.com/en-us/
 
-### Rust
+### Rust [💼](https://www.linkedin.com/jobs/search/?keywords=rust&location=Spain)
 
-TODO
+https://www.jetbrains.com/lp/devecosystem-2021/rust/
 
-### Go
+### Go [💼](https://www.linkedin.com/jobs/search/?keywords=Golang&location=Spain)
 
-TODO
+https://www.jetbrains.com/lp/devecosystem-2021/go/
+
+### Java [💼](https://www.linkedin.com/jobs/search/?keywords=java&location=Spain)
+
+https://www.jetbrains.com/lp/devecosystem-2021/java/
 
 ---
