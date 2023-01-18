@@ -106,7 +106,7 @@ Avoid [pipenv](https://github.com/pypa/pipenv).
   [flake8](https://flake8.pycqa.org/en/latest/),
   [pip-audit](https://github.com/pypa/pip-audit),
   [bandit](https://bandit.readthedocs.io/en/latest/).
-- 🧰Learn about [Design Patterns](https://refactoring.guru/design-patterns) and their implementation in [python](https://github.com/faif/python-patterns), don't go too crazy.
+- 🧰Learn about [Design Patterns](https://refactoring.guru/design-patterns) in [python](https://github.com/faif/python-patterns), don't go too crazy.
 - 👀Checkout some Open Source projects, better if you have used them before:
   - [arrow](https://github.com/arrow-py/arrow): highly recommended
   - [minecraft](https://github.com/fogleman/Minecraft): 900 lines of clean code
@@ -119,6 +119,10 @@ Avoid [pipenv](https://github.com/pypa/pipenv).
 - [Reddit](https://www.reddit.com/r/Python/top/?t=month): Check top posts by year or month
 - [Top libraries](https://tryolabs.com/blog/2022/12/26/top-python-libraries-2022): by year
 
+{{< /notice >}}
+
+{{< notice note >}}
+[Leetcode](https://leetcode.com/) every day keeps unemployment away
 {{< /notice >}}
 
 ---
@@ -183,3 +187,21 @@ TODO
 
 - [FastAPI](https://fastapi.tiangolo.com/)
 - [Django](https://www.djangoproject.com/)
+
+---
+
+## More Languages
+
+### JavaScript
+
+TODO
+
+### Rust
+
+TODO
+
+### Go
+
+TODO
+
+---
