@@ -104,7 +104,6 @@ Avoid [pipenv](https://github.com/pypa/pipenv).
 - 🧰Learn about [Design Patterns](https://refactoring.guru/design-patterns) in [python](https://github.com/faif/python-patterns), don't go too crazy.
 - 👀Checkout some Open Source projects, better if you have used them before:
   - [arrow](https://github.com/arrow-py/arrow): highly recommended
-  - [minecraft](https://github.com/fogleman/Minecraft): 900 lines of clean code
   - [requests](https://github.com/psf/requests) and [httpx](https://github.com/encode/httpx): probably familiar with them
   - [arq](https://github.com/samuelcolvin/arq): small modern project, take a good look at every file
 
@@ -141,16 +140,16 @@ ORMs are great, but you should know how to use raw SQL.
 
 ### NoSQL
 
-- 📝[MongoDB Manual](https://www.mongodb.com/docs/manual)
-- 📝[Redis Documentation](https://redis.io/docs/data-types/tutorial/)
+- 📗[MongoDB Manual](https://www.mongodb.com/docs/manual)
+- 📕[Redis Documentation](https://redis.io/docs/data-types/tutorial/)
 
 ---
 
 ## Containerization
 
-- 📝[Docker for beginners](https://testdriven.io/blog/docker-for-beginners/)
-- 📝[Docker Best Practices](https://testdriven.io/blog/docker-best-practices/)
-- 📝[Kubernetes Flask Guide](https://testdriven.io/blog/running-flask-on-kubernetes/)
+- 🐋[Docker for beginners](https://testdriven.io/blog/docker-for-beginners/)
+- 🎨[Docker Best Practices](https://testdriven.io/blog/docker-best-practices/)
+- ☸️[Kubernetes Flask Guide](https://testdriven.io/blog/running-flask-on-kubernetes/)
 
 ---
 
@@ -163,11 +162,44 @@ ORMs are great, but you should know how to use raw SQL.
 - [What is HTTP?](https://www.cloudflare.com/en-gb/learning/ddos/glossary/hypertext-transfer-protocol-http/)
 - [Inspect network activity](https://developer.chrome.com/docs/devtools/network/)
 
-### Web Frameworks & Tutorials
+### Advanced
 
-- [Django](https://www.djangoproject.com/): [tutorial](https://tutorial.djangogirls.org/en/) for beginners
-- [Flask](https://flask.palletsprojects.com/): [tutorial](https://flask.palletsprojects.com/tutorial/) for beginners
-- [FastAPI](https://fastapi.tiangolo.com/)
+- [Twelve-factor app](https://12factor.net/)
+
+### Web Frameworks & Examples
+
+#### Python
+
+- 🐉[Django](https://www.djangoproject.com/): [tutorial](https://tutorial.djangogirls.org/en/) for beginners
+  - [readthedocs](https://github.com/readthedocs/readthedocs.org): documentation hosting
+  - [sentry](https://github.com/getsentry/sentry): monitoring platform
+  - [old mdn](https://github.com/mdn/kuma): kuma, old MDN
+  - [guya.moe](https://github.com/subject-f/guyamoe): manga reading website
+- ⚗️[Flask](https://flask.palletsprojects.com/): [tutorial](https://flask.palletsprojects.com/tutorial/) for beginners
+  - [SimpleLogin](https://github.com/simple-login/app)
+  - [Apache Airflow](https://github.com/apache/airflow)
+  - [redash.io](https://github.com/getredash/redash)
+  - [sourcehut](https://git.sr.ht/~sircmpwn/core.sr.ht/tree)
+- ⚡️[FastAPI](https://fastapi.tiangolo.com/):
+  - [TermPair](https://github.com/cs01/termpair)
+  - [Dispatch](https://github.com/Netflix/dispatch)
+  - [Mealie](https://github.com/hay-kot/mealie)
+  - [Opal](https://github.com/permitio/opal)
+
+#### Rust
+
+- ⚙️[Actix](https://actix.rs/): [tutorial](https://actix.rs/docs/getting-started) for beginners
+  - [miniserve](https://github.com/svenstaro/miniserve/)
+  - [mdn](https://github.com/mdn/rumba): superseeds kuma
+- [axum](https://github.com/tokio-rs/axum)
+
+#### Go
+
+TODO
+
+#### Java
+
+TODO
 
 ---
 
