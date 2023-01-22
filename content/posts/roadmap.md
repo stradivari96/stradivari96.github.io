@@ -170,28 +170,43 @@ ORMs are great, but you should know how to use raw SQL.
 
 #### Python
 
-- 🐉[Django](https://www.djangoproject.com/): [tutorial](https://tutorial.djangogirls.org/en/) for beginners
+Deploy using https://www.deta.sh/ or https://www.pythonanywhere.com/
+
+- [**Django**](https://www.djangoproject.com/): [tutorial](https://tutorial.djangogirls.org/en/)
   - [readthedocs](https://github.com/readthedocs/readthedocs.org): documentation hosting
   - [sentry](https://github.com/getsentry/sentry): monitoring platform
   - [old mdn](https://github.com/mdn/kuma): kuma, old MDN
   - [guya.moe](https://github.com/subject-f/guyamoe): manga reading website
-- ⚗️[Flask](https://flask.palletsprojects.com/): [tutorial](https://flask.palletsprojects.com/tutorial/) for beginners
+- [**Flask**](https://flask.palletsprojects.com/): [tutorial](https://flask.palletsprojects.com/tutorial/)
   - [SimpleLogin](https://github.com/simple-login/app)
   - [Apache Airflow](https://github.com/apache/airflow)
   - [redash.io](https://github.com/getredash/redash)
   - [sourcehut](https://git.sr.ht/~sircmpwn/core.sr.ht/tree)
-- ⚡️[FastAPI](https://fastapi.tiangolo.com/):
+- [**FastAPI**](https://fastapi.tiangolo.com/): [tutorial](https://testdriven.io/blog/fastapi-crud/)
   - [TermPair](https://github.com/cs01/termpair)
   - [Dispatch](https://github.com/Netflix/dispatch)
   - [Mealie](https://github.com/hay-kot/mealie)
   - [Opal](https://github.com/permitio/opal)
 
+#### NodeJS
+
+- [**Express**](https://expressjs.com/):
+- [**Fastify**](https://www.fastify.io/):
+- [**NestJS**](https://nestjs.com/):
+  - [ToolJet](https://github.com/ToolJet/ToolJet)
+  - [Novu](https://github.com/novuhq/novu)
+  - [Amplication](https://github.com/amplication/amplication)
+  - [Vendure](https://github.com/vendure-ecommerce/vendure)
+
 #### Rust
 
-- ⚙️[Actix](https://actix.rs/): [tutorial](https://actix.rs/docs/getting-started) for beginners
+- [Actix](https://actix.rs/): [tutorial](https://actix.rs/docs/getting-started) for beginners
   - [miniserve](https://github.com/svenstaro/miniserve/)
   - [mdn](https://github.com/mdn/rumba): superseeds kuma
 - [axum](https://github.com/tokio-rs/axum)
+  - [roapi](https://github.com/roapi/roapi)
+  - [restful template](https://github.com/ndelvalle/rustapi)
+  - [realworld](https://github.com/launchbadge/realworld-axum-sqlx)
 
 #### Go
 
