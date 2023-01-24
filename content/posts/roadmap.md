@@ -165,6 +165,7 @@ ORMs are great, but you should know how to use raw SQL.
 ### Advanced
 
 - [Twelve-factor app](https://12factor.net/)
+- [Authentication reddit post](https://www.reddit.com/r/nextjs/comments/svr3zy/authentication_with_nextjs_the_dos_and_donts_and/)
 
 ### Web Frameworks & Examples
 
