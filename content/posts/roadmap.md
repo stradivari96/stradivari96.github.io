@@ -3,7 +3,7 @@ title: "🗺️ Personal Roadmap"
 date: 2023-01-01
 draft: false
 weight: 2
-TocOpen: true
+TocOpen: false
 
 tags: ["Software Engineering"]
 ---
@@ -15,29 +15,35 @@ References and things to learn.
 - [Backend Roadmap](https://roadmap.sh/backend/)
 - [Architect Roadmap](https://roadmap.sh/software-architect/)
 
+{{< notice note >}}
+Pay special attention to things in **bold**.
+{{< /notice >}}
+
 ---
 
-## General books
+## General
 
+- 📺[**CodeAesthetic**](https://www.youtube.com/@CodeAesthetic)
 - 📚[The Pragmatic Programmer](https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/)
 - 📚[Software Engineering at Google](https://abseil.io/resources/swe-book)
-- 📝[Clean Code](https://gist.github.com/wojteklu/73c6914cc446146b8b533c0988cf8d29): read a summary, avoid the book
 
 ---
 
 ## Version Control (Git)
 
-✨[Cheatsheet](https://training.github.com/downloads/github-git-cheat-sheet/)
+✨[**Cheatsheet**](https://training.github.com/downloads/github-git-cheat-sheet/)
+
+<details>
+  <summary>More</summary>
 
 - 📺[Git for Poets](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV)
 - 🔒️[Generate and add SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 - 📝[Github Quickstart](https://docs.github.com/en/get-started/quickstart/hello-world)
 - 🌐[Git Flow](https://nvie.com/posts/a-successful-git-branching-model/) / [Github Flow](https://docs.github.com/en/get-started/quickstart/github-flow)
   / [Gitmoji](https://gitmoji.dev/)
+- 💩[Oh Shit, Git!?!](https://ohshitgit.com/)
 
-{{< notice info >}}
-💩 https://ohshitgit.com/
-{{< /notice >}}
+</details>
 
 ---
 
@@ -46,8 +52,6 @@ References and things to learn.
 https://lp.jetbrains.com/python-developers-survey-2021
 
 ### Basics
-
-✨[Cheatsheet](https://gto76.github.io/python-cheatsheet/)
 
 Download [Python](https://www.python.org/downloads/) and [Visual Studio Code](https://code.visualstudio.com/) with the Python extension.
 
@@ -74,7 +78,7 @@ Switch to [PyCharm](https://www.jetbrains.com/pycharm/) once you are familiar wi
 
 - 📚Read:
   - [Fluent Python (2022)](https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/):
-    comprehensions, dataclasses, Type Hints, Protocol, etc.
+    magic methods, dataclasses, Type Hints, Protocol, etc.
   - [Architecture Patterns with Python](https://www.cosmicpython.com/book/preface.html):
     DDD, CQRS, Event-Driver Architecture, etc.
 - 📺Watch:
