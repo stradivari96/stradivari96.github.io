@@ -13,10 +13,6 @@ List of tools I use daily
 
 ### Coding
 
-- **IDE**:
-
-### Coding
-
 - **IDE**: [PyCharm](https://www.jetbrains.com/pycharm/) / [VS Code](https://code.visualstudio.com/)
 - **Autocompletion**: [Copilot](https://copilot.github.com/) / [Tabnine](https://tabnine.com/)
 - **Formatters**: [black](https://black.readthedocs.io/en/stable/index.html) / [prettier](https://prettier.io/)
