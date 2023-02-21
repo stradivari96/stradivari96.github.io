@@ -16,6 +16,10 @@ tags: ["Software Engineering"]
 
 ## Web Frameworks
 
+{{< notice >}}
+See [notes about web](/posts/roadmap/#web-development)
+{{< /notice >}}
+
 - [Actix](https://actix.rs/): [tutorial](https://actix.rs/docs/getting-started) for beginners
   - [miniserve](https://github.com/svenstaro/miniserve/)
   - [mdn](https://github.com/mdn/rumba): superseeds kuma

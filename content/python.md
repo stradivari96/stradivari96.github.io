@@ -18,9 +18,9 @@ Download [Python](https://www.python.org/downloads/) and [Visual Studio Code](ht
 
 Start with **single file scripts**.
 
-- 📚[Introducing Python (2019)](https://www.oreilly.com/library/view/introducing-python-2nd/9781492051374/): Basics, ignore everything after chapter 11
-- 📝[Basic OOP](https://realpython.com/python3-object-oriented-programming/)
 - 🥋Practice [**Codewards**](https://www.codewars.com/kata/search/python): checkout **other solutions** after submitting
+- 📚[Introducing Python (2019)](https://www.oreilly.com/library/view/introducing-python-2nd/9781492051374/): Ignore everything after chapter 11
+- 📝[Basic OOP](https://realpython.com/python3-object-oriented-programming/)
 - 🎨Skim through [pep8](https://peps.python.org/pep-0008/)
 - ⚡️Learn a bit of DSA (Data Structures and Algorithms): do **easy** in [neetcode](https://neetcode.io/roadmap)
 
@@ -40,12 +40,16 @@ Switch to [PyCharm](https://www.jetbrains.com/pycharm/) once you are familiar wi
 
 - 📚Read:
   - [Fluent Python (2022)](https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/):
-    magic methods, dataclasses, Type Hints, Protocol, etc.
+    - magic methods
+    - dataclasses
+    - Type Hints (Protocol, duck typing)
+    - decorators
   - [Architecture Patterns with Python](https://www.cosmicpython.com/book/preface.html):
     DDD, CQRS, Event-Driver Architecture, etc.
 - 📺Watch:
   - [ArjanCodes](https://www.youtube.com/@ArjanCodes/videos): Advanced, refactoring videos are great.
   - [mCoding](https://www.youtube.com/channel/UCaiL2GDNpLYH6Wokkk1VNcg): Trivia, watch popular videos.
+- 🧰Learn about [Design Patterns](https://refactoring.guru/design-patterns/what-is-pattern) in [python](https://github.com/faif/python-patterns) but don't go too crazy.
 - 📝[StackOverflow Questions](https://stackoverflow.com/questions/tagged/python?sort=votes):
   should know the answers to the most voted questions.
 
@@ -64,10 +68,9 @@ Avoid [pipenv](https://github.com/pypa/pipenv).
   [MyPy](https://mypy.readthedocs.io/en/stable/),
   [Black](https://black.readthedocs.io/en/stable/),
   [isort](https://pycqa.github.io/isort/),
-  [flake8](https://flake8.pycqa.org/en/latest/),
+  [flake8](https://flake8.pycqa.org/en/latest/) / [ruff](https://github.com/charliermarsh/ruff),
   [pip-audit](https://github.com/pypa/pip-audit),
   [bandit](https://bandit.readthedocs.io/en/latest/).
-- 🧰Learn about [Design Patterns python](https://github.com/faif/python-patterns), don't go too crazy.
 - 👀Checkout some Open Source projects, better if you have used them before:
   - [arrow](https://github.com/arrow-py/arrow): highly recommended
   - [requests](https://github.com/psf/requests) and [httpx](https://github.com/encode/httpx): probably familiar with them
@@ -82,6 +85,10 @@ Avoid [pipenv](https://github.com/pypa/pipenv).
 {{< /notice >}}
 
 ## Web Frameworks
+
+{{< notice >}}
+See [notes about web](/posts/roadmap/#web-development)
+{{< /notice >}}
 
 Deploy using https://www.deta.sh/ or https://www.pythonanywhere.com/
 

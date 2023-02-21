@@ -17,3 +17,7 @@ tags: ["Software Engineering"]
 - 🌐[Docs](https://go.dev/learn/)
 - 📚[Let's Go](https://lets-go.alexedwards.net/)
 - 📚[The Little Go Book](https://www.openmymind.net/The-Little-Go-Book/)
+
+{{< notice >}}
+See [notes about web](/posts/roadmap/#web-development)
+{{< /notice >}}
