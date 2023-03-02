@@ -12,17 +12,20 @@ References and things to learn.
 
 <!--more-->
 
+Choose one and don't forget to mark as done as you go.
+
 - [Backend Roadmap](https://roadmap.sh/backend/)
+- [Frontend Roadmap](https://roadmap.sh/frontend/)
 - [Architect Roadmap](https://roadmap.sh/software-architect/)
 
 ---
 
 ## General
 
-- 📺[CodeAesthetic](https://www.youtube.com/@CodeAesthetic)
-- 🌐[Refactoring guru](https://refactoring.guru)
-- 📚[The Pragmatic Programmer](https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/)
-- 📚[Software Engineering at Google](https://abseil.io/resources/swe-book)
+- 📺[CodeAesthetic](https://www.youtube.com/@CodeAesthetic): Misc topics
+- 🌐[Refactoring guru](https://refactoring.guru): Refactoring patterns and Design Patterns
+- 🌐[Twelve-factor app](https://12factor.net/): SaaS best practices
+- 📚[The Pragmatic Programmer](https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/): Agnostic book about software engineering
 
 ---
 
@@ -49,10 +52,10 @@ References and things to learn.
 Surveys: [JetBrains](https://www.jetbrains.com/lp/devecosystem-2022/) / [Stack Overflow](https://survey.stackoverflow.co/2022/)
 
 - [💼](https://www.linkedin.com/jobs/search/?keywords=python&location=Spain) [Python](/python)
-- [💼](https://www.linkedin.com/jobs/search/?keywords=Golang&location=Spain) [Go](/go)
-- [💼](https://www.linkedin.com/jobs/search/?keywords=nodejs&location=Spain) [TypeScript](/typescript)
 - [💼](https://www.linkedin.com/jobs/search/?keywords=rust&location=Spain) [Rust](/rust)
 - [💼](https://www.linkedin.com/jobs/search/?keywords=java&location=Spain) [Java](/java)
+- [💼](https://www.linkedin.com/jobs/search/?keywords=Golang&location=Spain) [Go](/go)
+- [💼](https://www.linkedin.com/jobs/search/?keywords=nodejs&location=Spain) [TypeScript](/typescript)
 
 ---
 
