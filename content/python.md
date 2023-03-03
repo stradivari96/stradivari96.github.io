@@ -11,6 +11,8 @@ tags: ["Software Engineering"]
 [⬅️Back to Roadmap](/posts/roadmap)
 
 [💼 Jobs](https://www.linkedin.com/jobs/search/?keywords=python&location=Spain)
+/
+[🥋 Codewards](https://www.codewars.com/kata/search/python)
 
 ## Basics
 
@@ -18,7 +20,6 @@ Download [Python](https://www.python.org/downloads/) and [Visual Studio Code](ht
 
 Start with **single file scripts**.
 
-- 🥋Practice [**Codewards**](https://www.codewars.com/kata/search/python): checkout **other solutions** after submitting
 - 📚[Introducing Python (2019)](https://www.oreilly.com/library/view/introducing-python-2nd/9781492051374/): Ignore everything after chapter 11
 - 📝[Basic OOP](https://realpython.com/python3-object-oriented-programming/)
 - 🎨Skim through [pep8](https://peps.python.org/pep-0008/)
@@ -77,6 +78,8 @@ Avoid [pipenv](https://github.com/pypa/pipenv).
   - [arq](https://github.com/samuelcolvin/arq): small modern project, take a good look at every file
 
 {{< notice tip >}}
+
+Keep an eye on:
 
 - [Latest Python features](https://docs.python.org/3/whatsnew/index.html): read summaries
 - [Reddit](https://www.reddit.com/r/Python/top/?t=month): Check top posts by year or month

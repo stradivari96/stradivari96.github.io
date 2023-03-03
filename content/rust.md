@@ -11,6 +11,8 @@ tags: ["Software Engineering"]
 [⬅️Back to Roadmap](/posts/roadmap)
 
 [💼 Jobs](https://www.linkedin.com/jobs/search/?keywords=rust&location=Spain)
+/
+[🥋 Codewards](https://www.codewars.com/kata/search/rust)
 
 ## Basics
 

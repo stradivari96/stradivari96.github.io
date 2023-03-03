@@ -11,6 +11,8 @@ tags: ["Software Engineering"]
 [⬅️Back to Roadmap](/posts/roadmap)
 
 [💼 Jobs](https://www.linkedin.com/jobs/search/?keywords=nodejs&location=Spain)
+/
+[🥋 Codewards](https://www.codewars.com/kata/search/typescript)
 
 https://stateofjs.com/en-us/
 
@@ -20,7 +22,6 @@ Download [NodeJS](https://nodejs.org/en/) and [Visual Studio Code](https://code.
 
 - 📝[Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
 - 📝[TypeScript Deep Dive](https://basarat.gitbook.io/typescript/)
-- 🥋Practice [**Codewards**](https://www.codewars.com/kata/search/typescript): checkout **other solutions** after submitting
 
 ## Web Frameworks
 

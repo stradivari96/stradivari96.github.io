@@ -11,13 +11,17 @@ tags: ["Software Engineering"]
 [⬅️Back to Roadmap](/posts/roadmap)
 
 [💼 Jobs](https://www.linkedin.com/jobs/search/?keywords=Golang&location=Spain)
+/
+[🥋 Codewards](https://www.codewars.com/kata/search/go)
 
 ## Basics
 
-- 🌐[Docs](https://go.dev/learn/)
-- 📚[Let's Go](https://lets-go.alexedwards.net/)
-- 📚[The Little Go Book](https://www.openmymind.net/The-Little-Go-Book/)
+- 🌐[Tour](https://go.dev/tour/welcome/1)
+- 📝[Wiki](https://github.com/golang/go/wiki)
 
-{{< notice >}}
-See [notes about web](/posts/roadmap/#web-development)
-{{< /notice >}}
+- 📚[Effective Go](https://go.dev/doc/effective_go)
+- 📚[The Little Go Book](https://github.com/karlseguin/the-little-go-book/blob/master/en/go.md)
+
+## Advanced
+
+- 📚[Let's Go](https://lets-go.alexedwards.net/): Guide to web development

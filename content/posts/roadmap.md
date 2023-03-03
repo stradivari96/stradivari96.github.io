@@ -51,11 +51,13 @@ Choose one and don't forget to mark as done as you go.
 
 Surveys: [JetBrains](https://www.jetbrains.com/lp/devecosystem-2022/) / [Stack Overflow](https://survey.stackoverflow.co/2022/)
 
-- [💼](https://www.linkedin.com/jobs/search/?keywords=python&location=Spain) [Python](/python)
-- [💼](https://www.linkedin.com/jobs/search/?keywords=rust&location=Spain) [Rust](/rust)
-- [💼](https://www.linkedin.com/jobs/search/?keywords=java&location=Spain) [Java](/java)
-- [💼](https://www.linkedin.com/jobs/search/?keywords=Golang&location=Spain) [Go](/go)
-- [💼](https://www.linkedin.com/jobs/search/?keywords=nodejs&location=Spain) [TypeScript](/typescript)
+| Jobs                                                                       | Language                  | Description                        |
+| -------------------------------------------------------------------------- | ------------------------- | ---------------------------------- |
+| [💼](https://www.linkedin.com/jobs/search/?keywords=python&location=Spain) | [Python](/python)         | best lang 🐍 (not biased)          |
+| [💼](https://www.linkedin.com/jobs/search/?keywords=Golang&location=Spain) | [Go](/go)                 | good at networking and concurrency |
+| [💼](https://www.linkedin.com/jobs/search/?keywords=rust&location=Spain)   | [Rust](/rust)             | systems programming                |
+| [💼](https://www.linkedin.com/jobs/search/?keywords=java&location=Spain)   | [Java](/java)             | enterprise applications            |
+| [💼](https://www.linkedin.com/jobs/search/?keywords=nodejs&location=Spain) | [TypeScript](/typescript) | large scale web apps               |
 
 ---
 
