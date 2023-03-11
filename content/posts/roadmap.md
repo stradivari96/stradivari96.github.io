@@ -12,35 +12,34 @@ References and things to learn.
 
 <!--more-->
 
-Choose one and don't forget to mark as done as you go.
+Mark as done as you go.
 
-- [Backend Roadmap](https://roadmap.sh/backend/)
-- [Frontend Roadmap](https://roadmap.sh/frontend/)
-- [Architect Roadmap](https://roadmap.sh/software-architect/)
+[Backend](https://roadmap.sh/backend/)
+/ [Architect](https://roadmap.sh/software-architect/)
 
 ---
 
 ## General
 
-- 📺[CodeAesthetic](https://www.youtube.com/@CodeAesthetic): Misc topics
-- 🌐[Refactoring guru](https://refactoring.guru): Refactoring patterns and Design Patterns
+- 🌐[**Refactoring guru**](https://refactoring.guru): Refactoring patterns and Design Patterns
 - 🌐[Twelve-factor app](https://12factor.net/): SaaS best practices
+- 📺[CodeAesthetic](https://www.youtube.com/@CodeAesthetic): Misc topics
 - 📚[The Pragmatic Programmer](https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/): Agnostic book about software engineering
+
+---
+
+## Interviewing
+
+- 📝[DSA](/dsa)
+- 📝[System Design](/posts/system-design/)
 
 ---
 
 ## Version Control (Git)
 
-✨[**Cheatsheet**](https://training.github.com/downloads/github-git-cheat-sheet/)
-
-<details>
-  <summary>More</summary>
-
-- 📺[Git for Poets](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV)
-- 🔒️[Generate and add SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
-- 📝[Github Quickstart](https://docs.github.com/en/get-started/quickstart/hello-world)
+- ✨[**Cheatsheet**](https://training.github.com/downloads/github-git-cheat-sheet/)
 - 🌐[Git Flow](https://nvie.com/posts/a-successful-git-branching-model/) / [Github Flow](https://docs.github.com/en/get-started/quickstart/github-flow)
-  / [Gitmoji](https://gitmoji.dev/)
+- 🔨[Gitmoji](https://gitmoji.dev/) / [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 - 💩[Oh Shit, Git!?!](https://ohshitgit.com/)
 
 </details>
@@ -81,7 +80,7 @@ ORMs are great, but you should know how to use raw SQL.
 ### NoSQL
 
 - 📗[MongoDB Manual](https://www.mongodb.com/docs/manual) / [Little Book](https://www.openmymind.net/2011/3/28/The-Little-MongoDB-Book/)
-- 📕[Redis Documentation](https://redis.io/docs/data-types/tutorial/) / [Little Book](https://www.openmymind.net/2012/1/23/The-Little-Redis-Book/)
+- 📕[Redis Documentation](https://redis.io/docs/manual/) / [Little Book](https://www.openmymind.net/2012/1/23/The-Little-Redis-Book/)
 
 ---
 
@@ -104,5 +103,5 @@ ORMs are great, but you should know how to use raw SQL.
 
 ### Advanced
 
-- [Twelve-factor app](https://12factor.net/)
 - [Authentication reddit post](https://www.reddit.com/r/nextjs/comments/svr3zy/authentication_with_nextjs_the_dos_and_donts_and/)
+- [OAuth vulnerability on Booking](https://salt.security/blog/traveling-with-oauth-account-takeover-on-booking-com)

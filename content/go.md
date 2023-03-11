@@ -12,16 +12,17 @@ tags: ["Software Engineering"]
 
 [💼 Jobs](https://www.linkedin.com/jobs/search/?keywords=Golang&location=Spain)
 /
-[🥋 Codewards](https://www.codewars.com/kata/search/go)
+[🥋 Codewards](https://www.codewars.com/kata/search/go?q=&order_by=popularity%20desc)
 
 ## Basics
 
+- 📚[**Learn Go with Tests**](https://quii.gitbook.io/learn-go-with-tests/)
 - 🌐[Tour](https://go.dev/tour/welcome/1)
-- 📝[Wiki](https://github.com/golang/go/wiki)
-
 - 📚[Effective Go](https://go.dev/doc/effective_go)
-- 📚[The Little Go Book](https://github.com/karlseguin/the-little-go-book/blob/master/en/go.md)
+- 📚[Learning Go](https://www.oreilly.com/library/view/learning-go/9781492077206/)
+- 📚[Go by Example](https://gobyexample.com/)
 
 ## Advanced
 
-- 📚[Let's Go](https://lets-go.alexedwards.net/): Guide to web development
+- 📚[Let's Go](https://lets-go.alexedwards.net/): Working app with templating, stateful sessions, raw SQL, etc
+- 📚[Let's Go Further](https://lets-go-further.alexedwards.net/): Modern JSON REST API
