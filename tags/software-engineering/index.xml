@@ -14,11 +14,7 @@ Start with single file scripts.
 Project ideas:
 Make a discord bot with discord.py Program a simple game with PyGame such as Snake Deploy a simple FastAPI website in Deta (maybe using Riot API) Create a cli tool with Typer and upload it to PyPI.</description></item><item><title>🐿️ Go</title><link>https://xiang.es/go/</link><pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate><guid>https://xiang.es/go/</guid><description>⬅️Back to Roadmap
 💼 Jobs / 🥋 Codewards
-Basics 🌐Tour
-📝Wiki
-📚Effective Go
-📚The Little Go Book
-Advanced 📚Let&amp;rsquo;s Go: Guide to web development</description></item><item><title>🗺️ Personal Roadmap</title><link>https://xiang.es/posts/roadmap/</link><pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate><guid>https://xiang.es/posts/roadmap/</guid><description>&lt;p>References and things to learn.&lt;/p></description></item><item><title>🦀 Rust</title><link>https://xiang.es/rust/</link><pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate><guid>https://xiang.es/rust/</guid><description>⬅️Back to Roadmap
+Basics 🌐Tour 📚Effective Go 📚The Little Go Book Advanced 📚Let&amp;rsquo;s Go: Working app with templating, stateful sessions, raw SQL, etc 📚Let&amp;rsquo;s Go Further: Modern JSON REST API</description></item><item><title>🗺️ Personal Roadmap</title><link>https://xiang.es/posts/roadmap/</link><pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate><guid>https://xiang.es/posts/roadmap/</guid><description>&lt;p>References and things to learn.&lt;/p></description></item><item><title>🦀 Rust</title><link>https://xiang.es/rust/</link><pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate><guid>https://xiang.es/rust/</guid><description>⬅️Back to Roadmap
 💼 Jobs / 🥋 Codewards
 Basics Web Frameworks Note
 See notes about web
