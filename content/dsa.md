@@ -55,6 +55,11 @@ Random md
 - Permutations, TSP: O(n!)
 - Binary search: O(log n) (divide search space)
 
+### Legend
+
+- 🅱️ Blind 75 / 🗿 Neetcode / 🏢 Google
+- ☀️ Easy / ⛅ Medium / ⛈️ Hard
+
 ## Arrays
 
 - [Kadane's algorithm](https://neetcode.io/courses/advanced-algorithms/0):
@@ -90,49 +95,224 @@ for r in range(len(nums)):
 
 - 🅱️[**Contains Duplicate**](https://leetcode.com/problems/contains-duplicate/?ez)☀️:
   [💡](https://www.youtube.com/watch?v=3OamzN90kPg)
+
   - `nums = [1,2,3,1]` => `true`
-  - Hashmap seen or sort
-  - O(n) time, O(n) space
+  - Hashmap seen / sort
+  - <details>
+      <summary>O(n) time, O(n) space</summary>
+
+    ```python
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        """Time: O(n) Space: O(n)"""
+        seen = set()
+
+        for n in nums:
+            if n in seen:
+                return True
+            seen.add(n)
+        return False
+
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        """Time: O(nlogn) Space: O(1)"""
+        nums.sort()
+        for i in range(1, len(nums)):
+            if nums[i] == nums[i - 1]:
+                return True
+        return False
+    ```
+
+    </details>
+
 - 🅱️[**Valid Anagram**](https://leetcode.com/problems/valid-anagram/?ez)☀️:
   [💡](https://www.youtube.com/watch?v=9UtInBqnCgA)
+
   - `s = "anagram", t = "nagaram"` => `true`
   - Counter for each string
-  - O(s+t) time, O(1) space (26 chars)
+  - <details>
+      <summary>O(w) time, O(1) space (26 chars)</summary>
+
+    ```python
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+        count_s = Counter(s)
+        count_t = Counter(t)
+        return count_s == count_t
+    ```
+
+    </details>
+
 - 🅱️🏢[**Two Sum**](https://leetcode.com/problems/two-sum/?ez)☀️:
   [💡](https://youtu.be/KLlXCFG5TnA)
+
   - `nums = [2,7,11,15], target = 9` => `[0,1]`
   - Hashmap seen with index
-  - O(n) time, O(n) space
+  - <details>
+      <summary>O(n) time, O(n) space</summary>
+
+    ```python
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        seen = {}
+        for i, n in enumerate(nums):
+            if target - n in seen:
+                return seen[target - n], i
+            seen[n] = i
+    ```
+
+    </details>
+
 - 🅱️[**Group Anagrams**](https://leetcode.com/problems/group-anagrams/?md)⛅:
   [💡](https://www.youtube.com/watch?v=vzdNOK2oB2E)
+
   - `strs = ["tea","tan","ate","nat"]` => `[["nat","tan"],["ate","tea"]]`
   - Counter for each string, use tuple as key
-  - O(strings\*average_lenth) time, O(strings) space
+  - <details>
+      <summary>O(strings*average_lenth) time, O(strings) space</summary>
+
+    ```python
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        groups = defaultdict(list)
+        for word in strs:
+            groups[tuple(sorted(Counter(word).items()))].append(word)
+        return list(groups.values())
+    ```
+
+    </details>
+
 - 🅱️[**Top K Frequent Elements**](https://leetcode.com/problems/top-k-frequent-elements/?md)⛅:
   [💡](https://www.youtube.com/watch?v=YPTqKIgVk-k)
+
   - `nums = [1,1,1,2,2,3], k = 2` => `[1,2]`
   - Counter, list of frequencies (len(nums)), iterate from end
-  - O(n) time, O(n) space
+  - <details>
+      <summary>O(n) time, O(n) space</summary>
+
+    ```python
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        groups_by_freq = [[] for _ in range(len(nums)+1)]
+        for n, count in Counter(nums).items():
+            groups_by_freq[count].append(n)
+        result = []
+        for i in range(len(nums), -1, -1):
+            for n in groups_by_freq[i]:
+                result.append(n)
+                if len(result) >= k:
+                    return result
+        return result
+    ```
+
+    </details>
+
 - 🅱️[**Product of Array Except Self**](https://leetcode.com/problems/product-of-array-except-self/?md)⛅:
   [💡](https://www.youtube.com/watch?v=bNvIQI2wAjk)
+
   - `nums = [1,2,3,4]` => `[24,12,8,6]`
   - Prefix product, Suffix product.
-  - O(n) time, O(1) space
+  - <details>
+      <summary>O(n) time, O(1) space</summary>
+
+    ```python
+    def productExceptSelf(self, nums):
+        ans, suf, pre = [1]*len(nums), 1, 1
+        for i in range(len(nums)):
+            ans[i] *= pre               # prefix product from one end
+            pre *= nums[i]
+            ans[-1-i] *= suf            # suffix product from other end
+            suf *= nums[-1-i]
+        return ans
+    ```
+
+    </details>
+
 - 🗿[**Valid Sudoku**](https://leetcode.com/problems/valid-sudoku/?md)⛅:
   [💡](https://www.youtube.com/watch?v=TjFXEUCMqI8)
+
   - partially filled 9x9 grid
   - sets, `squares[(r // 3, c // 3)].add(board[r][c])`
-  - O(1) time, O(1) space
+  - <details>
+      <summary>O(1) time, O(1) space</summary>
+
+    ```python
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+
+        for row in board:
+            numbers = [n for n in row if n != "."]
+            if len(set(numbers)) != len(numbers):
+                return False
+
+        for i in range(9):
+            numbers = [row[i] for row in board if row[i] != "."]
+            if len(set(numbers)) != len(numbers):
+                return False
+
+        squares = defaultdict(set)
+        for r in range(9):
+            for c in range(9):
+                block = squares[(r // 3, c // 3)]
+                if board[r][c] != "." and board[r][c] in block:
+                    return False
+                block.add(board[r][c])
+        return True
+    ```
+
+    </details>
+
 - 🅱️[**Encode and Decode Strings**](https://leetcode.com/problems/encode-and-decode-strings/?md)⛅:
   [💡](https://www.youtube.com/watch?v=B1k_sxOSgv8)
+
   - Create single string and split it back
   - Length + Separator
-  - O(n) encode, O(n) decode
+  - <details>
+      <summary>O(n) encode, O(n) decode</summary>
+
+    ```python
+    def encode(self, strs):
+        res = ""
+        for s in strs:
+            res += str(len(s)) + "#" + s
+        return res
+
+    def decode(self, s):
+        res, i = [], 0
+
+        while i < len(s):
+            j = i
+            while s[j] != "#":
+                j += 1
+            length = int(s[i:j])
+            res.append(s[j + 1 : j + 1 + length])
+            i = j + 1 + length
+        return res
+    ```
+
+    </details>
+
 - 🅱️[**Longest Consecutive Sequence**](https://leetcode.com/problems/longest-consecutive-sequence/?md)⛅:
   [💡](https://www.youtube.com/watch?v=P6RZZMu_maU)
+
   - `nums = [100,4,200,1,3,2]` => `4`
   - Set and start if n-1 not in set
-  - O(n) time, O(n) space
+  - <details>
+      <summary>O(n) time, O(n) space</summary>
+
+    ```python
+    def longestConsecutive(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        hashset = set(nums)
+        result = 1
+        for n in hashset:
+            if (n-1) not in hashset:
+                length = 0
+                cur = n
+                while cur in hashset:
+                    cur = cur+1
+                    length += 1
+                result = max(result, length)
+        return result
+    ```
+
+    </details>
 
 ### Two Pointers
 
@@ -167,7 +347,7 @@ for r in range(len(nums)):
 - 🅱️🏢[**Best Time to Buy and Sell Stock**](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/?ez)☀️:
   [💡](https://www.youtube.com/watch?v=1pkOgXD63yU)
   - `prices = [7,1,5,3,6,4]` => `5`
-  - [Kadane's algorithm](https://raw.githubusercontent.com/neetcode-gh/leetcode/main/python/121-Best-Time-To-Buy-and-Sell-Stock.py)
+  - [Kadane's algorithm](https://raw.githubusercontent.com/neetcode-gh/leetcode/main/python/0121-best-time-to-buy-and-sell-stock.py) / Two pointers (start from 0, 1)
   - O(n) time, O(1) space
 - 🅱️🏢[**Longest Substring Without Repeating Characters**](https://leetcode.com/problems/longest-substring-without-repeating-characters/?md)⛅:
   [💡](https://www.youtube.com/watch?v=wiGpQwVHdE0)
