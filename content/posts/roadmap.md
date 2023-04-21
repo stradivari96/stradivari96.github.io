@@ -12,19 +12,18 @@ References and things to learn.
 
 <!--more-->
 
-Mark as done as you go.
-
 [Backend](https://roadmap.sh/backend/)
-/ [Architect](https://roadmap.sh/software-architect/)
+/ [Architect](https://roadmap.sh/software-architect/):
+Mark as done as you go.
 
 ---
 
 ## General
 
-- 🌐[**Refactoring guru**](https://refactoring.guru): Refactoring patterns and Design Patterns
+- 🌐[Refactoring guru](https://refactoring.guru): Refactoring patterns and Design Patterns
 - 🌐[Twelve-factor app](https://12factor.net/): SaaS best practices
-- 📺[CodeAesthetic](https://www.youtube.com/@CodeAesthetic): Misc topics
 - 📚[The Pragmatic Programmer](https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/): Agnostic book about software engineering
+- 🌐[Software Engineering at Google](https://abseil.io/resources/swe-book/html/toc.html): Google's approach to software engineering
 
 ---
 
@@ -32,6 +31,7 @@ Mark as done as you go.
 
 - 📝[DSA](/dsa)
 - 📝[System Design](/posts/system-design/)
+- 📝[Behavioral Questions](/behavioral-questions/)
 
 ---
 
@@ -81,6 +81,9 @@ ORMs are great, but you should know how to use raw SQL.
 
 - 📗[MongoDB Manual](https://www.mongodb.com/docs/manual) / [Little Book](https://www.openmymind.net/2011/3/28/The-Little-MongoDB-Book/)
 - 📕[Redis Documentation](https://redis.io/docs/manual/) / [Little Book](https://www.openmymind.net/2012/1/23/The-Little-Redis-Book/)
+- [Neo4j]
+- [Cassandra]
+- [Firebase]
 
 ---
 
@@ -105,3 +108,20 @@ ORMs are great, but you should know how to use raw SQL.
 
 - [Authentication reddit post](https://www.reddit.com/r/nextjs/comments/svr3zy/authentication_with_nextjs_the_dos_and_donts_and/)
 - [OAuth vulnerability on Booking](https://salt.security/blog/traveling-with-oauth-account-takeover-on-booking-com)
+
+---
+
+## Engineering Blogs
+
+- [Airbnb](https://medium.com/airbnb-engineering/airbnb-engineering-infrastructure/home)
+- [Cloudflare](https://blog.cloudflare.com/)
+- [Discord](https://discord.com/category/engineering)
+- [DoorDash](https://doordash.engineering/blog/)
+- [Dropbox](https://dropbox.tech/infrastructure)
+- [Linkedin](https://engineering.linkedin.com/blog)
+- [Meta](https://engineering.fb.com/)
+- [Pinterest](https://medium.com/pinterest-engineering)
+- [Riot](https://technology.riotgames.com/)
+- [Stripe](https://stripe.com/blog/engineering)
+- [Twitter](https://blog.twitter.com/engineering/en_us)
+- [Uber](https://eng.uber.com/)

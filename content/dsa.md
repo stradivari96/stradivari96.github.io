@@ -2481,12 +2481,35 @@ https://youtu.be/_i4Yxeh5ceQ
 
   - `m = 3, n = 2` => `3`
   - `cache[0, 0] = 1; cache[i, j] = cache.get((i-1, j), 0) + cache.get((i, j-1), 0)`
-  - O(m\*n) time, O(m\*n) space
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(m*n) time, O(n) space</summary>
 
     ```python
+    def uniquePaths(self, m: int, n: int) -> int:
+        cache = {
+            (i, j): 0
+            for i in range(m)
+            for j in range(n)
+        }
+        cache[0, 0] = 1
+        for i in range(m):
+            for j in range(n):
+                if (i, j) == (0, 0):
+                    continue
+                cache[i, j] = cache.get((i-1, j), 0) + cache.get((i, j-1), 0)
 
+        return cache[m-1, n-1]
+
+    def uniquePaths(self, m: int, n: int) -> int:
+      """O(n) space"""
+        row = [1] * n
+
+        for i in range(m - 1):
+            newRow = [1] * n
+            for j in range(n - 2, -1, -1):
+                newRow[j] = newRow[j + 1] + row[j]
+            row = newRow
+        return row[0]
     ```
 
     </details>
@@ -2496,12 +2519,24 @@ https://youtu.be/_i4Yxeh5ceQ
 
   - `text1 = "abcde", text2 = "ace"` => `3` ("ace")
   - dp/recursive, add one and increase both if equal, else get the max of i+1 and j+1
-  - O(m\*n) time, O(m\*n) space (can be reduced)
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(m*n) time, O(m*n)</summary>
 
     ```python
-
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        memo = {}
+        i, j = 0, 0
+        def recursive(i, j):
+            if (i, j) in memo:
+                return memo[i, j]
+            if i == len(text1) or j == len(text2):
+                return 0
+            if text1[i] == text2[j]:
+                memo[i, j] = 1 + recursive(i+1, j+1)
+            else:
+                memo[i, j] = max(recursive(i+1, j), recursive(i, j+1))
+            return memo[i, j]
+        return recursive(0, 0)
     ```
 
     </details>
@@ -2813,12 +2848,18 @@ https://youtu.be/_i4Yxeh5ceQ
 
   - `intervals = [[1,3],[2,6],[8,10],[15,18]]` => `[[1,6],[8,10],[15,18]]`
   - Sort by start, append to result and merge `if start <= result[-1][1]`
-  - O(nlogn) time, O(n) space
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(nlogn) time, O(n) space</summary>
 
     ```python
-
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        result = []
+        for start, end in sorted(intervals):
+            if not result or start > result[-1][1]:
+                result.append([start, end])
+            else:
+                result[-1][1] = max(result[-1][1], end)
+        return result
     ```
 
     </details>
@@ -2828,12 +2869,19 @@ https://youtu.be/_i4Yxeh5ceQ
 
   - `intervals = [[1,2],[2,3],[3,4],[1,3]]` => `1` (number of intervals to remove)
   - sort, update if start >= prev.end, else increase count
-  - O(nlogn) time, O(1) space
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(nlogn) time, O(1) space</summary>
 
     ```python
-
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+        end = float("-inf")
+        overlap = 0
+        for s, e in sorted(intervals, key=lambda x: x[1]):
+            if s >= end:
+                end = e
+            else:
+                overlap += 1
+        return overlap
     ```
 
     </details>
@@ -2843,12 +2891,20 @@ https://youtu.be/_i4Yxeh5ceQ
 
   - `intervals = [(0,30),(5,10),(15,20)]` => `false`
   - sort, if start < prev.end, return false
-  - O(nlogn) time, O(n) space
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(nlogn) time, O(n) space</summary>
 
     ```python
+    def canAttendMeetings(self, intervals):
+        intervals.sort(key=lambda i: i[0])
 
+        for i in range(1, len(intervals)):
+            i1 = intervals[i - 1]
+            i2 = intervals[i]
+
+            if i1[1] > i2[0]:
+                return False
+        return True
     ```
 
     </details>
@@ -2859,12 +2915,24 @@ https://youtu.be/_i4Yxeh5ceQ
 
   - `intervals = [(0,30),(5,10),(15,20)]` => `2`
   - sorted starts and ends, s and e pointers, increment count `if start[s] < end[e]`
-  - O(nlogn) time, O(n) space
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(nlogn) time, O(n) space</summary>
 
     ```python
+    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+        time = []
+        for start, end in intervals:
+            time.append((start, 1))
+            time.append((end, -1))
 
+        time.sort(key=lambda x: (x[0], x[1]))
+
+        count = 0
+        max_count = 0
+        for t in time:
+            count += t[1]
+            max_count = max(max_count, count)
+        return max_count
     ```
 
     </details>
