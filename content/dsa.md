@@ -103,7 +103,7 @@ for r in range(len(nums)):
 
     ```python
     def containsDuplicate(self, nums: List[int]) -> bool:
-        """Time: O(n) Space: O(n)"""
+        """O(n) time, O(n) space"""
         seen = set()
 
         for n in nums:
@@ -113,7 +113,7 @@ for r in range(len(nums)):
         return False
 
     def containsDuplicate(self, nums: List[int]) -> bool:
-        """Time: O(nlogn) Space: O(1)"""
+        """O(nlogn) time, O(1) space"""
         nums.sort()
         for i in range(1, len(nums)):
             if nums[i] == nums[i - 1]:
@@ -1072,6 +1072,31 @@ Remember it can be used on a range.
 
     </details>
 
+- 🅱️[**Merge K Sorted Lists**](https://leetcode.com/problems/merge-k-sorted-lists/?md)⛈️:
+  [💡](https://www.youtube.com/watch?v=q5a5OiGbT6Q)
+
+  - `lists = [[1,4,5],[1,3,4],[2,6]]` => `[1,1,2,3,4,4,5,6]`
+  - Merge two lists at a time.
+  - <details>
+      <summary>O(nlogk) time, O(1) space</summary>
+
+    ```python
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        if not lists or len(lists) == 0:
+            return None
+
+        while len(lists) > 1:
+            mergedLists = []
+            for i in range(0, len(lists), 2):
+                l1 = lists[i]
+                l2 = lists[i + 1] if (i + 1) < len(lists) else None
+                mergedLists.append(self.mergeList(l1, l2))
+            lists = mergedLists
+        return lists[0]
+    ```
+
+    </details>
+
 - 🅱️[**Reorder List**](https://leetcode.com/problems/reorder-list/?md)⛅
   [💡](https://www.youtube.com/watch?v=S5bfdUTrKLM)
 
@@ -1241,20 +1266,6 @@ Remember it can be used on a range.
   - double linked list, cache of key to node, dummy head and tail
   - <details>
       <summary>O(1) time, O(capacity) space</summary>
-
-    ```python
-
-    ```
-
-    </details>
-
-- 🅱️[**Merge K Sorted Lists**](https://leetcode.com/problems/merge-k-sorted-lists/?md)⛈️:
-  [💡](https://www.youtube.com/watch?v=q5a5OiGbT6Q)
-
-  - `lists = [[1,4,5],[1,3,4],[2,6]]` => `[1,1,2,3,4,4,5,6]`
-  - Merge two lists at a time.
-  - <details>
-      <summary>O(nlogk) time, O(1) space</summary>
 
     ```python
 
@@ -1625,7 +1636,54 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    class TrieNode:
+        def __init__(self):
+            self.children = [None] * 26
+            self.end = False
 
+
+    class Trie:
+        def __init__(self):
+            """
+            Initialize your data structure here.
+            """
+            self.root = TrieNode()
+
+        def insert(self, word: str) -> None:
+            """
+            Inserts a word into the trie.
+            """
+            curr = self.root
+            for c in word:
+                i = ord(c) - ord("a")
+                if curr.children[i] == None:
+                    curr.children[i] = TrieNode()
+                curr = curr.children[i]
+            curr.end = True
+
+        def search(self, word: str) -> bool:
+            """
+            Returns if the word is in the trie.
+            """
+            curr = self.root
+            for c in word:
+                i = ord(c) - ord("a")
+                if curr.children[i] == None:
+                    return False
+                curr = curr.children[i]
+            return curr.end
+
+        def startsWith(self, prefix: str) -> bool:
+            """
+            Returns if there is any word in the trie that starts with the given prefix.
+            """
+            curr = self.root
+            for c in prefix:
+                i = ord(c) - ord("a")
+                if curr.children[i] == None:
+                    return False
+                curr = curr.children[i]
+            return True
     ```
 
     </details>
@@ -1640,7 +1698,43 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    
+    class TrieNode:
+        def __init__(self):
+            self.children = {}  # a : TrieNode
+            self.word = False
 
+
+    class WordDictionary:
+        def __init__(self):
+            self.root = TrieNode()
+
+        def addWord(self, word: str) -> None:
+            cur = self.root
+            for c in word:
+                if c not in cur.children:
+                    cur.children[c] = TrieNode()
+                cur = cur.children[c]
+            cur.word = True
+
+        def search(self, word: str) -> bool:
+            def dfs(j, root):
+                cur = root
+
+                for i in range(j, len(word)):
+                    c = word[i]
+                    if c == ".":
+                        for child in cur.children.values():
+                            if dfs(i + 1, child):
+                                return True
+                        return False
+                    else:
+                        if c not in cur.children:
+                            return False
+                        cur = cur.children[c]
+                return cur.word
+
+            return dfs(0, self.root)
     ```
 
     </details>
@@ -1655,7 +1749,69 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    class TrieNode:
+        def __init__(self):
+            self.children = {}
+            self.isWord = False
+            self.refs = 0
 
+        def addWord(self, word):
+            cur = self
+            cur.refs += 1
+            for c in word:
+                if c not in cur.children:
+                    cur.children[c] = TrieNode()
+                cur = cur.children[c]
+                cur.refs += 1
+            cur.isWord = True
+
+        def removeWord(self, word):
+            cur = self
+            cur.refs -= 1
+            for c in word:
+                if c in cur.children:
+                    cur = cur.children[c]
+                    cur.refs -= 1
+
+
+    class Solution:
+        def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+            root = TrieNode()
+            for w in words:
+                root.addWord(w)
+
+            ROWS, COLS = len(board), len(board[0])
+            res, visit = set(), set()
+
+            def dfs(r, c, node, word):
+                if (
+                    r not in range(ROWS) 
+                    or c not in range(COLS)
+                    or board[r][c] not in node.children
+                    or node.children[board[r][c]].refs < 1
+                    or (r, c) in visit
+                ):
+                    return
+
+                visit.add((r, c))
+                node = node.children[board[r][c]]
+                word += board[r][c]
+                if node.isWord:
+                    node.isWord = False
+                    res.add(word)
+                    root.removeWord(word)
+
+                dfs(r + 1, c, node, word)
+                dfs(r - 1, c, node, word)
+                dfs(r, c + 1, node, word)
+                dfs(r, c - 1, node, word)
+                visit.remove((r, c))
+
+            for r in range(ROWS):
+                for c in range(COLS):
+                    dfs(r, c, root, "")
+
+            return list(res)
     ```
 
     </details>
@@ -1768,7 +1924,34 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    class MedianFinder:
+        def __init__(self):
+            """
+            initialize your data structure here.
+            """
+            # two heaps, large, small, minheap, maxheap
+            # heaps should be equal size
+            self.small, self.large = [], []  # maxHeap, minHeap (python default)
 
+        def addNum(self, num: int) -> None:
+            if self.large and num > self.large[0]:
+                heapq.heappush(self.large, num)
+            else:
+                heapq.heappush(self.small, -1 * num)
+
+            if len(self.small) > len(self.large) + 1:
+                val = -1 * heapq.heappop(self.small)
+                heapq.heappush(self.large, val)
+            if len(self.large) > len(self.small) + 1:
+                val = heapq.heappop(self.large)
+                heapq.heappush(self.small, -1 * val)
+
+        def findMedian(self) -> float:
+            if len(self.small) > len(self.large):
+                return -1 * self.small[0]
+            elif len(self.large) > len(self.small):
+                return self.large[0]
+            return (-1 * self.small[0] + self.large[0]) / 2
     ```
 
     </details>
@@ -1823,7 +2006,23 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        res = []
 
+        def dfs(i, cur, total):
+            if total == target:
+                res.append(cur.copy())
+                return
+            if i >= len(candidates) or total > target:
+                return
+
+            cur.append(candidates[i])
+            dfs(i, cur, total + candidates[i])
+            cur.pop()
+            dfs(i + 1, cur, total)
+
+        dfs(0, [], 0)
+        return res
     ```
 
     </details>
@@ -1883,7 +2082,43 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        ROWS, COLS = len(board), len(board[0])
+        path = set()
 
+        def dfs(r, c, i):
+            if i == len(word):
+                return True
+            if (
+                min(r, c) < 0
+                or r >= ROWS
+                or c >= COLS
+                or word[i] != board[r][c]
+                or (r, c) in path
+            ):
+                return False
+            path.add((r, c))
+            res = (
+                dfs(r + 1, c, i + 1)
+                or dfs(r - 1, c, i + 1)
+                or dfs(r, c + 1, i + 1)
+                or dfs(r, c - 1, i + 1)
+            )
+            path.remove((r, c))
+            return res
+
+        # To prevent TLE,reverse the word if frequency of the first letter is more than the last letter's
+        count = defaultdict(int, sum(map(Counter, board), Counter()))
+        if count[word[0]] > count[word[-1]]:
+            word = word[::-1]
+            
+        for r in range(ROWS):
+            for c in range(COLS):
+                if dfs(r, c, 0):
+                    return True
+        return False
+
+    # O(n * m * 4^n)
     ```
 
     </details>
@@ -2001,7 +2236,34 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def numIslands(self, grid: List[List[str]]) -> int:
+        if not grid or not grid[0]:
+            return 0
 
+        islands = 0
+        visit = set()
+        rows, cols = len(grid), len(grid[0])
+
+        def dfs(r, c):
+            if (
+                r not in range(rows)
+                or c not in range(cols)
+                or grid[r][c] == "0"
+                or (r, c) in visit
+            ):
+                return
+
+            visit.add((r, c))
+            directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+            for dr, dc in directions:
+                dfs(r + dr, c + dc)
+
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == "1" and (r, c) not in visit:
+                    islands += 1
+                    dfs(r, c)
+        return islands
     ```
 
     </details>
@@ -2016,7 +2278,20 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def cloneGraph(self, node: "Node") -> "Node":
+        oldToNew = {}
 
+        def dfs(node):
+            if node in oldToNew:
+                return oldToNew[node]
+
+            copy = Node(node.val)
+            oldToNew[node] = copy
+            for nei in node.neighbors:
+                copy.neighbors.append(dfs(nei))
+            return copy
+
+        return dfs(node) if node else None
     ```
 
     </details>
@@ -2046,7 +2321,40 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+        ROWS, COLS = len(heights), len(heights[0])
+        pac, atl = set(), set()
 
+        def dfs(r, c, visit, prevHeight):
+            if (
+                (r, c) in visit
+                or r < 0
+                or c < 0
+                or r == ROWS
+                or c == COLS
+                or heights[r][c] < prevHeight
+            ):
+                return
+            visit.add((r, c))
+            dfs(r + 1, c, visit, heights[r][c])
+            dfs(r - 1, c, visit, heights[r][c])
+            dfs(r, c + 1, visit, heights[r][c])
+            dfs(r, c - 1, visit, heights[r][c])
+
+        for c in range(COLS):
+            dfs(0, c, pac, heights[0][c])
+            dfs(ROWS - 1, c, atl, heights[ROWS - 1][c])
+
+        for r in range(ROWS):
+            dfs(r, 0, pac, heights[r][0])
+            dfs(r, COLS - 1, atl, heights[r][COLS - 1])
+
+        res = []
+        for r in range(ROWS):
+            for c in range(COLS):
+                if (r, c) in pac and (r, c) in atl:
+                    res.append([r, c])
+        return res
     ```
 
     </details>
@@ -2105,7 +2413,34 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        # dfs
+        preMap = {i: [] for i in range(numCourses)}
 
+        # map each course to : prereq list
+        for crs, pre in prerequisites:
+            preMap[crs].append(pre)
+
+        visiting = set()
+
+        def dfs(crs):
+            if crs in visiting:
+                return False
+            if preMap[crs] == []:
+                return True
+
+            visiting.add(crs)
+            for pre in preMap[crs]:
+                if not dfs(pre):
+                    return False
+            visiting.remove(crs)
+            preMap[crs] = []
+            return True
+
+        for c in range(numCourses):
+            if not dfs(c):
+                return False
+        return True
     ```
 
     </details>
@@ -2150,7 +2485,26 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    class UnionFind:
+        def __init__(self):
+            self.f = {}
 
+        def findParent(self, x):
+            y = self.f.get(x, x)
+            if x != y:
+                y = self.f[x] = self.findParent(y)
+            return y
+
+        def union(self, x, y):
+            self.f[self.findParent(x)] = self.findParent(y)
+
+
+    class Solution:
+        def countComponents(self, n: int, edges: List[List[int]]) -> int:
+            dsu = UnionFind()
+            for a, b in edges:
+                dsu.union(a, b)
+            return len(set(dsu.findParent(x) for x in range(n)))
     ```
 
     </details>
@@ -2165,7 +2519,29 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def validTree(self, n, edges):
+        if not n:
+            return True
+        adj = {i: [] for i in range(n)}
+        for n1, n2 in edges:
+            adj[n1].append(n2)
+            adj[n2].append(n1)
 
+        visit = set()
+
+        def dfs(i, prev):
+            if i in visit:
+                return False
+
+            visit.add(i)
+            for j in adj[i]:
+                if j == prev:
+                    continue
+                if not dfs(j, i):
+                    return False
+            return True
+
+        return dfs(0, -1) and n == len(visit)
     ```
 
     </details>
@@ -2255,7 +2631,42 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def alienOrder(self, words: List[str]) -> str:
+        adj = {char: set() for word in words for char in word}
 
+        for i in range(len(words) - 1):
+            w1, w2 = words[i], words[i + 1]
+            minLen = min(len(w1), len(w2))
+            if len(w1) > len(w2) and w1[:minLen] == w2[:minLen]:
+                return ""
+            for j in range(minLen):
+                if w1[j] != w2[j]:
+                    print(w1[j], w2[j])
+                    adj[w1[j]].add(w2[j])
+                    break
+
+        visited = {}  # {char: bool} False visited, True current path
+        res = []
+
+        def dfs(char):
+            if char in visited:
+                return visited[char]
+
+            visited[char] = True
+
+            for neighChar in adj[char]:
+                if dfs(neighChar):
+                    return True
+
+            visited[char] = False
+            res.append(char)
+
+        for char in adj:
+            if dfs(char):
+                return ""
+
+        res.reverse()
+        return "".join(res)
     ```
 
     </details>
@@ -2359,7 +2770,17 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def rob(self, nums: List[int]) -> int:
+        return max(nums[0], self.helper(nums[1:]), self.helper(nums[:-1]))
 
+    def helper(self, nums):
+        rob1, rob2 = 0, 0
+
+        for n in nums:
+            newRob = max(rob1 + n, rob2)
+            rob1 = rob2
+            rob2 = newRob
+        return rob2
     ```
 
     </details>
@@ -2374,7 +2795,30 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def longestPalindrome(self, s: str) -> str:
+        res = ""
+        resLen = 0
 
+        for i in range(len(s)):
+            # odd length
+            l, r = i, i
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                if (r - l + 1) > resLen:
+                    res = s[l : r + 1]
+                    resLen = r - l + 1
+                l -= 1
+                r += 1
+
+            # even length
+            l, r = i, i + 1
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                if (r - l + 1) > resLen:
+                    res = s[l : r + 1]
+                    resLen = r - l + 1
+                l -= 1
+                r += 1
+
+        return res
     ```
 
     </details>
@@ -2389,7 +2833,21 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def countSubstrings(self, s: str) -> int:
+        res = 0
 
+        for i in range(len(s)):
+            res += self.countPali(s, i, i)
+            res += self.countPali(s, i, i + 1)
+        return res
+
+    def countPali(self, s, l, r):
+        res = 0
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            res += 1
+            l -= 1
+            r += 1
+        return res
     ```
 
     </details>
@@ -2404,7 +2862,39 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def numDecodings(self, s: str) -> int:
+        # Memoization
+        dp = {len(s): 1}
 
+        def dfs(i):
+            if i in dp:
+                return dp[i]
+            if s[i] == "0":
+                return 0
+
+            res = dfs(i + 1)
+            if i + 1 < len(s) and (
+                s[i] == "1" or s[i] == "2" and s[i + 1] in "0123456"
+            ):
+                res += dfs(i + 2)
+            dp[i] = res
+            return res
+
+        return dfs(0)
+
+        # Dynamic Programming
+        dp = {len(s): 1}
+        for i in range(len(s) - 1, -1, -1):
+            if s[i] == "0":
+                dp[i] = 0
+            else:
+                dp[i] = dp[i + 1]
+
+            if i + 1 < len(s) and (
+                s[i] == "1" or s[i] == "2" and s[i + 1] in "0123456"
+            ):
+                dp[i] += dp[i + 2]
+        return dp[0]
     ```
 
     </details>
@@ -2419,7 +2909,15 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        dp = [amount + 1] * (amount + 1)
+        dp[0] = 0
 
+        for a in range(1, amount + 1):
+            for c in coins:
+                if a - c >= 0:
+                    dp[a] = min(dp[a], 1 + dp[a - c])
+        return dp[amount] if dp[amount] != amount + 1 else -1
     ```
 
     </details>
@@ -2434,7 +2932,18 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def maxProduct(self, nums: List[int]) -> int:
+        # O(n)/O(1) : Time/Memory
+        res = nums[0]
+        curMin, curMax = 1, 1
 
+        for n in nums:
+
+            tmp = curMax * n
+            curMax = max(n * curMax, n * curMin, n)
+            curMin = min(tmp, n * curMin, n)
+            res = max(res, curMax)
+        return res
     ```
 
     </details>
@@ -2443,7 +2952,26 @@ https://youtu.be/_i4Yxeh5ceQ
   [💡](https://www.youtube.com/watch?v=Sx9NNgInc3A)
   - `s = "leetcode", words = ["leet", "code"]` => `true`
   - start from end, `dp[i] = any(dp[i+len(w)] for w in words if s[i:i+len(w)] == w)`
-  - O(n^2) time, O(n) space
+  - <details>
+      <summary>O(n^2) time, O(n) space</summary>
+
+    ```python
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+
+        dp = [False] * (len(s) + 1)
+        dp[len(s)] = True
+
+        for i in range(len(s) - 1, -1, -1):
+            for w in wordDict:
+                if (i + len(w)) <= len(s) and s[i : i + len(w)] == w:
+                    dp[i] = dp[i + len(w)]
+                if dp[i]:
+                    break
+
+        return dp[0]
+    ```
+
+    </details>
 - 🅱️[**Longest Increasing Subsequence**](https://leetcode.com/problems/longest-increasing-subsequence/?md)⛅:
   [💡](https://www.youtube.com/watch?v=cjWnW0hdF1Y)
 
@@ -2454,7 +2982,14 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        LIS = [1] * len(nums)
 
+        for i in range(len(nums) - 1, -1, -1):
+            for j in range(i + 1, len(nums)):
+                if nums[i] < nums[j]:
+                    LIS[i] = max(LIS[i], 1 + LIS[j])
+        return max(LIS)
     ```
 
     </details>
@@ -2959,12 +3494,20 @@ https://youtu.be/_i4Yxeh5ceQ
   [💡](https://www.youtube.com/watch?v=fMSJSS7eO1w)
 
   - `matrix = [[1,2,3],[4,5,6],[7,8,9]]` => `[[7,4,1],[8,5,2],[9,6,3]]`
-  - while l < r, swap 4 corners, move inwards
+  - reverse rows, transpose
   - <details>
-      <summary>O(n^2) time, O(1) space</summary>
+      <summary>O(cells) time, O(1) space</summary>
 
     ```python
-
+    def rotate(self, matrix: List[List[int]]) -> None:
+        l, r = 0, len(matrix) - 1
+        while l < r:
+          matrix[l], matrix[r] = matrix[r], matrix[l]
+            l += 1
+            r -= 1
+        for i in range(len(matrix)):
+            for j in range(i):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
     ```
 
     </details>
@@ -2978,7 +3521,32 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n^2) time, O(1) space</summary>
 
     ```python
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        res = []
+        left, right = 0, len(matrix[0])
+        top, bottom = 0, len(matrix)
 
+        while left < right and top < bottom:
+            # get every i in the top row
+            for i in range(left, right):
+                res.append(matrix[top][i])
+            top += 1
+            # get every i in the right col
+            for i in range(top, bottom):
+                res.append(matrix[i][right - 1])
+            right -= 1
+            if not (left < right and top < bottom):
+                break
+            # get every i in the bottom row
+            for i in range(right - 1, left - 1, -1):
+                res.append(matrix[bottom - 1][i])
+            bottom -= 1
+            # get every i in the left col
+            for i in range(bottom - 1, top - 1, -1):
+                res.append(matrix[i][left])
+            left += 1
+
+        return res
     ```
 
     </details>
@@ -2992,7 +3560,33 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(mn) time, O(m+n) space</summary>
 
     ```python
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        # O(1)
+        ROWS, COLS = len(matrix), len(matrix[0])
+        rowZero = False
 
+        # determine which rows/cols need to be zero
+        for r in range(ROWS):
+            for c in range(COLS):
+                if matrix[r][c] == 0:
+                    matrix[0][c] = 0
+                    if r > 0:
+                        matrix[r][0] = 0
+                    else:
+                        rowZero = True
+
+        for r in range(1, ROWS):
+            for c in range(1, COLS):
+                if matrix[0][c] == 0 or matrix[r][0] == 0:
+                    matrix[r][c] = 0
+
+        if matrix[0][0] == 0:
+            for r in range(ROWS):
+                matrix[r][0] = 0
+
+        if rowZero:
+            for c in range(COLS):
+                matrix[0][c] = 0
     ```
 
     </details>
@@ -3101,7 +3695,12 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>...</summary>
 
     ```python
-
+    def hammingWeight(self, n: int) -> int:
+        res = 0
+        while n:
+            n &= n - 1
+            res += 1
+        return res
     ```
 
     </details>
@@ -3111,12 +3710,19 @@ https://youtu.be/_i4Yxeh5ceQ
 
   - `n = 2` => `[0,1,1]`
   - `if offset * 2 == i: offset *= i`, `dp[i] = dp[i-offset] + 1`
-  - O(n) time, O(n) space
   - <details>
-      <summary>...</summary>
+      <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def countBits(self, n: int) -> List[int]:
+        dp = [0] * (n + 1)
+        offset = 1
 
+        for i in range(1, n + 1):
+            if offset * 2 == i:
+                offset = i
+            dp[i] = 1 + dp[i - offset]
+        return dp
     ```
 
     </details>
@@ -3126,12 +3732,16 @@ https://youtu.be/_i4Yxeh5ceQ
 
   - `00000000000000000000000000000110` => `01100000000000000000000000000000`
   - `for i in range(32): bit = (n >> i) & 1`, `res |= bit << (31-i)`
-  - O(1) time, O(1) space (32 bit)
   - <details>
-      <summary>...</summary>
+      <summary>O(1) time, O(1) space (32 bit)</summary>
 
     ```python
-
+    def reverseBits(self, n: int) -> int:
+        res = 0
+        for i in range(32):
+            bit = (n >> i) & 1
+            res += (bit << (31 - i))
+        return res
     ```
 
     </details>
@@ -3141,12 +3751,16 @@ https://youtu.be/_i4Yxeh5ceQ
 
   - `nums = [3,0,1]` => `2`
   - `for i, n in enumerate(nums): res ^= n; res ^= i+1`
-  - O(n) time, O(1) space
   - <details>
-      <summary>...</summary>
+      <summary>O(n) time, O(1) space</summary>
 
     ```python
+    def missingNumber(self, nums: List[int]) -> int:
+        res = len(nums)
 
+        for i in range(len(nums)):
+            res += i - nums[i]
+        return res
     ```
 
     </details>
@@ -3160,7 +3774,21 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>...</summary>
 
     ```python
+    def getSum(self, a: int, b: int) -> int:
+        def add(a, b):
+            if not a or not b:
+                return a or b
+            return add(a ^ b, (a & b) << 1)
 
+        if a * b < 0:  # assume a < 0, b > 0
+            if a > 0:
+                return self.getSum(b, a)
+            if add(~a, 1) == b:  # -a == b
+                return 0
+            if add(~a, 1) < b:  # -a < b
+                return add(~add(add(~a, 1), add(~b, 1)), 1)  # -add(-a, -b)
+
+        return add(a, b)  # a*b >= 0 or (-a) > b > 0
     ```
 
     </details>
