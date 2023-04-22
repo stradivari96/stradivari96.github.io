@@ -129,7 +129,7 @@ for r in range(len(nums)):
   - `s = "anagram", t = "nagaram"` => `true`
   - Counter for each string
   - <details>
-      <summary>O(w) time, O(1) space (26 chars)</summary>
+      <summary>O(w) time, O(1) space</summary>
 
     ```python
     def isAnagram(self, s: str, t: str) -> bool:
@@ -3824,12 +3824,19 @@ https://youtu.be/_i4Yxeh5ceQ
 
   - `shouldPrintMessage(1, "foo"), shouldPrintMessage(3, "foo")` => `true, false`
   - Hashmap `{message: timestamp}`, `if self.cache[message] + 10 > timestamp`
-  - O(1) time, O(n) space
   - <details>
-      <summary>...</summary>
+      <summary>O(1) time, O(n) space</summary>
 
     ```python
-
+    def shouldPrintMessage(self, timestamp: int, message: str) -> bool:
+        if message not in self.cache:
+            self.cache[message] = timestamp
+            return True
+        elif self.cache[message] + 10 > timestamp:
+            return False
+        else:
+            self.cache[message] = timestamp
+            return True
     ```
 
     </details>
