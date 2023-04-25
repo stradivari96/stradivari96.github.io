@@ -420,7 +420,7 @@ for r in range(len(nums)):
 
     </details>
 
-- 🗿[**Trapping Rain Water**](https://leetcode.com/problems/trapping-rain-water/?md)⛈️:
+- 🗿[**Trapping Rain Water**](https://leetcode.com/problems/trapping-rain-water/?hd)⛈️:
   [💡](https://www.youtube.com/watch?v=ZI2z5pq0TqA)
 
   - `height = [0,1,0,2,1,0,1,3,2,1,2,1]` => `6`
@@ -543,7 +543,7 @@ for r in range(len(nums)):
 
     </details>
 
-- 🅱️[**Minimum Window Substring**](https://leetcode.com/problems/minimum-window-substring/?md)⛈️:
+- 🅱️[**Minimum Window Substring**](https://leetcode.com/problems/minimum-window-substring/?hd)⛈️:
   [💡](https://www.youtube.com/watch?v=jSto0O4AJbM)
 
   - `s = "ADOBECODEBANC", t = "ABC"` => `"BANC"`
@@ -569,7 +569,7 @@ for r in range(len(nums)):
 
     </details>
 
-- 🗿[**Sliding Window Maximum**](https://leetcode.com/problems/sliding-window-maximum/?md)⛈️:
+- 🗿[**Sliding Window Maximum**](https://leetcode.com/problems/sliding-window-maximum/?hd)⛈️:
   [💡](https://www.youtube.com/watch?v=DfljaUwZsOk)
 
   - `nums = [1,3,-1,-3,5,3,6,7], k = 3` => `[3,3,5,5,6,7]`
@@ -765,7 +765,7 @@ for r in range(len(nums)):
 
     </details>
 
-- 🗿[**Largest Rectangle in Histogram**](https://leetcode.com/problems/largest-rectangle-in-histogram/?md)⛈️:
+- 🗿[**Largest Rectangle in Histogram**](https://leetcode.com/problems/largest-rectangle-in-histogram/?hd)⛈️:
   [💡](https://www.youtube.com/watch?v=zx5Sw9130L0)
 
   - `heights = [2,1,5,6,2,3]` => `10`
@@ -891,13 +891,12 @@ Remember it can be used on a range.
             if target == nums[mid]:
                 return mid
 
-            # left sorted
             if nums[l] <= nums[mid]:
                 if nums[l] <= target <= nums[mid]:
                     r = mid-1
                 else:
                     l = mid+1
-            # right sorted
+
             else:
                 if nums[mid] <= target <= nums[r]:
                     l = mid+1
@@ -973,7 +972,7 @@ Remember it can be used on a range.
 
     </details>
 
-- 🗿 🏢[**Median of Two Sorted Arrays**](https://leetcode.com/problems/median-of-two-sorted-arrays/?md)⛈️:
+- 🗿 🏢[**Median of Two Sorted Arrays**](https://leetcode.com/problems/median-of-two-sorted-arrays/?hd)⛈️:
   [💡](https://youtu.be/q6IEA26hvXc)
 
   - `nums1 = [1,2], nums2 = [3,4]` => `2.5`
@@ -1072,7 +1071,7 @@ Remember it can be used on a range.
 
     </details>
 
-- 🅱️[**Merge K Sorted Lists**](https://leetcode.com/problems/merge-k-sorted-lists/?md)⛈️:
+- 🅱️[**Merge K Sorted Lists**](https://leetcode.com/problems/merge-k-sorted-lists/?hd)⛈️:
   [💡](https://www.youtube.com/watch?v=q5a5OiGbT6Q)
 
   - `lists = [[1,4,5],[1,3,4],[2,6]]` => `[1,1,2,3,4,4,5,6]`
@@ -1227,19 +1226,25 @@ Remember it can be used on a range.
   [💡](https://www.youtube.com/watch?v=gBTe7lFR3vc)
 
   - `head = [3,2,0,-4], -4 -> 2` => `true`
-  - slow = fast = head, while fast and fast.next:
+  - Floyd's Tortoise and hare / hashset of seen
   - <details>
       <summary>O(n) time, O(1) space</summary>
 
     ```python
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        slow = head
-        fast = head
+        slow = fast = head
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
-            if slow == fast:
-                return True
+            if slow == fast: return True
+        return False
+    
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        seen = set()
+        while head:
+            if id(head) in seen: return True
+            seen.add(id(head))
+            head = head.next
         return False
     ```
 
@@ -1254,7 +1259,20 @@ Remember it can be used on a range.
       <summary>O(n) time, O(1) space</summary>
 
     ```python
+    def findDuplicate(self, nums: List[int]) -> int:
+        slow, fast = 0, 0
+        while True :
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+            if slow == fast:
+                break
 
+        slow2 = 0
+        while True:
+            slow = nums[slow]
+            slow2 = nums[slow2]
+            if slow == slow2:
+                return slow
     ```
 
     </details>
@@ -1263,17 +1281,53 @@ Remember it can be used on a range.
   [💡](https://www.youtube.com/watch?v=7ABFKPK2hD4)
 
   - `LRUCache(int capacity)`, `get(int key)`, `put(int key, int value)`
-  - double linked list, cache of key to node, dummy head and tail
+  - double linked list (easy remove/insertion), dict key -> node, dummy head and tail
   - <details>
       <summary>O(1) time, O(capacity) space</summary>
 
     ```python
+    def __init__(self, capacity: int):
+        self.cap = capacity
+        self.cache = {}
 
+        self.left = Node(0, 0)
+        self.right = Node(0, 0)
+        self.left.next = self.right
+        self.right.prev = self.left
+
+    def get(self, key: int) -> int:
+        if key in self.cache:
+            self.remove(self.cache[key])
+            self.insert(self.cache[key])
+            return self.cache[key].val
+        return -1
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.cache:
+            self.remove(self.cache[key])
+        self.cache[key] = Node(key, value)
+        self.insert(self.cache[key])
+
+        if len(self.cache) > self.cap:
+            lru = self.left.next
+            self.remove(lru)
+            del self.cache[lru.key]
+    
+    def remove(self, node):
+        prev, nxt = node.prev, node.next
+        prev.next, nxt.prev = nxt, prev
+    
+    def insert(self, node):
+        prev, nxt = self.right.prev, self.right
+        prev.next = node
+        self.right.prev = node
+        node.next = nxt
+        node.prev = prev
     ```
 
     </details>
 
-- 🗿[**Reverse Nodes in k-Group**](https://leetcode.com/problems/reverse-nodes-in-k-group/?md)⛈️:
+- 🗿[**Reverse Nodes in k-Group**](https://leetcode.com/problems/reverse-nodes-in-k-group/?hd)⛈️:
   [💡](https://www.youtube.com/watch?v=1UOPsfP85V4)
 
   - `head = [1,2,3,4,5], k = 2` => `[2,1,4,3,5]`
@@ -1376,7 +1430,7 @@ Careful with recursion limit (bound to the application stack)
   [💡](https://www.youtube.com/watch?v=vRbbcKXCxOw)
 
   - `p = [1,2,3], q = [1,2,3]` => `true`
-  - `isSameTree(p.left, q.left) and isSameTree(p.right, q.right)`
+  - check None, check val and recursive call
   - <details>
       <summary>O(n) time, O(height) space</summary>
 
@@ -1397,7 +1451,7 @@ Careful with recursion limit (bound to the application stack)
   - `s = [3,4,5,1,2], t = [4,1,2]` => `true`
   - `isSameTree(s, t) or isSubtree(s.left, t) or isSubtree(s.right, t)`
   - <details>
-      <summary>O(nm) time, O(n+m) space</summary>
+      <summary>O(n*m) time, O(n+m) space</summary>
 
     ```python
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
@@ -1484,7 +1538,7 @@ Careful with recursion limit (bound to the application stack)
 
     </details>
 
-- 🅱️[**Binary Tree Maximum Path Sum**](https://leetcode.com/problems/binary-tree-maximum-path-sum/?md)⛈️:
+- 🅱️[**Binary Tree Maximum Path Sum**](https://leetcode.com/problems/binary-tree-maximum-path-sum/?hd)⛈️:
   [💡](https://leetcode.com/problems/binary-tree-maximum-path-sum/solutions/603423/python-recursion-stack-thinking-process-diagram/)
 
   - `root = [1,2,3]` => `6`
@@ -1513,7 +1567,7 @@ Careful with recursion limit (bound to the application stack)
 
     </details>
 
-- 🅱️[**Serialize and Deserialize Binary Tree**](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/?md)⛈️:
+- 🅱️[**Serialize and Deserialize Binary Tree**](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/?hd)⛈️:
   [💡](https://www.youtube.com/watch?v=u4JAi2JJhI8)
 
   - `serialize(self, root)` and `deserialize(self, data)`
@@ -1739,7 +1793,7 @@ Careful with recursion limit (bound to the application stack)
 
     </details>
 
-- 🅱️[**Word Search II**](https://leetcode.com/problems/word-search-ii/?md)⛈️
+- 🅱️[**Word Search II**](https://leetcode.com/problems/word-search-ii/?hd)⛈️
   [💡](https://www.youtube.com/watch?v=asbcE9mZz_U)
 
   - `board, words = ["oath","pea","eat","rain"]` => `["eat","oath"]`
@@ -2153,7 +2207,7 @@ Careful with recursion limit (bound to the application stack)
 
     </details>
 
-- 🗿[**N Queens**](https://leetcode.com/problems/n-queens/?md)⛈️:
+- 🗿[**N Queens**](https://leetcode.com/problems/n-queens/?hd)⛈️:
   [💡](https://www.youtube.com/watch?v=Ph95IHmRp5M)
 
   - `n = 4` => `[[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]]`
@@ -2546,7 +2600,7 @@ Careful with recursion limit (bound to the application stack)
 
     </details>
 
-- 🗿[**Word Ladder**](https://leetcode.com/problems/word-ladder/?md)⛈️:
+- 🗿[**Word Ladder**](https://leetcode.com/problems/word-ladder/?hd)⛈️:
   [💡](https://www.youtube.com/watch?v=h9iTnkgv05E)
 
   - `beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"]` => `5`
@@ -2563,7 +2617,7 @@ Careful with recursion limit (bound to the application stack)
 
 ### Advanced
 
-- 🗿[**Reconstruct Itinerary**](https://leetcode.com/problems/reconstruct-itinerary/?md)⛈️:
+- 🗿[**Reconstruct Itinerary**](https://leetcode.com/problems/reconstruct-itinerary/?hd)⛈️:
   [💡](https://www.youtube.com/watch?v=ZyB_gQ8vqGA)
 
   - `tickets = [["MUC","LHR"],["JFK","MUC"],["SFO","SJC"],["LHR","SFO"]]` => `["JFK","MUC","LHR","SFO","SJC"]`
@@ -2608,7 +2662,7 @@ Careful with recursion limit (bound to the application stack)
 
     </details>
 
-- 🗿 🏢[**Swim in Rising Water**](https://leetcode.com/problems/swim-in-rising-water/?md)⛈️:
+- 🗿 🏢[**Swim in Rising Water**](https://leetcode.com/problems/swim-in-rising-water/?hd)⛈️:
   [💡](https://www.youtube.com/watch?v=amvrKlMLuGY)
 
   - `grid = [[0,2],[1,3]]` => `3`
@@ -2623,7 +2677,7 @@ Careful with recursion limit (bound to the application stack)
 
     </details>
 
-- 🅱️[**Alien Dictionary**](https://leetcode.com/problems/alien-dictionary/?md)⛈️:
+- 🅱️[**Alien Dictionary**](https://leetcode.com/problems/alien-dictionary/?hd)⛈️:
   [💡](https://www.youtube.com/watch?v=6kTZYvNNyps)
 
   - topological sort, DFS cycle detection.
@@ -2712,15 +2766,11 @@ https://youtu.be/_i4Yxeh5ceQ
 
     ```python
     def climbStairs(self, n: int) -> int:
-        if n == 1: return 1
-        if n == 2: return 2
-        cur = 0
-        prev1, prev2 = 1, 2
-        for i in range(3, n+1):
-            cur = prev1 + prev2
-            prev1 = prev2
-            prev2 = cur
-        return cur
+        prev1 = 1
+        prev2 = 1
+        for _ in range(2, n+1):
+            prev1, prev2 = prev2, prev1+prev2
+        return prev2
     ```
 
     </details>
@@ -3135,7 +3185,7 @@ https://youtu.be/_i4Yxeh5ceQ
 
     </details>
 
-- 🗿 🏢[**Longest Increasing Path in a Matrix**](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/?md)⛈️:
+- 🗿 🏢[**Longest Increasing Path in a Matrix**](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/?hd)⛈️:
   [💡](https://www.youtube.com/watch?v=wCc_nd-GiEc)
 
   - `matrix = [[9,9,4],[6,6,8],[2,1,1]]` => `4` (1, 2, 6, 9)
@@ -3150,7 +3200,7 @@ https://youtu.be/_i4Yxeh5ceQ
 
     </details>
 
-- 🗿[**Distinct Subsequences**](https://leetcode.com/problems/distinct-subsequences/?md)⛈️:
+- 🗿[**Distinct Subsequences**](https://leetcode.com/problems/distinct-subsequences/?hd)⛈️:
   [💡](https://www.youtube.com/watch?v=-RDzMJ33nx8)
 
   - `s = "rabbbit", t = "rabbit"` => `3` (rabbbit, rabbbit, rabbbit)
@@ -3165,7 +3215,7 @@ https://youtu.be/_i4Yxeh5ceQ
 
     </details>
 
-- 🗿[**Edit Distance**](https://leetcode.com/problems/edit-distance/?md)⛈️:
+- 🗿[**Edit Distance**](https://leetcode.com/problems/edit-distance/?hd)⛈️:
   [💡](https://leetcode.com/problems/edit-distance/solutions/159295/python-solutions-and-intuition/?orderBy=most_votes)
 
   - `word1 = "horse", word2 = "ros"` => `3`
@@ -3180,7 +3230,7 @@ https://youtu.be/_i4Yxeh5ceQ
 
     </details>
 
-- 🗿[**Burst Balloons**](https://leetcode.com/problems/burst-balloons/?md)⛈️:
+- 🗿[**Burst Balloons**](https://leetcode.com/problems/burst-balloons/?hd)⛈️:
   [💡](https://www.youtube.com/watch?v=VFskby7lUbw)
 
   - `nums = [3,1,5,8]` => `167` (3\*1\*5 + 3\*5\*8 + 1\*3\*8 + 1\*8\*1)
@@ -3195,7 +3245,7 @@ https://youtu.be/_i4Yxeh5ceQ
 
     </details>
 
-- 🗿[**Regular Expression Matching**](https://leetcode.com/problems/regular-expression-matching/?md)⛈️:
+- 🗿[**Regular Expression Matching**](https://leetcode.com/problems/regular-expression-matching/?hd)⛈️:
   [💡](https://www.youtube.com/watch?v=HAA8mgxlov8)
 
   - `s = "aa", p = "a"` => `false`
@@ -3472,7 +3522,7 @@ https://youtu.be/_i4Yxeh5ceQ
 
     </details>
 
-- 🗿[**Minimum Interval to Include Each Query**](https://leetcode.com/problems/minimum-interval-to-include-each-query/?md)⛈️:
+- 🗿[**Minimum Interval to Include Each Query**](https://leetcode.com/problems/minimum-interval-to-include-each-query/?hd)⛈️:
   [💡](https://www.youtube.com/watch?v=5hQ5WWW5awQ)
 
   - `intervals = [[1,4],[2,4],[3,6],[4,4]], queries = [2,3,4,5]` => `[3,-1,3,4]`
