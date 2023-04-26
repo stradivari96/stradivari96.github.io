@@ -13,7 +13,7 @@ Some notes about DSA
     function openRandomLink(neetcode, tag) {
         var links = document.querySelectorAll("a");
         links = Array.from(links)
-        links = links.filter(a => a.href.startsWith("https://leetcode.com/problems/") && !a.href.includes("solutions"));
+        links = links.filter(a => (a.href.startsWith("https://leetcode.com/problems/") || a.href.startsWith("https://www.lintcode.com/")) && !a.href.includes("solutions"));
         var limit = neetcode ? 150 : links.length;
         var randomLink = links[Math.floor(Math.random() * limit)];
         while (tag && !randomLink.href.includes(tag)) {
@@ -25,7 +25,7 @@ Some notes about DSA
     window.onload = function() {
         var links = document.querySelectorAll("a");
         links = Array.from(links)
-        links = links.filter(a => a.href.startsWith("https://leetcode.com/") || a.href.includes("youtu"));
+        links = links.filter(a => a.href.startsWith("https://leetcode.com/") || a.href.startsWith("https://www.lintcode.com/") || a.href.includes("youtu"));
         links.forEach(a => a.target = "_blank");
     }
 </script>
@@ -97,7 +97,7 @@ for r in range(len(nums)):
   [💡](https://www.youtube.com/watch?v=3OamzN90kPg)
 
   - `nums = [1,2,3,1]` => `true`
-  - Hashmap seen / sort
+  - Hashset seen / sort and check i and i+1
   - <details>
       <summary>O(n) time, O(n) space</summary>
 
@@ -127,7 +127,7 @@ for r in range(len(nums)):
   [💡](https://www.youtube.com/watch?v=9UtInBqnCgA)
 
   - `s = "anagram", t = "nagaram"` => `true`
-  - Counter for each string
+  - 2 Counters / 1 counter and decrease / sort
   - <details>
       <summary>O(w) time, O(1) space</summary>
 
@@ -146,7 +146,7 @@ for r in range(len(nums)):
   [💡](https://youtu.be/KLlXCFG5TnA)
 
   - `nums = [2,7,11,15], target = 9` => `[0,1]`
-  - Hashmap seen with index
+  - Hashmap seen and store index, look for complement
   - <details>
       <summary>O(n) time, O(n) space</summary>
 
@@ -2780,12 +2780,17 @@ https://youtu.be/_i4Yxeh5ceQ
 
   - `cost = [10, 15, 20]` => `15` (start from 0 or 1, 1 or 2 steps)
   - `new = min(prev1+c[i-2], prev2+c[i-1]); prev1 = prev2; prev2 = new`
-  - O(n) time, O(1) space
   - <details>
       <summary>O(n) time, O(n) space</summary>
 
     ```python
-
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        a = 0
+        b = 0
+        # min_cost[i] -> min(min_cost[i-1]+cost[i-1], min_cost[i-2]+cost[i-2])
+        for i in range(2, len(cost)+1):
+            a, b = b, min(a+cost[i-2], b+cost[i-1])
+        return b
     ```
 
     </details>
@@ -2815,9 +2820,8 @@ https://youtu.be/_i4Yxeh5ceQ
 
   - `nums = [2,3,2]` => `3` (circular)
   - `max(nums[0], rob1(nums[1:]), rob1(nums[:-1]))`
-  - O(n) time, O(1) space
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(n) time, O(1) space</summary>
 
     ```python
     def rob(self, nums: List[int]) -> int:
@@ -2840,9 +2844,8 @@ https://youtu.be/_i4Yxeh5ceQ
 
   - `s = "babad"` => `"bab"` or `"aba"`
   - for i in range(len(s)): expand around l, r = 1, 1 and l, r = i, i+1
-  - O(n^2) time, O(1) space
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(n^2) time, O(1) space</summary>
 
     ```python
     def longestPalindrome(self, s: str) -> str:
@@ -2877,10 +2880,9 @@ https://youtu.be/_i4Yxeh5ceQ
   [💡](https://www.youtube.com/watch?v=4RACzI5-du8)
 
   - `s = "abc"` => `3` (a, b, c)
-  - similar to the preview one, expand and add to count
-  - O(n^2) time, O(1) space
+  - similar to the previous one, expand and add to count
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(n^2) time, O(1) space</summary>
 
     ```python
     def countSubstrings(self, s: str) -> int:
@@ -3471,7 +3473,7 @@ https://youtu.be/_i4Yxeh5ceQ
 
     </details>
 
-- 🅱️[**Meeting Rooms**](https://leetcode.com/problems/meeting-rooms/?ez)☀️:
+- 🅱️[**Meeting Rooms**](https://www.lintcode.com/problem/920/?ez)☀️:
   [💡](https://www.youtube.com/watch?v=PaJxqZVPhbg)
 
   - `intervals = [(0,30),(5,10),(15,20)]` => `false`
@@ -3494,7 +3496,7 @@ https://youtu.be/_i4Yxeh5ceQ
 
     </details>
 
-- 🅱️🏢[**Meeting Rooms II**](https://leetcode.com/problems/meeting-rooms-ii/?md)⛅:
+- 🅱️🏢[**Meeting Rooms II**](https://www.lintcode.com/problem/919/?md)⛅:
   [💡](https://www.youtube.com/watch?v=FdzJmTCVyJU)
   min number of conference rooms.
 
