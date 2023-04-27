@@ -14,11 +14,14 @@ Some notes about DSA
         var links = document.querySelectorAll("a");
         links = Array.from(links)
         links = links.filter(a => (a.href.startsWith("https://leetcode.com/problems/") || a.href.startsWith("https://www.lintcode.com/")) && !a.href.includes("solutions"));
+        // first 150 are from neetcode
         var limit = neetcode ? 150 : links.length;
-        var randomLink = links[Math.floor(Math.random() * limit)];
-        while (tag && !randomLink.href.includes(tag)) {
-            randomLink = links[Math.floor(Math.random() * limit)];
+        links = links.slice(0, limit);
+        if (tag) {
+            links = links.filter(a => a.href.includes(tag));
         }
+        console.log(links.length)
+        var randomLink = links[Math.floor(Math.random() * links.length)];
         randomLink.scrollIntoView();
         window.open(randomLink.href, "_blank");
     }
@@ -1022,7 +1025,7 @@ Remember it can be used on a range.
   [💡](https://www.youtube.com/watch?v=G0_I-ZF0S38)
 
   - `head = [1,2]` => `[2,1]`
-  - while cur: ..., tmp, update prev and cur, return prev
+  - store previous, save cur.next in temp
   - <details>
       <summary>O(n) time, O(1) space</summary>
 
@@ -1360,22 +1363,16 @@ Careful with recursion limit (bound to the application stack)
         stack = [root]
         while stack:
             node = stack.pop()
-            if node is None:
-                continue
-            left = node.left
-            right = node.right
-            node.left = right
-            node.right = left
-            stack.append(left)
-            stack.append(right)
+            if node is None: continue
+            node.left, node.right = node.right, node.left
+            stack.append(node.left)
+            stack.append(node.right)
         return root
 
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         if not root:
             return None
-        left, right = root.left, root.right
-        root.left = self.invertTree(right)
-        root.right = self.invertTree(left)
+        root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
         return root
     ```
 
@@ -2909,7 +2906,6 @@ https://youtu.be/_i4Yxeh5ceQ
 
   - `s = "12"` => `2` ("AB" or "L")
   - start from end, `dp[i] = dp[i+1]` add `dp[i+2]` if `dp[i:i+2]` is valid
-  - O(n) time, O(n) space
   - <details>
       <summary>O(n) time, O(n) space</summary>
 
@@ -3726,13 +3722,16 @@ https://youtu.be/_i4Yxeh5ceQ
   [💡](https://www.youtube.com/watch?v=qMPX1AOa83k)
 
   - `nums = [2,2,1]` => `1`
-  - result ^= n
-  - O(n) time, O(1) space
+  - XOR / hashset
   - <details>
-      <summary>...</summary>
+      <summary>O(n) time, O(1) space</summary>
 
     ```python
-
+    def singleNumber(self, nums: List[int]) -> int:
+        result = 0
+        for n in nums:
+            result ^= n
+        return result
     ```
 
     </details>
