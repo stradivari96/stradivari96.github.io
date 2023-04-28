@@ -1399,12 +1399,23 @@ Careful with recursion limit (bound to the application stack)
   [💡](https://www.youtube.com/watch?v=bkxqA8Rfv04)
 
   - `root = [1,2,3,4,5]` => `3`
-  - dfs, path: `res = max(res, left+right)`, max length: `return max(left, right) + 1`
+  - def dfs(node) that returns depth, update global diameter
   - <details>
       <summary>O(n) time, O(height) space</summary>
 
     ```python
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        self.diameter = 0
+        self.dfs(root)
+        return self.diameter
 
+    def dfs(self, node):
+        if not node:
+            return 0
+        left = self.dfs(node.left)
+        right = self.dfs(node.right)
+        self.diameter = max(self.diameter, left+right)
+        return 1 + max(left, right)
     ```
 
     </details>
@@ -1413,12 +1424,21 @@ Careful with recursion limit (bound to the application stack)
   [💡](https://leetcode.com/problems/balanced-binary-tree/solutions/407546/balanced-binary-tree/?ez=&orderBy=most_votes)
 
   - `root = [3,9,20,null,null,15,7]` => `true`
-  - recursive, `abs(height(left)-height(right)) <= 1`
+  - def dfs(node) that returns depth, update global balanced
   - <details>
       <summary>O(n) time, O(height) space</summary>
 
     ```python
+    def isBalanced(self, root):
+        self.bal = True
+        self.dfs(root)
+        return self.bal
 
+    def dfs(self, node):
+         if not node: return 0
+         lft, rgh = self.dfs(node.left), self.dfs(node.right)
+         if abs(lft - rgh) > 1: self.bal = False
+         return max(lft, rgh) + 1
     ```
 
     </details>
@@ -1880,12 +1900,20 @@ Careful with recursion limit (bound to the application stack)
 
   - `KthLargest(int k, int[] nums)`, `add(num) -> int`
   - simple minheap, pop if len > k, return heap[0]
-  - O(logk) time, O(k) space
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(logk) time, O(k) space</summary>
 
     ```python
+    def __init__(self, k: int, nums: List[int]):
+        heapq.heapify(nums) # O(n)
+        self.heap = nums
+        self.k = k
 
+    def add(self, val: int) -> int:
+        heapq.heappush(self.heap, val)
+        while len(self.heap) > self.k:
+            heapq.heappop(self.heap) # O(logk)
+        return self.heap[0]
     ```
 
     </details>
@@ -1895,12 +1923,20 @@ Careful with recursion limit (bound to the application stack)
 
   - `stones = [2,7,4,1,8,1]` => `1`
   - Heapify, pop 2 largest, push diff, repeat while len > 1
-  - O(nlogn) time, O(n) space
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(nlogn) time, O(n) space</summary>
 
     ```python
-
+    def lastStoneWeight(self, stones: List[int]) -> int:
+        result = [-s for s in stones]
+        heapq.heapify(result) # n
+        while len(result) > 1: # n times
+            y = heapq.heappop(result)  # logn
+            x = heapq.heappop(result)
+            if x != y:
+                heapq.heappush(result, y-x) # logn
+        # nlogn
+        return -result[0] if result else 0
     ```
 
     </details>
@@ -3645,10 +3681,15 @@ https://youtu.be/_i4Yxeh5ceQ
   - `n = 19` => `true` (`12 + 92 = 82 |...| 12 + 02 + 02 = 1`)
   - Hashset seen or Floyd's cycle detection
   - <details>
-      <summary>...</summary>
+      <summary>O(klogn), O(k) space -> k is num of iterations</summary>
 
     ```python
-
+    def isHappy(self, n):
+        seen = set()
+        while n not in seen:
+            seen.add(n)
+            n = sum([int(x) **2 for x in str(n)])
+        return n == 1
     ```
 
     </details>
@@ -3657,12 +3698,26 @@ https://youtu.be/_i4Yxeh5ceQ
   [💡](https://www.youtube.com/watch?v=jIaA8boiG1s)
 
   - `digits = [1,2,3]` => `[1,2,4]`
-  - carry = (digits[i]+carry) // 10, return [1]+result if carry
+  - iterate reverse, carry variable, check carry at end
   - <details>
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def plusOne(self, digits: List[int]) -> List[int]:
+        result = []
+        carry = 1
+        for i in range(len(digits)-1, -1, -1):
+            n = digits[i]+carry
+            if n == 10:
+                carry = 1
+                n = 0
+            else:
+                carry = 0
+            result.append(n)
 
+        if carry:
+            result.append(1)
+        return result[::-1]
     ```
 
     </details>
@@ -3740,18 +3795,17 @@ https://youtu.be/_i4Yxeh5ceQ
   [💡](https://www.youtube.com/watch?v=5Km3utixwZs)
 
   - `n = 11` => `3` (1011)
-  - either `res += n & 1` and `n >> 1` or just `n = n & (n-1)` and `res += 1`
-  - O(logn) time, O(1) space
+  - either `res += n & 1` and `n >> 1`
   - <details>
-      <summary>...</summary>
+      <summary>O(logn) time, O(1) space</summary>
 
     ```python
     def hammingWeight(self, n: int) -> int:
-        res = 0
+        result = 0
         while n:
-            n &= n - 1
-            res += 1
-        return res
+            result += n & 1
+            n = n >> 1
+        return result
     ```
 
     </details>
@@ -3801,17 +3855,18 @@ https://youtu.be/_i4Yxeh5ceQ
   [💡](https://www.youtube.com/watch?v=WnPLSRLSANE)
 
   - `nums = [3,0,1]` => `2`
-  - `for i, n in enumerate(nums): res ^= n; res ^= i+1`
+  - XOR index+1 and value, similar to duplicate number
   - <details>
       <summary>O(n) time, O(1) space</summary>
 
     ```python
     def missingNumber(self, nums: List[int]) -> int:
-        res = len(nums)
-
-        for i in range(len(nums)):
-            res += i - nums[i]
-        return res
+        result = 0
+        
+        for counter,value in enumerate(nums):
+            result ^= counter+1
+            result ^= value
+        return result
     ```
 
     </details>
