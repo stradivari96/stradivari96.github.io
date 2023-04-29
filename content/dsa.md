@@ -477,23 +477,20 @@ for r in range(len(nums)):
   [💡](https://www.youtube.com/watch?v=wiGpQwVHdE0)
 
   - `s = "abcabcbb"` => `3` ("abc")
-  - Hashmap (seen, index), `ans = max(ans, i - start + 1)`, update start if < index+1
+  - Hashmap (seen, index), left = max(left, seen[c]+1)
   - <details>
       <summary>O(n) time, O(1) space</summary>
 
     ```python
     def lengthOfLongestSubstring(self, s: str) -> int:
-        if not s:
-            return 0
-
-        seen_idx = {}
-        result = 1
-        start = 0
-        for idx, char in enumerate(s):
-            if char in seen_idx and start <= seen_idx[char]+1:
-                start = seen_idx[char]+1
-            seen_idx[char] = idx
-            result = max(result, idx-start+1)
+        result = 0
+        l = 0
+        last_seen = {}
+        for i, c in enumerate(s):
+            if c in last_seen:
+                l = max(l, last_seen[c]+1)
+            last_seen[c] = i
+            result = max(result, i-l+1)
         return result
     ```
 
@@ -695,9 +692,9 @@ for r in range(len(nums)):
   [💡](https://www.youtube.com/watch?v=s9fokUqJ76A)
 
   - `n = 3` => `["((()))","(()())","(())()","()(())","()()()"]`
-  - stack, backtracking(opened, closed)
+  - stack, backtracking, dfs(opened, closed)
   - <details>
-      <summary>Exponential</summary>
+      <summary>O(2^(2n)) time, O(n) space</summary>
 
     ```python
     def generateParenthesis(self, n: int) -> List[str]:
@@ -1195,32 +1192,23 @@ Remember it can be used on a range.
 
     ```python
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        p1 = l1
-        p2 = l2
-        dummy = ListNode()
-        cur = dummy
+        head = ListNode()
+        cur = head
         carry = 0
-
-        while p1 and p2:
-           sum_ = p1.val + p2.val + carry
-           cur.next = ListNode(sum_%10)
-           cur = cur.next
-           p1 = p1.next
-           p2 = p2.next
-           carry = sum_ // 10
-
-        remainder = p1 or p2
-        while remainder:
-            sum_ = remainder.val + carry
-            cur.next = ListNode(sum_%10)
+        while l1 or l2 or carry:
+            cur.next = ListNode()
             cur = cur.next
-            remainder = remainder.next
-            carry = sum_ // 10
-
-        if carry:
-            cur.next = ListNode(1)
-
-        return dummy.next
+            v1 = l1.val if l1 else 0
+            v2 = l2.val if l2 else 0
+            cur.val = v1 + v2 + carry
+            if cur.val >= 10:
+                cur.val = cur.val % 10
+                carry = 1
+            else:
+                carry = 0
+            if l1: l1 = l1.next
+            if l2: l2 = l2.next
+        return head.next
     ```
 
     </details>
@@ -1530,7 +1518,25 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(height) space</summary>
 
     ```python
+    def goodNodes(self, root: TreeNode) -> int:
+        if not root:
+            return 0
 
+        result = 0
+        def dfs(node, max_so_far):
+            nonlocal result
+            if not node:
+                return
+
+            max_so_far = max(max_so_far, node.val)
+            if node.val >= max_so_far:
+                result += 1
+
+            dfs(node.left, max_so_far)
+            dfs(node.right, max_so_far)
+
+        dfs(root, root.val)
+        return result
     ```
 
     </details>
@@ -1539,16 +1545,17 @@ Careful with recursion limit (bound to the application stack)
   [💡](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/solutions/34579/python-short-recursive-solution/)
 
   - `preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]` => `[3,9,20,null,null,15,7]`
-  - ...
+  - recursive, pop(0) from preorder, find index in inorder, split inorder
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(n^2) time, O(n) space</summary>
 
     ```python
     def buildTree(self, preorder, inorder):
-    if inorder:
-        ind = inorder.index(preorder.pop(0))
+        if not preorder or not inorder:
+            return
+        ind = inorder.index(preorder.pop(0))  # optimize with deque
         root = TreeNode(inorder[ind])
-        root.left = self.buildTree(preorder, inorder[0:ind])
+        root.left = self.buildTree(preorder, inorder[:ind])
         root.right = self.buildTree(preorder, inorder[ind+1:])
         return root
     ```
@@ -1701,59 +1708,43 @@ Careful with recursion limit (bound to the application stack)
   [💡](https://www.youtube.com/watch?v=oobqoCJlHA0)
 
   - `insert(word)`, `search(word)`, `startsWith(prefix)`
-  - node with dict[char, node] and a bool isWord.
-  - O(n) time, O(n) space
+  - TrieNode has `children` dict and `end` bool
   - <details>
       <summary>O(n) time, O(n) space</summary>
 
     ```python
     class TrieNode:
         def __init__(self):
-            self.children = [None] * 26
+            self.children = {}
             self.end = False
 
 
     class Trie:
         def __init__(self):
-            """
-            Initialize your data structure here.
-            """
             self.root = TrieNode()
 
         def insert(self, word: str) -> None:
-            """
-            Inserts a word into the trie.
-            """
             curr = self.root
             for c in word:
-                i = ord(c) - ord("a")
-                if curr.children[i] == None:
-                    curr.children[i] = TrieNode()
-                curr = curr.children[i]
+                if c not in curr.children:
+                    curr.children[c] = TrieNode()
+                curr = curr.children[c]
             curr.end = True
 
         def search(self, word: str) -> bool:
-            """
-            Returns if the word is in the trie.
-            """
             curr = self.root
             for c in word:
-                i = ord(c) - ord("a")
-                if curr.children[i] == None:
+                if c not in curr.children:
                     return False
-                curr = curr.children[i]
+                curr = curr.children[c]
             return curr.end
 
         def startsWith(self, prefix: str) -> bool:
-            """
-            Returns if there is any word in the trie that starts with the given prefix.
-            """
             curr = self.root
             for c in prefix:
-                i = ord(c) - ord("a")
-                if curr.children[i] == None:
+                if c not in curr.children:
                     return False
-                curr = curr.children[i]
+                curr = curr.children[c]
             return True
     ```
 
@@ -1764,9 +1755,8 @@ Careful with recursion limit (bound to the application stack)
 
   - `addWord(word)`, `search(word)`
   - trie, recursive dfs(idx, node) for "."
-  - O(n) time, O(n) space
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(c) time, O(c) space</summary>
 
     ```python
     
@@ -1961,12 +1951,25 @@ Careful with recursion limit (bound to the application stack)
 
   - `nums = [3,2,1,5,6,4], k = 2` => `5`
   - quickselect,
-  - O(2n) average, O(n^2) worst case time, O(1) space
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(n) avg time, O(n) space</summary>
 
     ```python
-
+    def findKthLargest(self, nums, k):
+        if not nums: return
+        pivot = random.choice(nums)
+        left =  [x for x in nums if x > pivot]
+        mid  =  [x for x in nums if x == pivot]
+        right = [x for x in nums if x < pivot]
+        
+        L, M = len(left), len(mid)
+        
+        if k <= L:
+            return self.findKthLargest(left, k)
+        elif k > L + M:
+            return self.findKthLargest(right, k - L - M)
+        else:
+            return mid[0]
     ```
 
     </details>
@@ -2403,45 +2406,46 @@ Careful with recursion limit (bound to the application stack)
 
   - grid of heights.
   - start from edge and dfs(x, y, ocean, last_height) to higher, return set intersection
-  - O(mn) time, O(mn) space
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(mn) time, O(mn) space</summary>
 
     ```python
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
-        ROWS, COLS = len(heights), len(heights[0])
-        pac, atl = set(), set()
+        pacific = set()
+        atlantic = set()
 
-        def dfs(r, c, visit, prevHeight):
-            if (
-                (r, c) in visit
-                or r < 0
-                or c < 0
-                or r == ROWS
-                or c == COLS
-                or heights[r][c] < prevHeight
-            ):
-                return
-            visit.add((r, c))
-            dfs(r + 1, c, visit, heights[r][c])
-            dfs(r - 1, c, visit, heights[r][c])
-            dfs(r, c + 1, visit, heights[r][c])
-            dfs(r, c - 1, visit, heights[r][c])
+        for i in range(len(heights)):
+            for j in range(len(heights[0])):
+                if i == 0 or j == 0:
+                    pacific.add((i, j))
+                if i == len(heights)-1 or j == len(heights[0])-1:
+                    atlantic.add((i, j))
 
-        for c in range(COLS):
-            dfs(0, c, pac, heights[0][c])
-            dfs(ROWS - 1, c, atl, heights[ROWS - 1][c])
+        # pacific
+        stack = list(pacific)
+        while stack:
+            i, j = stack.pop()
+            for ii, jj in [(i+1, j), (i-1, j), (i, j+1), (i, j-1)]:
+                if (ii, jj) in pacific:
+                    continue
+                if self.is_valid(ii, jj, heights) and heights[ii][jj] >= heights[i][j]:
+                    stack.append((ii, jj))
+                    pacific.add((ii, jj))
 
-        for r in range(ROWS):
-            dfs(r, 0, pac, heights[r][0])
-            dfs(r, COLS - 1, atl, heights[r][COLS - 1])
+        stack = list(atlantic)
+        while stack:
+            i, j = stack.pop()
+            for ii, jj in [(i+1, j), (i-1, j), (i, j+1), (i, j-1)]:
+                if (ii, jj) in atlantic:
+                    continue
+                if self.is_valid(ii, jj, heights) and heights[ii][jj] >= heights[i][j]:
+                    stack.append((ii, jj))
+                    atlantic.add((ii, jj))
 
-        res = []
-        for r in range(ROWS):
-            for c in range(COLS):
-                if (r, c) in pac and (r, c) in atl:
-                    res.append([r, c])
-        return res
+        return list(pacific.intersection(atlantic))
+    
+    def is_valid(self, i, j, heights):
+        return 0 <= i <= (len(heights)-1) and 0 <= j <= (len(heights[0])-1)
     ```
 
     </details>
@@ -2551,13 +2555,32 @@ Careful with recursion limit (bound to the application stack)
   [💡](https://www.youtube.com/watch?v=FXWRE67PLL0)
 
   - `edges = [[1,2], [1,3], [2,3]]` => `[2,3]`
-  - union find, return edge if cycle (parent[x] == parent[y])
-  - O(n+m) time, O(n) space
+  - union find, return edge if cycle (parent(x) == parent(y))
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(n) time, O(n) space / actually O(inv_ackerman(n))</summary>
 
     ```python
+    def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
+        parents = {}
 
+        def find_parent(n):
+            y = parents.get(n, n)
+            if y != n:
+                y = find_parent(y)
+                parents[n] = y
+            return y
+
+        def union(n1, n2):
+            p1 = find_parent(n1)
+            p2 = find_parent(n2)
+            if p1 == p2:  # cycle
+                return False
+            parents[p1] = p2
+            return True
+
+        for n1, n2 in edges:
+            if not union(n1, n2):
+                return [n1, n2]
     ```
 
     </details>
@@ -2596,14 +2619,13 @@ Careful with recursion limit (bound to the application stack)
 
     </details>
 
-- 🅱️[**Graph Valid Tree**](https://leetcode.com/problems/graph-valid-tree/?md)⛅:
+- 🅱️[**Graph Valid Tree**](https://www.lintcode.com/problem/178/?md)⛅:
   [💡](https://www.youtube.com/watch?v=bXsUuownnoQ)
 
   - `n = 5, edges = [[0, 1], [0, 2], [0, 3], [1, 4]]` => `true`
   - adj list, DFS cycle detection, `dfs(0, prev=-1) and n == len(visit)`
-  - O(e+v) time, O(e+v) space
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(e+v) time, O(e+v) space</summary>
 
     ```python
     def validTree(self, n, edges):
@@ -3035,24 +3057,26 @@ https://youtu.be/_i4Yxeh5ceQ
 - 🅱️[**Word Break**](https://leetcode.com/problems/word-break/?md)⛅:
   [💡](https://www.youtube.com/watch?v=Sx9NNgInc3A)
   - `s = "leetcode", words = ["leet", "code"]` => `true`
-  - start from end, `dp[i] = any(dp[i+len(w)] for w in words if s[i:i+len(w)] == w)`
+  - set of words, `if word in wordSet and dp(end): return True`
   - <details>
       <summary>O(n^2) time, O(n) space</summary>
 
     ```python
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        n = len(s)
+        wordSet = set(wordDict)
 
-        dp = [False] * (len(s) + 1)
-        dp[len(s)] = True
+        @lru_cache(None)
+        def dp(start):
+            if start == n:  # Found a valid way to break words
+                return True
 
-        for i in range(len(s) - 1, -1, -1):
-            for w in wordDict:
-                if (i + len(w)) <= len(s) and s[i : i + len(w)] == w:
-                    dp[i] = dp[i + len(w)]
-                if dp[i]:
-                    break
+            for end in range(start + 1, n + 1):  # O(N^2)
+                word = s[start:end]  # O(N)
+                if word in wordSet and dp(end): return True
+            return False
 
-        return dp[0]
+        return dp(0)
     ```
 
     </details>
@@ -3179,13 +3203,28 @@ https://youtu.be/_i4Yxeh5ceQ
   [💡](https://www.youtube.com/watch?v=Mjy4hd2xgrs)
 
   - `amount = 5, coins = [1, 2, 5]` => `4`
-  - Unbounded Knapsack, dfs(i, amount) = dfs(i+1, amount) + dfs(i, amount-coins[i])
-  - O(n\*amount) time, O(n\*amount) space
+  - Unbounded Knapsack, dfs(i, amount), start with dfs(0, 0)
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(n*amount) time, O(n*amount) space</summary>
 
     ```python
+    def change(self, amount: int, coins: List[int]) -> int:
+        cache = {}
 
+        def dfs(i, a):
+            if a == amount:
+                return 1
+            if a > amount:
+                return 0
+            if i == len(coins):
+                return 0
+            if (i, a) in cache:
+                return cache[i, a]
+            
+            cache[i,a] = dfs(i, a+coins[i]) + dfs(i+1, a)
+            return cache[i, a]
+
+        return dfs(0, 0)
     ```
 
     </details>
@@ -3466,7 +3505,7 @@ https://youtu.be/_i4Yxeh5ceQ
   [💡](https://www.youtube.com/watch?v=44H3cEC2fFM)
 
   - `intervals = [[1,3],[2,6],[8,10],[15,18]]` => `[[1,6],[8,10],[15,18]]`
-  - Sort by start, append to result and merge `if start <= result[-1][1]`
+  - Sort by start, change prev.end = max(prev.end, curr.end)
   - <details>
       <summary>O(nlogn) time, O(n) space</summary>
 
