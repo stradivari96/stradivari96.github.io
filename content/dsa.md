@@ -2991,18 +2991,15 @@ https://youtu.be/_i4Yxeh5ceQ
 
     ```python
     def numDecodings(self, s: str) -> int:
-        # Memoization
         dp = {len(s): 1}
 
         def dfs(i):
-            if i in dp:
-                return dp[i]
-            if s[i] == "0":
-                return 0
+            if i in dp: return dp[i]
+            if s[i] == "0": return 0
 
             res = dfs(i + 1)
             if i + 1 < len(s) and (
-                s[i] == "1" or s[i] == "2" and s[i + 1] in "0123456"
+                s[i] in "12" and s[i + 1] in "0123456"
             ):
                 res += dfs(i + 2)
             dp[i] = res
@@ -3010,19 +3007,6 @@ https://youtu.be/_i4Yxeh5ceQ
 
         return dfs(0)
 
-        # Dynamic Programming
-        dp = {len(s): 1}
-        for i in range(len(s) - 1, -1, -1):
-            if s[i] == "0":
-                dp[i] = 0
-            else:
-                dp[i] = dp[i + 1]
-
-            if i + 1 < len(s) and (
-                s[i] == "1" or s[i] == "2" and s[i + 1] in "0123456"
-            ):
-                dp[i] += dp[i + 2]
-        return dp[0]
     ```
 
     </details>
@@ -4009,13 +3993,19 @@ https://youtu.be/_i4Yxeh5ceQ
   [💡](https://leetcode.com/problems/first-bad-version/solutions/71324/python-understand-easily-from-binary-search-idea/?orderBy=most_votes)
 
   - `n = 5`, `isBadVersion(3) = false`, `isBadVersion(4) = true`
-  - binary search.
-  - O(logn) time, O(1) space
+  - binary search, `return r+1` (r is last good version)
   - <details>
-      <summary>...</summary>
+      <summary>O(logn) time, O(1) space</summary>
 
     ```python
-
+    def firstBadVersion(self, n: int) -> int:
+        l = 1
+        r = n
+        while l <= r:
+            mid = (l+r) // 2
+            if isBadVersion(mid): r = mid-1
+            else: l = mid+1
+        return r+1
     ```
 
     </details>
@@ -4025,12 +4015,16 @@ https://youtu.be/_i4Yxeh5ceQ
 
   - `strs = ["flower","flow","flight"]` => `"fl"`
   - iterate first word and compare
-  - O(n) time, O(1) space
   - <details>
-      <summary>...</summary>
+      <summary>O(sum_chars) time, O(1) space</summary>
 
     ```python
-
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        for i, c in enumerate(strs[0]):
+            for string in strs[1:]:
+                if i == len(string) or string[i] != c:
+                    return strs[0][:i]
+        return strs[0]
     ```
 
     </details>
@@ -4039,11 +4033,41 @@ https://youtu.be/_i4Yxeh5ceQ
   [💡](https://leetcode.com/problems/find-winner-on-a-tic-tac-toe-game/solutions/1429722/find-winner-on-a-tic-tac-toe-game/)
 
   - `moves = [[0,0],[2,0],[1,1],[2,1],[2,2]]` => `"A"`
+  - Try to generalize
   - <details>
-      <summary>...</summary>
+      <summary>O(1) time, O(1) space</summary>
 
     ```python
+    def tictactoe(self, moves: List[List[int]]) -> str:
+        n = 3
+        board = [["" for _ in range(n)] for _ in range(n)]
+        first = True
+        for i, j in moves:
+            board[i][j] = "A" if first else "B"
+            first = not first
 
+        for row in board:
+            if all(c == "A" for c in row):
+                return "A"
+            if all(c == "B" for c in row):
+                return "B"
+
+        for col in range(n):
+            if all(row[col] == "A" for row in board):
+                return "A"
+            if all(row[col] == "B" for row in board):
+                return "B"
+
+        if all(board[i][i] == "A" for i in range(n)):
+            return "A"
+        if all(board[i][i] == "B" for i in range(n)):
+            return "B"
+        if all(board[n-1-i][i] == "A" for i in range(n-1, -1, -1)):
+            return "A"
+        if all(board[n-1-i][i] == "B" for i in range(n-1, -1, -1)):
+            return "B"
+
+        return "Draw" if all(row[c] for row in board for c in range(n)) else "Pending"
     ```
 
     </details>
@@ -4052,13 +4076,21 @@ https://youtu.be/_i4Yxeh5ceQ
   [💡](https://www.youtube.com/watch?v=yubRKwixN-U)
 
   - `x = 121` => `true`
-  - calculate divider, use mod
-  - O(logn) time, O(1) space
+  - `new = new*10 + cur%10`
   - <details>
-      <summary>...</summary>
+      <summary>O(logn) time, O(1) space</summary>
 
     ```python
+    def isPalindrome(self, x: int) -> bool:
+        if x < 0:
+            return False
 
+        new = 0
+        cur = x
+        while cur:
+            new = new*10+cur%10
+            cur = cur // 10
+        return new == x
     ```
 
     </details>
@@ -4067,13 +4099,28 @@ https://youtu.be/_i4Yxeh5ceQ
   [💡](https://www.youtube.com/watch?v=3jdxYj3DD98)
 
   - `s = "III"` => `3`
-  - iterate, roman_dict, if roman[i] < roman[i+1]: res -= roman[i]
-  - O(n) time, O(1) space
+  - sum, but handle special
   - <details>
-      <summary>...</summary>
+      <summary>O(n) time, O(1) space</summary>
 
     ```python
-
+    def romanToInt(self, s: str) -> int:
+        translations = {
+            "I": 1,
+            "V": 5,
+            "X": 10,
+            "L": 50,
+            "C": 100,
+            "D": 500,
+            "M": 1000
+        }
+        number = 0
+        s = s.replace("IV", "IIII").replace("IX", "VIIII")
+        s = s.replace("XL", "XXXX").replace("XC", "LXXXX")
+        s = s.replace("CD", "CCCC").replace("CM", "DCCCC")
+        for char in s:
+            number += translations[char]
+        return number
     ```
 
     </details>
@@ -4099,13 +4146,20 @@ https://youtu.be/_i4Yxeh5ceQ
   [💡](https://youtu.be/fFVZt-6sgyo)
 
   - `nums = [1,1,1], k = 2` => `2` ([1, 1] and [1, 1])
-  - prefix sum, if increase by k, found (subarray in between), initialize `d[0] = 1`
-  - O(n) time, O(n) space
+  - prefix sum, `result += prefix.get(current_sum-k, 0)`, initialize `d[0] = 1`
   - <details>
-      <summary>...</summary>
+      <summary>O(n) time, O(n) space</summary>
 
     ```python
-
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        prefix = {0: 1}
+        current_sum = 0
+        result = 0
+        for n in nums:
+            current_sum += n
+            result += prefix.get(current_sum-k, 0)
+            prefix[current_sum] = prefix.get(current_sum, 0) + 1
+        return result
     ```
 
     </details>
