@@ -2691,13 +2691,35 @@ Careful with recursion limit (bound to the application stack)
   [💡](https://www.youtube.com/watch?v=f7JOBJIC-NA)
 
   - `points = [[0,0],[2,2],[3,10],[5,2],[7,0]]` => `20`
-  - Prim's algorithm, `weigth, s, d = heapq.heappop(heap)`
-  - O(n^2) time, O(n) space
+  - Prim's algorithm, visited set, heappop cheapest edge
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(ElogV) time, O(v) space</summary>
 
     ```python
+    def minCostConnectPoints(self, points: List[List[int]]) -> int:
+        N = len(points)
+        adj = {i: [] for i in range(N)}  # i : list of [cost, node]
+        for i in range(N):
+            x1, y1 = points[i]
+            for j in range(i + 1, N):
+                x2, y2 = points[j]
+                dist = abs(x1 - x2) + abs(y1 - y2)
+                adj[i].append([dist, j])
+                adj[j].append([dist, i])
 
+        # Prim's
+        res = 0
+        visit = set()
+        minH = [[0, 0]]  # [cost, point]
+        while len(visit) < N:
+            cost, i = heapq.heappop(minH)
+            if i in visit: continue
+            res += cost
+            visit.add(i)
+            for neiCost, nei in adj[i]:
+                if nei not in visit:
+                    heapq.heappush(minH, [neiCost, nei])
+        return res
     ```
 
     </details>
@@ -3624,10 +3646,7 @@ https://youtu.be/_i4Yxeh5ceQ
     ```python
     def rotate(self, matrix: List[List[int]]) -> None:
         l, r = 0, len(matrix) - 1
-        while l < r:
-          matrix[l], matrix[r] = matrix[r], matrix[l]
-            l += 1
-            r -= 1
+        matrix.reverse()
         for i in range(len(matrix)):
             for j in range(i):
                 matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
