@@ -29,7 +29,7 @@ In my case I pretty much chose the first one: [Minimal Mistakes](https://github.
 and used the [starter](https://github.com/mmistakes/mm-github-pages-starter/generate)
 from its [guide](https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/).
 
-After setting `stradivari96.github.io` as the repository name and enabling github pages
+After setting `myusername.github.io` as the repository name and enabling github pages
 in the settings, the website was up and running.
 
 # Custom Domain
