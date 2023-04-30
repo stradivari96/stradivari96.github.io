@@ -1327,7 +1327,28 @@ Remember it can be used on a range.
       <summary>O(n) time, O(1) space</summary>
 
     ```python
-
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        node = head
+        count = 0
+        while node and count < k:
+            node = node.next
+            count += 1
+        if count < k:
+            return head
+        new_head, prev = self.reverse(head, k)
+        head.next = self.reverseKGroup(new_head, k)
+        return prev
+    
+    def reverse(self, head, count):
+        prev = None
+        curr = head
+        while count > 0:
+            tmp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = tmp
+            count -= 1
+        return curr, prev
     ```
 
     </details>
@@ -1504,7 +1525,22 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
 
+        result = []
+        level = [root]
+        while level:
+            result.append(level[-1].val)
+            new_level = []
+            for n in level:
+                if n.left:
+                    new_level.append(n.left)
+                if n.right:
+                    new_level.append(n.right)
+            level = new_level
+        return result
     ```
 
     </details>
@@ -1936,12 +1972,19 @@ Careful with recursion limit (bound to the application stack)
 
   - `points = [[1,3],[-2,2]], K = 1` => `[[-2,2]]`
   - simple maxheap (-dist, x, y), pop if len > k
-  - O(nlogk) time, O(k) space
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(nlogk) time, O(k) space</summary>
 
     ```python
-
+    def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
+        heap = []
+        for (x, y) in points:
+            dist = -(x*x + y*y)
+            if len(heap) == K:
+                heapq.heappushpop(heap, (dist, x, y))
+            else:
+                heapq.heappush(heap, (dist, x, y))
+        return [(x,y) for (dist,x, y) in heap]
     ```
 
     </details>
@@ -1979,12 +2022,29 @@ Careful with recursion limit (bound to the application stack)
 
   - `tasks = ["A","A","A","B","B","B"], n = 2` => `8`
   - max_heap of times, queue, `while max_heap or q`, increase time
-  - O(n) time, O(1) space
   - <details>
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        count = Counter(tasks)
+        maxHeap = [-cnt for cnt in count.values()]
+        heapq.heapify(maxHeap)  # O(n)
 
+        time = 0
+        q = deque()  # pairs of [-cnt, idleTime]
+        while maxHeap or q:
+            time += 1
+
+            if not maxHeap:
+                time = q[0][1]
+            else:
+                cnt = 1 + heapq.heappop(maxHeap)
+                if cnt:
+                    q.append([cnt, time + n])
+            if q and q[0][1] == time:
+                heapq.heappush(maxHeap, q.popleft()[0])
+        return time
     ```
 
     </details>
@@ -1993,13 +2053,45 @@ Careful with recursion limit (bound to the application stack)
   [💡](https://www.youtube.com/watch?v=pNichitDD2E)
 
   - `postTweet`, `getNewsFeed`, `follow`, `unfollow`
-  - heap([count, tweetid, foloweeid, index-1])
-  - O(nlogn) time, O(n) space
+  - heap, followerset per user, tweetmap per user
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(nlogn) time, O(n) space</summary>
 
     ```python
+    def __init__(self):
+        self.count = 0
+        self.tweetMap = defaultdict(list)  # userId -> list of [count, tweetIds]
+        self.followMap = defaultdict(set)  # userId -> set of followeeId
 
+    def postTweet(self, userId: int, tweetId: int) -> None:
+        self.tweetMap[userId].append([self.count, tweetId])
+        self.count -= 1
+
+    def getNewsFeed(self, userId: int) -> List[int]:
+        res = []
+        minHeap = []
+
+        self.followMap[userId].add(userId)
+        for followeeId in self.followMap[userId]:
+            if followeeId in self.tweetMap:
+                index = len(self.tweetMap[followeeId]) - 1
+                count, tweetId = self.tweetMap[followeeId][index]
+                heapq.heappush(minHeap, [count, tweetId, followeeId, index - 1])
+
+        while minHeap and len(res) < 10:
+            count, tweetId, followeeId, index = heapq.heappop(minHeap)
+            res.append(tweetId)
+            if index >= 0:
+                count, tweetId = self.tweetMap[followeeId][index]
+                heapq.heappush(minHeap, [count, tweetId, followeeId, index - 1])
+        return res
+
+    def follow(self, followerId: int, followeeId: int) -> None:
+        self.followMap[followerId].add(followeeId)
+
+    def unfollow(self, followerId: int, followeeId: int) -> None:
+        if followeeId in self.followMap[followerId]:
+            self.followMap[followerId].remove(followeeId)
     ```
 
     </details>
@@ -2076,12 +2168,26 @@ Careful with recursion limit (bound to the application stack)
 
   - `nums = [1,2,3]` => `[[3],[1],[2],[1,2,3],[1,3],[2,3],[1,2],[]]`
   - dfs with backtracking, result and path
-  - O(n \* 2^n) time, O(n) space (recursion stack)
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(n*2^n) time, O(n) space</summary>
 
     ```python
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        
+        path = []
+        def dfs(i):
+            if i == len(nums):
+                result.append(path[:])
+                return
+            
+            path.append(nums[i])
+            dfs(i+1)
+            path.pop()
+            dfs(i+1)
 
+        dfs(0)
+        return result
     ```
 
     </details>
@@ -2121,13 +2227,22 @@ Careful with recursion limit (bound to the application stack)
   [💡](https://www.youtube.com/watch?v=s7AvT7cGdSo)
 
   - `nums = [1,2,3]` => `[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]`
-  - divide and conquer, remove first, recursive, add back
-  - O(n^2\*n!) time, O(n) space
+  - stack of (nums, path)
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(n*n!) time, O(n!) space</summary>
 
     ```python
-
+    def recursive(nums):
+        stack = [(nums, [])]
+        res = []
+        while stack:
+            nums, path = stack.pop()
+            if not nums:
+                res.append(path)
+            for i in range(len(nums)):
+                newNums = nums[:i] + nums[i+1:]
+                stack.append((newNums, path+[nums[i]]))
+        return res
     ```
 
     </details>
@@ -2142,7 +2257,26 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        nums.sort()
 
+        def backtrack(i, subset):
+            if i == len(nums):
+                res.append(subset[::])
+                return
+
+            # All subsets that include nums[i]
+            subset.append(nums[i])
+            backtrack(i + 1, subset)
+            subset.pop()
+            # All subsets that don't include nums[i]
+            while i + 1 < len(nums) and nums[i] == nums[i + 1]:
+                i += 1
+            backtrack(i + 1, subset)
+
+        backtrack(0, [])
+        return res
     ```
 
     </details>
@@ -2157,7 +2291,29 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        candidates.sort()
 
+        res = []
+
+        def backtrack(cur, pos, target):
+            if target == 0:
+                res.append(cur.copy())
+                return
+            if target <= 0:
+                return
+
+            prev = -1
+            for i in range(pos, len(candidates)):
+                if candidates[i] == prev:
+                    continue
+                cur.append(candidates[i])
+                backtrack(cur, i + 1, target - candidates[i])
+                cur.pop()
+                prev = candidates[i]
+
+        backtrack([], 0, target)
+        return res
     ```
 
     </details>
@@ -2223,7 +2379,28 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+     def partition(self, s: str) -> List[List[str]]:
+        res, part = [], []
 
+        def dfs(i):
+            if i >= len(s):
+                res.append(part.copy())
+                return
+            for j in range(i, len(s)):
+                if self.isPali(s, i, j):
+                    part.append(s[i : j + 1])
+                    dfs(j + 1)
+                    part.pop()
+
+        dfs(0)
+        return res
+
+    def isPali(self, s, l, r):
+        while l < r:
+            if s[l] != s[r]:
+                return False
+            l, r = l + 1, r - 1
+        return True
     ```
 
     </details>
@@ -2238,7 +2415,30 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def letterCombinations(self, digits: str) -> List[str]:
+        res = []
+        digitToChar = {
+            "2": "abc",
+            "3": "def",
+            "4": "ghi",
+            "5": "jkl",
+            "6": "mno",
+            "7": "qprs",
+            "8": "tuv",
+            "9": "wxyz",
+        }
 
+        def backtrack(i, curStr):
+            if len(curStr) == len(digits):
+                res.append(curStr)
+                return
+            for c in digitToChar[digits[i]]:
+                backtrack(i + 1, curStr + c)
+
+        if digits:
+            backtrack(0, "")
+
+        return res
     ```
 
     </details>
@@ -2253,7 +2453,38 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        col = set()
+        posDiag = set()  # (r + c)
+        negDiag = set()  # (r - c)
 
+        res = []
+        board = [["."] * n for i in range(n)]
+
+        def backtrack(r):
+            if r == n:
+                copy = ["".join(row) for row in board]
+                res.append(copy)
+                return
+
+            for c in range(n):
+                if c in col or (r + c) in posDiag or (r - c) in negDiag:
+                    continue
+
+                col.add(c)
+                posDiag.add(r + c)
+                negDiag.add(r - c)
+                board[r][c] = "Q"
+
+                backtrack(r + 1)
+
+                col.remove(c)
+                posDiag.remove(r + c)
+                negDiag.remove(r - c)
+                board[r][c] = "."
+
+        backtrack(0)
+        return res
     ```
 
     </details>
@@ -2297,22 +2528,6 @@ Careful with recursion limit (bound to the application stack)
 
 - Kruskal: Union Find
 - [Topological Sort](https://neetcode.io/courses/advanced-algorithms/17): Alien dict, dfs to the end and reverse, O(V+E) time, O(V) space
-  ```python
-  result = []
-  #cycle = set()
-  visited = set()
-  def dfs(node):
-      if node in visited:
-          return
-      visited.add(node)
-      for n in adj[node]:
-          dfs(n)
-      result.append(node)
-      #cycle.remove(node)
-  for i in range(...):
-      dfs(i)
-  return result[::-1]
-  ```
 
 ### Basic
 
@@ -2396,7 +2611,28 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        ROWS, COLS = len(grid), len(grid[0])
+        visit = set()
 
+        def dfs(r, c):
+            if (
+                r < 0
+                or r == ROWS
+                or c < 0
+                or c == COLS
+                or grid[r][c] == 0
+                or (r, c) in visit
+            ):
+                return 0
+            visit.add((r, c))
+            return 1 + dfs(r + 1, c) + dfs(r - 1, c) + dfs(r, c + 1) + dfs(r, c - 1)
+
+        area = 0
+        for r in range(ROWS):
+            for c in range(COLS):
+                area = max(area, dfs(r, c))
+        return area
     ```
 
     </details>
@@ -2460,7 +2696,35 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def solve(self, board: List[List[str]]) -> None:
+        ROWS, COLS = len(board), len(board[0])
 
+        def capture(r, c):
+            if r < 0 or c < 0 or r == ROWS or c == COLS or board[r][c] != "O":
+                return
+            board[r][c] = "T"
+            capture(r + 1, c)
+            capture(r - 1, c)
+            capture(r, c + 1)
+            capture(r, c - 1)
+
+        # 1. (DFS) Capture unsurrounded regions (O -> T)
+        for r in range(ROWS):
+            for c in range(COLS):
+                if board[r][c] == "O" and (r in [0, ROWS - 1] or c in [0, COLS - 1]):
+                    capture(r, c)
+
+        # 2. Capture surrounded regions (O -> X)
+        for r in range(ROWS):
+            for c in range(COLS):
+                if board[r][c] == "O":
+                    board[r][c] = "X"
+
+        # 3. Uncapture unsurrounded regions (T -> O)
+        for r in range(ROWS):
+            for c in range(COLS):
+                if board[r][c] == "T":
+                    board[r][c] = "O"
     ```
 
     </details>
@@ -2475,7 +2739,38 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        q = collections.deque()
+        fresh = 0
+        time = 0
 
+        for r in range(len(grid)):
+            for c in range(len(grid[0])):
+                if grid[r][c] == 1:
+                    fresh += 1
+                if grid[r][c] == 2:
+                    q.append((r, c))
+
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        while fresh > 0 and q:
+            length = len(q)
+            for i in range(length):
+                r, c = q.popleft()
+
+                for dr, dc in directions:
+                    row, col = r + dr, c + dc
+                    # if in bounds and nonrotten, make rotten
+                    # and add to q
+                    if (
+                        row in range(len(grid))
+                        and col in range(len(grid[0]))
+                        and grid[row][col] == 1
+                    ):
+                        grid[row][col] = 2
+                        q.append((row, col))
+                        fresh -= 1
+            time += 1
+        return time if fresh == 0 else -1
     ```
 
     </details>
@@ -2490,7 +2785,39 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def walls_and_gates(self, rooms: List[List[int]]):
+        ROWS, COLS = len(rooms), len(rooms[0])
+        visit = set()
+        q = deque()
 
+        def addRooms(r, c):
+            if (
+                min(r, c) < 0
+                or r == ROWS
+                or c == COLS
+                or (r, c) in visit
+                or rooms[r][c] == -1
+            ):
+                return
+            visit.add((r, c))
+            q.append([r, c])
+
+        for r in range(ROWS):
+            for c in range(COLS):
+                if rooms[r][c] == 0:
+                    q.append([r, c])
+                    visit.add((r, c))
+
+        dist = 0
+        while q:
+            for i in range(len(q)):
+                r, c = q.popleft()
+                rooms[r][c] = dist
+                addRooms(r + 1, c)
+                addRooms(r - 1, c)
+                addRooms(r, c + 1)
+                addRooms(r, c - 1)
+            dist += 1
     ```
 
     </details>
@@ -2546,7 +2873,33 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        prereq = {c: [] for c in range(numCourses)}
+        for crs, pre in prerequisites:
+            prereq[crs].append(pre)
 
+        output = []
+        visit, cycle = set(), set()
+
+        def dfs(crs):
+            if crs in cycle:
+                return False
+            if crs in visit:
+                return True
+
+            cycle.add(crs)
+            for pre in prereq[crs]:
+                if dfs(pre) == False:
+                    return False
+            cycle.remove(crs)
+            visit.add(crs)
+            output.append(crs)
+            return True
+
+        for c in range(numCourses):
+            if dfs(c) == False:
+                return []
+        return output
     ```
 
     </details>
@@ -2665,7 +3018,33 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        if endWord not in wordList:
+            return 0
 
+        nei = collections.defaultdict(list)
+        wordList.append(beginWord)
+        for word in wordList:
+            for j in range(len(word)):
+                pattern = word[:j] + "*" + word[j + 1 :]
+                nei[pattern].append(word)
+
+        visit = set([beginWord])
+        q = deque([beginWord])
+        res = 1
+        while q:
+            for i in range(len(q)):
+                word = q.popleft()
+                if word == endWord:
+                    return res
+                for j in range(len(word)):
+                    pattern = word[:j] + "*" + word[j + 1 :]
+                    for neiWord in nei[pattern]:
+                        if neiWord not in visit:
+                            visit.add(neiWord)
+                            q.append(neiWord)
+            res += 1
+        return 0
     ```
 
     </details>
@@ -2682,7 +3061,32 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+        adj = {u: collections.deque() for u, v in tickets}
+        res = ["JFK"]
 
+        tickets.sort()
+        for u, v in tickets:
+            adj[u].append(v)
+
+        def dfs(cur):
+            if len(res) == len(tickets) + 1:
+                return True
+            if cur not in adj:
+                return False
+
+            temp = list(adj[cur])
+            for v in temp:
+                adj[cur].popleft()
+                res.append(v)
+                if dfs(v):
+                    return res
+                res.pop()
+                adj[cur].append(v)
+            return False
+
+        dfs("JFK")
+        return res
     ```
 
     </details>
@@ -2734,7 +3138,25 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+        edges = collections.defaultdict(list)
+        for u, v, w in times:
+            edges[u].append((v, w))
 
+        minHeap = [(0, k)]
+        visit = set()
+        t = 0
+        while minHeap:
+            w1, n1 = heapq.heappop(minHeap)
+            if n1 in visit:
+                continue
+            visit.add(n1)
+            t = w1
+
+            for n2, w2 in edges[n1]:
+                if n2 not in visit:
+                    heapq.heappush(minHeap, (w1 + w2, n2))
+        return t if len(visit) == n else -1
     ```
 
     </details>
@@ -2749,17 +3171,39 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def swimInWater(self, grid: List[List[int]]) -> int:
+        N = len(grid)
+        visit = set()
+        minH = [[grid[0][0], 0, 0]]  # (time/max-height, r, c)
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
 
+        visit.add((0, 0))
+        while minH:
+            t, r, c = heapq.heappop(minH)
+            if r == N - 1 and c == N - 1:
+                return t
+            for dr, dc in directions:
+                neiR, neiC = r + dr, c + dc
+                if (
+                    neiR < 0
+                    or neiC < 0
+                    or neiR == N
+                    or neiC == N
+                    or (neiR, neiC) in visit
+                ):
+                    continue
+                visit.add((neiR, neiC))
+                heapq.heappush(minH, [max(t, grid[neiR][neiC]), neiR, neiC])
     ```
 
     </details>
 
-- 🅱️[**Alien Dictionary**](https://leetcode.com/problems/alien-dictionary/?hd)⛈️:
+- 🅱️[**Alien Dictionary**](https://www.lintcode.com/problem/892/?hd)⛈️:
   [💡](https://www.youtube.com/watch?v=6kTZYvNNyps)
 
   - topological sort, DFS cycle detection.
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(chars) time, O(chars) space</summary>
 
     ```python
     def alienOrder(self, words: List[str]) -> str:
@@ -2772,24 +3216,21 @@ Careful with recursion limit (bound to the application stack)
                 return ""
             for j in range(minLen):
                 if w1[j] != w2[j]:
-                    print(w1[j], w2[j])
                     adj[w1[j]].add(w2[j])
                     break
 
-        visited = {}  # {char: bool} False visited, True current path
         res = []
-
+        path = set()
+        visited = set()
         def dfs(char):
-            if char in visited:
-                return visited[char]
+            if char in path: return True  # cycle
+            if char in visited: return False
 
-            visited[char] = True
-
+            visited.add(char)
+            path.add(char)
             for neighChar in adj[char]:
-                if dfs(neighChar):
-                    return True
-
-            visited[char] = False
+                if dfs(neighChar): return True  # cycle
+            path.remove(char)
             res.append(char)
 
         for char in adj:
@@ -2812,7 +3253,22 @@ Careful with recursion limit (bound to the application stack)
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def findCheapestPrice(
+        self, n: int, flights: List[List[int]], src: int, dst: int, k: int
+    ) -> int:
+        prices = [float("inf")] * n
+        prices[src] = 0
 
+        for i in range(k + 1):
+            tmpPrices = prices.copy()
+
+            for s, d, p in flights:  # s=source, d=dest, p=price
+                if prices[s] == float("inf"):
+                    continue
+                if prices[s] + p < tmpPrices[d]:
+                    tmpPrices[d] = prices[s] + p
+            prices = tmpPrices
+        return -1 if prices[dst] == float("inf") else prices[dst]
     ```
 
     </details>
@@ -3118,7 +3574,23 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def canPartition(self, nums: List[int]) -> bool:
+        if sum(nums) % 2:
+            return False
 
+        dp = set()
+        dp.add(0)
+        target = sum(nums) // 2
+
+        for i in range(len(nums) - 1, -1, -1):
+            nextDP = set()
+            for t in dp:
+                if (t + nums[i]) == target:
+                    return True
+                nextDP.add(t + nums[i])
+                nextDP.add(t)
+            dp = nextDP
+        return False
     ```
 
     </details>
@@ -3195,12 +3667,30 @@ https://youtu.be/_i4Yxeh5ceQ
 
   - `prices = [1,2,3,0,2]` => `3` (buy at 1, sell at 3, buy at 0, sell at 2)
   - cache[i, can_buy], handle cooldown, can_buy and not can_buy
-  - O(n) time, O(n) space
   - <details>
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def maxProfit(self, prices: List[int]) -> int:
+        
+        cache = {}
+        def dfs(i, can_buy):
+            if i >= len(prices):
+                return 0
+            if (i, can_buy) in cache:
+                return cache[i, can_buy]
 
+            result = dfs(i+1, can_buy)
+            if can_buy:
+                buy = dfs(i+1, False)-prices[i]
+                result = max(result, buy)
+            else:
+                sell = dfs(i+2, True)+prices[i]
+                result = max(result, sell)
+            cache[i, can_buy] = result
+            return result
+
+        return dfs(0, True)
     ```
 
     </details>
@@ -3244,7 +3734,21 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        dp = {}  # (index, total) -> # of ways
 
+        def backtrack(i, total):
+            if i == len(nums):
+                return 1 if total == target else 0
+            if (i, total) in dp:
+                return dp[(i, total)]
+
+            dp[(i, total)] = backtrack(i + 1, total + nums[i]) + backtrack(
+                i + 1, total - nums[i]
+            )
+            return dp[(i, total)]
+
+        return backtrack(0, 0)
     ```
 
     </details>
@@ -3259,7 +3763,20 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
+        if len(s1) + len(s2) != len(s3):
+            return False
 
+        dp = [[False] * (len(s2) + 1) for i in range(len(s1) + 1)]
+        dp[len(s1)][len(s2)] = True
+
+        for i in range(len(s1), -1, -1):
+            for j in range(len(s2), -1, -1):
+                if i < len(s1) and s1[i] == s3[i + j] and dp[i + 1][j]:
+                    dp[i][j] = True
+                if j < len(s2) and s2[j] == s3[i + j] and dp[i][j + 1]:
+                    dp[i][j] = True
+        return dp[0][0]
     ```
 
     </details>
@@ -3274,7 +3791,28 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+        ROWS, COLS = len(matrix), len(matrix[0])
+        dp = {}  # (r, c) -> LIP
 
+        def dfs(r, c, prevVal):
+            if r < 0 or r == ROWS or c < 0 or c == COLS or matrix[r][c] <= prevVal:
+                return 0
+            if (r, c) in dp:
+                return dp[(r, c)]
+
+            res = 1
+            res = max(res, 1 + dfs(r + 1, c, matrix[r][c]))
+            res = max(res, 1 + dfs(r - 1, c, matrix[r][c]))
+            res = max(res, 1 + dfs(r, c + 1, matrix[r][c]))
+            res = max(res, 1 + dfs(r, c - 1, matrix[r][c]))
+            dp[(r, c)] = res
+            return res
+
+        for r in range(ROWS):
+            for c in range(COLS):
+                dfs(r, c, -1)
+        return max(dp.values())
     ```
 
     </details>
@@ -3289,7 +3827,21 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def numDistinct(self, s: str, t: str) -> int:
+        cache = {}
 
+        for i in range(len(s) + 1):
+            cache[(i, len(t))] = 1
+        for j in range(len(t)):
+            cache[(len(s), j)] = 0
+
+        for i in range(len(s) - 1, -1, -1):
+            for j in range(len(t) - 1, -1, -1):
+                if s[i] == t[j]:
+                    cache[(i, j)] = cache[(i + 1, j + 1)] + cache[(i + 1, j)]
+                else:
+                    cache[(i, j)] = cache[(i + 1, j)]
+        return cache[(0, 0)]
     ```
 
     </details>
@@ -3297,14 +3849,30 @@ https://youtu.be/_i4Yxeh5ceQ
 - 🗿[**Edit Distance**](https://leetcode.com/problems/edit-distance/?hd)⛈️:
   [💡](https://leetcode.com/problems/edit-distance/solutions/159295/python-solutions-and-intuition/?orderBy=most_votes)
 
-  - `word1 = "horse", word2 = "ros"` => `3`
-  - lru_cache, `dp(len(s1), len(s2))`
-  - O(m\*n) time, O(m\*n) space
+  - `word1 = "horse", word2 = "ros"` => `3` (insert, delete, replace)
+  - dp, recursive
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(m*n) time, O(m*n) space</summary>
 
     ```python
+    def minDistance(self, word1: str, word2: str, memo=None) -> int:
+        if not memo:
+            memo = {}
+        if (word1, word2) in memo:
+            return memo[word1, word2]
+    
+        if word1 == word2: return 0
+        if not word1: return len(word2)
+        if not word2: return len(word1)
 
+        if word1[0] == word2[0]:
+            memo[word1, word2] = self.minDistance(word1[1:], word2[1:], memo)
+            return memo[word1, word2]
+        insert = 1 + self.minDistance(word1, word2[1:], memo)
+        delete = 1 + self.minDistance(word1[1:], word2, memo)
+        replace = 1 + self.minDistance(word1[1:], word2[1:], memo)
+        memo[word1, word2] = min(insert, delete, replace)
+        return memo[word1, word2]
     ```
 
     </details>
@@ -3319,7 +3887,18 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def maxCoins(self, nums: List[int]) -> int:
+        cache = {}
+        nums = [1] + nums + [1]
 
+        for offset in range(2, len(nums)):
+            for left in range(len(nums) - offset):
+                right = left + offset
+                for pivot in range(left + 1, right):
+                    coins = nums[left] * nums[pivot] * nums[right]
+                    coins += cache.get((left, pivot), 0) + cache.get((pivot, right), 0)
+                    cache[(left, right)] = max(coins, cache.get((left, right), 0))
+        return cache.get((0, len(nums) - 1), 0)
     ```
 
     </details>
@@ -3334,7 +3913,30 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def isMatch(self, s: str, p: str) -> bool:
+        cache = {}
 
+        def dfs(i, j):
+            if (i, j) in cache:
+                return cache[(i, j)]
+            if i >= len(s) and j >= len(p):
+                return True
+            if j >= len(p):
+                return False
+
+            match = i < len(s) and (s[i] == p[j] or p[j] == ".")
+            if (j + 1) < len(p) and p[j + 1] == "*":
+                cache[(i, j)] = dfs(i, j + 2) or (  # dont use *
+                    match and dfs(i + 1, j)
+                )  # use *
+                return cache[(i, j)]
+            if match:
+                cache[(i, j)] = dfs(i + 1, j + 1)
+                return cache[(i, j)]
+            cache[(i, j)] = False
+            return False
+
+        return dfs(0, 0)
     ```
 
     </details>
@@ -3392,7 +3994,17 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n) time, O(n) space</summary>
 
     ```python
-
+    def jump(self, nums: List[int]) -> int:
+        l, r = 0, 0
+        res = 0
+        while r < (len(nums) - 1):
+            maxJump = 0
+            for i in range(l, r + 1):
+                maxJump = max(maxJump, i + nums[i])
+            l = r + 1
+            r = maxJump
+            res += 1
+        return res
     ```
 
     </details>
@@ -3407,7 +4019,19 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        start, end = len(gas) - 1, 0
+        total = gas[start] - cost[start]
 
+        while start >= end:
+            while total < 0 and start >= end:
+                start -= 1
+                total += gas[start] - cost[start]
+            if start == end:
+                return start
+            total += gas[end] - cost[end]
+            end += 1
+        return -1
     ```
 
     </details>
@@ -3422,7 +4046,27 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def isNStraightHand(self, hand: List[int], groupSize: int) -> bool:
+        if len(hand) % groupSize:
+            return False
 
+        count = {}
+        for n in hand:
+            count[n] = 1 + count.get(n, 0)
+
+        minH = list(count.keys())
+        heapq.heapify(minH)
+        while minH:
+            first = minH[0]
+            for i in range(first, first + groupSize):
+                if i not in count:
+                    return False
+                count[i] -= 1
+                if count[i] == 0:
+                    if i != minH[0]:
+                        return False
+                    heapq.heappop(minH)
+        return True
     ```
 
     </details>
@@ -3437,7 +4081,16 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
+        good = set()
 
+        for t in triplets:
+            if t[0] > target[0] or t[1] > target[1] or t[2] > target[2]:
+                continue
+            for i, v in enumerate(t):
+                if v == target[i]:
+                    good.add(i)
+        return len(good) == 3
     ```
 
     </details>
@@ -3452,7 +4105,26 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def partitionLabels(self, S: str) -> List[int]:
+        count = {}
+        res = []
+        i, length = 0, len(S)
+        for j in range(length):
+            c = S[j]
+            count[c] = j
 
+        curLen = 0
+        goal = 0
+        while i < length:
+            c = S[i]
+            goal = max(goal, count[c])
+            curLen += 1
+
+            if goal == i:
+                res.append(curLen)
+                curLen = 0
+            i += 1
+        return res
     ```
 
     </details>
@@ -3462,12 +4134,28 @@ https://youtu.be/_i4Yxeh5ceQ
 
   - `s = "(*)"` => `true`
   - left_min, left_max, `if l_max < 0: return False`, `if l_min < 0: l_min = 0`.
-  - O(3^n)->O(n³)->O()
   - <details>
-      <summary>O(n) time, O(n) space</summary>
+      <summary>O(n^2) time, O(n) space</summary>
 
     ```python
+    def checkValidString(self, s: str) -> bool:
+        dp = {(len(s), 0): True}  # key=(i, leftCount) -> isValid
 
+        def dfs(i, left):
+            if i == len(s) or left < 0:
+                return left == 0
+            if (i, left) in dp:
+                return dp[(i, left)]
+
+            if s[i] == "(":
+                dp[(i, left)] = dfs(i + 1, left + 1)
+            elif s[i] == ")":
+                dp[(i, left)] = dfs(i + 1, left - 1)
+            else:
+                dp[(i, left)] = (
+                    dfs(i + 1, left + 1) or dfs(i + 1, left - 1) or dfs(i + 1, left)
+                )
+            return dp[(i, left)]
     ```
 
     </details>
@@ -3610,7 +4298,21 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(nlogn + qlogq) time, O(n+q) space</summary>
 
     ```python
+    def minInterval(self, intervals: List[List[int]], queries: List[int]) -> List[int]:
+        intervals.sort()
+        minHeap = []
+        res = {}
+        i = 0
+        for q in sorted(queries):
+            while i < len(intervals) and intervals[i][0] <= q:
+                l, r = intervals[i]
+                heapq.heappush(minHeap, (r - l + 1, r))
+                i += 1
 
+            while minHeap and minHeap[0][1] < q:
+                heapq.heappop(minHeap)
+            res[q] = minHeap[0][0] if minHeap else -1
+        return [res[q] for q in queries]
     ```
 
     </details>
@@ -3768,12 +4470,22 @@ https://youtu.be/_i4Yxeh5ceQ
   [💡](https://www.youtube.com/watch?v=g9YQyYi4IQQ)
 
   - `x = 2.00000, n = 10` => `1024.00000`
-  - `helper(x, abs(n))`, recursive helper
+  - recursive, handle 0 and negatives
   - <details>
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def myPow(self, x: float, n: int) -> float:
+        if n == 0: return 1
+        if n < 0: return 1 / self.myPow(x, -n)
+        return x*self.myPow(x, n-1)
 
+    def myPow(self, x, n):
+        if n == 0: return 1
+        if n < 0: return 1 / self.myPow(x, -n)
+        # Optimized
+        if n % 2 == 1: return x * self.myPow(x, n-1)
+        return self.myPow(x*x, n/2)
     ```
 
     </details>
@@ -3787,7 +4499,24 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(nm) time, O(n+m) space</summary>
 
     ```python
+    def multiply(self, num1: str, num2: str) -> str:
+        if "0" in [num1, num2]:
+            return "0"
 
+        res = [0] * (len(num1) + len(num2))
+        num1, num2 = num1[::-1], num2[::-1]
+        for i1 in range(len(num1)):
+            for i2 in range(len(num2)):
+                digit = int(num1[i1]) * int(num2[i2])
+                res[i1 + i2] += digit
+                res[i1 + i2 + 1] += res[i1 + i2] // 10
+                res[i1 + i2] = res[i1 + i2] % 10
+
+        res, beg = res[::-1], 0
+        while beg < len(res) and res[beg] == 0:
+            beg += 1
+        res = map(str, res[beg:])
+        return "".join(res)
     ```
 
     </details>
@@ -3801,7 +4530,22 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>O(n) time, O(n) space</summary>
 
     ```python
+    def __init__(self):
+        self.ptsCount = defaultdict(int)
+        self.pts = []
 
+    def add(self, point: List[int]) -> None:
+        self.ptsCount[tuple(point)] += 1
+        self.pts.append(point)
+
+    def count(self, point: List[int]) -> int:
+        res = 0
+        px, py = point
+        for x, y in self.pts:
+            if (abs(py - y) != abs(px - x)) or x == px or y == py:
+                continue
+            res += self.ptsCount[(x, py)] * self.ptsCount[(px, y)]
+        return res
     ```
 
     </details>
@@ -3950,7 +4694,22 @@ https://youtu.be/_i4Yxeh5ceQ
       <summary>...</summary>
 
     ```python
+    def reverse(self, x: int) -> int:
+        MIN = -2147483648  # -2^31,
+        MAX = 2147483647  #  2^31 - 1
 
+        res = 0
+        while x:
+            digit = int(math.fmod(x, 10))  # (python dumb) -1 %  10 = 9
+            x = int(x / 10)  # (python dumb) -1 // 10 = -1
+
+            if res > MAX // 10 or (res == MAX // 10 and digit > MAX % 10):
+                return 0
+            if res < MIN // 10 or (res == MIN // 10 and digit < MIN % 10):
+                return 0
+            res = (res * 10) + digit
+
+        return res
     ```
 
     </details>
