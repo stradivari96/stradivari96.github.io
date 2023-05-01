@@ -4822,6 +4822,44 @@ https://youtu.be/_i4Yxeh5ceQ
 
     </details>
 
+- 🏢[**Shortest Path in a Grid with Obstacles Elimination**](https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/?hd):
+  [💡](https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/solutions/451787/python-o-m-n-k-bfs-solution-with-explanation/?orderBy=most_votes)
+  - `grid = [[0,1,1],[1,1,1],[1,0,0]], k = 1` => `-1`
+  - simple bfs with deque [(steps, x, y, k)]
+  - <details>
+      <summary>O(logt) time, O(t) space</summary>
+
+    ```python
+    def shortestPath(self, grid: List[List[int]], k: int) -> int:
+        rows, cols = len(grid), len(grid[0])
+        target = (rows - 1, cols - 1)
+
+        if k >= rows + cols - 2:
+            return rows + cols - 2
+
+        state = (0, 0, k)
+        queue = deque([(0, state)])
+        seen = set([state])
+
+        while queue:
+            steps, (row, col, k) = queue.popleft()
+
+            if (row, col) == target:
+                return steps
+
+            for new_row, new_col in [(row, col + 1), (row + 1, col), (row, col - 1), (row - 1, col)]:
+                if (0 <= new_row < rows) and (0 <= new_col < cols):
+                    new_eliminations = k - grid[new_row][new_col]
+                    new_state = (new_row, new_col, new_eliminations)
+                    if new_eliminations >= 0 and new_state not in seen:
+                        seen.add(new_state)
+                        queue.append((steps + 1, new_state))
+
+        return -1
+    ```
+
+    </details>
+
 **Easy**:
 
 - 🏢[**First Bad Version**](https://leetcode.com/problems/first-bad-version/?ez):
@@ -5149,16 +5187,12 @@ https://youtu.be/_i4Yxeh5ceQ
 
 **Hard**:
 
-- 🏢[**Shortest Path in a Grid with Obstacles Elimination**](https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/?hd):
-  [💡](https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/solutions/451787/python-o-m-n-k-bfs-solution-with-explanation/?orderBy=most_votes)
-  - TODO
-  - ...
+
 - 🏢[**Poor Pigs**](https://leetcode.com/problems/poor-pigs/?hd):
   [💡](https://www.youtube.com/watch?v=6Z0rZ1J3Z8E)
   - `buckets = 1000, minutesToDie = 15, minutesToTest = 60` => `5`
   - TODO
   - ...
-- 🏢https://leetcode.com/problems/maximum-number-of-visible-points/?hd
 - 🏢[**Range Module**](https://leetcode.com/problems/range-module/?hd)
   [💡](https://www.youtube.com/watch?v=QhPdNS143Qg)
   - TODO
