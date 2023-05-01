@@ -609,7 +609,7 @@ for r in range(len(nums)):
   [💡](https://www.youtube.com/watch?v=WTzjTskDFMg)
 
   - `s = "()[]{}"` => `true`
-  - store last opened in stack
+  - store last opened in stack, check stack empty at the end
   - <details>
       <summary>O(n) time, O(n) space</summary>
 
@@ -633,7 +633,7 @@ for r in range(len(nums)):
   [💡](https://www.youtube.com/watch?v=qkLl7nAwDPo)
 
   - `push(val)`, `pop()`, `top()`, `getMin()`
-  - stack, append((min_so_far, val))
+  - stack, append((min_so_far, val)), `min_so_far = min(val, self.stack[-1][0])`
   - <details>
       <summary>O(1) time, O(n) space</summary>
 
@@ -694,7 +694,7 @@ for r in range(len(nums)):
   [💡](https://www.youtube.com/watch?v=s9fokUqJ76A)
 
   - `n = 3` => `["((()))","(()())","(())()","()(())","()()()"]`
-  - stack, backtracking, dfs(opened, closed)
+  - stack, backtracking, dfs(opened, closed), `if opened < n`, `if closed < opened`
   - <details>
       <summary>O(2^(2n)) time, O(n) space</summary>
 
@@ -727,21 +727,20 @@ for r in range(len(nums)):
   [💡](https://www.youtube.com/watch?v=cTBiBSnjO3c)
 
   - `T = [73,74,75,71,69,72,76,73]` => `[1,1,4,2,1,1,0,0]`
-  - stack of pending indices, while current > stack[-1], pop and update ans
+  - init result = [0]*len, stack of pending, while tmp[i] > tmp[stack[-1]], pop and update
   - <details>
       <summary>O(n) time, O(n) space</summary>
 
     ```python
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
-        res = [0] * len(temperatures)
-        stack = []
-
+        result = [0]*len(temperatures)
+        pending = []
         for i, t in enumerate(temperatures):
-            while stack and t > stack[-1][0]:
-                stackT, stackInd = stack.pop()
-                res[stackInd] = i - stackInd
-            stack.append((t, i))
-        return res
+            while pending and temperatures[pending[-1]] < t:
+                prev = pending.pop()
+                result[prev] = i-prev
+            pending.append(i)
+        return result
     ```
 
     </details>
@@ -750,7 +749,7 @@ for r in range(len(nums)):
   [💡](https://www.youtube.com/watch?v=Pr6T-3yB9RM)
 
   - `target = 12, position = [10,8,0,5,3], speed = [2,4,1,1,3]` => `3`
-  - Sort by position, start from end, if time to reach is faster than prev, ignore
+  - Sort by position, start from end, calculate time to reach, ignore if faster
   - <details>
       <summary>O(nlogn) time, O(n) space</summary>
 
@@ -771,7 +770,7 @@ for r in range(len(nums)):
   [💡](https://www.youtube.com/watch?v=zx5Sw9130L0)
 
   - `heights = [2,1,5,6,2,3]` => `10`
-  - stack, pop bigger than current, calculate area
+  - stack.append((start, h)), if decreasing, pop and update maxArea and current start
   - <details>
       <summary>O(n) time, O(n) space</summary>
 
@@ -782,10 +781,11 @@ for r in range(len(nums)):
 
         for i, h in enumerate(heights):
             start = i
+            # found a decrease in height
             while stack and stack[-1][1] > h:
                 index, height = stack.pop()
                 maxArea = max(maxArea, height * (i - index))
-                start = index
+                start = index  # we can start from the leftmost index that is higher
             stack.append((start, h))
 
         for i, h in stack:
@@ -797,7 +797,7 @@ for r in range(len(nums)):
 
 ## Binary Search
 
-Remember it can be used on a range.
+Remember it can be used on a range of values
 
 ---
 
@@ -829,7 +829,7 @@ Remember it can be used on a range.
   [💡](https://www.youtube.com/watch?v=Ber2pi2C0j0)
 
   - `matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 3` => `true`
-  - `row = mid // len(matrix[0])`, `col = mid % len(matrix[0])`
+  - calculate `row = mid // len(matrix[0])`, `col = mid % len(matrix[0])`
   - <details>
       <summary>O(logmn) time, O(1) space</summary>
 
@@ -855,7 +855,7 @@ Remember it can be used on a range.
   [💡](https://www.youtube.com/watch?v=U2SozAs9RzA)
 
   - `piles = [3,6,7,11], H = 8` => `4`
-  - `l, r = 1, max(piles)`, `sum(math.ceil(p/mid) for p in piles) <= h`
+  - binary search over speed, `l, r = 1, max(piles)`
   - <details>
       <summary>O(nlogm) time, O(1) space</summary>
 
@@ -919,22 +919,19 @@ Remember it can be used on a range.
 
     ```python
     def findMin(self, nums: List[int]) -> int:
-        start , end = 0 ,len(nums) - 1
+        start, end = 0, len(nums)-1
         curr_min = float("inf")
 
-        while start  <  end :
-            mid = (start + end ) // 2
-            curr_min = min(curr_min,nums[mid])
+        while start < end:
+            mid = (start+end) // 2
+            curr_min = min(curr_min, nums[mid])
 
-            # right has the min
             if nums[mid] > nums[end]:
                 start = mid + 1
-
-            # left has the  min
             else:
                 end = mid - 1
 
-        return min(curr_min,nums[start])
+        return min(curr_min, nums[start])
     ```
 
     </details>
@@ -996,10 +993,10 @@ Remember it can be used on a range.
             i = (l + r) // 2  # A
             j = half - i - 2  # B
 
-            Aleft = A[i] if i >= 0 else float("-infinity")
-            Aright = A[i + 1] if (i + 1) < len(A) else float("infinity")
-            Bleft = B[j] if j >= 0 else float("-infinity")
-            Bright = B[j + 1] if (j + 1) < len(B) else float("infinity")
+            Aleft = A[i] if i >= 0 else float("-inf")
+            Aright = A[i + 1] if (i + 1) < len(A) else float("inf")
+            Bleft = B[j] if j >= 0 else float("-inf")
+            Bright = B[j + 1] if (j + 1) < len(B) else float("inf")
 
             # partition is correct
             if Aleft <= Bright and Bleft <= Aright:
@@ -1077,7 +1074,7 @@ Remember it can be used on a range.
   [💡](https://www.youtube.com/watch?v=q5a5OiGbT6Q)
 
   - `lists = [[1,4,5],[1,3,4],[2,6]]` => `[1,1,2,3,4,4,5,6]`
-  - Merge two lists at a time.
+  - Merge two lists at a time, `for i in range(0, len(lists), 2)`
   - <details>
       <summary>O(nlogk) time, O(1) space</summary>
 
@@ -1160,7 +1157,7 @@ Remember it can be used on a range.
   [💡](https://www.youtube.com/watch?v=5Y2EiZST97Y)
 
   - `head = [[3,null],[3,0],[3,null]]` => `[[3,null],[3,0],[3,null]]`
-  - two passes, copy and then update next and random, `old_to_new = {None: None}`
+  - `old_to_new = {None: None}`, two passes, copy and then update next and random
   - <details>
       <summary>O(n) time, O(n) space</summary>
 
@@ -2535,33 +2532,24 @@ Careful with recursion limit (bound to the application stack)
 
     ```python
     def numIslands(self, grid: List[List[str]]) -> int:
-        if not grid or not grid[0]:
-            return 0
+        result = 0
 
-        islands = 0
-        visit = set()
-        rows, cols = len(grid), len(grid[0])
+        visited = set()
+        def dfs(i, j):
+            if (i, j) in visited: return
+            if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]): return
+            if grid[i][j] != "1": return
+            visited.add((i, j))
+            for ii, jj in [(i+1, j), (i-1, j), (i, j+1), (i, j-1)]:
+                dfs(ii, jj)
 
-        def dfs(r, c):
-            if (
-                r not in range(rows)
-                or c not in range(cols)
-                or grid[r][c] == "0"
-                or (r, c) in visit
-            ):
-                return
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == "1" and (i, j) not in visited:
+                    result += 1
+                    dfs(i, j)
 
-            visit.add((r, c))
-            directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
-            for dr, dc in directions:
-                dfs(r + dr, c + dc)
-
-        for r in range(rows):
-            for c in range(cols):
-                if grid[r][c] == "1" and (r, c) not in visit:
-                    islands += 1
-                    dfs(r, c)
-        return islands
+        return result
     ```
 
     </details>
@@ -4232,7 +4220,7 @@ https://youtu.be/_i4Yxeh5ceQ
   min number of conference rooms.
 
   - `intervals = [(0,30),(5,10),(15,20)]` => `2`
-  - store all timestamps, if start += 1, if end -= 1, max number of rooms
+  - store all sorted timestamps, if start += 1, if end -= 1, max number of rooms
   - <details>
       <summary>O(nlogn) time, O(n) space</summary>
 
