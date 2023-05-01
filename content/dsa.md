@@ -3754,11 +3754,11 @@ https://youtu.be/_i4Yxeh5ceQ
 
     ```python
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
-        ROWS, COLS = len(matrix), len(matrix[0])
-        dp = {}  # (r, c) -> LIP
+        rows, cols = len(matrix), len(matrix[0])
+        dp = {}
 
         def dfs(r, c, prevVal):
-            if r < 0 or r == ROWS or c < 0 or c == COLS or matrix[r][c] <= prevVal:
+            if r < 0 or r == rows or c < 0 or c == cols or matrix[r][c] <= prevVal:
                 return 0
             if (r, c) in dp:
                 return dp[(r, c)]
@@ -3771,8 +3771,8 @@ https://youtu.be/_i4Yxeh5ceQ
             dp[(r, c)] = res
             return res
 
-        for r in range(ROWS):
-            for c in range(COLS):
+        for r in range(rows):
+            for c in range(cols):
                 dfs(r, c, -1)
         return max(dp.values())
     ```
@@ -3928,17 +3928,18 @@ https://youtu.be/_i4Yxeh5ceQ
   [💡](https://www.youtube.com/watch?v=Yan0cv2cLy8)
 
   - `nums = [2,3,1,1,4]` => `true` (can reach last index)
-  - start from end, `if i + nums[i] >= target: target = i`.
+  - iterate, calculate max_so_far, if less than curren index, return False
   - <details>
       <summary>O(n) time, O(1) space</summary>
 
     ```python
     def canJump(self, nums: List[int]) -> bool:
-        target = len(nums)-1
-        for i in range(len(nums)-2, -1, -1):
-            if i + nums[i] >= target:
-                target = i
-        return target == 0
+        max_so_far = 0 
+        for i, n in enumerate(nums):
+            if max_so_far < i:
+                return False
+            max_so_far = max(max_so_far, i+n)
+        return True
     ```
 
     </details>
@@ -4674,11 +4675,74 @@ https://youtu.be/_i4Yxeh5ceQ
 
 ---
 
-**Sorting**:
+- 🏢[**Text Justification**](https://leetcode.com/problems/text-justification/?hd):
+  [💡](https://leetcode.com/problems/text-justification/solutions/24891/concise-python-solution-10-lines/?orderBy=most_votes)
+  - `words = ["This", "is", "an", "example", "of", "text", "justification."] w = 16` => `["This is an", "example of text", "justification. "]`
+  - `if line_width + len(cur) > maxWidth:`, `line[j%(len(line)-1 or 1)] += ' '`
+  - <details>
+      <summary>O(n) time, O(n) space</summary>
 
-- ...
+    ```python
+    def fullJustify(self, words: List[str], maxWidth: int) -> List[str]:
+        result = []
 
-**Easy**:
+        line_width = 0
+        line = []
+        for w in words:
+            if line_width + len(w) <= maxWidth:
+                line.append(w)
+                line_width += 1+len(w)
+            else:
+                result.append(line)
+                line_width = len(w)+1
+                line = [w]
+        if line:
+            result.append(line)
+
+        for i, line in enumerate(result):
+            spaces = maxWidth - sum(len(w) for w in line)
+            if i == len(result)-1:
+                result[i] = " ".join(line).ljust(maxWidth)
+            else:
+                for j in range(spaces):
+                    line[j%(len(line)-1 or 1)] += ' '
+                result[i] = "".join(line)
+        return result
+    ```
+
+    </details>
+
+- 🏢[**Random Pick with Weight**](https://leetcode.com/problems/random-pick-with-weight/?md):
+  [💡](https://leetcode.com/problems/random-pick-with-weight/solutions/154044/java-accumulated-freq-sum-binary-search/?orderBy=most_votes)
+
+  - `[1,3]`, `pickIndex()` => `0` with 25% probability, `1` with 75% probability
+  - binary search (random (1, total)) on the prefix sum.
+  - <details>
+      <summary>O(logN) time, O(n) space</summary>
+
+    ```python
+    def __init__(self, w: List[int]):
+        self.prefix_sums = []
+        prefix_sum = 0
+        for weight in w:
+            prefix_sum += weight
+            self.prefix_sums.append(prefix_sum)
+
+    def pickIndex(self) -> int:
+        target = self.prefix_sums[-1] * random.random()
+        l, r = 0, len(self.prefix_sums)-1
+        while l <= r:
+            mid = (r+l) // 2
+            if target == self.prefix_sums[mid]:
+                return mid
+            if target > self.prefix_sums[mid]:
+                l = mid + 1
+            else:
+                r = mid - 1
+        return l
+    ```
+
+    </details>
 
 - 🏢[**Logger Rate Limiter**](https://leetcode.com/problems/logger-rate-limiter/?md):
   [💡](https://gist.github.com/kuntalchandra/7822e388e0d2d78ec27f566266584b49)
@@ -4701,6 +4765,64 @@ https://youtu.be/_i4Yxeh5ceQ
     ```
 
     </details>
+
+- 🏢[**Meeting Rooms III**](https://leetcode.com/problems/meeting-rooms-iii/?hd):
+  [💡](https://leetcode.com/problems/meeting-rooms-iii/solutions/2527548/python-heap-solution/?orderBy=most_votes)
+
+  - `n = 2, meetings = [[0,10],[1,5],[2,7],[3,4]]` => `0`
+  - heap of ready rooms (room_id), heap of rooms in use (end_time, room_id)
+  - <details>
+      <summary>O(nlogn) time, O(n) space</summary>
+
+    ```python
+    def mostBooked(self, n, meetings):
+        ready = [r for r in range(n)] # room_id
+        rooms = []  # (end_time, room_id)
+        heapify(ready)
+        res = [0] * n  # times booked for each room
+        for s, e in sorted(meetings):
+            # check finished meetings
+            while rooms and rooms[0][0] <= s:
+                _, r = heappop(rooms)
+                heappush(ready, r)
+            if ready:
+                r = heappop(ready)
+                heappush(rooms, [e, r])
+            else:
+                t, r = heappop(rooms)
+                # delayed
+                heappush(rooms, [t + e - s, r])
+            res[r] += 1
+        return res.index(max(res))
+    ```
+
+    </details>
+
+- 🏢[**Race Car**](https://leetcode.com/problems/race-car/?hd):
+  [💡](https://leetcode.com/problems/race-car/solutions/124326/summary-of-the-bfs-and-dp-solutions-with-intuitive-explanation/)
+  - `target = 3` => `2` ("AA" 0 -> 1 -> 3)
+  - deque, BFS, but only add reverse if `pos + vel < target` or `pos + vel > target`
+  - <details>
+      <summary>O(logt) time, O(t) space</summary>
+
+    ```python
+    def racecar(self, target: int) -> int:
+        # 0 moves, 0 position, +1 velocity
+        queue = collections.deque([(0, 0, 1)])
+        while queue:
+            moves, pos, vel = queue.popleft()
+
+            if pos == target:
+                return moves
+
+            queue.append((moves + 1, pos + vel, 2 * vel))
+            if (pos + vel > target and vel > 0) or (pos + vel < target and vel < 0):
+                queue.append((moves + 1, pos, -vel / abs(vel)))
+    ```
+
+    </details>
+
+**Easy**:
 
 - 🏢[**First Bad Version**](https://leetcode.com/problems/first-bad-version/?ez):
   [💡](https://leetcode.com/problems/first-bad-version/solutions/71324/python-understand-easily-from-binary-search-idea/?orderBy=most_votes)
@@ -4923,20 +5045,6 @@ https://youtu.be/_i4Yxeh5ceQ
 
     </details>
 
-- 🏢[**Random Pick with Weight**](https://leetcode.com/problems/random-pick-with-weight/?md):
-  [💡](https://leetcode.com/problems/random-pick-with-weight/solutions/154044/java-accumulated-freq-sum-binary-search/?orderBy=most_votes)
-
-  - `[1,3]`, `pickIndex()` => `0` with 25% probability, `1` with 75% probability
-  - binary search (random (1, total)) on the prefix sum.
-  - O(n) time, O(n) space
-  - <details>
-      <summary>...</summary>
-
-    ```python
-
-    ```
-
-    </details>
 
 - 🏢[**Number of matching subsequences**](https://leetcode.com/problems/number-of-matching-subsequences/?md):
   [💡](https://leetcode.com/problems/number-of-matching-subsequences/solutions/117634/efficient-and-simple-go-through-words-in-parallel-with-explanation/)
@@ -5041,14 +5149,6 @@ https://youtu.be/_i4Yxeh5ceQ
 
 **Hard**:
 
-- 🏢[**Race Car**](https://leetcode.com/problems/race-car/?hd):
-  [💡](https://leetcode.com/problems/race-car/solutions/124326/summary-of-the-bfs-and-dp-solutions-with-intuitive-explanation/)
-  - TODO
-  - ...
-- 🏢[**Text Justification**](https://leetcode.com/problems/text-justification/?hd):
-  [💡](https://leetcode.com/problems/text-justification/solutions/24891/concise-python-solution-10-lines/?orderBy=most_votes)
-  - `words = ["This", "is", "an", "example", "of", "text", "justification."] w = 16` => `["This is an", "example of text", "justification. "]`
-  - `if num_of_letters + len(w) + len(cur) > maxWidth:`, round robin
 - 🏢[**Shortest Path in a Grid with Obstacles Elimination**](https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/?hd):
   [💡](https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/solutions/451787/python-o-m-n-k-bfs-solution-with-explanation/?orderBy=most_votes)
   - TODO
@@ -5070,7 +5170,6 @@ https://youtu.be/_i4Yxeh5ceQ
   Fewer than 2 A, no 3 or more consecutive L.
   [💡]
   - `n = 2` => `8` ("PP", "AP", "PA", "LP", "PL", "AL", "LA", "LL")
-- 🏢https://leetcode.com/problems/meeting-rooms-iii/?hd
 - 🏢https://leetcode.com/problems/amount-of-new-area-painted-each-day/?hd
 - 🏢https://leetcode.com/problems/number-of-atoms/?hd
 - 🏢https://leetcode.com/problems/number-of-good-paths/?hd
