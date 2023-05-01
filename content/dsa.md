@@ -376,7 +376,7 @@ for r in range(len(nums)):
   [💡](https://www.youtube.com/watch?v=jzZsG8n2R9A)
 
   - `nums = [-1,0,1,2,-1,-4]` => `[[-1,-1,2],[-1,0,1]]`
-  - sort, 2 pointers
+  - sort, for each i, 2 pointers (l = i+1, r = len(nums)-1)
   - <details>
       <summary>O(n^2) time, O(n) space (sorting)</summary>
 
@@ -428,7 +428,7 @@ for r in range(len(nums)):
   [💡](https://www.youtube.com/watch?v=ZI2z5pq0TqA)
 
   - `height = [0,1,0,2,1,0,1,3,2,1,2,1]` => `6`
-  - DP, can optimize to O(1) space by using 2 pointers (move `l` if leftmax < rightmax)
+  - using 2 pointers, update result before moving the pointer
   - <details>
       <summary>O(n) time, O(n) space</summary>
 
@@ -489,7 +489,7 @@ for r in range(len(nums)):
         last_seen = {}
         for i, c in enumerate(s):
             if c in last_seen:
-                l = max(l, last_seen[c]+1)
+                l = max(l, last_seen[c]+1)  # do not decrease!
             last_seen[c] = i
             result = max(result, i-l+1)
         return result
@@ -535,7 +535,7 @@ for r in range(len(nums)):
         for i in range(len(s2)):
             if s2[i] in cntr:
                 cntr[s2[i]] -= 1
-            if i >= w and s2[i-w] in cntr:
+            if i >= w and s2[i-w] in cntr:  # shrink
                 cntr[s2[i-w]] += 1
             if all([cntr[i] == 0 for i in cntr]):
                 return True
@@ -548,23 +548,23 @@ for r in range(len(nums)):
   [💡](https://www.youtube.com/watch?v=jSto0O4AJbM)
 
   - `s = "ADOBECODEBANC", t = "ABC"` => `"BANC"`
-  - Counter, if all window counter >= counter, shrink
+  - Counter, if all window counter >= counter, shrink, i = 0, for j in ...
   - <details>
       <summary>O(n) time, O(1) space</summary>
 
     ```python
     def minWindow(self, s: str, t: str) -> str:
         need = collections.Counter(t)
-        i = 0
+        l = 0
         result = ""
-        for j, c in enumerate(s, 1):
+        for r, c in enumerate(s):
             need[c] -= 1
             if all(v <= 0 for v in need.values()):
-                while i < j and need[s[i]] < 0:
-                    need[s[i]] += 1
-                    i += 1
-                if not result or j-i < len(result):
-                    result = s[i:j]
+                while l < r and need[s[l]] < 0:
+                    need[s[l]] += 1
+                    l += 1
+                if not result or r-l+1 < len(result):
+                    result = s[l:r+1]
         return result
     ```
 
@@ -581,20 +581,21 @@ for r in range(len(nums)):
     ```python
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
         result = []
+
         q = deque()
-        l, r = 0, 0
-        while r < len(nums):
+        l = 0
+        for r in range(len(nums)):
             while q and nums[q[-1]] < nums[r]:
                 q.pop()
-            q.append(r)
 
+            q.append(r)
             if l > q[0]:
                 q.popleft()
 
-            if r >= k-1:
+            if r-k+1 >= 0:
                 result.append(nums[q[0]])
                 l += 1
-            r += 1
+
         return result
     ```
 
@@ -4231,7 +4232,7 @@ https://youtu.be/_i4Yxeh5ceQ
   min number of conference rooms.
 
   - `intervals = [(0,30),(5,10),(15,20)]` => `2`
-  - sorted starts and ends, s and e pointers, increment count `if start[s] < end[e]`
+  - store all timestamps, if start += 1, if end -= 1, max number of rooms
   - <details>
       <summary>O(nlogn) time, O(n) space</summary>
 
