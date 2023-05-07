@@ -1,9 +1,8 @@
 ---
 title: "📝 System Design notes"
 date: 2021-08-28
-draft: false
-
-tags: ["Software Engineering"]
+searchHidden: true
+robotsNoIndex: true
 ---
 
 Some notes about system design

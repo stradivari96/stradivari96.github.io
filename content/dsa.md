@@ -33,7 +33,6 @@ Some notes about DSA
     }
 </script>
 
-https://leetcode.com/assessment/
 
 <button onclick="openRandomLink(true, '?ez')" style="border: solid; border-width:1px; margin: 5px; padding: 5px" >
 Neetcode ez
@@ -44,7 +43,6 @@ Neetcode md
 <button onclick="openRandomLink(true, '?hd')" style="border: solid; border-width:1px; margin: 5px; padding: 5px" >
 Neetcode hard
 </button>
-<br/>
 <button onclick="openRandomLink(false, '?md')" style="border: solid; border-width:1px; margin: 5px; padding: 5px" >
 Random md
 </button>
@@ -56,7 +54,14 @@ Random md
 - Recursive with multiple branches: O(branches^depth), if not repeated work, O(n).
 - Fibonacci: O(2^n), with memoization: O(n)
 - Permutations, TSP: O(n!)
-- Binary search: O(log n) (divide search space)
+
+### Reacto
+- **Read** the problem, ask clarifying questions, assumptions
+- **Examples**, edge cases
+- **Approach**, pseudocode
+- **Code**
+- **Test**, edge cases
+- **Optimize**, space and time complexity
 
 ### Legend
 
