@@ -30,8 +30,7 @@ Project ideas:
 
 - Make a discord bot with [discord.py](https://discordpy.readthedocs.io/)
 - Program a simple game with [PyGame](https://www.pygame.org/docs/) such as [Snake](https://www.geeksforgeeks.org/snake-game-in-python-using-pygame-module/)
-- Deploy a simple [FastAPI](https://fastapi.tiangolo.com/) website in [Deta](https://www.deta.sh/) (maybe using [Riot API](https://developer.riotgames.com/))
-- Create a cli tool with [Typer](https://typer.tiangolo.com/) and upload it to [PyPI](https://pypi.org/).
+- Deploy a simple [FastAPI](https://fastapi.tiangolo.com/) website in [Deta](https://www.deta.sh/) (maybe a TODO list)
 
 {{< /notice >}}
 
@@ -41,10 +40,7 @@ Switch to [PyCharm](https://www.jetbrains.com/pycharm/) once you are familiar wi
 
 - 📚Read:
   - [Fluent Python (2022)](https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/):
-    - magic methods
-    - dataclasses
-    - Type Hints (Protocol, duck typing)
-    - decorators
+  magic methods, dataclasses, Type Hints (Protocol, duck typing), decorators
   - [Architecture Patterns with Python](https://www.cosmicpython.com/book/preface.html):
     DDD, CQRS, Event-Driver Architecture, etc.
 - 📺Watch:
@@ -93,7 +89,7 @@ Keep an eye on:
 See [notes about web](/posts/roadmap/#web-development)
 {{< /notice >}}
 
-Deploy using https://www.deta.sh/ or https://www.pythonanywhere.com/
+Deploy using https://deta.space/ or https://www.pythonanywhere.com/
 
 - [**Django**](https://www.djangoproject.com/): [tutorial](https://tutorial.djangogirls.org/en/)
   - [readthedocs](https://github.com/readthedocs/readthedocs.org): documentation hosting
