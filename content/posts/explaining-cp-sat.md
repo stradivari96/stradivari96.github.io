@@ -19,6 +19,7 @@ Overview of the CP-SAT solver from Google OR-Tools
 
 - Laurent Perron and Frédéric Didier, CPAIOR 2020: https://youtu.be/lmy1ddn4cyw
 - Peter J. Stuckey, Search is Dead: https://people.eng.unimelb.edu.au/pstuckey/PPDP2013.pdf
+- Dominik Krupke, CP-SAT primer: https://github.com/d-krupke/cpsat-primer
 
 ## Model Building
 
