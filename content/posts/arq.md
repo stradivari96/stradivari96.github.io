@@ -28,23 +28,23 @@ Quick look at the repo for [arq](https://github.com/samuelcolvin/arq/) by Samuel
 - `LICENSE`: MIT
 - `Makefile`: `install`, `format`, `lint` (flake8, isort, black), `test`, `all`, `docs`, etc
 - `README.md`: simple readme for github and pypi
-- `pyproject.toml`: hatchling, [PEP 621](https://packaging.python.org/en/latest/specifications/declaring-project-metadata/), config for pytest, coverage, black, isort, mypy
+- `pyproject.toml`: [hatchling](https://github.com/pypa/hatch), [PEP 621](https://packaging.python.org/en/latest/specifications/declaring-project-metadata/), config for pytest, coverage, black, isort, mypy
 
 ## Dependencies
 ### Direct
-- redis[hiredis]
-- click
-- typing-extensions
+- [redis[hiredis]](https://github.com/redis/redis-py): redis interface with faster parser
+- [click](https://github.com/pallets/click): Command Line Interface Creation Kit, from the pallets team
+- [typing-extensions](https://github.com/python/typing_extensions): backport of new typing features for older python versions
 ### docs.in
-- Sphinx
+- [Sphinx](https://github.com/sphinx-doc/sphinx): documentation generator for multiple languages
 ### linting.in
-- black
-- flake8
+- [black](https://github.com/psf/black): code formatter
+- [flake8](https://github.com/PyCQA/flake8): linter
 - flake8-quotes
-- isort[colors]
-- mypy
-- types-pytz
-- types-redis
+- [isort[colors]](https://github.com/PyCQA/isort): import sorter with colorama
+- [mypy](https://github.com/python/mypy): static type checker
+- types-pytz: [typeshed](https://github.com/python/typeshed) stubs for pytz
+- types-redis: typeshed stubs for redis
 ### testing.in
 - coverage[toml]
 - dirty-equals
@@ -116,4 +116,22 @@ class WorkerCoroutine(Protocol):
 
     async def __call__(self, ctx: Dict[Any, Any], *args: Any, **kwargs: Any) -> Any:  # pragma: no cover
         pass
+```
+- Use `cast` to avoid typing errors
+```python
+redis_settings = cast(Optional[RedisSettings], cls_kwargs.get('redis_settings'))
+health_check_key = cast(Optional[str], cls_kwargs.get('health_check_key'))
+queue_name = cast(Optional[str], cls_kwargs.get('queue_name'))
+```
+- Keyword only arguments using `*`
+```python
+async def create_pool(
+    settings_: RedisSettings = None,
+    *,
+    retry: int = 0,
+    job_serializer: Optional[Serializer] = None,
+    job_deserializer: Optional[Deserializer] = None,
+    default_queue_name: str = default_queue_name,
+    expires_extra_ms: int = expires_extra_ms,
+) -> ArqRedis:
 ```

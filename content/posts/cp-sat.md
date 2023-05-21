@@ -19,6 +19,7 @@ Some tips and tricks for the CP-SAT solver.
 ## Resources:
 
 - https://github.com/or-tools/awesome_or-tools
+- https://github.com/d-krupke/cpsat-primer
 - https://stackoverflow.com/questions/tagged/or-tools
 - https://or.stackexchange.com/questions/tagged/or-tools
 - https://groups.google.com/g/or-tools-discuss

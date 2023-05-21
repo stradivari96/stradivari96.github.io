@@ -40,12 +40,12 @@ Switch to [PyCharm](https://www.jetbrains.com/pycharm/) once you are familiar wi
 
 - 📚Read:
   - [Fluent Python (2022)](https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/):
-  magic methods, dataclasses, Type Hints (Protocol, duck typing), decorators
+  magic methods, dataclasses, Advanced typing, decorators
   - [Architecture Patterns with Python](https://www.cosmicpython.com/book/preface.html):
     DDD, CQRS, Event-Driver Architecture, etc.
-- 📺Watch:
+- 📺Watch: sort by popular
   - [ArjanCodes](https://www.youtube.com/@ArjanCodes/videos): Advanced, refactoring videos are great.
-  - [mCoding](https://www.youtube.com/channel/UCaiL2GDNpLYH6Wokkk1VNcg): Trivia, watch popular videos.
+  - [mCoding](https://www.youtube.com/channel/UCaiL2GDNpLYH6Wokkk1VNcg): Trivia.
 - 🧰Learn about [Design Patterns](https://refactoring.guru/design-patterns/what-is-pattern) in [python](https://github.com/faif/python-patterns) but don't go too crazy.
 - 📝[StackOverflow Questions](https://stackoverflow.com/questions/tagged/python?sort=votes):
   should know the answers to the most voted questions.
@@ -56,7 +56,7 @@ Use [venv](https://docs.python.org/3/library/venv.html) and [pip-tools](https://
 Avoid [pipenv](https://github.com/pypa/pipenv).
 {{< /notice >}}
 
-- ⚡️Concurrency:
+- ⚡️Concurrency with superfast python:
   - [Why Learn Python Concurrency](https://superfastpython.com/why-learn-python-concurrency/)
   - [How to Choose the Right Concurrency API](https://superfastpython.com/python-concurrency-choose-api/)
 - 🧪Learn about [testing](https://testdriven.io/guides/complete-python/)
@@ -69,7 +69,6 @@ Avoid [pipenv](https://github.com/pypa/pipenv).
   [pip-audit](https://github.com/pypa/pip-audit),
   [bandit](https://bandit.readthedocs.io/en/latest/).
 - 👀Checkout some Open Source projects, better if you have used them before:
-  - [arrow](https://github.com/arrow-py/arrow): highly recommended
   - [requests](https://github.com/psf/requests) and [httpx](https://github.com/encode/httpx): probably familiar with them
   - [arq](https://github.com/samuelcolvin/arq): small modern project, take a good look at every file
 
