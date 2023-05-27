@@ -116,6 +116,11 @@ Despensa:
 - 1 vaso de **vino** tinto, 1 vaso de **caldo**, sal, pimienta
 - 30 min, fuego suave, tapado, añadir **patatas** en cubos, 25 min más
 
+### Chistorra a la sidra
+- Atemperar **chistorra**
+- Dorar **chistorra** en sarten 5 min
+- Añadir sidra, 15 min
+
 ### Pollo en salsa de queso [📺](https://www.youtube.com/watch?v=qnW3h49sFN4)
 ### Gulas al ajillo
 ### Pollo Kung Pao [📺](https://youtu.be/yt-pyFj2t2g)

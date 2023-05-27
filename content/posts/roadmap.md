@@ -21,21 +21,23 @@ Mark as done as you go.
 ## General
 
 - 🌐[Refactoring guru](https://refactoring.guru): Refactoring patterns and Design Patterns
-- 🌐[Twelve-factor app](https://12factor.net/): SaaS best practices
 - 📚[The Pragmatic Programmer](https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/): Agnostic book about software engineering
-- 🌐[Software Engineering at Google](https://abseil.io/resources/swe-book/html/toc.html): Google's approach to software engineering
+- 📚[Software Engineering at Google](https://abseil.io/resources/swe-book/html/toc.html): Google's approach to software engineering
 
 ---
 
 ## Interviewing
 
 - 📝[DSA](/dsa)
-- 📝[System Design](/posts/system-design/)
+- 📝[System Design](/system-design/)
 - 📝[Behavioral Questions](/behavioral-questions/)
 
 ---
 
 ## Version Control (Git)
+
+<details>
+<summary>Resources</summary>
 
 - ✨[**Cheatsheet**](https://training.github.com/downloads/github-git-cheat-sheet/)
 - 🌐[Git Flow](https://nvie.com/posts/a-successful-git-branching-model/) / [Github Flow](https://docs.github.com/en/get-started/quickstart/github-flow)
@@ -48,7 +50,7 @@ Mark as done as you go.
 
 ## Languages
 
-Surveys: [JetBrains](https://www.jetbrains.com/lp/devecosystem-2022/) / [Stack Overflow](https://survey.stackoverflow.co/2022/)
+Surveys: [JetBrains](https://www.jetbrains.com/lp/devecosystem-2022/) / [Stack Overflow](https://insights.stackoverflow.com/survey)
 
 | Jobs                                                                       | Language                  | Description                        |
 | -------------------------------------------------------------------------- | ------------------------- | ---------------------------------- |

@@ -11,14 +11,14 @@ Some notes about system design
 
 ## References
 
-- [System design primer](https://github.com/donnemartin/system-design-primer)
-- [High Scalability](http://highscalability.squarespace.com/blog/category/example)
-- [Designing data intensive](https://www.goodreads.com/book/show/23463279-designing-data-intensive-applications?ref=nav_sb_ss_1_15)
-- [System design interview](https://www.goodreads.com/book/show/54109255-system-design-interview-an-insider-s-guide)
+- 🌐[System design primer](https://github.com/donnemartin/system-design-primer)
+- 🌐[High Scalability](http://highscalability.squarespace.com/blog/category/example)
+- 📚[Designing data intensive](https://dataintensive.net/)
+- 📚[System design interview](https://www.goodreads.com/book/show/54109255-system-design-interview-an-insider-s-guide)
 
 ### Scaling
 
-- NoSQL for:
+- NoSQL (MongoDB, Cassandra, Firebase, [DynamoDB](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf), etc) for:
   - low latency
   - unstructured or non relational data
   - only need to serialize and deserialize (json, xml, yaml, etc)
