@@ -16,19 +16,19 @@ Quick look at the repo for [arq](https://github.com/samuelcolvin/arq/) by Samuel
 - https://pypi.org/project/arq/
 
 ## Codemap
-- `.github/`: mainly GitHub Actions
+- [`.github/`](https://github.com/samuelcolvin/arq/blob/main/.github/workflows/ci.yml): mainly [**GitHub Actions**](https://docs.github.com/en/actions)
 - `arq/`: source code
-- `docs/`: sphinx documentation
-- `requirements/`: requirements.in and txt, using pip-tools, for local dev
-- `tests/`: pytest, one test file per public module
-- `.codecov.yml`: codecov config
+- `docs/`: [**sphinx**](https://www.sphinx-doc.org/en/master/) documentation
+- `requirements/`: requirements.in and txt, using [**pip-tools**](https://github.com/jazzband/pip-tools), for local dev
+- `tests/`: [**pytest**](https://docs.pytest.org/), one test file per public module
+- `.codecov.yml`: [**codecov**](https://about.codecov.io/) config
 - `.gitignore`
-- `.pre-commit-config.yaml`: pre-commit/pre-commit-hooks + `make lint` + `mypy`
+- `.pre-commit-config.yaml`: [**pre-commit**](https://github.com/pre-commit/pre-commit) + `make lint` + `mypy`
 - `HISTORY.rst`: changelog
 - `LICENSE`: MIT
 - `Makefile`: `install`, `format`, `lint` (flake8, isort, black), `test`, `all`, `docs`, etc
 - `README.md`: simple readme for github and pypi
-- `pyproject.toml`: [hatchling](https://github.com/pypa/hatch), [PEP 621](https://packaging.python.org/en/latest/specifications/declaring-project-metadata/), config for pytest, coverage, black, isort, mypy
+- [`pyproject.toml`](https://github.com/samuelcolvin/arq/blob/main/pyproject.toml): [**hatchling**](https://github.com/pypa/hatch), [PEP 621](https://packaging.python.org/en/latest/specifications/declaring-project-metadata/), config for pytest, coverage, black, isort, mypy
 
 ## Dependencies
 ### Direct

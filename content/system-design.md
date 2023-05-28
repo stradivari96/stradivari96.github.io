@@ -42,6 +42,9 @@ Some notes about system design
 
 ### Back of the envelope estimation
 
+<details>
+<summary>Details</summary>
+
 Powers of two
 
 ```
@@ -95,7 +98,9 @@ Notes
 | 99.999%        | 864.00 milliseconds | 5.26 minutes      |
 | 99.9999%       | 86.40 milliseconds  | 31.56 seconds     |
 
-## [The Twelve-Factor App](https://12factor.net/)
+</details>
+
+### [The Twelve-Factor App](https://12factor.net/)
 
 1. **Codebase**: Use VCS (git), one codebase per app. Refactor shared code into libraries.
 2. **Dependencies**: Declare and isolate dependencies, vendor if necessary.
@@ -110,7 +115,7 @@ Notes
 11. **Logs**: Print unbuffered to stdout and should be captured by the executing environment.
 12. **Admin processes**: Run admin/management tasks as one-off processes.
 
-## [Scalability for Dummies](https://www.lecloud.net/tagged/scalability)
+### [Scalability for Dummies](https://www.lecloud.net/tagged/scalability)
 
 - Hide servers behing a load balancer.
 - Servers does not store any user related data, store sessions in an external cache.
@@ -121,7 +126,7 @@ Notes
   - Precomputing (pre-render static html for CDN)
   - Job queues
 
-## Examples:
+### Examples:
 
 - Twitter: [Primer](https://github.com/donnemartin/system-design-primer/blob/master/solutions/system_design/twitter/README.md), [CodelyTV](https://youtu.be/6o0usvW5bqY), [Exponent](https://youtu.be/QF8JNSoJD8E)
   - Fanout

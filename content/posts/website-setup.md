@@ -10,8 +10,8 @@ How I set up this website using GitHub Pages, namecheap and Cloudflare
 
 <!--more-->
 
-{{< notice info >}}
-I have migrated my website to [Hugo PaperMod](https://github.com/adityatelange/hugo-PaperMod).
+{{< notice warning >}}
+I have migrated my website to [Hugo PaperMod](https://github.com/adityatelange/hugo-PaperMod) + [hugo notice](https://learn.netlify.app/en/shortcodes/notice/)
 
 Read the [Papermod Guide](https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-installation/#guide)
 and [how to host on Github](https://gohugo.io/hosting-and-deployment/hosting-on-github/) for more info.

@@ -12,99 +12,201 @@ Some notes about design patterns
 
 <!--more-->
 
+## References
+- https://refactoring.guru/design-patterns/catalog
+- https://www.oreilly.com/library/view/head-first-design/9781492077992/
+- https://github.com/faif/python-patterns
+- https://www.patterns.dev/posts
+
 ## Behavioral
 
-### [Strategy Pattern](https://github.com/faif/python-patterns/blob/master/patterns/behavioral/strategy.py)
+### [Strategy Pattern](https://refactoring.guru/design-patterns/strategy)
 
-> Define a family of algorithms, encapsulate each one, and make them interchangeable.
-> Strategy lets the algorithm vary independently from clients that use it.
+- Define a family of algorithms, encapsulate each one, and make them interchangeable.
+- Enables algorithm at runtime, hide implementation details, easy to add new strategies.
+- <details>
+    <summary>Example</summary>
 
-- HAS-A can be better than IS-A
+    ```python
+    from typing import Protocol
 
-```
-Duck
-    - flyBehavior  # classes or functions
-    - quackBehavior  # classes or functions
-    - swim()
-    - display()
-    - performFly()
-    - performQuack()
-```
+    class Order:
+        def __init__(
+            self,
+            price: float,
+            discount_strategy: "DiscountStrategy" = None,
+        ):
+            self.price = price
+            self.discount_strategy = discount_strategy
 
-### [Observer Pattern](https://github.com/faif/python-patterns/blob/master/patterns/behavioral/observer.py)
-
-> Maintains a list of dependents and notifies them of any state changes.
-
-```python
-# define a generic observer type
-class Observer(Protocol):
-    def update(self, subject: Subject) -> None:
-        ...
-
-
-class Subject:
-    def __init__(self) -> None:
-        self._observers: list[Observer] = []
-
-    def attach(self, observer: Observer) -> None:
-        if observer not in self._observers:
-            self._observers.append(observer)
-
-    def detach(self, observer: Observer) -> None:
-        with suppress(ValueError):
-            self._observers.remove(observer)
-
-    def notify(self, modifier: Observer | None = None) -> None:
-        for observer in self._observers:
-            if modifier != observer:
-                observer.update(self)
-```
-
-### [Command Pattern](https://github.com/faif/python-patterns/blob/master/patterns/behavioral/command.py)
-
-> Command pattern decouples the object invoking a job from the one who knows
-> how to do it. As mentioned in the GoF book, a good example is in menu items.
-> You have a menu that has lots of items. Each item is responsible for doing a
-> special thing and you want your menu item just call the execute method when
-> it is pressed. To achieve this you implement a command object with the execute
-> method for each menu item and pass to it.
-
-```python
-class HideFileCommand:
-    def __init__(self) -> None:
-        self._hidden_files: List[str] = []
-    def execute(self, filename: str) -> None:
-        self._hidden_files.append(filename)
-    def undo(self) -> None:
-        filename = self._hidden_files.pop()
+        def apply_discount(self) -> float:
+            if self.discount_strategy:
+                discount = self.discount_strategy(self)
+            else:
+                discount = 0
+            return self.price - discount
 
 
-class DeleteFileCommand:
-    def __init__(self) -> None:
-        self._deleted_files: List[str] = []
-    def execute(self, filename: str) -> None:
-        self._deleted_files.append(filename)
-    def undo(self) -> None:
-        filename = self._deleted_files.pop()
+    class DiscountStrategy(Protocol):
+        def __call__(self, order: Order) -> float:
+            ...
 
 
-class MenuItem:
-    def __init__(self, command: Union[HideFileCommand, DeleteFileCommand]) -> None:
-        self._command = command
-    def on_do_press(self, filename: str) -> None:
-        self._command.execute(filename)
-    def on_undo_press(self) -> None:
-        self._command.undo()
+    def ten_percent_discount(order: Order) -> float:
+        return order.price * 0.1
 
-item1 = MenuItem(DeleteFileCommand())
-item2 = MenuItem(HideFileCommand())
 
-test_file_name = 'test-file'
-item1.on_do_press(test_file_name)
-item1.on_undo_press()
-item2.on_do_press(test_file_name)
-item2.on_undo_press()
-```
+    def on_sale_discount(order: Order) -> float:
+        return order.price * 0.25 + 20
+
+
+    if __name__ == "__main__":
+        order = Order(100, discount_strategy=ten_percent_discount)
+        print(order.apply_discount())
+
+        order = Order(100, discount_strategy=on_sale_discount)
+        print(order.apply_discount())
+
+    ```
+
+    </details>
+
+### [Observer Pattern](https://refactoring.guru/design-patterns/observer)
+
+
+- Maintains a list of dependents and notifies them of any state changes.
+- [Django signals](https://docs.djangoproject.com/en/4.2/topics/signals/) / [Flask signals](https://flask.palletsprojects.com/en/2.3.x/signals/)
+- <details>
+    <summary>Example</summary>
+
+    ```python
+    class Observer(Protocol):
+        def update(self, subject: "Subject") -> None:
+            ...
+
+
+    class Subject:
+        def __init__(self) -> None:
+            self._observers: list[Observer] = []
+
+        def attach(self, observer: Observer) -> None:
+            if observer not in self._observers:
+                self._observers.append(observer)
+
+        def detach(self, observer: Observer) -> None:
+            with suppress(ValueError):
+                self._observers.remove(observer)
+
+        def notify(self, modifier: Observer | None = None) -> None:
+            for observer in self._observers:
+                if modifier != observer:
+                    observer.update(self)
+
+
+    class Data(Subject):
+        def __init__(self, name: str = "") -> None:
+            super().__init__()
+            self.name = name
+            self._data = 0
+
+        @property
+        def data(self) -> int:
+            return self._data
+
+        @data.setter
+        def data(self, value: int) -> None:
+            self._data = value
+            self.notify()
+
+
+    class HexViewer:
+        def update(self, subject: Data) -> None:
+            print(f"HexViewer: Subject {subject.name} has data 0x{subject.data:x}")
+
+
+    class DecimalViewer:
+        def update(self, subject: Data) -> None:
+            print(f"DecimalViewer: Subject {subject.name} has data {subject.data}")
+
+
+    if __name__ == "__main__":
+        data1 = Data("Data 1")
+        view1 = DecimalViewer()
+        view2 = HexViewer()
+        data1.attach(view1)
+        data1.attach(view2)
+        data1.data = 10
+    ```
+
+    </details>
+
+### [Command Pattern](https://refactoring.guru/design-patterns/command)
+
+- Object oriented implementation of callback functions.
+- <details>
+    <summary>Example</summary>
+
+    ```python
+    from typing import Protocol
+
+
+    class HideFileCommand:
+        def __init__(self) -> None:
+            self._hidden_files: list[str] = []
+
+        def execute(self, filename: str) -> None:
+            print(f"hiding {filename}")
+            self._hidden_files.append(filename)
+
+        def undo(self) -> None:
+            filename = self._hidden_files.pop()
+            print(f"un-hiding {filename}")
+
+
+    class DeleteFileCommand:
+        def __init__(self) -> None:
+            self._deleted_files: list[str] = []
+
+        def execute(self, filename: str) -> None:
+            print(f"deleting {filename}")
+            self._deleted_files.append(filename)
+
+        def undo(self) -> None:
+            filename = self._deleted_files.pop()
+            print(f"restoring {filename}")
+
+
+    class Command(Protocol):
+        def execute(self, filename: str) -> None:
+            ...
+
+        def undo(self) -> None:
+            ...
+
+
+    class MenuItem:
+        def __init__(self, command: Command) -> None:
+            self._command = command
+
+        def on_do_press(self, filename: str) -> None:
+            self._command.execute(filename)
+
+        def on_undo_press(self) -> None:
+            self._command.undo()
+
+
+    if __name__ == "__main__":
+        item1 = MenuItem(DeleteFileCommand())
+        item2 = MenuItem(HideFileCommand())
+
+        test_file_name = "test-file"
+        item1.on_do_press(test_file_name)
+        item1.on_undo_press()
+        item2.on_do_press(test_file_name)
+        item2.on_undo_press()
+    ```
+
+    </details>
 
 ### [Template Method Pattern](https://github.com/faif/python-patterns/blob/master/patterns/behavioral/template.py)
 
