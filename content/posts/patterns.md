@@ -12,6 +12,15 @@ Some notes about design patterns
 
 <!--more-->
 
+{{< notice info >}}
+
+Do **NOT** use design patterns just because you can.
+
+Use them when they make sense, they should emerge naturally from the problem.
+
+In some languages, some event are anti-patterns.
+{{< /notice >}}
+
 ## References
 - https://refactoring.guru/design-patterns/catalog
 - https://www.oreilly.com/library/view/head-first-design/9781492077992/
@@ -20,7 +29,7 @@ Some notes about design patterns
 
 ## Behavioral
 
-### [Strategy Pattern](https://refactoring.guru/design-patterns/strategy)
+### ⭐[Strategy Pattern](https://refactoring.guru/design-patterns/strategy)
 
 - Define a family of algorithms, encapsulate each one, and make them interchangeable.
 - Enables algorithm at runtime, hide implementation details, easy to add new strategies.
@@ -71,7 +80,7 @@ Some notes about design patterns
 
     </details>
 
-### [Observer Pattern](https://refactoring.guru/design-patterns/observer)
+### ⭐[Observer Pattern](https://refactoring.guru/design-patterns/observer)
 
 
 - Maintains a list of dependents and notifies them of any state changes.
@@ -140,7 +149,7 @@ Some notes about design patterns
 
     </details>
 
-### [Command Pattern](https://refactoring.guru/design-patterns/command)
+### ⭐[Command Pattern](https://refactoring.guru/design-patterns/command)
 
 - Object oriented implementation of callback functions.
 - <details>
@@ -208,45 +217,57 @@ Some notes about design patterns
 
     </details>
 
-### [Template Method Pattern](https://github.com/faif/python-patterns/blob/master/patterns/behavioral/template.py)
+### ⭐[Iterator Pattern](https://refactoring.guru/design-patterns/iterator)
 
-> Defines the skeleton of a base algorithm, deferring definition of exact
-> steps to subclasses.
+- Provides a way to access the elements of an aggregate object
+sequentially without exposing its underlying representation.
 
-```python
-def template_function(getter, converter=False, to_save=False) -> None:
-    data = getter()
-    print(f"Got `{data}`")
+- <details>
+    <summary>Example</summary>
 
-    if len(data) <= 3 and converter:
-        data = converter(data)
-    else:
-        print("Skip conversion")
+    ```python
+    def count_to(count: int):
+        """Counts by word numbers, up to a maximum of five"""
+        numbers = ["one", "two", "three", "four", "five"]
+        yield from numbers[:count]
 
-    if to_save:
-        saver()
+    def count_to_five() -> None:
+        return count_to(5)
 
-    print(f"`{data}` was processed")
-```
+    for number in count_to_five():
+        print(number)
+    ```
 
-### [Iterator Pattern](https://github.com/faif/python-patterns/blob/master/patterns/behavioral/iterator.py)
+    </details>
 
-> Provides a way to access the elements of an aggregate object
-> sequentially without exposing its underlying representation.
+### [Template Method Pattern](https://refactoring.guru/design-patterns/template-method)
 
-```python
-def count_to(count: int):
-    """Counts by word numbers, up to a maximum of five"""
-    numbers = ["one", "two", "three", "four", "five"]
-    yield from numbers[:count]
+- Skeleton of a base algorithm, definition of exact steps in subclasses.
+- [Django Class Based Views](https://docs.djangoproject.com/en/2.1/topics/class-based-views/)
+- <details>
+    <summary>Example</summary>
 
+    ```python
+        def template_function(getter, converter=None, to_save=False) -> None:
+            data = getter()
+            print(f"Got `{data}`")
 
-# Test the generator
-def count_to_five() -> None:
-    return count_to(5)
-```
+            if len(data) <= 3 and converter:
+                data = converter(data)
+            else:
+                print("Skip conversion")
 
-### [State Pattern](https://github.com/faif/python-patterns/blob/master/patterns/behavioral/state.py)
+            if to_save:
+                saver()
+
+            print(f"`{data}` was processed")
+    ```
+
+    </details>
+
+### [State Pattern](https://refactoring.guru/design-patterns/state)
+
+- (https://github.com/faif/python-patterns/blob/master/patterns/behavioral/state.py)
 
 > Allows an object to alter its behavior
 > when its internal state changes. The object will appear to
@@ -304,60 +325,39 @@ class Radio:
         self.state.scan()
 ```
 
-### [Chain of Responsibility Pattern](https://github.com/faif/python-patterns/blob/master/patterns/behavioral/chain_of_responsibility.py)
+### [Chain of Responsibility Pattern](https://refactoring.guru/design-patterns/chain-of-responsibility)
+
+- (https://github.com/faif/python-patterns/blob/master/patterns/behavioral/chain_of_responsibility.py)
 
 > The Chain of responsibility is an object oriented version of the
 > `if ... elif ... elif ... else ...` idiom, with the
 > benefit that the condition–action blocks can be dynamically rearranged
 > and reconfigured at runtime.
 
-### [Mediator Pattern](https://github.com/faif/python-patterns/blob/master/patterns/behavioral/mediator.py)
+### [Mediator Pattern](https://refactoring.guru/design-patterns/mediator)
+
+- (https://github.com/faif/python-patterns/blob/master/patterns/behavioral/mediator.py)
 
 > Objects in a system communicate through a Mediator instead of directly with each other.
 > This reduces the dependencies between communicating objects, thereby reducing coupling.
 
-### [Memento Pattern](https://github.com/faif/python-patterns/blob/master/patterns/behavioral/memento.py)
+### [Memento Pattern](https://refactoring.guru/design-patterns/memento)
+
+- (https://github.com/faif/python-patterns/blob/master/patterns/behavioral/memento.py)
 
 > Provides the ability to restore an object to its previous state.
 
-### [Visitor Pattern](https://github.com/faif/python-patterns/blob/master/patterns/behavioral/visitor.py)
+### [Visitor Pattern](https://refactoring.guru/design-patterns/visitor)
+
+- (https://github.com/faif/python-patterns/blob/master/patterns/behavioral/visitor.py)
 
 > Separates an algorithm from an object structure on which it operates.
 
 ## Structural
 
-### [Decorator Pattern](https://github.com/faif/python-patterns/blob/master/patterns/structural/decorator.py)
+### ⭐[Adapter Pattern](https://refactoring.guru/design-patterns/adapter)
 
-> The Decorator pattern is used to dynamically add a new feature to an
-> object without changing its implementation. It differs from
-> inheritance because the new feature is added only to that particular
-> object, not to the entire subclass.
-
-- Classes should be open for extension, but closed for modification.
-
-```python
-class TextTag:
-    def __init__(self, text: str) -> None:
-        self._text = text
-    def render(self) -> str:
-        return self._text
-
-
-class BoldWrapper(TextTag):
-    def __init__(self, wrapped: TextTag) -> None:
-        self._wrapped = wrapped
-    def render(self) -> str:
-        return f"<b>{self._wrapped.render()}</b>"
-
-
-class ItalicWrapper(TextTag):
-    def __init__(self, wrapped: TextTag) -> None:
-        self._wrapped = wrapped
-    def render(self) -> str:
-        return f"<i>{self._wrapped.render()}</i>"
-```
-
-### [Adapter Pattern](https://github.com/faif/python-patterns/blob/master/patterns/structural/adapter.py)
+- (https://github.com/faif/python-patterns/blob/master/patterns/structural/adapter.py)
 
 > The Adapter pattern provides a different interface for a class. We can
 > think about it as a cable adapter that allows you to charge a phone
@@ -388,7 +388,42 @@ class Adapter:
         return self.obj.__dict__
 ```
 
-### [Facade Pattern](https://github.com/faif/python-patterns/blob/master/patterns/structural/facade.py)
+### [Decorator Pattern](https://refactoring.guru/design-patterns/decorator)
+
+- (https://github.com/faif/python-patterns/blob/master/patterns/structural/decorator.py)
+
+> The Decorator pattern is used to dynamically add a new feature to an
+> object without changing its implementation. It differs from
+> inheritance because the new feature is added only to that particular
+> object, not to the entire subclass.
+
+- Classes should be open for extension, but closed for modification.
+
+```python
+class TextTag:
+    def __init__(self, text: str) -> None:
+        self._text = text
+    def render(self) -> str:
+        return self._text
+
+
+class BoldWrapper(TextTag):
+    def __init__(self, wrapped: TextTag) -> None:
+        self._wrapped = wrapped
+    def render(self) -> str:
+        return f"<b>{self._wrapped.render()}</b>"
+
+
+class ItalicWrapper(TextTag):
+    def __init__(self, wrapped: TextTag) -> None:
+        self._wrapped = wrapped
+    def render(self) -> str:
+        return f"<i>{self._wrapped.render()}</i>"
+```
+
+### [Facade Pattern](https://refactoring.guru/design-patterns/facade)
+
+- (https://github.com/faif/python-patterns/blob/master/patterns/structural/facade.py)
 
 > The Facade pattern is a way to provide a simpler unified interface to
 > a more complex system. It provides an easier way to access functions
@@ -409,7 +444,9 @@ class ComputerFacade:
         self.cpu.execute()
 ```
 
-### [Composite Pattern](https://github.com/faif/python-patterns/blob/master/patterns/structural/composite.py)
+### [Composite Pattern](https://refactoring.guru/design-patterns/composite)
+
+- (https://github.com/faif/python-patterns/blob/master/patterns/structural/composite.py)
 
 > The composite pattern describes a group of objects that is treated the
 > same way as a single instance of the same type of object. The intent of
@@ -459,7 +496,9 @@ graphic.add(graphic2)
 graphic.render()
 ```
 
-### [Proxy Pattern](https://github.com/faif/python-patterns/blob/master/patterns/structural/proxy.py)
+### [Proxy Pattern](https://refactoring.guru/design-patterns/proxy)
+
+- (https://github.com/faif/python-patterns/blob/master/patterns/structural/proxy.py)
 
 > Proxy is used in places where you want to add functionality to a class without
 > changing its interface. The main class is called `Real Subject`. A client should
@@ -512,11 +551,15 @@ class Proxy(Subject):
 
 > Separates data in GUIs from the ways it is presented, and accepted.
 
-### [Bridge Pattern](https://github.com/faif/python-patterns/blob/master/patterns/structural/bridge.py)
+### [Bridge Pattern](https://refactoring.guru/design-patterns/bridge)
+
+- (https://github.com/faif/python-patterns/blob/master/patterns/structural/bridge.py)
 
 > Decouples an abstraction from its implementation.
 
-### [Flyweight Pattern](https://github.com/faif/python-patterns/blob/master/patterns/structural/flyweight.py)
+### [Flyweight Pattern](https://refactoring.guru/design-patterns/flyweight)
+
+- (https://github.com/faif/python-patterns/blob/master/patterns/structural/flyweight.py)
 
 > This pattern aims to minimise the number of objects that are needed by
 > a program at run-time. A Flyweight is an object shared by multiple
@@ -524,36 +567,45 @@ class Proxy(Subject):
 
 ## Creational
 
-### [Factory Pattern](https://github.com/faif/python-patterns/blob/master/patterns/creational/factory.py)
+### ⭐[Factory Pattern](https://refactoring.guru/design-patterns/factory-method)
 
-> A Factory is an object for creating other objects.
+- Object for creating other objects without having to specify the exact class.
+- [Django formset_factory](https://docs.djangoproject.com/en/4.0/topics/forms/formsets/)
+- <details>
+    <summary>Example</summary>
 
-- Depend upon abstractions. Do not depend upon concrete classes.
+    ```python
+    class GreekLocalizer:
+        def __init__(self) -> None:
+            self.translations = {"dog": "σκύλος", "cat": "γάτα"}
 
-```python
-class GreekLocalizer:
-    def __init__(self) -> None:
-        self.translations = {"dog": "σκύλος", "cat": "γάτα"}
-
-    def localize(self, msg: str) -> str:
-        return self.translations.get(msg, msg)
-
-
-class EnglishLocalizer:
-    def localize(self, msg: str) -> str:
-        return msg
+        def localize(self, msg: str) -> str:
+            return self.translations.get(msg, msg)
 
 
-def get_localizer(language: str = "English") -> object:
-    localizers = {
-        "English": EnglishLocalizer,
-        "Greek": GreekLocalizer,
-    }
+    class EnglishLocalizer:
+        def localize(self, msg: str) -> str:
+            return msg
 
-    return localizers[language]()
-```
 
-### [Abstract Factory Pattern](https://github.com/faif/python-patterns/blob/master/patterns/creational/abstract_factory.py)
+    def get_localizer(language: str = "English") -> object:
+        localizers = {
+            "English": EnglishLocalizer,
+            "Greek": GreekLocalizer,
+        }
+
+        return localizers[language]()
+
+    e, g = get_localizer(language="English"), get_localizer(language="Greek")
+    for msg in ["dog", "parrot", "cat", "bear"]:
+        print(e.localize(msg), g.localize(msg))
+    ```
+    </details>
+
+
+### ⭐[Abstract Factory Pattern](https://refactoring.guru/design-patterns/abstract-factory)
+
+- (https://github.com/faif/python-patterns/blob/master/patterns/creational/abstract_factory.py)
 
 > In Java and other languages, the Abstract Factory Pattern serves to provide an interface for
 > creating related/dependent objects without need to specify their
@@ -582,13 +634,9 @@ def random_animal(name: str) -> Pet:
     return random.choice([Dog, Cat])(name)
 ```
 
-### [Singleton Pattern](https://github.com/faif/python-patterns/blob/master/patterns/creational/borg.py)
+### ⭐[Builder Pattern](https://refactoring.guru/design-patterns/builder)
 
-> Ensure a class only has one instance, and provide a global point of access to it.
-
-In python modules are only imported once. Just declare a variable there.
-
-### [Builder Pattern](https://github.com/faif/python-patterns/blob/master/patterns/creational/builder.py)
+- (https://github.com/faif/python-patterns/blob/master/patterns/creational/builder.py)
 
 > It decouples the creation of a complex object and its representation,
 > so that the same process can be reused to build objects from the same
@@ -596,7 +644,19 @@ In python modules are only imported once. Just declare a variable there.
 > This is useful when you must separate the specification of an object
 > from its actual representation (generally for abstraction).
 
-### [Prototype Pattern](https://github.com/faif/python-patterns/blob/master/patterns/creational/prototype.py)
+### [Singleton Pattern](https://refactoring.guru/design-patterns/singleton)
+
+- (https://github.com/faif/python-patterns/blob/master/patterns/creational/borg.py)
+
+> Ensure a class only has one instance, and provide a global point of access to it.
+
+In python modules are only imported once. Just declare a variable there.
+
+
+
+### [Prototype Pattern](https://refactoring.guru/design-patterns/prototype)
+
+- (https://github.com/faif/python-patterns/blob/master/patterns/creational/prototype.py)
 
 > This patterns aims to reduce the number of classes required by an
 > application. Instead of relying on subclasses it creates objects by
