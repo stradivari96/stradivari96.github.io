@@ -357,36 +357,40 @@ class Radio:
 
 ### ⭐[Adapter Pattern](https://refactoring.guru/design-patterns/adapter)
 
-- (https://github.com/faif/python-patterns/blob/master/patterns/structural/adapter.py)
+- Allows the interface of an existing class to be used as another interface.
+- <details>
+    <summary>Example</summary>
 
-> The Adapter pattern provides a different interface for a class. We can
-> think about it as a cable adapter that allows you to charge a phone
-> somewhere that has outlets in a different shape. Following this idea,
-> the Adapter pattern is useful to integrate classes that couldn't be
-> integrated due to their incompatible interfaces.
+    ```python
+    T = TypeVar("T")
 
-```python
-class Adapter:
-    """Adapts an object by replacing methods.
-    Usage
-    ------
-    dog = Dog()
-    dog = Adapter(dog, make_noise=dog.bark)
-    """
+    class Adapter:
 
-    def __init__(self, obj: T, **adapted_methods: Callable):
-        """We set the adapted methods in the object's dict."""
-        self.obj = obj
-        self.__dict__.update(adapted_methods)
+        def __init__(self, obj: T, **adapted_methods: Callable):
+            """We set the adapted methods in the object's dict."""
+            self.obj = obj
+            self.__dict__.update(adapted_methods)
 
-    def __getattr__(self, attr):
-        """All non-adapted calls are passed to the object."""
-        return getattr(self.obj, attr)
+        def __getattr__(self, attr):
+            """All non-adapted calls are passed to the object."""
+            return getattr(self.obj, attr)
 
-    def original_dict(self):
-        """Print original object dict."""
-        return self.obj.__dict__
-```
+        def original_dict(self):
+            """Print original object dict."""
+            return self.obj.__dict__
+
+    cat = Cat()
+    objects.append(Adapter(cat, make_noise=cat.meow))
+    human = Human()
+    objects.append(Adapter(human, make_noise=human.speak))
+    car = Car()
+    objects.append(Adapter(car, make_noise=lambda: car.make_noise(3)))
+
+    for obj in objects:
+        print("A {0} goes {1}".format(obj.name, obj.make_noise()))
+    ```
+
+    </details>
 
 ### [Decorator Pattern](https://refactoring.guru/design-patterns/decorator)
 
@@ -605,44 +609,79 @@ class Proxy(Subject):
 
 ### ⭐[Abstract Factory Pattern](https://refactoring.guru/design-patterns/abstract-factory)
 
-- (https://github.com/faif/python-patterns/blob/master/patterns/creational/abstract_factory.py)
+- Provides a way to encapsulate a group of individual factories.
+- <details>
+    <summary>Example</summary>
 
-> In Java and other languages, the Abstract Factory Pattern serves to provide an interface for
-> creating related/dependent objects without need to specify their
-> actual class.
+    ```python
+    class PetShop:
 
-```python
-class PetShop:
+        """A pet shop"""
 
-    """A pet shop"""
+        def __init__(self, animal_factory: Type[Pet]) -> None:
+            """pet_factory is our abstract factory.  We can set it at will."""
 
-    def __init__(self, animal_factory: Type[Pet]) -> None:
-        """pet_factory is our abstract factory.  We can set it at will."""
+            self.pet_factory = animal_factory
 
-        self.pet_factory = animal_factory
+        def buy_pet(self, name: str) -> Pet:
+            """Creates and shows a pet using the abstract factory"""
 
-    def buy_pet(self, name: str) -> Pet:
-        """Creates and shows a pet using the abstract factory"""
+            pet = self.pet_factory(name)
+            print(f"Here is your lovely {pet}")
+            return pet
 
-        pet = self.pet_factory(name)
-        print(f"Here is your lovely {pet}")
-        return pet
+    # Create a random animal
+    def random_animal(name: str) -> Pet:
+        """Let's be dynamic!"""
+        return random.choice([Dog, Cat])(name)
+    
+    cat_shop = PetShop(Cat)
+    pet = cat_shop.buy_pet("Lucy")
 
-# Create a random animal
-def random_animal(name: str) -> Pet:
-    """Let's be dynamic!"""
-    return random.choice([Dog, Cat])(name)
-```
+    shop = PetShop(random_animal)
+    pet = shop.buy_pet("Max")
+    ```
+    </details>
 
 ### ⭐[Builder Pattern](https://refactoring.guru/design-patterns/builder)
 
-- (https://github.com/faif/python-patterns/blob/master/patterns/creational/builder.py)
+- Decouples the creation of a complex object and its representation.
+- <details>
+    <summary>Example</summary>
 
-> It decouples the creation of a complex object and its representation,
-> so that the same process can be reused to build objects from the same
-> family.
-> This is useful when you must separate the specification of an object
-> from its actual representation (generally for abstraction).
+    ```python
+    class Building:
+        def __init__(self) -> None:
+            self.build_floor()
+            self.build_size()
+
+        def build_floor(self):
+            raise NotImplementedError
+
+        def build_size(self):
+            raise NotImplementedError
+
+        def __repr__(self) -> str:
+            return "Floor: {0.floor} | Size: {0.size}".format(self)
+
+
+    # Concrete Buildings
+    class House(Building):
+        def build_floor(self) -> None:
+            self.floor = "One"
+
+        def build_size(self) -> None:
+            self.size = "Big"
+
+
+    class Flat(Building):
+        def build_floor(self) -> None:
+            self.floor = "More than One"
+
+        def build_size(self) -> None:
+            self.size = "Small"
+    ```
+    </details>
 
 ### [Singleton Pattern](https://refactoring.guru/design-patterns/singleton)
 
