@@ -1,8 +1,6 @@
 ---
 title: "🐿️ Go"
 date: 2023-01-01
-draft: false
-weight: 2
 showToc: false
 
 tags: ["Software Engineering"]

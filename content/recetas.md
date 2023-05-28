@@ -1,12 +1,9 @@
 ---
 title: "🍽️ Recetas"
 date: 2023-05-11
-draft: false
-weight: 2
 TocOpen: true
-
-tags: ["Software Engineering"]
 ---
+
 {{< notice >}}
 Usar post-its con fechas en tuppers.
 {{< /notice >}}
@@ -29,9 +26,9 @@ Despensa:
 
 ### Sopa de huevo y tomate [📺](https://youtu.be/URv658vTBXU)
 - **Tomate** picado, freir en sarten un ratillo, sal y azucar
-- Añadir agua (y **caldo**), salsa de soja, aceite sesamo, sal y pimienta blanca
-- Quitar espuma, espesar con almidon/maicena, añadir **huevo**
-- Cebollino
+- Añadir agua (y **caldo**), quitar espuma
+- Salsa de soja, aceite sesamo, sal y pimienta blanca
+- Espesar con almidon/maicena, añadir **huevo** y **Cebollino**
 
 ### Sopa de patatas al ajillo [📺](https://elpais.com/gastronomia/recetas/2021/11/11/receta/1636624829_721108.html)
 - Patatas peladas en rodajas finas, freirlas

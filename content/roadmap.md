@@ -1,8 +1,6 @@
 ---
 title: "🗺️ Personal Roadmap"
 date: 2023-01-01
-draft: false
-weight: 2
 TocOpen: false
 
 tags: ["Software Engineering"]

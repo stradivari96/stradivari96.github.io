@@ -18,7 +18,7 @@ Do **NOT** use design patterns just because you can.
 
 Use them when they make sense, they should emerge naturally from the problem.
 
-In some languages, some event are anti-patterns.
+In some languages, they might be considered anti-patterns.
 {{< /notice >}}
 
 ## References
