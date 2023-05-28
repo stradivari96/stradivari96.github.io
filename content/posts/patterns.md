@@ -268,90 +268,27 @@ sequentially without exposing its underlying representation.
 ### [State Pattern](https://refactoring.guru/design-patterns/state)
 
 - (https://github.com/faif/python-patterns/blob/master/patterns/behavioral/state.py)
-
-> Allows an object to alter its behavior
-> when its internal state changes. The object will appear to
-> change its class.
-
-```python
-class State:
-    """Base state. This is to share functionality"""
-
-    def scan(self) -> None:
-        """Scan the dial to the next station"""
-        self.pos += 1
-        if self.pos == len(self.stations):
-            self.pos = 0
-        print(f"Scanning... Station is {self.stations[self.pos]} {self.name}")
-
-
-class AmState(State):
-    def __init__(self, radio: Radio) -> None:
-        self.radio = radio
-        self.stations = ["1250", "1380", "1510"]
-        self.pos = 0
-        self.name = "AM"
-
-    def toggle_amfm(self) -> None:
-        print("Switching to FM")
-        self.radio.state = self.radio.fmstate
-
-
-class FmState(State):
-    def __init__(self, radio: Radio) -> None:
-        self.radio = radio
-        self.stations = ["81.3", "89.1", "103.9"]
-        self.pos = 0
-        self.name = "FM"
-
-    def toggle_amfm(self) -> None:
-        print("Switching to AM")
-        self.radio.state = self.radio.amstate
-
-
-class Radio:
-    """A radio. It has a scan button, and an AM/FM toggle switch."""
-
-    def __init__(self) -> None:
-        """We have an AM state and an FM state"""
-        self.amstate = AmState(self)
-        self.fmstate = FmState(self)
-        self.state = self.amstate
-
-    def toggle_amfm(self) -> None:
-        self.state.toggle_amfm()
-
-    def scan(self) -> None:
-        self.state.scan()
-```
+- Lets an object alter its behavior when its internal state changes.
 
 ### [Chain of Responsibility Pattern](https://refactoring.guru/design-patterns/chain-of-responsibility)
 
 - (https://github.com/faif/python-patterns/blob/master/patterns/behavioral/chain_of_responsibility.py)
-
-> The Chain of responsibility is an object oriented version of the
-> `if ... elif ... elif ... else ...` idiom, with the
-> benefit that the condition–action blocks can be dynamically rearranged
-> and reconfigured at runtime.
+- Allow a request to pass down a chain of receivers until it is handled.
 
 ### [Mediator Pattern](https://refactoring.guru/design-patterns/mediator)
 
 - (https://github.com/faif/python-patterns/blob/master/patterns/behavioral/mediator.py)
-
-> Objects in a system communicate through a Mediator instead of directly with each other.
-> This reduces the dependencies between communicating objects, thereby reducing coupling.
+- Encapsulates how a set of objects interact.
 
 ### [Memento Pattern](https://refactoring.guru/design-patterns/memento)
 
 - (https://github.com/faif/python-patterns/blob/master/patterns/behavioral/memento.py)
-
-> Provides the ability to restore an object to its previous state.
+- Provides the ability to restore an object to its previous state.
 
 ### [Visitor Pattern](https://refactoring.guru/design-patterns/visitor)
 
 - (https://github.com/faif/python-patterns/blob/master/patterns/behavioral/visitor.py)
-
-> Separates an algorithm from an object structure on which it operates.
+- Separates an algorithm from an object structure on which it operates.
 
 ## Structural
 
@@ -395,179 +332,37 @@ class Radio:
 ### [Decorator Pattern](https://refactoring.guru/design-patterns/decorator)
 
 - (https://github.com/faif/python-patterns/blob/master/patterns/structural/decorator.py)
-
-> The Decorator pattern is used to dynamically add a new feature to an
-> object without changing its implementation. It differs from
-> inheritance because the new feature is added only to that particular
-> object, not to the entire subclass.
-
-- Classes should be open for extension, but closed for modification.
-
-```python
-class TextTag:
-    def __init__(self, text: str) -> None:
-        self._text = text
-    def render(self) -> str:
-        return self._text
-
-
-class BoldWrapper(TextTag):
-    def __init__(self, wrapped: TextTag) -> None:
-        self._wrapped = wrapped
-    def render(self) -> str:
-        return f"<b>{self._wrapped.render()}</b>"
-
-
-class ItalicWrapper(TextTag):
-    def __init__(self, wrapped: TextTag) -> None:
-        self._wrapped = wrapped
-    def render(self) -> str:
-        return f"<i>{self._wrapped.render()}</i>"
-```
+- Adds behaviour to object without affecting its class.
 
 ### [Facade Pattern](https://refactoring.guru/design-patterns/facade)
 
 - (https://github.com/faif/python-patterns/blob/master/patterns/structural/facade.py)
+- Provides a simpler unified interface to a complex system.
 
-> The Facade pattern is a way to provide a simpler unified interface to
-> a more complex system. It provides an easier way to access functions
-> of the underlying system by providing a single entry point.
-
-```python
-class ComputerFacade:
-
-    def __init__(self):
-        self.cpu = CPU()
-        self.memory = Memory()
-        self.ssd = SolidStateDrive()
-
-    def start(self):
-        self.cpu.freeze()
-        self.memory.load("0x00", self.ssd.read("100", "1024"))
-        self.cpu.jump("0x00")
-        self.cpu.execute()
-```
 
 ### [Composite Pattern](https://refactoring.guru/design-patterns/composite)
 
 - (https://github.com/faif/python-patterns/blob/master/patterns/structural/composite.py)
-
-> The composite pattern describes a group of objects that is treated the
-> same way as a single instance of the same type of object. The intent of
-> a composite is to "compose" objects into tree structures to represent
-> part-whole hierarchies. Implementing the composite pattern lets clients
-> treat individual objects and compositions uniformly.
-
-```python
-class Graphic(ABC):
-    @abstractmethod
-    def render(self) -> None:
-        raise NotImplementedError("You should implement this!")
-
-
-class CompositeGraphic(Graphic):
-    def __init__(self) -> None:
-        self.graphics: List[Graphic] = []
-
-    def render(self) -> None:
-        for graphic in self.graphics:
-            graphic.render()
-
-    def add(self, graphic: Graphic) -> None:
-        self.graphics.append(graphic)
-
-    def remove(self, graphic: Graphic) -> None:
-        self.graphics.remove(graphic)
-
-
-class Ellipse(Graphic):
-    def __init__(self, name: str) -> None:
-        self.name = name
-
-    def render(self) -> None:
-        print(f"Ellipse: {self.name}")
-
-ellipse1 = Ellipse("1")
-ellipse2 = Ellipse("2")
-graphic1 = CompositeGraphic()
-graphic2 = CompositeGraphic()
-graphic1.add(ellipse1)
-graphic1.add(ellipse2)
-# Here
-graphic = CompositeGraphic()
-graphic.add(graphic1)
-graphic.add(graphic2)
-graphic.render()
-```
+- Describes a group of objects that is treated as a single instance.
 
 ### [Proxy Pattern](https://refactoring.guru/design-patterns/proxy)
 
 - (https://github.com/faif/python-patterns/blob/master/patterns/structural/proxy.py)
-
-> Proxy is used in places where you want to add functionality to a class without
-> changing its interface. The main class is called `Real Subject`. A client should
-> use the proxy or the real subject without any code change, so both must have the
-> same interface. Logging and controlling access to the real subject are some of
-> the proxy pattern usages.
-
-```python
-class Subject:
-    """
-    As mentioned in the document, interfaces of both RealSubject and Proxy should
-    be the same, because the client should be able to use RealSubject or Proxy with
-    no code change.
-    Not all times this interface is necessary. The point is the client should be
-    able to use RealSubject or Proxy interchangeably with no change in code.
-    """
-
-    def do_the_job(self, user: str) -> None:
-        raise NotImplementedError()
-
-
-class RealSubject(Subject):
-    """
-    This is the main job doer. External services like payment gateways can be a
-    good example.
-    """
-
-    def do_the_job(self, user: str) -> None:
-        print(f"I am doing the job for {user}")
-
-
-class Proxy(Subject):
-    def __init__(self) -> None:
-        self._real_subject = RealSubject()
-
-    def do_the_job(self, user: str) -> None:
-        """
-        logging and controlling access are some examples of proxy usages.
-        """
-
-        print(f"[log] Doing the job for {user} is requested.")
-
-        if user == "admin":
-            self._real_subject.do_the_job(user)
-        else:
-            print("[log] I can do the job just for `admins`.")
-```
+- Add functionality or logic to a resource without changing its interface.
 
 ### [Model-View-Controller Pattern](https://github.com/faif/python-patterns/blob/master/patterns/structural/mvc.py)
 
-> Separates data in GUIs from the ways it is presented, and accepted.
+- Separates data in GUIs from the ways it is presented, and accepted.
 
 ### [Bridge Pattern](https://refactoring.guru/design-patterns/bridge)
 
 - (https://github.com/faif/python-patterns/blob/master/patterns/structural/bridge.py)
-
-> Decouples an abstraction from its implementation.
+- Decouples an abstraction from its implementation.
 
 ### [Flyweight Pattern](https://refactoring.guru/design-patterns/flyweight)
 
 - (https://github.com/faif/python-patterns/blob/master/patterns/structural/flyweight.py)
-
-> This pattern aims to minimise the number of objects that are needed by
-> a program at run-time. A Flyweight is an object shared by multiple
-> contexts, and is indistinguishable from an object that is not shared.
+- Minimizes memory usage by sharing data with other similar objects.
 
 ## Creational
 
@@ -686,17 +481,12 @@ class Proxy(Subject):
 ### [Singleton Pattern](https://refactoring.guru/design-patterns/singleton)
 
 - (https://github.com/faif/python-patterns/blob/master/patterns/creational/borg.py)
-
-> Ensure a class only has one instance, and provide a global point of access to it.
-
-In python modules are only imported once. Just declare a variable there.
+- Ensure a class only has one instance, and provide a global point of access to it.
+-In python modules are only imported once. Just declare a variable there.
 
 
 
 ### [Prototype Pattern](https://refactoring.guru/design-patterns/prototype)
 
 - (https://github.com/faif/python-patterns/blob/master/patterns/creational/prototype.py)
-
-> This patterns aims to reduce the number of classes required by an
-> application. Instead of relying on subclasses it creates objects by
-> copying a prototypical instance at run-time.
+- Creates new object instances by cloning prototype.
