@@ -248,47 +248,94 @@ sequentially without exposing its underlying representation.
     <summary>Example</summary>
 
     ```python
-        def template_function(getter, converter=None, to_save=False) -> None:
-            data = getter()
-            print(f"Got `{data}`")
+    def template_function(getter, converter=None, to_save=False) -> None:
+        data = getter()
+        print(f"Got `{data}`")
 
-            if len(data) <= 3 and converter:
-                data = converter(data)
-            else:
-                print("Skip conversion")
+        if len(data) <= 3 and converter:
+            data = converter(data)
+        else:
+            print("Skip conversion")
 
-            if to_save:
-                saver()
+        if to_save:
+            saver()
 
-            print(f"`{data}` was processed")
+        print(f"`{data}` was processed")
     ```
 
     </details>
 
 ### [State Pattern](https://refactoring.guru/design-patterns/state)
 
-- (https://github.com/faif/python-patterns/blob/master/patterns/behavioral/state.py)
 - Lets an object alter its behavior when its internal state changes.
+- <details>
+    <summary>Example</summary>
+
+    ```python
+    class State:
+        def scan(self) -> None:
+            self.pos += 1
+            if self.pos == len(self.stations):
+                self.pos = 0
+            print(f"Scanning... Station is {self.stations[self.pos]} {self.name}")
+
+    class AmState(State):
+        def __init__(self, radio: Radio) -> None:
+            self.radio = radio
+            self.stations = ["1250", "1380", "1510"]
+            self.pos = 0
+            self.name = "AM"
+
+        def toggle_amfm(self) -> None:
+            print("Switching to FM")
+            self.radio.state = self.radio.fmstate
+
+    class FmState(State):
+        def __init__(self, radio: Radio) -> None:
+            self.radio = radio
+            self.stations = ["81.3", "89.1", "103.9"]
+            self.pos = 0
+            self.name = "FM"
+
+        def toggle_amfm(self) -> None:
+            print("Switching to AM")
+            self.radio.state = self.radio.amstate
+
+    class Radio:
+        def __init__(self) -> None:
+            """We have an AM state and an FM state"""
+            self.amstate = AmState(self)
+            self.fmstate = FmState(self)
+            self.state = self.amstate
+
+        def toggle_amfm(self) -> None:
+            self.state.toggle_amfm()
+
+        def scan(self) -> None:
+            self.state.scan()
+    ```
+    </details>
+
 
 ### [Chain of Responsibility Pattern](https://refactoring.guru/design-patterns/chain-of-responsibility)
 
-- (https://github.com/faif/python-patterns/blob/master/patterns/behavioral/chain_of_responsibility.py)
 - Allow a request to pass down a chain of receivers until it is handled.
+- [Faif](https://github.com/faif/python-patterns/blob/master/patterns/behavioral/chain_of_responsibility.py)
 
 ### [Mediator Pattern](https://refactoring.guru/design-patterns/mediator)
 
-- (https://github.com/faif/python-patterns/blob/master/patterns/behavioral/mediator.py)
 - Encapsulates how a set of objects interact.
+- [Faif](https://github.com/faif/python-patterns/blob/master/patterns/behavioral/mediator.py)
 
 ### [Memento Pattern](https://refactoring.guru/design-patterns/memento)
 
-- (https://github.com/faif/python-patterns/blob/master/patterns/behavioral/memento.py)
 - Provides the ability to restore an object to its previous state.
+- [Faif](https://github.com/faif/python-patterns/blob/master/patterns/behavioral/memento.py)
 
 ### [Visitor Pattern](https://refactoring.guru/design-patterns/visitor)
 
-- (https://github.com/faif/python-patterns/blob/master/patterns/behavioral/visitor.py)
 - Separates an algorithm from an object structure on which it operates.
+- [Faif](https://github.com/faif/python-patterns/blob/master/patterns/behavioral/visitor.py)
 
 ## Structural
 
@@ -329,40 +376,40 @@ sequentially without exposing its underlying representation.
 
     </details>
 
+### ⭐[Model-View-Controller Pattern](https://github.com/faif/python-patterns/blob/master/patterns/structural/mvc.py)
+
+- Separates data in GUIs from the ways it is presented, and accepted.
+
 ### [Decorator Pattern](https://refactoring.guru/design-patterns/decorator)
 
-- (https://github.com/faif/python-patterns/blob/master/patterns/structural/decorator.py)
 - Adds behaviour to object without affecting its class.
+- [Faif](https://github.com/faif/python-patterns/blob/master/patterns/structural/decorator.py)
 
 ### [Facade Pattern](https://refactoring.guru/design-patterns/facade)
 
-- (https://github.com/faif/python-patterns/blob/master/patterns/structural/facade.py)
 - Provides a simpler unified interface to a complex system.
+- [Faif](https://github.com/faif/python-patterns/blob/master/patterns/structural/facade.py)
 
 
 ### [Composite Pattern](https://refactoring.guru/design-patterns/composite)
 
-- (https://github.com/faif/python-patterns/blob/master/patterns/structural/composite.py)
 - Describes a group of objects that is treated as a single instance.
+- [Faif](https://github.com/faif/python-patterns/blob/master/patterns/structural/composite.py)
 
 ### [Proxy Pattern](https://refactoring.guru/design-patterns/proxy)
 
-- (https://github.com/faif/python-patterns/blob/master/patterns/structural/proxy.py)
 - Add functionality or logic to a resource without changing its interface.
-
-### [Model-View-Controller Pattern](https://github.com/faif/python-patterns/blob/master/patterns/structural/mvc.py)
-
-- Separates data in GUIs from the ways it is presented, and accepted.
+- [Faif](https://github.com/faif/python-patterns/blob/master/patterns/structural/proxy.py)
 
 ### [Bridge Pattern](https://refactoring.guru/design-patterns/bridge)
 
-- (https://github.com/faif/python-patterns/blob/master/patterns/structural/bridge.py)
 - Decouples an abstraction from its implementation.
+- [Faif](https://github.com/faif/python-patterns/blob/master/patterns/structural/bridge.py)
 
 ### [Flyweight Pattern](https://refactoring.guru/design-patterns/flyweight)
 
-- (https://github.com/faif/python-patterns/blob/master/patterns/structural/flyweight.py)
 - Minimizes memory usage by sharing data with other similar objects.
+- [Faif](https://github.com/faif/python-patterns/blob/master/patterns/structural/flyweight.py)
 
 ## Creational
 
@@ -440,7 +487,7 @@ sequentially without exposing its underlying representation.
 
 ### ⭐[Builder Pattern](https://refactoring.guru/design-patterns/builder)
 
-- Decouples the creation of a complex object and its representation.
+- Decouples the **creation of a complex object** and its representation.
 - <details>
     <summary>Example</summary>
 
@@ -450,14 +497,8 @@ sequentially without exposing its underlying representation.
             self.build_floor()
             self.build_size()
 
-        def build_floor(self):
-            raise NotImplementedError
-
-        def build_size(self):
-            raise NotImplementedError
-
-        def __repr__(self) -> str:
-            return "Floor: {0.floor} | Size: {0.size}".format(self)
+        def build_floor(self): raise NotImplementedError
+        def build_size(self): raise NotImplementedError
 
 
     # Concrete Buildings
@@ -480,13 +521,12 @@ sequentially without exposing its underlying representation.
 
 ### [Singleton Pattern](https://refactoring.guru/design-patterns/singleton)
 
-- (https://github.com/faif/python-patterns/blob/master/patterns/creational/borg.py)
 - Ensure a class only has one instance, and provide a global point of access to it.
--In python modules are only imported once. Just declare a variable there.
-
+- In python modules are only imported once. Just declare a variable there.
+- [Faif](https://github.com/faif/python-patterns/blob/master/patterns/creational/borg.py)
 
 
 ### [Prototype Pattern](https://refactoring.guru/design-patterns/prototype)
 
-- (https://github.com/faif/python-patterns/blob/master/patterns/creational/prototype.py)
 - Creates new object instances by cloning prototype.
+- [Faif](https://github.com/faif/python-patterns/blob/master/patterns/creational/prototype.py)
