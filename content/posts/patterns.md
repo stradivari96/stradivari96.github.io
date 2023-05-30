@@ -22,10 +22,10 @@ In some languages, they might be considered anti-patterns.
 {{< /notice >}}
 
 ## References
+- **https://python-patterns.guide/**
 - https://refactoring.guru/design-patterns/catalog
 - https://www.oreilly.com/library/view/head-first-design/9781492077992/
 - https://github.com/faif/python-patterns
-- https://www.patterns.dev/posts
 
 ## Behavioral
 
@@ -416,9 +416,46 @@ sequentially without exposing its underlying representation.
 ### ⭐[Factory Pattern](https://refactoring.guru/design-patterns/factory-method)
 
 - Object for creating other objects without having to specify the exact class.
-- [Django formset_factory](https://docs.djangoproject.com/en/4.0/topics/forms/formsets/)
 - <details>
-    <summary>Example</summary>
+    <summary>Example (Real Python)</summary>
+
+    ```python
+    class SongSerializer:
+        def serialize(self, song, format):
+            serializer = get_serializer(format)
+            return serializer(song)
+
+
+    def get_serializer(format):
+        if format == 'JSON':
+            return _serialize_to_json
+        elif format == 'XML':
+            return _serialize_to_xml
+        else:
+            raise ValueError(format)
+
+
+    def _serialize_to_json(song):
+        payload = {
+            'id': song.song_id,
+            'title': song.title,
+            'artist': song.artist
+        }
+        return json.dumps(payload)
+
+
+    def _serialize_to_xml(song):
+        song_element = et.Element('song', attrib={'id': song.song_id})
+        title = et.SubElement(song_element, 'title')
+        title.text = song.title
+        artist = et.SubElement(song_element, 'artist')
+        artist.text = song.artist
+        return et.tostring(song_element, encoding='unicode')
+    ```
+    </details>
+
+- <details>
+    <summary>Example (Faif)</summary>
 
     ```python
     class GreekLocalizer:
@@ -457,17 +494,10 @@ sequentially without exposing its underlying representation.
 
     ```python
     class PetShop:
-
-        """A pet shop"""
-
         def __init__(self, animal_factory: Type[Pet]) -> None:
-            """pet_factory is our abstract factory.  We can set it at will."""
-
             self.pet_factory = animal_factory
 
         def buy_pet(self, name: str) -> Pet:
-            """Creates and shows a pet using the abstract factory"""
-
             pet = self.pet_factory(name)
             print(f"Here is your lovely {pet}")
             return pet
@@ -522,9 +552,8 @@ sequentially without exposing its underlying representation.
 ### [Singleton Pattern](https://refactoring.guru/design-patterns/singleton)
 
 - Ensure a class only has one instance, and provide a global point of access to it.
-- In python modules are only imported once. Just declare a variable there.
-- [Faif](https://github.com/faif/python-patterns/blob/master/patterns/creational/borg.py)
-
+- Prefer [Global Object Pattern](https://python-patterns.guide/python/module-globals/#the-global-object-pattern)
+in python
 
 ### [Prototype Pattern](https://refactoring.guru/design-patterns/prototype)
 
