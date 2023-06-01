@@ -1,11 +1,12 @@
 ---
 title: "🍽️ Recetas"
 date: 2023-05-11
-TocOpen: true
+TocOpen: false
 ---
 
 {{< notice >}}
-Usar post-its con fechas en tuppers.
+- Usar post-its con fechas en tuppers.
+- No lavar carne, solo secar con papel de cocina.
 {{< /notice >}}
 
 Despensa:
@@ -15,8 +16,10 @@ Despensa:
 - Almidón de patata, maicena
 - Comino en polvo, laurel, tomillo
 
+
+## Sopas y cremas
+
 ---
-## Sopas
 
 ### Sopa de maíz, pollo, huevo [📺](https://youtu.be/jz2KcqzP7kM?t=64)
 - Freir **jengibre** picado, añadir agua y **pechuga**, unos 5 min
@@ -31,8 +34,8 @@ Despensa:
 - Espesar con almidon/maicena, añadir **huevo** y **Cebollino**
 
 ### Sopa de patatas al ajillo [📺](https://elpais.com/gastronomia/recetas/2021/11/11/receta/1636624829_721108.html)
-- Patatas peladas en rodajas finas, freirlas
-- Mortero, dientes de ajo con ramas de perejil, vinagre de manzana y agua al terminar
+- **Patatas** peladas en rodajas finas, freirlas
+- Mortero, dientes de **ajo** con ramas de **perejil**, **vinagre** de manzana y agua al terminar
 - Sacar las patatas y meter en una olla después de estar doradas
 - Añadir mezcla del mortero, sal y agua
 - Llevar a ebullición, bajar al minimo y dejar 25 min
@@ -55,18 +58,28 @@ Despensa:
 - Rectificar con sal y pimienta, un poco de vinagre
 
 ### Crema de verduras [📺](https://www.youtube.com/watch?v=G_6NzXgNKyI)
+- TODO
 
-
----
 
 ## Principales
 
-### Golden Curry
+---
+
+### Chistorra a la sidra
+- Templar **chistorra**
+- Dorar chistorra en sarten 5 min sin aceite
+- Añadir **sidra**, 15 min
+
+### Gulas al ajillo
+- Templar **Gulas frescas** en un plato
+- Dorar **ajo** a fuego suave, añadir **guindillas**
+- Subir fuego, añadir gulas y remover sin que se frian, corregir sal
+
+### Golden Curry + arroz
 - Dorar **cebolla** y **carne** (contramuslo pollo o ragut)
 - Añadir **patatas** y **zanahorias**
 - Añadir **caldo** o agua, dejar 20 min, quitar espuma
 - Añadir **curry** (media tableta, cortada) 5 min
-
 
 ### Costillas con patatas [📺](https://www.youtube.com/watch?v=h03ekB4cbIg)
 - Dorar **costillas** y retirar
@@ -75,6 +88,9 @@ Despensa:
 - Devolver costilla, medio vaso vino blanco, 1 min
 - Cubrir **caldo de carne**, sal, cucharadita de comino en polvo y hoja de laurel, 20 min
 
+### Ensalada Cesar [📺](https://youtu.be/YQc4vxdHmpY?t=198)
+- TODO
+
 ### Pollo al ajillo [📺](https://www.youtube.com/watch?v=IjeX167Iwbs)
 - **Ajo** sin pelar a fuego medio 2 min, salpimentar **pollo** y dorar
 - Retirar pollo, dorar más ajo en láminas y ajo picado también
@@ -82,8 +98,21 @@ Despensa:
 - Devolver pollo y añadir **caldo**, 20 min
 
 ### Pollo coca cola [📺](https://youtu.be/W4_ow_uAOt4?t=78)
+- Marcar cuchillo **alitas**, marinar con sal, pimiento blanco y vino de arroz, 15 min
+- Freir una lado 3 min, dar la vuelta, meter un trozo de **genjibre**, y freir otros 3 min
+- Trozo de **canela**, una hoja de **laurel**, 30 seg
+- Añadir **coca cola original**, salsa de soja, vino, y un poco de soja oscura.
+- Sin tapar 10 min
+
 ### Arroz con cerdo y setas [📺](https://youtu.be/g5Qq_w7hLR8?t=85)
-### Jiangbao tofu [📺](https://youtu.be/xoiKtuuFy0A?t=82)
+- **Lomo de cerdo** en tacos, marinar con sal, azucal, maicena, vino arroz, soja y aceite
+- **Shiitake** sin tallo en tacos, escaldar 1 min, escurrir
+- **Jenjibre** y 3 dientes de **ajo**, apretar con cuchillo
+- 3 **Cebolleta**, reservar blanco, picar verde
+- Freir jenjibre, ajo, y blanco de cebolleta, 15 segundos
+- Añadir cerdo hasta que esté hecho, añadir vino y setas, 1 min
+- Añadir salsa de soja, agua, **salsa de ostras**, azucar, pimienta blanca, msg
+- Espesar con maicena, añadir verde de cebolleta y **aceite de sesamo**
 
 ### Merluza en salsa verde [📺](https://youtu.be/t5itWA9LPko?t=55)
 - Salar **merluza** y dejar en nevera 20 min
@@ -113,21 +142,21 @@ Despensa:
 - 1 vaso de **vino** tinto, 1 vaso de **caldo**, sal, pimienta
 - 30 min, fuego suave, tapado, añadir **patatas** en cubos, 25 min más
 
-### Chistorra a la sidra
-- Atemperar **chistorra**
-- Dorar **chistorra** en sarten 5 min
-- Añadir sidra, 15 min
-
 ### Pollo en salsa de queso [📺](https://www.youtube.com/watch?v=qnW3h49sFN4)
-### Gulas al ajillo
 ### Pollo Kung Pao [📺](https://youtu.be/yt-pyFj2t2g)
 ### Lasaña de calabaza [📺](https://www.youtube.com/watch?v=dQ72zYbeT7Y)
 ### Fideos con mantequilla de cacahuete [📺](https://youtu.be/yvIZ19IN2yY)
-### Espaguetis con huevo [📺](https://www.youtube.com/watch?v=LSUZSNT1OxE)
 ### Pasta carbonara [📺](https://www.youtube.com/watch?v=OBAWUUg6tBQ&t=100s)
+### Jiangbao tofu [📺](https://youtu.be/xoiKtuuFy0A?t=82)
+- TODO
+
+## Vegetariano
 
 ---
-## Vegetariano
+
+### Lao gan ma, huevo y arroz [📺](https://youtu.be/g5Qq_w7hLR8?t=370)
+- **Huevo** frito, sobre arroz con salsa **lao gan ma**
+- Escaldar **col china** 2 min en agua con sal y aceite, escurrir, añadir salsa de soja
 
 ### Huevos con tomate [📺](https://youtu.be/2hvQFxZBTVY)
 - Cortar **tomate** en rodajas, batir **huevos** con sal
@@ -141,22 +170,22 @@ Despensa:
 - Retirar del fuego y añadir **cebollino**
 
 ### Broccoli con ajo [📺](https://youtu.be/a-Yu8qOAEYQ?t=38)
-- sal, azulcar, maicena (corn starch), agua, msg
+- juntar sal, azulcar, maicena, agua, msg
 - escaldar broccoli 20 seg, pasar agua fria para parar coccion
 - ajo picado, jengibre picado, freir 15 seg, meter brocoli y salsa, 15 seg
 
-### Patatas fritas al horno [📺](https://youtu.be/MvnYBCDaEKU?t=296)
-- hervir 8 min agua con sal y vinagre
-- 15 min, vuelta, 15 min, 200ºC
-
+### Espaguetis con huevo [📺](https://www.youtube.com/watch?v=LSUZSNT1OxE)
 ### Lentejas [📺](https://www.youtube.com/watch?v=SwdhZlsgnf4)
 ### Shakshuka [📺](https://youtu.be/19CvKP_tP9E?t=1085)
 ### Menemen [📺](https://youtu.be/19CvKP_tP9E?t=631)
+- TODO
 
 ---
 ## Extra
 
-### Congelar carne [📺](https://youtu.be/YQc4vxdHmpY)
+### Patatas fritas al horno [📺](https://youtu.be/MvnYBCDaEKU?t=296)
+- hervir 8 min agua con sal y vinagre
+- horno 200ºC, 15 min, vuelta, 15 min
 
 ### Cebolla rosa curada [📺](https://www.youtube.com/watch?v=6VPkezPD0EE)
 - Cortar de polo a polo
@@ -164,3 +193,5 @@ Despensa:
 - Un poquito de sal, un par de cucharadillas de azucar
 - 2 días en la nevera antes de consumir / 2 semanas máximo
 
+### Congelar carne [📺](https://youtu.be/YQc4vxdHmpY)
+- TODO
