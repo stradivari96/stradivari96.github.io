@@ -2,8 +2,8 @@
 title: "🗺️ Personal Roadmap"
 date: 2023-01-01
 TocOpen: false
-
-tags: ["Software Engineering"]
+searchHidden: true
+robotsNoIndex: true
 ---
 
 References and things to learn.
@@ -27,8 +27,8 @@ Mark as done as you go.
 ## Interviewing
 
 - 📝[DSA](/dsa)
-- 📝[System Design](/system-design/)
-- 📝[Behavioral Questions](/behavioral-questions/)
+- 📝[System Design](/system-design)
+- 📝[Behavioral Questions](/behavioral)
 
 ---
 
