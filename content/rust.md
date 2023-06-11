@@ -17,7 +17,7 @@ tags: ["Software Engineering"]
 ## Web Frameworks
 
 {{< notice >}}
-See [notes about web](/posts/roadmap/#web-development)
+See [notes about web](/roadmap/#web-development)
 {{< /notice >}}
 
 - [Actix](https://actix.rs/): [tutorial](https://actix.rs/docs/getting-started) for beginners

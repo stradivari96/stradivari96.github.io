@@ -59,7 +59,7 @@ Avoid [pipenv](https://github.com/pypa/pipenv).
   - [How to Choose the Right Concurrency API](https://superfastpython.com/python-concurrency-choose-api/)
 - 🧪Learn about [testing](https://testdriven.io/guides/complete-python/)
 - 🔄Task queues: [Celery](https://docs.celeryq.dev/) / [arq](https://arq-docs.helpmanual.io/)
-- 🔧CI Tools ([sample precommit](https://github.com/arrow-py/arrow/blob/74a759b88447b6ecd9fd5de610f272c8fb6130a2/.pre-commit-config.yaml)):
+- 🔧CI Tools:
   [MyPy](https://mypy.readthedocs.io/en/stable/),
   [Black](https://black.readthedocs.io/en/stable/),
   [isort](https://pycqa.github.io/isort/),
@@ -83,7 +83,7 @@ Keep an eye on:
 ## Web Frameworks
 
 {{< notice >}}
-See [notes about web](/posts/roadmap/#web-development)
+See [notes about web](/roadmap/#web-development)
 {{< /notice >}}
 
 Deploy using https://deta.space/ or https://www.pythonanywhere.com/

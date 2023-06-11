@@ -14,6 +14,16 @@ References and things to learn.
 / [Architect](https://roadmap.sh/software-architect/):
 Mark as done as you go.
 
+{{< notice tip >}}
+
+Keep an eye on:
+
+- [Programming subreddit](https://www.reddit.com/r/programming/)
+- [Experienced Devs](https://www.reddit.com/r/ExperiencedDevs/)
+- [Hacker News](https://news.ycombinator.com/news)
+
+{{< /notice >}}
+
 ---
 
 ## General
@@ -79,6 +89,13 @@ ORMs are great, but you should know how to use raw SQL.
 
 ### NoSQL
 
+{{< notice info >}}
+
+- [Reddit post](https://www.reddit.com/r/ExperiencedDevs/comments/u5xfy0/when_would_you_choose_a_nonrdbms/)
+- [Another Reddit post](https://www.reddit.com/r/ExperiencedDevs/comments/13gff79/nosql_vs_rdbms_the_eternal_question/)
+
+{{< /notice >}}
+
 - 📗[MongoDB Manual](https://www.mongodb.com/docs/manual) / [Little Book](https://www.openmymind.net/2011/3/28/The-Little-MongoDB-Book/)
 - 📕[Redis Documentation](https://redis.io/docs/manual/) / [Little Book](https://www.openmymind.net/2012/1/23/The-Little-Redis-Book/)
 - [Neo4j]
@@ -96,6 +113,8 @@ ORMs are great, but you should know how to use raw SQL.
 ---
 
 ## Web Development
+
+[Benchmarks](https://www.techempower.com/benchmarks/)
 
 ### Basics
 
