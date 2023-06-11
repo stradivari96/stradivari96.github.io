@@ -6,7 +6,7 @@ showToc: false
 tags: ["Software Engineering"]
 ---
 
-[⬅️Back to Roadmap](/posts/roadmap)
+[⬅️Back to Roadmap](/roadmap)
 
 [💼 Jobs](https://www.linkedin.com/jobs/search/?keywords=python&location=Spain)
 /
