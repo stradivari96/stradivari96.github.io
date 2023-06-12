@@ -96,8 +96,8 @@ ORMs are great, but you should know how to use raw SQL.
 
 {{< /notice >}}
 
-- 📗[MongoDB Manual](https://www.mongodb.com/docs/manual) / [Little Book](https://www.openmymind.net/2011/3/28/The-Little-MongoDB-Book/)
-- 📕[Redis Documentation](https://redis.io/docs/manual/) / [Little Book](https://www.openmymind.net/2012/1/23/The-Little-Redis-Book/)
+- 📗[MongoDB Manual](https://www.mongodb.com/docs/manual) / [Little Book](https://www.openmymind.net/mongodb.pdf)
+- 📕[Redis Documentation](https://redis.io/docs/manual/) / [Little Book](https://www.openmymind.net/redis.pdf)
 - [Neo4j]
 - [Cassandra]
 - [Firebase]
