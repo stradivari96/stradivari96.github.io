@@ -24,7 +24,7 @@ Start with **single file scripts**.
 - ⚡️Learn a bit of DSA (Data Structures and Algorithms): do **easy** in [neetcode](https://neetcode.io/roadmap)
 
 {{< notice note >}}
-Project ideas:
+[Project](https://github.com/practical-tutorials/project-based-learning#python) ideas:
 
 - Make a discord bot with [discord.py](https://discordpy.readthedocs.io/)
 - Program a simple game with [PyGame](https://www.pygame.org/docs/) such as [Snake](https://www.geeksforgeeks.org/snake-game-in-python-using-pygame-module/)
@@ -57,7 +57,7 @@ Avoid [pipenv](https://github.com/pypa/pipenv).
 - ⚡️Concurrency with superfast python:
   - [Why Learn Python Concurrency](https://superfastpython.com/why-learn-python-concurrency/)
   - [How to Choose the Right Concurrency API](https://superfastpython.com/python-concurrency-choose-api/)
-- 🧪Learn about [testing](https://testdriven.io/guides/complete-python/)
+- 🧪Learn about [testing](https://testdriven.io/guides/complete-python/) / [Property-based testing](https://hypothesis.readthedocs.io/en/latest/quickstart.html)
 - 🔄Task queues: [Celery](https://docs.celeryq.dev/) / [arq](https://arq-docs.helpmanual.io/)
 - 🔧CI Tools:
   [MyPy](https://mypy.readthedocs.io/en/stable/),
