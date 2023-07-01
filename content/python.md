@@ -14,9 +14,10 @@ tags: ["Software Engineering"]
 
 ## Basics
 
-Download [Python](https://www.python.org/downloads/) and [Visual Studio Code](https://code.visualstudio.com/) with the Python extension.
+Use [Google Colab](https://colab.research.google.com/) to learn the basic syntax and concepts.
 
-Start with **single file scripts**.
+Download [Python](https://www.python.org/downloads/) and [Visual Studio Code](https://code.visualstudio.com/) with the Python extension to
+start writing **single file scripts**.
 
 - 📚[Introducing Python (2019)](https://www.oreilly.com/library/view/introducing-python-2nd/9781492051374/): Ignore everything after chapter 11
 - 📝[Basic OOP](https://realpython.com/python3-object-oriented-programming/)
@@ -39,8 +40,12 @@ Switch to [PyCharm](https://www.jetbrains.com/pycharm/) once you are familiar wi
 - 📚Read:
   - [Fluent Python (2022)](https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/):
   magic methods, dataclasses, Advanced typing, decorators
-  - [Architecture Patterns with Python](https://www.cosmicpython.com/book/preface.html):
+  - [Architecture Patterns with Python (2020)](https://www.cosmicpython.com/book/preface.html):
     DDD, CQRS, Event-Driver Architecture, etc.
+  - [Robust Python (2022)](https://www.oreilly.com/library/view/robust-python/9781098100650/):
+  typing, etc.
+  - [Google Style Guide](https://google.github.io/styleguide/pyguide.html): don't have to follow it, interesting to see how
+  it [evolves](https://github.com/google/styleguide/commits/gh-pages/pyguide.md)
 - 📺Watch: sort by popular
   - [ArjanCodes](https://www.youtube.com/@ArjanCodes/videos): Advanced, refactoring videos are great.
   - [mCoding](https://www.youtube.com/channel/UCaiL2GDNpLYH6Wokkk1VNcg): Trivia.
@@ -49,9 +54,10 @@ Switch to [PyCharm](https://www.jetbrains.com/pycharm/) once you are familiar wi
   should know the answers to the most voted questions.
 
 {{< notice info>}}
-Use [venv](https://docs.python.org/3/library/venv.html) and [pip-tools](https://github.com/jazzband/pip-tools) for dependency management,
-[poetry](https://python-poetry.org/) is also a good option, **specially for packaging a library**.
-Avoid [pipenv](https://github.com/pypa/pipenv).
+Use [venv](https://docs.python.org/3/library/venv.html) and [pip-tools](https://github.com/jazzband/pip-tools)
+for managing virtual environments and dependencies.
+
+Use [hatchling](https://hatch.pypa.io/latest/) to package libraries.
 {{< /notice >}}
 
 - ⚡️Concurrency with superfast python:
@@ -62,10 +68,9 @@ Avoid [pipenv](https://github.com/pypa/pipenv).
 - 🔧CI Tools:
   [MyPy](https://mypy.readthedocs.io/en/stable/),
   [Black](https://black.readthedocs.io/en/stable/),
-  [isort](https://pycqa.github.io/isort/),
-  [flake8](https://flake8.pycqa.org/en/latest/) / [ruff](https://github.com/charliermarsh/ruff),
+  [ruff](https://github.com/charliermarsh/ruff),
   [pip-audit](https://github.com/pypa/pip-audit),
-  [bandit](https://bandit.readthedocs.io/en/latest/).
+  [bandit](https://bandit.readthedocs.io/en/latest/)
 - 👀Checkout some Open Source projects, better if you have used them before:
   - [requests](https://github.com/psf/requests) and [httpx](https://github.com/encode/httpx): probably familiar with them
   - [arq](https://github.com/samuelcolvin/arq): small modern project, take a good look at every file
