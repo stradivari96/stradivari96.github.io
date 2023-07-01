@@ -10,8 +10,8 @@ Basics Download NodeJS and Visual Studio Code.
 See notes about web
 Express: Fastify: NestJS: ToolJet Novu Amplication Vendure</description></item><item><title>🐍 Python</title><link>https://xiang.es/python/</link><pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate><guid>https://xiang.es/python/</guid><description>⬅️Back to Roadmap
 💼 Jobs / 🥋 Codewards
-Basics Download Python and Visual Studio Code with the Python extension.
-Start with single file scripts.
+Basics Use Google Colab to learn the basic syntax and concepts.
+Download Python and Visual Studio Code with the Python extension to start writing single file scripts.
 📚Introducing Python (2019): Ignore everything after chapter 11 📝Basic OOP 🎨Skim through pep8 ⚡️Learn a bit of DSA (Data Structures and Algorithms): do easy in neetcode Note
 Project ideas:
 Make a discord bot with discord.py Program a simple game with PyGame such as Snake Deploy a simple FastAPI website in Deta (maybe a TODO list) Advanced Switch to PyCharm once you are familiar with the syntax and concepts such as virtualenvs, git, etc.</description></item><item><title>🐿️ Go</title><link>https://xiang.es/go/</link><pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate><guid>https://xiang.es/go/</guid><description>⬅️Back to Roadmap
