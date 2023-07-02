@@ -120,10 +120,64 @@ and easier to maintain?”
 > The first time you learn something is the best time to see ways that the existing documentation and training materials can be improved.
 
 ### Engineering for Equity
-...
+> Bias is the default.
+
+> Diversity is necessary to design properly for a comprehensive user base.
+
+> Bias is the default. Diversity is necessary to design properly for a comprehensive user base. Inclusivity is critical not just to improving the hiring pipeline for underrepresented groups, but to providing a truly supportive work environment for all people.
+
+> Product velocity must be evaluated against providing a product that is truly useful to all users. It’s better to slow down than to release a product that might cause harm to some users.
+
+> Don't build for everyone. Build with everyone.
+
+> Design for the user who will have the most difficulty using your product.
 
 ### How to Lead Team
-...
+> An engineering manager is responsible for the performance, productivity, and happiness of every person on their team— including their tech lead— while still making sure that the needs of the business are met
+
+> The tech lead (TL) of a team— who will often report to the manager of that team— is responsible for the technical aspects of the product,
+
+> If an individual succeeds, praise them in front of the team. If an individual fails, give constructive criticism in private.
+
+> Antipattern: Hire Pushovers
+> 
+> You should strive to hire people who are smarter than you and can replace you.
+
+> Antipattern: Ignore Low Performers
+> 
+> If you immediately deal with a low performer, you’ll often find that they merely need some encouragement or direction to slip into a higher state of productivity.
+If you wait too long to deal with a low performer, their relationship with the team is going to be so sour and you’re going to be so frustrated that you’re not going to be able to help them.
+
+> Antipattern: Ignore Human Issues
+
+> Antipattern: Be Everyone’s Friend
+> 
+> It can be tricky to move into a management role over someone who has been a good friend and a peer. [...]
+> We recommend that you avoid getting into this situation whenever possible, but if you can’t, pay extra attention to your relationship with those folks.
+
+> Antipattern: Compromise the Hiring Bar
+>
+> A team needs to hire 5 engineers, so it sifts through a pile of applications, interviews 40 or 50 people, and picks the best 5 candidates regardless of whether they meet the hiring bar. This is one of the fastest ways to build a mediocre team.
+
+> Antipattern: Treat Your Team Like Children
+> 
+> If you hire people worthy of trust and show these people you trust them, they’ll usually rise to the occasion.
+
+> Lose the Ego
+> 
+> Part of “losing the ego” is trust: you need to trust your team.
+
+> Be a Zen Master
+> 
+> Mediating your reactions and maintaining your calm is more important as you lead more people.
+> Zen management trick: asking questions.
+
+> Be a Catalyst, Remove Roadblocks, Be a Teacher and a Mentor, Set Clear Goals, Be Honest, Track Happiness
+
+> Delegate, but get your hands dirty. Seek to replace yourself. Know when to make waves. Shield your team from chaos.
+> Give your team air cover. Let your team know when they're doing well.
+
+> Delegate where possible; don't DIY.
 
 ### Leading at Scale
 ...
