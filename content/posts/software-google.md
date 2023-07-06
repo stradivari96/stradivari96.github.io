@@ -180,7 +180,30 @@ If you wait too long to deal with a low performer, their relationship with the t
 > Delegate where possible; don't DIY.
 
 ### Leading at Scale
-...
+> Always be Deciding, Always be Leaving, Always be Scaling
+
+> Reevaluate and rebalance the trade-offs again; it's an iterative process.
+This is what we mean when we say *Always Be Deciding*.
+
+> Your Mission: Build a "Self-Driving" Team
+
+> Ask yourself: *What can I do that nobody else on my team can do?*
+
+> It's also important to "manage up", making sure your management chain understand what your group
+is doing and staying connected to the company at large.
+
+> 95% observation and listening, and 5% making critical adjustments in just
+the right place.
+
+> Anchoring a team identity to a specific solution can lead to all sorts of angst over time.
+(should own the problem instead)
+
+> Your organization is scaling by tackling new problems and then figuring out how to compress them so that
+it can take on new, parallel struggles.
+
+> If you let yourself slip into pure reactive mode (which happens almost automatically), you spend every moment of your life on urgent things, but almost none of those things are important in the big picture.
+
+> First, even if you don’t delegate that middle 60% of tasks, your subleaders often notice and pick them up automatically. Second, if something in that middle bucket is truly critical, it ends up coming back to you anyway, eventually migrating up into the top 20%.
 
 ### Measuring Engineering Productivity
 ...
