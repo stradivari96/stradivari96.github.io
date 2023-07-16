@@ -93,7 +93,7 @@ See [notes about web](/roadmap/#web-development)
 
 Deploy using https://deta.space/ or https://www.pythonanywhere.com/
 
-- [**Django**](https://www.djangoproject.com/): [tutorial](https://tutorial.djangogirls.org/en/)
+- [**Django**](https://www.djangoproject.com/): [tutorial](https://tutorial.djangogirls.org/en/) / [Views](https://spookylukey.github.io/django-views-the-right-way/index.html)
   - [readthedocs](https://github.com/readthedocs/readthedocs.org): documentation hosting
   - [sentry](https://github.com/getsentry/sentry): monitoring platform
   - [old mdn](https://github.com/mdn/kuma): kuma, old MDN
