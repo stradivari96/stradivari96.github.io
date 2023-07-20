@@ -12,16 +12,17 @@ Notes about the [book](https://abseil.io/resources/swe-book).
 
 
 ### What Is Software Engineering?
-> Software engineering is programming integrated over time.
+> Programming integrated over time.
 
-> With a sufficient numbers of users of an API,
-it does not matter what you promise in the contract: all observable behaviors of your system
+> With a sufficient numbers of users of an API [...] all observable behaviors of your system
 will be depended on by somebody. - Hyrum's Law
 
 > It's programming if 'clever' is a compliment, but it's software engineering if 'clever' is an accusation.
 
 > If a product experiences outages [...] but the issue wasn't surfaced by tests in CI, it is not the fault of the 
-infrastructure change. [...] "If you liked it, you should have put a CI test on it."
+infrastructure change.
+
+> "If you liked it, you should have put a CI test on it."
 
 > The more frequently you change your infrastructure, the easier it becomes to do so.
 
@@ -124,7 +125,7 @@ and easier to maintain?”
 
 > Diversity is necessary to design properly for a comprehensive user base.
 
-> Bias is the default. Diversity is necessary to design properly for a comprehensive user base. Inclusivity is critical not just to improving the hiring pipeline for underrepresented groups, but to providing a truly supportive work environment for all people.
+> Inclusivity is critical not just to improving the hiring pipeline for underrepresented groups, but to providing a truly supportive work environment for all people.
 
 > Product velocity must be evaluated against providing a product that is truly useful to all users. It’s better to slow down than to release a product that might cause harm to some users.
 
@@ -224,7 +225,74 @@ it can take on new, parallel struggles.
 ...
 
 ### Unit Testing
-...
+> - They tend to be small according to Google’s definitions of test size.
+> - They tend to be easy to write at the same time as the code they’re testing,
+> - They promote high levels of test coverage because they are quick and easy to write.
+> - They tend to make it easy to understand what’s wrong when they fail
+> - They can serve as documentation and examples.
+
+> we encourage engineers to aim for a mix of about 80% unit tests and 20% broader-scoped tests.
+
+> brittle: they broke in response to a harmless and unrelated change that introduced no real bugs. Second, the tests were unclear: after they were failing, it was difficult to determine what was wrong,
+
+> the ideal test is unchanging: after it’s written, it never needs to change unless the requirements of the system under test change.
+
+> When an engineer refactors the internals of a system without modifying its interface, whether for performance, clarity, or any other reason, the system’s tests shouldn’t need to change.
+
+> As with refactorings, a change to existing tests when adding new features suggest unintended consequences of that feature or inappropriate tests.
+
+> the presence of the bug suggests that a case was missing from the initial test suite,
+
+> Changing a system’s existing behavior is the one case when we expect to have to make updates to the system’s existing tests.
+
+> The takeaway is that after you write a test, you shouldn’t need to touch that test again as you refactor the system, fix bugs, or add new features.
+
+> write tests that invoke the system being tested in the same way its users would; that is, make calls against its public API rather than its implementation details
+
+> Test State, Not Interactions: we tend to prefer the use of real objects in favor of mocked objects, as long as the real objects are fast and deterministic.
+
+> A clear test is one whose purpose for existing and reason for failing is immediately clear to the engineer diagnosing a failure.
+
+> A test is complete when its body contains all of the information a reader needs in order to understand how it arrives at its result. A test is concise when it contains no other distracting or irrelevant information.
+
+> rather than writing a test for each method, write a test for each behavior.
+
+> Behaviors can often be expressed using the words “given,”“when,” and “then”
+
+> When writing such tests, be careful to ensure that you’re not inadvertently testing multiple behaviors at the same time. Each test should cover only a single behavior, and the vast majority of unit tests require only one “when” and one “then” block.
+
+> A test’s name should summarize the behavior it is testing. A good name describes both the actions that are being taken on a system and the expected outcome
+
+> multiplyingTwoPositiveNumbersShouldReturnAPositiveNumber multiply_postiveAndNegative_returnsNegative divide_byZero_throwsException
+
+> in test code, stick to straight-line code over clever logic, and consider tolerating some duplication when it makes the test more descriptive and meaningful.
+
+> A good failure message contains much the same information as the test’s name: it should clearly express the desired outcome, the actual outcome, and any relevant parameters.
+
+> Good tests are designed to be stable, and in fact you usually want them to break when the system being tested changes. So DRY doesn’t have quite as much benefit when it comes to test code.
+
+> Instead of being completely DRY, test code should often strive to be DAMP —that is, to promote “Descriptive And Meaningful Phrases.”
+
+> DAMP is not a replacement for DRY; it is complementary to it. Helper methods and test infrastructure can still help make tests clearer by making them more concise, factoring out repetitive steps whose details aren’t relevant to the particular behavior being tested.
+
+> Using helper methods to construct these values allows each test to create the exact values it needs without having to worry about specifying irrelevant information or conflicting with other tests.
+
+> One risk in using setup methods is that they can lead to unclear tests if those tests begin to depend on the particular values used in setup.
+
+> Tests like these that explicitly care about particular values should state those values directly, overriding the default defined in the setup method if need be.
+
+> The best validation helper methods assert a single conceptual fact about their inputs, in contrast to general-purpose validation methods that cover a range of conditions.
+
+> - Strive for unchanging tests.
+> - Test via public APIs.
+> - Test state, not interactions.
+> - Make your tests complete and concise.
+> - Test behaviors, not methods.
+> - Structure tests to emphasize behaviors.
+> - Name tests after the behavior being tested.
+> - Don’t put logic in tests.
+> - Write clear failure messages.
+> - Follow DAMP over DRY when sharing code for tests.
 
 ### Test Doubles
 ...
