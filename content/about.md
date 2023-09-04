@@ -7,7 +7,7 @@ comments: false
 disableShare: true
 ---
 
-Software engineer at [Paradigma Digital](https://www.paradigmadigital.com/).
+Software engineer at [VirusTotal](https://www.virustotal.com/).
 
 Avid gamer, reader and weeb.
 
@@ -17,7 +17,8 @@ Languages: 🇪🇸, 🇨🇳, 🇬🇧 and learning 🇯🇵
 
 | Date              | Position                   | Company                                                                                                                                                                                                         |
 | ----------------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 09/2021 - Present | **Software Engineer**      | <a href="https://www.paradigmadigital.com/"><img src="https://www.paradigmadigital.com/assets/img/logo/paradigma-logos/horizontal/paradigma_digital_logo_default.svg" alt="Paradigma Digital" width="200"/></a> |
+| 09/2023 - Present | **Software Engineer**      | <a href="https://www.virustotal.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/VirusTotal_logo.svg" alt="VirusTotal" width="200"/></a> |
+| 09/2021 - 08/2023 | **Software Engineer**      | <a href="https://www.paradigmadigital.com/"><img src="https://www.paradigmadigital.com/assets/img/logo/paradigma-logos/horizontal/paradigma_digital_logo_default.svg" alt="Paradigma Digital" width="200"/></a> |
 | 04/2021 - 09/2021 | **Software Engineer**      | <a href="https://dezzai.com/"><img src="https://dezzai.com/en/wp-content/uploads/2021/10/dezzai_logo_morado.png" alt="dezzai" width="200"/></a>                                                                 |
 | 09/2018 - 01/2021 | **Full Stack Engineer**    | <a href="https://foqum.io"><img src="https://i.imgur.com/NeCw0UF.png" alt="Foqum" width="200"/></a>                                                                                                             |
 | 09/2017 - 12/2017 | **Web Development Intern** | <a href="https://www.accenture.com"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Accenture.svg/320px-Accenture.svg.png" alt="Accenture" width="200"/></a>                                |
@@ -37,5 +38,4 @@ Languages: 🇪🇸, 🇨🇳, 🇬🇧 and learning 🇯🇵
   - [Hollow Knight (ES)](https://hollowknight.fandom.com/es/wiki/Hollow_Knight_Wiki)
   - [Blasphemous (ES)](https://blasphemous.fandom.com/es/wiki/Blasphemous_Wiki)
 - Contributor:
-  <!-- prettier-ignore -->
   - [Google OR-Tools](https://github.com/google/or-tools): Open Source Peer Bonus [winner](https://opensource.googleblog.com/2022/09/announcing-the-second-group-of-open-source-peer-bonus-winners-in-2022.html)
