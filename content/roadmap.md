@@ -14,16 +14,6 @@ References and things to learn.
 / [Architect](https://roadmap.sh/software-architect/):
 Mark as done as you go.
 
-{{< notice tip >}}
-
-Keep an eye on:
-
-- [Programming subreddit](https://www.reddit.com/r/programming/)
-- [Experienced Devs](https://www.reddit.com/r/ExperiencedDevs/)
-- [Hacker News](https://news.ycombinator.com/news)
-
-{{< /notice >}}
-
 ---
 
 ## General
@@ -127,20 +117,3 @@ ORMs are great, but you should know how to use raw SQL.
 
 - [Authentication reddit post](https://www.reddit.com/r/nextjs/comments/svr3zy/authentication_with_nextjs_the_dos_and_donts_and/)
 - [OAuth vulnerability on Booking](https://salt.security/blog/traveling-with-oauth-account-takeover-on-booking-com)
-
----
-
-## Engineering Blogs
-
-- [Airbnb](https://medium.com/airbnb-engineering/airbnb-engineering-infrastructure/home)
-- [Cloudflare](https://blog.cloudflare.com/)
-- [Discord](https://discord.com/category/engineering)
-- [DoorDash](https://doordash.engineering/blog/)
-- [Dropbox](https://dropbox.tech/infrastructure)
-- [Linkedin](https://engineering.linkedin.com/blog)
-- [Meta](https://engineering.fb.com/)
-- [Pinterest](https://medium.com/pinterest-engineering)
-- [Riot](https://technology.riotgames.com/)
-- [Stripe](https://stripe.com/blog/engineering)
-- [Twitter](https://blog.twitter.com/engineering/en_us)
-- [Uber](https://eng.uber.com/)
