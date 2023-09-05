@@ -15,7 +15,7 @@ List of tools I use daily
 
 - **IDE**: [PyCharm](https://www.jetbrains.com/pycharm/) / [VS Code](https://code.visualstudio.com/)
 - **Autocompletion**: [Copilot](https://copilot.github.com/) / [Tabnine](https://tabnine.com/)
-- **Formatters**: [black](https://black.readthedocs.io/en/stable/index.html) / [prettier](https://prettier.io/)
+- **Formatters**: [black](https://black.readthedocs.io/en/stable/index.html) / [pyink](https://github.com/google/pyink) / [prettier](https://prettier.io/)
 - **Questions**: [Stack Overflow](https://stackoverflow.com/) / [Reddit](https://www.reddit.com/)
 - **Code search**: [Sourcegraph](https://sourcegraph.com/) / [Github](https://www.github.com/)
 - **Libraries list**: [Awesome](https://github.com/sindresorhus/awesome) / [Awesome-python](https://github.com/vinta/awesome-python#readme) / [Bundlephobia](https://bundlephobia.com/)
@@ -36,10 +36,9 @@ List of tools I use daily
 ### API
 
 - **Tunneling**: [ngrok](https://ngrok.com/)
-- **HTTP Client**: [Postman](https://www.getpostman.com/) / [Insomnia](https://insomnia.rest/) / [httpie](https://httpie.org/)
+- **HTTP Client**: [Insomnia](https://insomnia.rest/) / [Postman](https://www.getpostman.com/) / [httpie](https://httpie.org/)
 - **Spec**: [Stoplight studio](https://stoplight.io/studio) / [Swagger](https://editor.swagger.io/) / [Async API](https://www.asyncapi.com/)
 - **JSON**: [jq](https://github.com/jqlang/jq) / [JWT](https://jwt.io/)
-- **Other**: [Cloudflare](https://www.cloudflare.com/)
 
 ### DB
 
@@ -48,9 +47,9 @@ List of tools I use daily
 
 ### Devops
 
-- **CI/CD**: [Jenkins](https://jenkins.io/) / [GitHub Actions](https://docs.github.com/en/actions)
+- **CI/CD**: [Cloud Build](https://cloud.google.com/build) / [Jenkins](https://jenkins.io/) / [GitHub Actions](https://docs.github.com/en/actions)
 - **Static Analysis**: [SonarQube](https://www.sonarqube.org)
-- **Docker**: [Docker Desktop](https://www.docker.com/products/docker-desktop) / [Docker Compose](https://docs.docker.com/compose/) / [Lens](https://k8slens.dev/)
+- **Docker**: [Docker Desktop](https://www.docker.com/products/docker-desktop) / [Docker Compose](https://docs.docker.com/compose/) / [OpenLens](https://github.com/MuhammedKalkan/OpenLens) / [Pod Menu](https://github.com/alebcay/openlens-node-pod-menu)
 
 ### Other
 
