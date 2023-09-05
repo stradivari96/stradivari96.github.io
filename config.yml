@@ -16,6 +16,8 @@ menu:
       url: /about/
     - name: Projects
       url: /projects/
+    - name: Roadmap
+      url: /roadmap/
 
 params:
   env: production
