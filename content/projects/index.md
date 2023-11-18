@@ -9,12 +9,6 @@ disableShare: true
 
 Here are some of my personal projects.
 
-### [Github](http://github.com/stradivari96/)
-
-- [**Google OR-Tools contibutions**](https://github.com/google/or-tools/issues?page=1&q=author%3Astradivari96): Some contributions to the Google OR-Tools project.
-- [**Awesome OR**](https://github.com/stradivari96/awesome-or): A curated list of awesome Operations Research resources.
-- [**Python Web Frameworks stars**](https://github.com/stradivari96/python-web-framework-stars)
-
 ### Hollow Knight
 
 #### [Hollow Knight Wikia](https://hollowknight.fandom.com/es/wiki/Hollow_Knight_Wiki)
@@ -28,7 +22,7 @@ Tool to search of in-game translations.
 
 ![hollow knight translator](./hk-translator.png)
 
-### [Final Degree Project](https://github.com/stradivari96/Automatic-mesh-generation) (University)
+### [Final Degree Project](https://github.com/xiangchen96/Automatic-mesh-generation) (University)
 
 Generating quality 2D polygon meshes using Restricted [Delaunay Triangulations](https://en.wikipedia.org/wiki/Delaunay_triangulation).
 
