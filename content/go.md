@@ -22,6 +22,7 @@ tags: ["Software Engineering"]
 
 ## Advanced
 
+- 📺[Rethinking Classical Concurrency Patterns](https://youtu.be/5zXAHh5tJqQ)
 - 📚[Let's Go](https://lets-go.alexedwards.net/): Working app with templating, stateful sessions, raw SQL, etc
 - 📚[Let's Go Further](https://lets-go-further.alexedwards.net/): Modern JSON REST API
 
