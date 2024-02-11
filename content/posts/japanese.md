@@ -12,6 +12,7 @@ Some notes about Japanese
 
 ### Resources
 
+- [Rikaikun Extension](https://chromewebstore.google.com/detail/rikaikun/jipdnfibhldikgcjhfnomkfpcebammhp)
 - [Tae Kim's Guide](https://guidetojapanese.org/learn/complete/)
 - [Spotify playlist](https://open.spotify.com/playlist/0SgtkRyKjH7DEVOiI5P5mt?si=eee0f846b7874896): use spotify web to copy lyrics
 - [漢字で GO!](https://plicy.net/GamePlay/155561): Kanji game, pretty hard
@@ -25,7 +26,7 @@ Some notes about Japanese
 - [異世界のんびり農家](https://ncode.syosetu.com/n3289ds/): Farming Life in Another World
 - [薬屋のひとりごと](https://ncode.syosetu.com/n9636x/): The Apothecary Diaries
 
-### [Gemini](https://gemini.google.com/)
+### [Gemini](https://gemini.google.com/) / [ChatGPT]()
 
 ```
 When I give you a phrase in japanese you should give me a breakdown like this:
