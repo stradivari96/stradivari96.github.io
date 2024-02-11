@@ -26,7 +26,7 @@ Some notes about Japanese
 - [異世界のんびり農家](https://ncode.syosetu.com/n3289ds/): Farming Life in Another World
 - [薬屋のひとりごと](https://ncode.syosetu.com/n9636x/): The Apothecary Diaries
 
-### [Gemini](https://gemini.google.com/) / [ChatGPT]()
+### [Gemini](https://gemini.google.com/) / [ChatGPT](https://chat.openai.com/)
 
 ```
 When I give you a phrase in japanese you should give me a breakdown like this:
