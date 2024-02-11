@@ -29,8 +29,9 @@ Some notes about Japanese
 
 ```
 When I give you a phrase in japanese you should give me a breakdown like this:
+I do not want more explanation than this, please follow the structure closely
 
-高校生の頃には自分で弁当を作るほど上達していた
+phrase: 高校生の頃には自分で弁当を作るほど上達していた
 
 Response:
 
