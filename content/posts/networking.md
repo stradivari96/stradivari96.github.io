@@ -14,10 +14,22 @@ Some notes about computer networking, won't go too deep.
 
 ## References
 
-- https://www.oreilly.com/library/view/network-warrior-2nd/9781449307974/
-- https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/
+- [Network warrior book](https://www.oreilly.com/library/view/network-warrior-2nd/9781449307974/)
+- [OSI](https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/)
+- [CIDR](https://aws.amazon.com/what-is/cidr)
+
+## CIDR Notation
+
+- 198.51.100.0/24: This represents a subnet. The "/24" indicates that the first 24 bits of the IP address (198.51.100) define the network portion, and the remaining 8 bits are for individual devices (hosts) within that network. This subnet can contain a total of 256 (2^8) IP addresses, but two are reserved (network address - 198.51.100.0 and broadcast address - 198.51.100.255), leaving 254 usable IP addresses for devices on the network.
+
+- 198.51.100.14/24: Here, 198.51.100.14 is a specific IP address within the subnet defined by 198.51.100.0/24. The "/24" still refers to the subnet mask (24 leading 1s), but in this case, it clarifies that this particular IP (198.51.100.14) belongs to the network 198.51.100.0/24.
 
 ## IPv4
+
+**Address classes**
+
+<details>
+  <summary>Table</summary>
 
 | Class   | Start     | End             | Mask          | CIDR |
 | ------- | --------- | --------------- | ------------- | ---- |
@@ -26,6 +38,10 @@ Some notes about computer networking, won't go too deep.
 | Class C | 192.0.0.0 | 223.255.255.255 | 255.255.255.0 | /24  |
 | Class D | 224.0.0.0 | 239.255.255.255 | -             | /4   |
 | Class E | 240.0.0.0 | 255.255.255.255 | -             | -    |
+
+</details>
+
+</br>
 
 **Private addresses**
 
