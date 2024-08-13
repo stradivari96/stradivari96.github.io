@@ -8,16 +8,20 @@ robotsNoIndex: true
 ## References
 - https://www.youtube.com/@Chommang
 - https://archive.org/details/anatomyforscuptors/
-- https://characterdesignreferences.com/art-of-animation
-  ![Fauna](https://static.miraheze.org/hololivewiki/a/a3/Ceres_Fauna_-_Concept_Illustration_01.jpg)
-  ![Mumei](https://static.miraheze.org/hololivewiki/c/c5/Nanashi_Mumei_-_Concept_Illustration_01.jpg)
+- [Art of Animation](https://characterdesignreferences.com/art-of-animation)
+- [Sakuga Booru](https://sakugabooru.com/post?tags=character_design)
+- [Hololive](https://virtualyoutuber.fandom.com/wiki/Category:Hololive_VTuber_Concept_Illustrations)
 
 ### Head / Face
 
-- [Model](https://sketchfab.com/3d-models/human-head-guide-lines-inspired-by-loomis-48327623381e4c388ae3fd7b2ebfd6df)
+- [Model](https://sketchfab.com/3d-models/basic-secondary-planes-of-the-head-a-loomis-4c79df530a7b489bbcadec6801e105f0)
 - [Oridays](https://youtu.be/E2r9u5l0Y6k)
 ![Heads](/head-study.png)
 
+### Hair
+- [Oridays](https://youtu.be/0Qq4DD5juTE)
+- [Oridays, paint](https://youtu.be/Tdv5qtnarlo)
 
 ### Body
 - [Oridays](https://youtu.be/vLWH4yEs0XQ)
+- [Anime proportions](https://youtu.be/31lpS09tuFg)
