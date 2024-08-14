@@ -22,6 +22,8 @@ robotsNoIndex: true
 - [Oridays](https://youtu.be/0Qq4DD5juTE)
 - [Oridays, paint](https://youtu.be/Tdv5qtnarlo)
 
+![hair](/hair.png)
+
 ### Body
 - [Oridays](https://youtu.be/vLWH4yEs0XQ)
 - [Anime proportions](https://youtu.be/31lpS09tuFg)
