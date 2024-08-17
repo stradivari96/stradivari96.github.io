@@ -25,6 +25,7 @@ robotsNoIndex: true
 - [Oridays](https://youtu.be/0Qq4DD5juTE)
 - [Chommang](https://youtu.be/dhbfOcje5nc)
 - [Oridays, paint](https://youtu.be/Tdv5qtnarlo)
+- [Excal](https://www.youtube.com/watch?v=udz7AMPg6UE)
 
 ![hair](/hair.png)
 
