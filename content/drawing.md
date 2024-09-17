@@ -19,6 +19,9 @@ robotsNoIndex: true
 - [Chuzenji](https://x.com/_Chuzenji_)
 - [Oridays](https://x.com/orideizu/)
 
+## Clip studio
+- [Start to Finish](https://youtu.be/y8Fov4K3Udw)
+
 ### Head / Face
 
 - [Head planes](https://sketchfab.com/3d-models/basic-secondary-planes-of-the-head-a-loomis-4c79df530a7b489bbcadec6801e105f0)
@@ -34,8 +37,6 @@ robotsNoIndex: true
 - [Chommang](https://youtu.be/dhbfOcje5nc)
 - [Oridays, paint](https://youtu.be/Tdv5qtnarlo)
 - [Excal](https://www.youtube.com/watch?v=udz7AMPg6UE)
-
-![hair](/hair.png)
 
 ### Body
 
