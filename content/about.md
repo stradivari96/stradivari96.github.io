@@ -7,7 +7,7 @@ comments: false
 disableShare: true
 ---
 
-Software engineer at [VirusTotal](https://www.virustotal.com/).
+Software engineer.
 
 Avid gamer, reader and weeb.
 
@@ -17,11 +17,11 @@ Languages: 🇪🇸, 🇨🇳, 🇬🇧 and learning 🇯🇵
 
 | Date              | Position                   | Company                                                                                                                                                                                                         |
 | ----------------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 09/2023 - Present | **Software Engineer**      | <a href="https://www.virustotal.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/VirusTotal_logo.svg" alt="VirusTotal" width="200"/></a> |
+| 09/2023 - Present | **Software Engineer**      | <a href="https://careers.google.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/640px-Google_2015_logo.svg.png" alt="Google" width="200"/></a> |
 | 09/2021 - 08/2023 | **Software Engineer**      | <a href="https://www.paradigmadigital.com/"><img src="https://www.paradigmadigital.com/assets/img/logo/paradigma-logos/horizontal/paradigma_digital_logo_default.svg" alt="Paradigma Digital" width="200"/></a> |
 | 04/2021 - 09/2021 | **Software Engineer**      | <a href="https://dezzai.com/"><img src="https://dezzai.com/en/wp-content/uploads/2021/10/dezzai_logo_morado.png" alt="dezzai" width="200"/></a>                                                                 |
-| 09/2018 - 01/2021 | **Full Stack Engineer**    | <a href="https://foqum.io"><img src="https://i.imgur.com/NeCw0UF.png" alt="Foqum" width="200"/></a>                                                                                                             |
-| 09/2017 - 12/2017 | **Web Development Intern** | <a href="https://www.accenture.com"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Accenture.svg/320px-Accenture.svg.png" alt="Accenture" width="200"/></a>                                |
+| 09/2018 - 01/2021 | **Software Engineer**    | <a href="https://foqum.io"><img src="https://i.imgur.com/NeCw0UF.png" alt="Foqum" width="200"/></a>                                                                                                             |
+| 09/2017 - 12/2017 | **Intern** | <a href="https://www.accenture.com"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Accenture.svg/320px-Accenture.svg.png" alt="Accenture" width="200"/></a>                                |
 
 # Education
 
