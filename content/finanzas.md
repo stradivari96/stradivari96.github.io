@@ -27,6 +27,9 @@ Notas sobre finanzas.
   - other: ishares us pharma, china
 
 ## Renta fija
+- Cuentas ahorro (revisar que estén asegurados):
+  - revolut, n26, sabadell
+  - Trade republic (IBAN aleman, no disponible al momento)
 - Comprar deuda / prestar dinero a empresas o paises.
   - www.tesoro.es
 - Útil sobre todo cuando los tipos de interés están altos.
