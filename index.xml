@@ -1,4 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Just another developer</title><link>https://xiang.es/</link><description>Recent content on Just another developer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 20 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://xiang.es/index.xml" rel="self" type="application/rss+xml"/><item><title>✨ Recipes for Google OR-Tools</title><link>https://xiang.es/posts/cp-sat/</link><pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate><guid>https://xiang.es/posts/cp-sat/</guid><description>&lt;p>Some tips and tricks for the CP-SAT solver.&lt;/p></description></item><item><title>🔨 My Development Tools</title><link>https://xiang.es/posts/tooling/</link><pubDate>Sun, 03 Apr 2022 00:00:00 +0000</pubDate><guid>https://xiang.es/posts/tooling/</guid><description>&lt;p>List of tools I use daily&lt;/p></description></item><item><title>📝 Finanzas</title><link>https://xiang.es/finanzas/</link><pubDate>Fri, 20 Sep 2024 00:00:00 +0000</pubDate><guid>https://xiang.es/finanzas/</guid><description>&lt;p>Notas sobre finanzas.&lt;/p></description></item><item><title>📝 Drawing</title><link>https://xiang.es/drawing/</link><pubDate>Sat, 10 Aug 2024 00:00:00 +0000</pubDate><guid>https://xiang.es/drawing/</guid><description>&lt;h2 id="references">References&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Just another developer</title><link>https://xiang.es/</link><description>Recent content on Just another developer</description><generator>Hugo -- 0.138.0</generator><language>en-us</language><lastBuildDate>Fri, 08 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://xiang.es/index.xml" rel="self" type="application/rss+xml"/><item><title>✨ Recipes for Google OR-Tools</title><link>https://xiang.es/posts/cp-sat/</link><pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate><guid>https://xiang.es/posts/cp-sat/</guid><description>&lt;p>Some tips and tricks for the CP-SAT solver.&lt;/p></description></item><item><title>🔨 My Development Tools</title><link>https://xiang.es/posts/tooling/</link><pubDate>Sun, 03 Apr 2022 00:00:00 +0000</pubDate><guid>https://xiang.es/posts/tooling/</guid><description>&lt;p>List of tools I use daily&lt;/p></description></item><item><title>MEMES PA GUILLE</title><link>https://xiang.es/memes/</link><pubDate>Fri, 08 Nov 2024 00:00:00 +0000</pubDate><guid>https://xiang.es/memes/</guid><description>&lt;script>
+window.onload = function() {
+let images = document.querySelectorAll("img");
+images = Array.from(images)
+let all_links = [
+"https://i.imgur.com/0QzDC3P.jpeg",
+"https://pbs.twimg.com/media/FWHNOntUIAMAaui.jpg",
+]
+// random one, same one for each hour of the day
+let current_utc_hour = new Date().getUTCHours();
+let random_link = all_links[current_utc_hour % all_links.length];
+images.forEach(a => a.src = random_link);
+}
+&lt;/script>
+&lt;p>&lt;img alt="meme" loading="lazy">&lt;/p></description></item><item><title>📝 Finanzas</title><link>https://xiang.es/finanzas/</link><pubDate>Fri, 20 Sep 2024 00:00:00 +0000</pubDate><guid>https://xiang.es/finanzas/</guid><description>&lt;p>Notas sobre finanzas.&lt;/p></description></item><item><title>📝 Drawing</title><link>https://xiang.es/drawing/</link><pubDate>Sat, 10 Aug 2024 00:00:00 +0000</pubDate><guid>https://xiang.es/drawing/</guid><description>&lt;h2 id="references">References&lt;/h2>
 &lt;ul>
 &lt;li>&lt;a href="https://mangadex.org/">Manga&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://archive.org/details/anatomyforscuptors/">Anatomy&lt;/a>&lt;/li>
@@ -22,9 +36,8 @@
 &lt;li>&lt;a href="https://youtu.be/E2r9u5l0Y6k">Oridays&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://youtu.be/yNGNTs_fv7E">Chommang&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://youtu.be/GjiCQfCMXow">Face shape&lt;/a>
-&lt;img loading="lazy" src="https://xiang.es/head-study.png" alt="Heads" />
-&lt;img loading="lazy" src="https://xiang.es/head.png" alt="Head" />
-&lt;/li>
+&lt;img alt="Heads" loading="lazy" src="https://xiang.es/head-study.png">
+&lt;img alt="Head" loading="lazy" src="https://xiang.es/head.png">&lt;/li>
 &lt;/ul>
 &lt;h3 id="hair">Hair&lt;/h3>
 &lt;ul>
@@ -119,36 +132,36 @@ start writing &lt;strong>single file scripts&lt;/strong>.&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th style="text-align: left">Date&lt;/th>
-&lt;th style="text-align: left">Position&lt;/th>
-&lt;th style="text-align: left">Company&lt;/th>
+&lt;th>Date&lt;/th>
+&lt;th>Position&lt;/th>
+&lt;th>Company&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td style="text-align: left">09/2023 - Present&lt;/td>
-&lt;td style="text-align: left">&lt;strong>Software Engineer&lt;/strong>&lt;/td>
-&lt;td style="text-align: left">&lt;a href="https://careers.google.com/">&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/640px-Google_2015_logo.svg.png" alt="Google" width="200"/>&lt;/a>&lt;/td>
+&lt;td>09/2023 - Present&lt;/td>
+&lt;td>&lt;strong>Software Engineer&lt;/strong>&lt;/td>
+&lt;td>&lt;a href="https://careers.google.com/">&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/640px-Google_2015_logo.svg.png" alt="Google" width="200"/>&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td style="text-align: left">09/2021 - 08/2023&lt;/td>
-&lt;td style="text-align: left">&lt;strong>Software Engineer&lt;/strong>&lt;/td>
-&lt;td style="text-align: left">&lt;a href="https://www.paradigmadigital.com/">&lt;img src="https://www.paradigmadigital.com/assets/img/logo/paradigma-logos/horizontal/paradigma_digital_logo_default.svg" alt="Paradigma Digital" width="200"/>&lt;/a>&lt;/td>
+&lt;td>09/2021 - 08/2023&lt;/td>
+&lt;td>&lt;strong>Software Engineer&lt;/strong>&lt;/td>
+&lt;td>&lt;a href="https://www.paradigmadigital.com/">&lt;img src="https://www.paradigmadigital.com/assets/img/logo/paradigma-logos/horizontal/paradigma_digital_logo_default.svg" alt="Paradigma Digital" width="200"/>&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td style="text-align: left">04/2021 - 09/2021&lt;/td>
-&lt;td style="text-align: left">&lt;strong>Software Engineer&lt;/strong>&lt;/td>
-&lt;td style="text-align: left">&lt;a href="https://dezzai.com/">&lt;img src="https://dezzai.com/en/wp-content/uploads/2021/10/dezzai_logo_morado.png" alt="dezzai" width="200"/>&lt;/a>&lt;/td>
+&lt;td>04/2021 - 09/2021&lt;/td>
+&lt;td>&lt;strong>Software Engineer&lt;/strong>&lt;/td>
+&lt;td>&lt;a href="https://dezzai.com/">&lt;img src="https://dezzai.com/en/wp-content/uploads/2021/10/dezzai_logo_morado.png" alt="dezzai" width="200"/>&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td style="text-align: left">09/2018 - 01/2021&lt;/td>
-&lt;td style="text-align: left">&lt;strong>Software Engineer&lt;/strong>&lt;/td>
-&lt;td style="text-align: left">&lt;a href="https://foqum.io">&lt;img src="https://i.imgur.com/NeCw0UF.png" alt="Foqum" width="200"/>&lt;/a>&lt;/td>
+&lt;td>09/2018 - 01/2021&lt;/td>
+&lt;td>&lt;strong>Software Engineer&lt;/strong>&lt;/td>
+&lt;td>&lt;a href="https://foqum.io">&lt;img src="https://i.imgur.com/NeCw0UF.png" alt="Foqum" width="200"/>&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td style="text-align: left">09/2017 - 12/2017&lt;/td>
-&lt;td style="text-align: left">&lt;strong>Intern&lt;/strong>&lt;/td>
-&lt;td style="text-align: left">&lt;a href="https://www.accenture.com">&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Accenture.svg/320px-Accenture.svg.png" alt="Accenture" width="200"/>&lt;/a>&lt;/td>
+&lt;td>09/2017 - 12/2017&lt;/td>
+&lt;td>&lt;strong>Intern&lt;/strong>&lt;/td>
+&lt;td>&lt;a href="https://www.accenture.com">&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Accenture.svg/320px-Accenture.svg.png" alt="Accenture" width="200"/>&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -156,18 +169,18 @@ start writing &lt;strong>single file scripts&lt;/strong>.&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th style="text-align: left">Title&lt;/th>
-&lt;th style="text-align: left">Organization&lt;/th>
+&lt;th>Title&lt;/th>
+&lt;th>Organization&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td style="text-align: left">Master in Computer Science (In Progress)&lt;/td>
-&lt;td style="text-align: left">&lt;a href="https://www.uoc.edu/">&lt;img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Logo_blau_uoc.png" alt="UOC" width="200"/>&lt;/a>&lt;/td>
+&lt;td>Master in Computer Science (In Progress)&lt;/td>
+&lt;td>&lt;a href="https://www.uoc.edu/">&lt;img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Logo_blau_uoc.png" alt="UOC" width="200"/>&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td style="text-align: left">Degree in Mathematics and Computer Science&lt;/td>
-&lt;td style="text-align: left">&lt;a href="https://www.upm.es">&lt;img src="https://www.upm.es/sfs/Rectorado/Gabinete%20del%20Rector/Logos/UPM/CEI/LOGOTIPO%20leyenda%20color%20JPG%20p.png" alt="UPM" width="200"/>&lt;/a>&lt;/td>
+&lt;td>Degree in Mathematics and Computer Science&lt;/td>
+&lt;td>&lt;a href="https://www.upm.es">&lt;img src="https://www.upm.es/sfs/Rectorado/Gabinete%20del%20Rector/Logos/UPM/CEI/LOGOTIPO%20leyenda%20color%20JPG%20p.png" alt="UPM" width="200"/>&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -189,16 +202,13 @@ start writing &lt;strong>single file scripts&lt;/strong>.&lt;/p>
 &lt;h3 id="hollow-knight">Hollow Knight&lt;/h3>
 &lt;h4 id="hollow-knight-wikiahttpshollowknightfandomcomeswikihollow_knight_wiki">&lt;a href="https://hollowknight.fandom.com/es/wiki/Hollow_Knight_Wiki">Hollow Knight Wikia&lt;/a>&lt;/h4>
 &lt;p>Loved that game and decided to translate the english wikia into spanish.
-&lt;img loading="lazy" src="./hollow_knight_wiki.png" alt="hollow knight wiki" />
-&lt;/p>
+&lt;img alt="hollow knight wiki" loading="lazy" src="https://xiang.es/projects/hollow_knight_wiki.png">&lt;/p>
 &lt;h4 id="hollow-knight-translatorhollow-knight-translator">&lt;a href="https://xiang.es/hollow-knight-translator">Hollow Knight Translator&lt;/a>&lt;/h4>
 &lt;p>Tool to search of in-game translations.&lt;/p>
-&lt;p>&lt;img loading="lazy" src="./hk-translator.png" alt="hollow knight translator" />
-&lt;/p>
+&lt;p>&lt;img alt="hollow knight translator" loading="lazy" src="https://xiang.es/projects/hk-translator.png">&lt;/p>
 &lt;h3 id="final-degree-projecthttpsgithubcomxiangchen96automatic-mesh-generation-university">&lt;a href="https://github.com/xiangchen96/Automatic-mesh-generation">Final Degree Project&lt;/a> (University)&lt;/h3>
 &lt;p>Generating quality 2D polygon meshes using Restricted &lt;a href="https://en.wikipedia.org/wiki/Delaunay_triangulation">Delaunay Triangulations&lt;/a>.&lt;/p>
-&lt;p>&lt;img loading="lazy" src="./tfg.gif" alt="final degree project" />
-&lt;/p>
+&lt;p>&lt;img alt="final degree project" loading="lazy" src="https://xiang.es/projects/tfg.gif">&lt;/p>
 &lt;h3 id="other">Other&lt;/h3>
 &lt;ul>
 &lt;li>Acknowledged:
