@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Just another developer</title><link>https://xiang.es/</link><description>Recent content on Just another developer</description><generator>Hugo -- 0.138.0</generator><language>en-us</language><lastBuildDate>Fri, 08 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://xiang.es/index.xml" rel="self" type="application/rss+xml"/><item><title>✨ Recipes for Google OR-Tools</title><link>https://xiang.es/posts/cp-sat/</link><pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate><guid>https://xiang.es/posts/cp-sat/</guid><description>&lt;p>Some tips and tricks for the CP-SAT solver.&lt;/p></description></item><item><title>🔨 My Development Tools</title><link>https://xiang.es/posts/tooling/</link><pubDate>Sun, 03 Apr 2022 00:00:00 +0000</pubDate><guid>https://xiang.es/posts/tooling/</guid><description>&lt;p>List of tools I use daily&lt;/p></description></item><item><title>MEMES PA GUILLE</title><link>https://xiang.es/memes/</link><pubDate>Fri, 08 Nov 2024 00:00:00 +0000</pubDate><guid>https://xiang.es/memes/</guid><description>&lt;script>
+function seededRandom(seed) {
+return function() {
+seed = (seed * 9301 + 49297) % 233280;
+return seed / 233280;
+};
+}
+function deterministicShuffle(array) {
+const random = seededRandom(1337);
+const result = array.slice(); // Create a copy of the array
+for (let i = result.length - 1; i > 0; i--) {
+const j = Math.floor(random() * (i + 1));
+[result[i], result[j]] = [result[j], result[i]]; // Swap elements
+}
+return result;
+}
 window.onload = function() {
 let images = document.querySelectorAll("img");
 images = Array.from(images)
 let all_links = [
+"https://i.imgur.com/Xxbng.jpeg",
 "https://i.imgur.com/0QzDC3P.jpeg",
 "https://pbs.twimg.com/media/FWHNOntUIAMAaui.jpg",
+"https://pbs.twimg.com/media/E0MayFjUcAUATR-?format=jpg",
 ]
+all_links = deterministicShuffle(all_links)
 // random one, same one for each hour of the day
 let current_utc_hour = new Date().getUTCHours();
 let random_link = all_links[current_utc_hour % all_links.length];
