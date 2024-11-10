@@ -26,21 +26,37 @@ robotsNoIndex: true
         return result;
     }
     window.onload = function() {
-        let images = document.querySelectorAll("img");
-        images = Array.from(images)
+        let videos = [
+            "https://img-9gag-fun.9cache.com/photo/ajP98rQ_460sv.mp4",
+        ]
         let all_links = [
+            "https://i.redd.it/0pgf0zfomozd1.jpeg",
             "https://i.imgur.com/Xxbng.jpeg",
             "https://i.imgur.com/0QzDC3P.jpeg",
             "https://pbs.twimg.com/media/FWHNOntUIAMAaui.jpg",
             "https://pbs.twimg.com/media/E0MayFjUcAUATR-?format=jpg",
         ]
+        all_links = all_links.concat(videos)
         all_links = deterministicShuffle(all_links)
         // random one, same one for each hour of the day
-        let current_utc_hour = new Date().getUTCHours();
-        let random_link = all_links[current_utc_hour % all_links.length];
-
-        images.forEach(a => a.src = random_link);
+        let epochour = Math.floor(Date.now() / 1000 / 3600) +5;
+        let random_link = all_links[epochour % all_links.length];
+        
+        if (videos.includes(random_link)) {
+            let video = document.createElement("video");
+            video.src = random_link;
+            video.autoplay = true;
+            video.loop = true;
+            video.controls = true;
+            video.style.width = "100%";
+            document.getElementById("meme").appendChild(video);
+        } else {
+            let img = document.createElement("img");
+            img.src = random_link;
+            img.style.width = "100%";
+            document.getElementById("meme").appendChild(img);
+        }
     }
 </script>
 
-![meme]()
+<div id="meme" />
