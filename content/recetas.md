@@ -28,6 +28,44 @@ Despensa:
 - Almidón de patata, maicena
 - Comino en polvo, laurel, tomillo
 
+### Arroz con cosas
+
+---
+
+- https://www.youtube.com/shorts/kuahesSco-4?feature=share
+- https://www.youtube.com/shorts/v2lj1bQQdas?feature=share
+
+- Golden Curry + arroz
+
+  - Dorar 1 cuenco de **cebolla** y **carne** (contramuslo pollo o ragut)
+  - Añadir agua, **patatas** y **zanahorias**, dejar 20 min, quitar espuma
+  - Medio paquete **curry** cortado 5 min
+
+- Lao gan ma, huevo y arroz [📺](https://youtu.be/g5Qq_w7hLR8?t=370)
+
+  - **Huevo** frito, sobre arroz con salsa **lao gan ma**
+  - Escaldar **col china** 2 min en agua con sal y aceite, escurrir, añadir salsa de soja
+
+- Arroz con cerdo y setas [📺](https://youtu.be/g5Qq_w7hLR8?t=85)
+
+  - **Lomo de cerdo** en tacos, marinar con sal, azucal, maicena, vino arroz, soja y aceite
+  - **Shiitake** sin tallo en tacos, escaldar 1 min, escurrir
+  - **Jenjibre** y 3 dientes de **ajo**, apretar con cuchillo
+  - 3 **Cebolleta**, reservar blanco, picar verde
+  - Freir jenjibre, ajo, y blanco de cebolleta, 15 segundos
+  - Añadir cerdo hasta que esté hecho, añadir vino y setas, 1 min
+  - Añadir salsa de soja, agua, **salsa de ostras**, azucar, pimienta blanca, msg
+  - Espesar con maicena, añadir verde de cebolleta y **aceite de sesamo**
+
+
+
+- Huevos con tomate [📺](https://youtu.be/2hvQFxZBTVY)
+
+  - Cortar **tomate** en rodajas, batir **huevos** con sal
+  - Saltear huevo, retirar, saltear tomate, **ketchup**, añadir agua, sal, azucar
+  - Espesar con agua con almidon, aceite de sesamo, devolver huevo
+  - Añadir **cebollino**
+
 ### Sopas y cremas
 
 ---
@@ -44,39 +82,6 @@ Despensa:
   - Añadir agua (y **caldo**), quitar espuma
   - Salsa de soja, aceite sesamo, sal y pimienta blanca
   - Espesar con almidon/maicena, añadir **huevo** y **Cebollino**
-
-### Arroz con cosas
-
----
-
-- Golden Curry + arroz
-
-  - Dorar 1 cuenco de **cebolla** y **carne** (contramuslo pollo o ragut)
-  - Añadir agua, **patatas** y **zanahorias**, dejar 20 min, quitar espuma
-  - Medio paquete **curry** cortado 5 min
-
-- Arroz con cerdo y setas [📺](https://youtu.be/g5Qq_w7hLR8?t=85)
-
-  - **Lomo de cerdo** en tacos, marinar con sal, azucal, maicena, vino arroz, soja y aceite
-  - **Shiitake** sin tallo en tacos, escaldar 1 min, escurrir
-  - **Jenjibre** y 3 dientes de **ajo**, apretar con cuchillo
-  - 3 **Cebolleta**, reservar blanco, picar verde
-  - Freir jenjibre, ajo, y blanco de cebolleta, 15 segundos
-  - Añadir cerdo hasta que esté hecho, añadir vino y setas, 1 min
-  - Añadir salsa de soja, agua, **salsa de ostras**, azucar, pimienta blanca, msg
-  - Espesar con maicena, añadir verde de cebolleta y **aceite de sesamo**
-
-- Lao gan ma, huevo y arroz [📺](https://youtu.be/g5Qq_w7hLR8?t=370)
-
-  - **Huevo** frito, sobre arroz con salsa **lao gan ma**
-  - Escaldar **col china** 2 min en agua con sal y aceite, escurrir, añadir salsa de soja
-
-- Huevos con tomate [📺](https://youtu.be/2hvQFxZBTVY)
-
-  - Cortar **tomate** en rodajas, batir **huevos** con sal
-  - Saltear huevo, retirar, saltear tomate, **ketchup**, añadir agua, sal, azucar
-  - Espesar con agua con almidon, aceite de sesamo, devolver huevo
-  - Añadir **cebollino**
 
 ### Carnes
 
