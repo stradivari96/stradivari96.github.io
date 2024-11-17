@@ -28,6 +28,9 @@ Despensa:
 - Almidón de patata, maicena
 - Comino en polvo, laurel, tomillo
 
+### Congelar
+- https://youtu.be/XlndcLo3j7I
+
 ### Arroz con cosas
 
 ---
