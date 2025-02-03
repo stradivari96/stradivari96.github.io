@@ -1,5 +1,5 @@
 ---
-title: "🎓 Studiying Japanese"
+title: "🎓 Studying Japanese"
 date: 2024-02-11
 draft: false
 
