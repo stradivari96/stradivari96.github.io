@@ -1,4 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Just another developer</title><link>https://xiang.es/</link><description>Recent content on Just another developer</description><generator>Hugo -- 0.143.0</generator><language>en-us</language><lastBuildDate>Sat, 25 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://xiang.es/index.xml" rel="self" type="application/rss+xml"/><item><title>✨ Recipes for Google OR-Tools</title><link>https://xiang.es/posts/cp-sat/</link><pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate><guid>https://xiang.es/posts/cp-sat/</guid><description>&lt;p>Some tips and tricks for the CP-SAT solver.&lt;/p></description></item><item><title>🔨 My Development Tools</title><link>https://xiang.es/posts/tooling/</link><pubDate>Sun, 03 Apr 2022 00:00:00 +0000</pubDate><guid>https://xiang.es/posts/tooling/</guid><description>&lt;p>List of tools I use daily&lt;/p></description></item><item><title>📝 Climbing notes</title><link>https://xiang.es/climbing/</link><pubDate>Sat, 25 Jan 2025 00:00:00 +0000</pubDate><guid>https://xiang.es/climbing/</guid><description>&lt;p>Some notes about climbing&lt;/p></description></item><item><title>MEMES PA GUILLE</title><link>https://xiang.es/memes/</link><pubDate>Fri, 08 Nov 2024 00:00:00 +0000</pubDate><guid>https://xiang.es/memes/</guid><description>&lt;script>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Just another developer</title><link>https://xiang.es/</link><description>Recent content on Just another developer</description><generator>Hugo -- 0.143.0</generator><language>en-us</language><lastBuildDate>Sun, 09 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://xiang.es/index.xml" rel="self" type="application/rss+xml"/><item><title>✨ Recipes for Google OR-Tools</title><link>https://xiang.es/posts/cp-sat/</link><pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate><guid>https://xiang.es/posts/cp-sat/</guid><description>&lt;p>Some tips and tricks for the CP-SAT solver.&lt;/p></description></item><item><title>🔨 My Development Tools</title><link>https://xiang.es/posts/tooling/</link><pubDate>Sun, 03 Apr 2022 00:00:00 +0000</pubDate><guid>https://xiang.es/posts/tooling/</guid><description>&lt;p>List of tools I use daily&lt;/p></description></item><item><title>📝 Modelo 720</title><link>https://xiang.es/720/</link><pubDate>Sun, 09 Mar 2025 00:00:00 +0000</pubDate><guid>https://xiang.es/720/</guid><description>&lt;h2 id="ejemplo-cuenta-trade-republic">Ejemplo cuenta Trade Republic&lt;/h2>
+&lt;ul>
+&lt;li>Clave tipo de bien: C&lt;/li>
+&lt;li>Subclave: Ahorro&lt;/li>
+&lt;li>Codigo pais: DE&lt;/li>
+&lt;li>Clave de identificacion de cuenta: IBAN&lt;/li>
+&lt;li>Codigo de cuenta: DEXX XXX&lt;/li>
+&lt;li>Identificacion de la identidad: TRADE REPUBLIC BANK GMBH&lt;/li>
+&lt;li>NIF en el pais de residencia fiscal: No hace falta&lt;/li>
+&lt;li>Codigo Pais (bloque 2): DE&lt;/li>
+&lt;/ul>
+&lt;h2 id="ejemplo-accion-en-trade-republic">Ejemplo Accion en Trade Republic&lt;/h2>
+&lt;ul>
+&lt;li>Clave tipo de bien: V&lt;/li>
+&lt;li>Subclave: 1&lt;/li>
+&lt;li>Codigo pais: DE (trade republic)&lt;/li>
+&lt;li>Clave de identificacion: 1&lt;/li>
+&lt;li>Identificacion de valores: USXX&lt;/li>
+&lt;li>Identificacion de la identidad: APPLE INC&lt;/li>
+&lt;li>NIF en el pais de residencia fiscal: No hace falta&lt;/li>
+&lt;li>Bloque 2: (US) si es una empresa de USA&lt;/li>
+&lt;/ul></description></item><item><title>📝 Climbing notes</title><link>https://xiang.es/climbing/</link><pubDate>Sat, 25 Jan 2025 00:00:00 +0000</pubDate><guid>https://xiang.es/climbing/</guid><description>&lt;p>Some notes about climbing&lt;/p></description></item><item><title>MEMES PA GUILLE</title><link>https://xiang.es/memes/</link><pubDate>Fri, 08 Nov 2024 00:00:00 +0000</pubDate><guid>https://xiang.es/memes/</guid><description>&lt;script>
 function seededRandom(seed) {
 return function() {
 seed = (seed * 9301 + 49297) % 233280;
