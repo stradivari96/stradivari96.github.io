@@ -12,6 +12,27 @@ Notas sobre finanzas.
 - Fondo de emergencia de 4-12 meses.
 - Eliminar deudas malas, ej: prestamo al 6%, equivale a una inversion al 6% libre de riesgo.
 
+## Modelo 720
+### Ejemplo cuenta Trade Republic
+- Clave tipo de bien: C
+- Subclave: Ahorro
+- Codigo pais: DE
+- Clave de identificacion de cuenta: IBAN
+- Codigo de cuenta: DEXX XXX
+- Identificacion de la identidad: TRADE REPUBLIC BANK GMBH
+- NIF en el pais de residencia fiscal: No hace falta
+- Codigo Pais (bloque 2): DE
+
+### Ejemplo Accion en Trade Republic
+- Clave tipo de bien: V
+- Subclave: 1
+- Codigo pais: DE (trade republic)
+- Clave de identificacion: 1
+- Identificacion de valores: USXX
+- Identificacion de la identidad: APPLE INC
+- NIF en el pais de residencia fiscal: No hace falta
+- Bloque 2: (US) si es una empresa de USA
+
 ## Renta variable
 - Ej: acciones, ETF. Su riesgo "disminuye" cuanto más tiempo lo dejes. Por ejemplo 10+ años. Más o menos conseguirás un 7-10% anualizado.
 - Aporte constante "Dollar Cost Averaging" > todo de golpe.
