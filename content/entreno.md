@@ -41,15 +41,15 @@ Ejemplos de entrenamiento.
   - 6 [Feet Elevated Inverted Row](https://youtu.be/KuZnbfq8xF8)
   - 1 min rest
 - 3 series:
-  - 12 [Incline Barbell Bench Press](https://youtu.be/4tPP-4K5kMQ)
+  - 12 [Incline Barbell Bench Press](https://youtu.be/4tPP-4K5kMQ) 15kg
   - 1 min rest
 - 3 superseries:
-  - 12+12 [Single Arm Incline Bench Dumbbell Preacher Curl](https://youtu.be/SjeiKv49Izg)
-  - 12 [Double DB Supine Triceps Extension](https://youtu.be/taFAvgzx9Ag)
+  - 12+12 [Single Arm Incline Bench Dumbbell Preacher Curl](https://youtu.be/SjeiKv49Izg) 8kg
+  - 12 [Double DB Supine Triceps Extension](https://youtu.be/taFAvgzx9Ag) 5kg
   - 1 min rest
 - 3 series:
-  - 12 [Double DB Box Step Up](https://youtu.be/8apVstrFT4Y)
+  - 12 [Double DB Box Step Up](https://youtu.be/8apVstrFT4Y) 10 + 10kg
   - 1 min rest
 - 3 series:
-  - 12 [Romanian Deadlift](https://youtu.be/rPmC2YBsdKQ) 
+  - 12 [Romanian Deadlift](https://youtu.be/rPmC2YBsdKQ) 20kg
   - 1 min rest
