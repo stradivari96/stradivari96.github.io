@@ -38,7 +38,7 @@ Ejemplos de entrenamiento.
 - 4 series:
   - 12 [Frog kick](https://youtu.be/bm5p3koeEE4)
   - 30s [Superman hold](https://youtu.be/ZNVWTVdJW5s)
-  - 12 [Bent knees Floor wiper](https://youtu.be/PR8PpHJotb8)
+  - 12 [Bent knees Floor wiper](https://youtu.be/PR8PpHJotb8): piernas juntas, tirar de abdominales
 - 3 series:
   - 8 [Feet Elevated Inverted Row](https://youtu.be/KuZnbfq8xF8)
   - 1 min rest
