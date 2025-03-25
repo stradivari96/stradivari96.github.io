@@ -20,17 +20,17 @@ Ejemplos de entrenamiento.
   - 10 [abdominales](https://youtu.be/EbWuGUru3Jo)
   - 12 [DB russian twist](https://youtu.be/Tau0hsW8iR0) 7.5kg
 - 3 series:
-  - 12+12 (8kg) / 10+10(10kg) / 8+8(14kg) [DB Bent Over Row](https://youtu.be/xl1YiqQY2vA) hombro bien arriba y luego brazo
+  - 12+12 (8kg) / 10+10(10kg) / 8+8(15kg) [DB Bent Over Row](https://youtu.be/xl1YiqQY2vA) hombro bien arriba y luego brazo
   - 1 min rest
 - 3 series:
   - 10 (20kg) / 8 (25kg) [Bench Press](https://youtu.be/iBdF89xBAxA) no adelantar hombros, mantener atras
   - 1 min rest
 - 3 superseries:
-  - 10 (10kg) / 8 (12kg) [Double Dumbell Bicep Curl](https://youtu.be/HnHuhf4hEWY)
-  - 10 (5kg) / 8 (7.5kg) [Standing Single Dumbell Overhead](https://youtu.be/7h3lG2WnLXg)
+  - 10 (10kg) / 8 (10kg) [Double Dumbell Bicep Curl](https://youtu.be/HnHuhf4hEWY)
+  - 10 (5kg) / 8 (8kg) [Standing Single Dumbell Overhead](https://youtu.be/7h3lG2WnLXg)
   - 1 min rest
 - 3 series:
-  - 10 (20kg) / 8 (23kg) [Box Back Squat](https://youtu.be/7iw2gLZKZ0w) 20kg
+  - 10 (20kg) / 8 (22.5kg) [Box Back Squat](https://youtu.be/7iw2gLZKZ0w) 20kg
   - 1 min rest
 
 ## Dia B
