@@ -16,9 +16,9 @@ Ejemplos de entrenamiento.
 ## Dia A
 - [Calentamiento](https://www.youtube.com/watch?v=_6-k5-w1bZw) (5 min)
 - 4 series:
-  - 12 [Prisoner Back extensions](https://youtu.be/Vu0O414sU0c)
-  - 10 [abdominales](https://youtu.be/EbWuGUru3Jo)
-  - 12 [DB russian twist](https://youtu.be/Tau0hsW8iR0) 7.5kg
+  - 12 [Prisoner Back extensions](https://youtu.be/Vu0O414sU0c) / 12 [Cat cow](https://youtu.be/jztNVejxnIw)
+  - 10 [abdominales](https://youtu.be/EbWuGUru3Jo) / 30s [plank](https://youtu.be/s9kJaN1m_UM)
+  - 20 [DB russian twist](https://youtu.be/Tau0hsW8iR0) 7.5kg
 - 3 series:
   - 12+12 (8kg) / 10+10(10kg) / 8+8(15kg) [DB Bent Over Row](https://youtu.be/xl1YiqQY2vA) hombro bien arriba y luego brazo
   - 1 min rest
@@ -26,11 +26,11 @@ Ejemplos de entrenamiento.
   - 10 (20kg) / 8 (25kg) [Bench Press](https://youtu.be/iBdF89xBAxA) no adelantar hombros, mantener atras
   - 1 min rest
 - 3 superseries:
-  - 10 (10kg) / 8 (10kg) [Double Dumbell Bicep Curl](https://youtu.be/HnHuhf4hEWY)
+  - 10 (8kg) / 8 (10kg) [Double Dumbell Bicep Curl](https://youtu.be/HnHuhf4hEWY)
   - 10 (5kg) / 8 (8kg) [Standing Single Dumbell Overhead](https://youtu.be/7h3lG2WnLXg)
   - 1 min rest
 - 3 series:
-  - 10 (20kg) / 8 (22.5kg) [Box Back Squat](https://youtu.be/7iw2gLZKZ0w) 20kg
+  - 10 (20kg) / 8 (22.5kg) [Box Back Squat](https://youtu.be/7iw2gLZKZ0w)
   - 1 min rest
 
 ## Dia B
