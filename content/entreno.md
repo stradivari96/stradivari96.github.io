@@ -35,23 +35,28 @@ Ejemplos de entrenamiento.
 
 ## Dia B
 - [Calentamiento](https://youtu.be/c0VxUFHdYzs) (5 min)
-- 4 series:
-  - 12 [Frog kick](https://youtu.be/bm5p3koeEE4)
-  - 30s [Superman hold](https://youtu.be/ZNVWTVdJW5s)
-  - 12 [Bent knees Floor wiper](https://youtu.be/PR8PpHJotb8): piernas juntas, tirar de abdominales
+- Midline (2 opciones):
+  - 4 series:
+    - 12 [Frog kick](https://youtu.be/bm5p3koeEE4)
+    - 30s [Superman hold](https://youtu.be/ZNVWTVdJW5s)
+    - 12 [Bent knees Floor wiper](https://youtu.be/PR8PpHJotb8): piernas juntas, tirar de abdominales
+  - 4 series:
+    - 20+20s [Side Plank On Hand](https://youtu.be/m1Wos-_jbb0)
+    - 15 [Toe Touch Sit Up](https://youtu.be/bB_yf3RaC_o)
+    - 12 [Seated Good Morning](https://youtu.be/Py-vSGsd8Jw)
 - 3 series:
   - 8 [Feet Elevated Inverted Row](https://youtu.be/KuZnbfq8xF8)
   - 1 min rest
 - 3 series:
-  - 10 [Incline Barbell Bench Press](https://youtu.be/4tPP-4K5kMQ) 20kg: mantener hombros atras
+  - 10 (20kg) / 8 (25kg) [Incline Barbell Bench Press](https://youtu.be/4tPP-4K5kMQ) mantener hombros atras
   - 1 min rest
 - 3 superseries:
-  - 10+10 [Single Arm Incline Bench Dumbbell Preacher Curl](https://youtu.be/SjeiKv49Izg) 8kg bajar del todo
-  - 10 [Double DB Supine Triceps Extension](https://youtu.be/taFAvgzx9Ag) 5kg, tocar la banca
+  - 10+10 (8kg) / 8+8 (10kg) [Single Arm Incline Bench Dumbbell Preacher Curl](https://youtu.be/SjeiKv49Izg) 8kg bajar del todo
+  - 10 (5kh) / 8 (7.5kg) [Double DB Supine Triceps Extension](https://youtu.be/taFAvgzx9Ag) 5kg, tocar la banca
   - 1 min rest
 - 3 series:
-  - 10 [Double DB Box Step Up](https://youtu.be/8apVstrFT4Y) 12 + 12kg
+  - 10 (12kg) / 8 (15kg) [Double DB Box Step Up](https://youtu.be/8apVstrFT4Y)
   - 1 min rest
 - 3 series:
-  - 10 [Romanian Deadlift](https://youtu.be/rPmC2YBsdKQ) 25kg, espalda recta
+  - 10 (20kg) / 8 (25kg) [Romanian Deadlift](https://youtu.be/rPmC2YBsdKQ) 25kg, espalda recta, sentirlo en las piernas
   - 1 min rest
