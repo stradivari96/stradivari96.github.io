@@ -11,20 +11,20 @@ Some notes about climbing
 
 ## General
 
-- Warm up / Have a plan
+- Warm up
 - Climb as quietly as possible (footwork)
-- Focus on foolholds instead of handholds (legs first)
-- Do not skip footholds!
-- Foot into the wall for balance if no holds (practice only one foot on a hold + remove one hand before moving)
-- Straight arms
+- Don't forget to smear foot into the wall for balance
 - Hips / center of gravity close to the wall
 - Think about how to hold the handholds (direction, grip)
+- Try to have opposite hand and foot be on contact with the wall.
 
 ## Flagging
 - https://youtu.be/jLsii8s6acM
-- **Outside flag**: use when opposite hand and foot.
-- **Back flag**: use when same side hand and foot.
-- **Inside flag**: use when same side hand and foot, but the foot too low for a back flag.
+- **Outside flag**: flag using opposite foot of the hand you are moving.
+![outside flag](/outside-flag.png)
+- **Back flag**: same side hand and foot, to avoid barn door.
+![back flag](/black-flag.png)
+- **Inside flag**: Very rarely used, use when same side hand and foot, but the foot too low for a back flag.
 
 ## Bouldering
 
