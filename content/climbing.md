@@ -23,7 +23,7 @@ Some notes about climbing
 - **Outside flag**: flag using opposite foot of the hand you are moving.
 ![outside flag](/outside-flag.png)
 - **Back flag**: same side hand and foot, to avoid barn door.
-![back flag](/black-flag.png)
+![back flag](/back-flag.png)
 - **Inside flag**: Very rarely used, use when same side hand and foot, but the foot too low for a back flag.
 
 ## Bouldering
