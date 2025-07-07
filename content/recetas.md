@@ -141,6 +141,9 @@ Despensa:
   - ajo picado, jengibre picado, freir 15 seg, meter brocoli y salsa, 15 seg
 
 - Espaguetis con huevo [📺](https://www.youtube.com/watch?v=LSUZSNT1OxE)
+  - Lao gan ma?
+
+- Pimientos asados [📺][https://youtu.be/hkeuCXwQWQ8]
 
 - Lentejas [📺](https://www.youtube.com/watch?v=SwdhZlsgnf4)
 
