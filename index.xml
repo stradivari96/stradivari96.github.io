@@ -215,8 +215,8 @@ start writing &lt;strong>single file scripts&lt;/strong>.&lt;/p>
 &lt;/tr>
 &lt;tr>
 &lt;td>09/2017 - 12/2017&lt;/td>
-&lt;td>&lt;strong>Intern&lt;/strong>&lt;/td>
-&lt;td>&lt;a href="https://www.accenture.com">&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Accenture.svg/320px-Accenture.svg.png" alt="Accenture" width="200"/>&lt;/a>&lt;/td>
+&lt;td>&lt;strong>Internship&lt;/strong>&lt;/td>
+&lt;td>&lt;a href="https://www.accenture.com">&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Accenture.svg/3840px-Accenture.svg.png" alt="Accenture" width="200"/>&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -251,6 +251,7 @@ start writing &lt;strong>single file scripts&lt;/strong>.&lt;/p>
 &lt;li>Contributor:
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/google/or-tools">Google OR-Tools&lt;/a>: Open Source Peer Bonus &lt;a href="https://opensource.googleblog.com/2022/09/announcing-the-second-group-of-open-source-peer-bonus-winners-in-2022.html">winner&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://strathprints.strath.ac.uk/79038/13/Powell_Riccardi_IAC_2021_Towards_explainability_of_on_board_satellite_scheduling_for_end_user_interactions.pdf">Towards Explainability of On-board Satellite Scheduling for End User Interactions&lt;/a>: Helped Cheyenne a bit with her paper.&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ul></description></item><item><title>Projects</title><link>https://xiang.es/projects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://xiang.es/projects/</guid><description>&lt;p>Here are some of my personal projects.&lt;/p>
@@ -263,12 +264,4 @@ start writing &lt;strong>single file scripts&lt;/strong>.&lt;/p>
 &lt;p>&lt;img alt="hollow knight translator" loading="lazy" src="https://xiang.es/projects/hk-translator.png">&lt;/p>
 &lt;h3 id="final-degree-projecthttpsgithubcomxiangchen96automatic-mesh-generation-university">&lt;a href="https://github.com/xiangchen96/Automatic-mesh-generation">Final Degree Project&lt;/a> (University)&lt;/h3>
 &lt;p>Generating quality 2D polygon meshes using Restricted &lt;a href="https://en.wikipedia.org/wiki/Delaunay_triangulation">Delaunay Triangulations&lt;/a>.&lt;/p>
-&lt;p>&lt;img alt="final degree project" loading="lazy" src="https://xiang.es/projects/tfg.gif">&lt;/p>
-&lt;h3 id="other">Other&lt;/h3>
-&lt;ul>
-&lt;li>Acknowledged:
-&lt;ul>
-&lt;li>&lt;a href="https://strathprints.strath.ac.uk/79038/13/Powell_Riccardi_IAC_2021_Towards_explainability_of_on_board_satellite_scheduling_for_end_user_interactions.pdf">Towards Explainability of On-board Satellite Scheduling for End User Interactions&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul></description></item></channel></rss>
+&lt;p>&lt;img alt="final degree project" loading="lazy" src="https://xiang.es/projects/tfg.gif">&lt;/p></description></item></channel></rss>
