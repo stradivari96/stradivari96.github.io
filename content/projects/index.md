@@ -27,8 +27,3 @@ Tool to search of in-game translations.
 Generating quality 2D polygon meshes using Restricted [Delaunay Triangulations](https://en.wikipedia.org/wiki/Delaunay_triangulation).
 
 ![final degree project](./tfg.gif)
-
-### Other
-
-- Acknowledged:
-  - [Towards Explainability of On-board Satellite Scheduling for End User Interactions](https://strathprints.strath.ac.uk/79038/13/Powell_Riccardi_IAC_2021_Towards_explainability_of_on_board_satellite_scheduling_for_end_user_interactions.pdf)
