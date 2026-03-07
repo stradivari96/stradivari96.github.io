@@ -6,7 +6,7 @@ draft: false
 tags: ["Software Engineering", "Other"]
 ---
 
-Things to listen and/or watch during conmute.
+Things to listen and/or watch during commute.
 
 <!--more-->
 

@@ -22,8 +22,8 @@ TocOpen: false
 
 Despensa:
 
-- Sal, Azucar, MSG, Avecrem, Pimienta negra y blanca, Paprika
-- Aceite de sesamo, salsa de soja, vinagre
+- Sal, Azúcar, MSG, Avecrem, Pimienta negra y blanca, Paprika
+- Aceite de sésamo, salsa de soja, vinagre
 - Vino de arroz, vinagre de arroz, vino blanco
 - Almidón de patata, maicena
 - Comino en polvo, laurel, tomillo
@@ -51,22 +51,22 @@ Despensa:
 
 - Arroz con cerdo y setas [📺](https://youtu.be/g5Qq_w7hLR8?t=85)
 
-  - **Lomo de cerdo** en tacos, marinar con sal, azucal, maicena, vino arroz, soja y aceite
+  - **Lomo de cerdo** en tacos, marinar con sal, azúcar, maicena, vino arroz, soja y aceite
   - **Shiitake** sin tallo en tacos, escaldar 1 min, escurrir
-  - **Jenjibre** y 3 dientes de **ajo**, apretar con cuchillo
+  - **Jengibre** y 3 dientes de **ajo**, apretar con cuchillo
   - 3 **Cebolleta**, reservar blanco, picar verde
-  - Freir jenjibre, ajo, y blanco de cebolleta, 15 segundos
+  - Freir jengibre, ajo, y blanco de cebolleta, 15 segundos
   - Añadir cerdo hasta que esté hecho, añadir vino y setas, 1 min
-  - Añadir salsa de soja, agua, **salsa de ostras**, azucar, pimienta blanca, msg
-  - Espesar con maicena, añadir verde de cebolleta y **aceite de sesamo**
+  - Añadir salsa de soja, agua, **salsa de ostras**, azúcar, pimienta blanca, msg
+  - Espesar con maicena, añadir verde de cebolleta y **aceite de sésamo**
 
 
 
 - Huevos con tomate [📺](https://youtu.be/2hvQFxZBTVY)
 
   - Cortar **tomate** en rodajas, batir **huevos** con sal
-  - Saltear huevo, retirar, saltear tomate, **ketchup**, añadir agua, sal, azucar
-  - Espesar con agua con almidon, aceite de sesamo, devolver huevo
+  - Saltear huevo, retirar, saltear tomate, **ketchup**, añadir agua, sal, azúcar
+  - Espesar con agua con almidon, aceite de sésamo, devolver huevo
   - Añadir **cebollino**
 
 ### Sopas y cremas
@@ -76,14 +76,14 @@ Despensa:
 - Sopa de maíz, pollo, huevo [📺](https://youtu.be/jz2KcqzP7kM?t=64)
 
   - Freir **jengibre** picado, añadir agua y **pechuga**, unos 5 min
-  - Añadir **maiz**, 3 min, añadir pechuga deshilachada, sal, azucar, avecrem
+  - Añadir **maiz**, 3 min, añadir pechuga deshilachada, sal, azúcar, avecrem
   - Almidon de patata con agua para espesar, añadir **huevo** poco a poco, torbellino
-  - Un poco de pimienta blanca, aceite de sesamo
+  - Un poco de pimienta blanca, aceite de sésamo
 
 - Sopa de huevo y tomate [📺](https://youtu.be/URv658vTBXU)
-  - **Tomate** picado, freir en sarten un ratillo, sal y azucar
+  - **Tomate** picado, freir en sarten un ratillo, sal y azúcar
   - Añadir agua (y **caldo**), quitar espuma
-  - Salsa de soja, aceite sesamo, sal y pimienta blanca
+  - Salsa de soja, aceite sésamo, sal y pimienta blanca
   - Espesar con almidon/maicena, añadir **huevo** y **Cebollino**
 
 ### Carnes
@@ -143,7 +143,7 @@ Despensa:
 - Espaguetis con huevo [📺](https://www.youtube.com/watch?v=LSUZSNT1OxE)
   - Lao gan ma?
 
-- Pimientos asados [📺][https://youtu.be/hkeuCXwQWQ8]
+- Pimientos asados [📺](https://youtu.be/hkeuCXwQWQ8)
 
 - Lentejas [📺](https://www.youtube.com/watch?v=SwdhZlsgnf4)
 
@@ -166,7 +166,7 @@ Despensa:
 
   - Cortar de polo a polo
   - Añadir vinagre, medio sumergido
-  - Un poquito de sal, un par de cucharadillas de azucar
+  - Un poquito de sal, un par de cucharadillas de azúcar
   - 2 días en la nevera antes de consumir / 2 semanas máximo
 
 - Congelar carne [📺](https://youtu.be/YQc4vxdHmpY)
