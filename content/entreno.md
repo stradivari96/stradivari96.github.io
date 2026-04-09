@@ -9,6 +9,18 @@ Ejemplos de entrenamiento.
 
 <!--more-->
 
+## Podologo
+### Musculatura Intrínseca del pie
+- [Short foot exercise (pie corto)](https://youtu.be/z0-Vnmw2sxM?t=99): 3 × 10–15 reps + 5 s hold
+- [Toe spreading (separación de dedos)](https://youtu.be/xyJAhmW5r-k): 3 × 10 reps + 3 s hold
+- [Recogida de toalla](https://youtu.be/RVbYKwWwauU): 3 × 20 s
+- [Recogida de canicas](https://youtu.be/Y81b1actIcsº): 2 × 10 reps
+- [Heel raise monopodal](https://youtu.be/tLC8U03uFNE): 3 × 12–15 reps (2 s subida + 3 s bajada)
+### Peroneos
+- TODO
+### Tibial posterior
+- TODO
+
 ## Flexibility
 - [Pancake](https://youtu.be/kE9r9kteF4M?t=89): 10 rep and 10 sec hold
 - [QL](https://youtu.be/H8I4DIFRNsI)
