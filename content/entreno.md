@@ -17,9 +17,17 @@ Ejemplos de entrenamiento.
 - [Recogida de canicas](https://youtu.be/Y81b1actIcsº): 2 × 10 reps
 - [Heel raise monopodal](https://youtu.be/tLC8U03uFNE): 3 × 12–15 reps (2 s subida + 3 s bajada)
 ### Peroneos
-- TODO
+- [Eversión isométrica en banda](https://www.youtube.com/watch?v=QewXjjvXFIk): 3 × 10 reps + 5 s hold
+- [Eversión concéntrica-excéntrica](example.com): 3 × 15 reps (2 s concéntrico + 3 s excéntrico)
+- [Eversión en apoyo monopodal](https://youtu.be/955nZAE11bg): 3 × 30 s
+- [Caminata lateral con banda](https://youtu.be/N3yhTJUzd5Y): 3 × 10 pasos por lado
+- [Aterrizaje monopodal controlado](https://youtu.be/6u-H6t2yhHI): 3 × 8 reps
 ### Tibial posterior
-- TODO
+- [Inversión isométrica en banda](example.com): 3 × 10 reps + 5 s hold
+- [Inversión concéntrica-excéntrica](example.com): 3 × 15 reps (2 s concéntrico + 3 s excéntrico)
+- [Heel raise con supinación activa](example.com): 3 × 12 reps (2 s subida + 3 s bajada)
+- [Stair eccentric heel raise](example.com): 3 × 10 reps (4 s bajada)
+- [Short foot + supinación activa](example.com): 3 × 10 reps + 5 s hold
 
 ## Flexibility
 - [Pancake](https://youtu.be/kE9r9kteF4M?t=89): 10 rep and 10 sec hold
