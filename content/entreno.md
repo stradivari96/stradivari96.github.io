@@ -28,6 +28,13 @@ Ejemplos de entrenamiento.
 - [Heel raise con supinación activa](example.com): 3 × 12 reps (2 s subida + 3 s bajada)
 - [Stair eccentric heel raise](example.com): 3 × 10 reps (4 s bajada)
 - [Short foot + supinación activa](example.com): 3 × 10 reps + 5 s hold
+### Estiramientos
+2 / 3 veces por semana, despues de un calentamiento suave de 5 min, respiracion lenta y profunda.
+- [Estiramiento de gemelos y sóleo](https://www.youtube.com/watch?v=qBOH3vUPnbo): 3 × 20-30 s
+- [Estiramiento isquiotibial en pared](https://youtu.be/TJdrCUvrFJI): 3 × 20-30 s
+- [Estiramiento isquiotibial sentado](https://www.youtube.com/shorts/cuZ1X4innUc?feature=share): 2-3 × 20-30 s
+- [Inclinación hacia delante](https://youtu.be/leij6ZmNySY?t=31): 2 x 20-30 s
+- [Postura del niño](https://youtu.be/cFcNQjKDI58): 2 × 20-30 s
 
 ## Flexibility
 - [Pancake](https://youtu.be/kE9r9kteF4M?t=89): 10 rep and 10 sec hold
