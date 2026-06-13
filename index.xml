@@ -1087,16 +1087,20 @@ var FAIL_SOUNDS=[
 'https://www.myinstants.com/media/sounds/lego-yoda-death-sound.mp3',
 'https://www.myinstants.com/media/sounds/dio-wryyy.mp3',
 'https://www.myinstants.com/media/sounds/shizaaaaaa.mp3',
+'https://www.myinstants.com/media/sounds/jotaro-no.mp3',
 ];
 var SUCCESS_SOUNDS=[
 'https://www.myinstants.com/media/sounds/answer-correct.mp3',
 'https://www.myinstants.com/media/sounds/click-nice.mp3',
 'https://www.myinstants.com/media/sounds/kids-saying-yay-sound-effect_3.mp3',
-'https://www.myinstants.com/media/sounds/correct-answer-sound-effect.mp3',
 'https://www.myinstants.com/media/sounds/anime-wow-sound-effect.mp3',
 'https://www.myinstants.com/media/sounds/789-audio-extractor.mp3',
 'https://www.myinstants.com/media/sounds/fairy-dust-sound-effect.mp3',
 'https://www.myinstants.com/media/sounds/yes-yes-yes-yes-yes.mp3',
+'https://www.myinstants.com/media/sounds/michael-jackson-hee-hee.mp3',
+'https://www.myinstants.com/media/sounds/mercadona.mp3',
+'https://www.myinstants.com/media/sounds/yippeeeeeeeeeeeeee.mp3',
+'https://www.myinstants.com/media/sounds/tuturu_1.mp3',
 ];
 function playAt(arr,idx){
 if(!arr.length)return;
