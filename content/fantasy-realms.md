@@ -11,6 +11,9 @@ comments: false
 
 Juego de cartas para 3–6 jugadores. Uno crea la sala y comparte el enlace. La partida vive en el navegador del anfitrión.
 
+- [Reglamento](https://wizkids.com/posters/repository/wizkids/FR_Rulebook-WEB.pdf)
+
+
 <style>
 #fr-app{--bg:#1b1f27;--panel:#252b36;--text:#e8eaf0;--mut:#9aa3b2;--border:#3a4252;--blue:#3b82f6;
   background:var(--bg);color:var(--text);border-radius:12px;padding:16px;
@@ -28,10 +31,13 @@ Juego de cartas para 3–6 jugadores. Uno crea la sala y comparte el enlace. La 
 .fr-mut{color:var(--mut);font-size:13px;margin:4px 0}
 .fr-name{font-weight:600;margin-bottom:6px;font-size:14px}
 /* own hand: single scrollable row of full-size cards */
-.fr-hand{display:flex;flex-wrap:nowrap;gap:10px;margin:4px 0;align-items:flex-end;
-  overflow-x:auto;padding-bottom:10px;scrollbar-width:thin}
-/* large card (hand) */
-.fr-card{width:220px;height:308px;border-radius:10px;border:2px solid rgba(0,0,0,.45);
+.fr-hand{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0;align-items:flex-start;
+  align-content:flex-start;padding-bottom:4px}
+/* large card (own hand) */
+.fr-card{width:145px;height:203px;border-radius:8px;border:2px solid rgba(0,0,0,.45);
+  flex:none;position:relative;user-select:none;background-color:#2a3040}
+/* small card (opponent hands) */
+.fr-card-opp{width:80px;height:112px;border-radius:6px;border:2px solid rgba(0,0,0,.45);
   flex:none;position:relative;user-select:none;background-color:#2a3040}
 /* small card (deck + discard pile) */
 .fr-card-sm{width:65px;height:91px;border-radius:6px;border:2px solid rgba(0,0,0,.45);
@@ -44,7 +50,7 @@ Juego de cartas para 3–6 jugadores. Uno crea la sala y comparte el enlace. La 
   border:2px dashed var(--border)!important;background:transparent!important;color:var(--mut)}
 .fr-card-sm.fr-empty{font-size:18px}
 .fr-clickable{cursor:pointer;transition:transform .12s}
-.fr-card.fr-clickable:hover{transform:translateY(-8px)}
+.fr-card.fr-clickable:hover{transform:translateY(-6px)}
 .fr-card-sm.fr-clickable:hover{transform:translateY(-4px)}
 .fr-pickup-target{outline:4px solid #fbbf24;outline-offset:3px}
 .fr-discard-target{outline:4px solid #f87171;outline-offset:3px}
@@ -68,7 +74,7 @@ Juego de cartas para 3–6 jugadores. Uno crea la sala y comparte el enlace. La 
 @keyframes fr-fadein{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
 .fr-new{animation:fr-fadein .4s ease}
 .fr-dragging{opacity:.25!important}
-.fr-drop-line{width:5px;height:308px;background:#fbbf24;border-radius:3px;flex:none;
+.fr-drop-line{width:5px;height:203px;background:#fbbf24;border-radius:3px;flex:none;
   box-shadow:0 0 10px #fbbf24}
 </style>
 
@@ -440,9 +446,9 @@ function render(){
       }else{
         V.hands[i].forEach(function(card){
           if(card.hidden){
-            h+='<div class="fr-card fr-back" style="background-image:url('+BACK+');background-size:cover;background-position:center" title="Carta oculta"></div>';
+            h+='<div class="fr-card-opp fr-back" style="background-image:url('+BACK+');background-size:cover;background-position:center" title="Carta oculta"></div>';
           }else{
-            h+=cardHtml(card,'fr-card','',null);
+            h+=cardHtml(card,'fr-card-opp','',null);
           }
         });
       }
