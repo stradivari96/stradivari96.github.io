@@ -331,7 +331,7 @@ function checkAlarm(){
   if(alarmHeard>=0&&V.alarmSeq>alarmHeard){
     try{
       var audio = new Audio(ALARM_URL)
-      audio.volume=0.5;
+      audio.volume=0.2;
       audio.play().catch(function(){});
     }catch(e){}
   }
