@@ -33,6 +33,10 @@ Juego cooperativo de cartas para 2-5 jugadores. Uno crea la sala y comparte el c
 #hanabi-app .h-cardwrap{display:flex;flex-direction:column;align-items:center;gap:3px}
 #hanabi-app .h-new{animation:h-deal .45s ease}
 @keyframes h-deal{from{transform:translateX(-50px) scale(.5);opacity:0}to{transform:none;opacity:1}}
+#hanabi-app .h-hintglow{animation:h-halo 1.6s ease-out}
+@keyframes h-halo{0%,100%{box-shadow:0 0 0 0 rgba(251,191,36,0)}
+  25%,75%{box-shadow:0 0 16px 7px rgba(251,191,36,.95)}
+  50%{box-shadow:0 0 6px 2px rgba(251,191,36,.4)}}
 #hanabi-app .h-fan{display:flex;align-items:center;flex-wrap:wrap;margin-left:14px;
   padding-left:10px;border-left:1px solid #3a4252;min-height:60px}
 #hanabi-app .h-disc{width:32px;height:44px;border-radius:6px;display:inline-flex;
@@ -112,12 +116,12 @@ function mkDeck(){
 function newGame(){
   G={phase:'lobby',players:[],hands:[],deck:[],piles:{},pileTops:{},discard:[],
      hints:8,fuses:3,turn:0,turnsLeft:null,justEmptied:false,log:[],result:null,
-     alarmSeq:0};
+     alarmSeq:0,hintSeq:0,hintCids:[]};
 }
 function startGame(){
   G.deck=mkDeck();G.discard=[];G.hints=8;G.fuses=3;G.turnsLeft=null;
   G.justEmptied=false;G.result=null;G.turn=0;G.log=['🎆 Empieza la partida'];
-  G.pileTops={};G.alarmSeq=0;
+  G.pileTops={};G.alarmSeq=0;G.hintSeq=0;G.hintCids=[];
   COLORS.forEach(function(c){G.piles[c]=0;});
   var hs=G.players.length<=3?5:4;
   G.hands=G.players.map(function(){return [];});
@@ -197,6 +201,7 @@ function applyAction(p,a){
     if(!matches.length)return sendErr(p,'La pista debe señalar al menos una carta');
     matches.forEach(function(c){if(a.htype==='color')c.kc=true;else c.kn=true;});
     G.hints--;
+    G.hintSeq++;G.hintCids=matches.map(function(c){return c.id;});
     var what=a.htype==='color'?CINFO[a.value].em+' '+CINFO[a.value].name:'número '+a.value;
     glog(pname(p)+' → '+pname(a.target)+': '+what+' ('+matches.length+' carta'+(matches.length>1?'s':'')+')');
   }else return;
@@ -207,7 +212,7 @@ function viewFor(i){
   return {
     phase:G.phase,me:i,turn:G.turn,hints:G.hints,fuses:G.fuses,
     deckCount:G.deck.length,turnsLeft:G.turnsLeft,result:G.result,
-    alarmSeq:G.alarmSeq,
+    alarmSeq:G.alarmSeq,hintSeq:G.hintSeq,hintCids:G.hintCids.slice(),
     piles:JSON.parse(JSON.stringify(G.piles)),
     pileTops:JSON.parse(JSON.stringify(G.pileTops)),
     discard:G.discard.map(function(c){return {id:c.id,c:c.c,n:c.n};}),
@@ -324,9 +329,24 @@ var alarmHeard=-1;
 function checkAlarm(){
   if(typeof V.alarmSeq!=='number')return;
   if(alarmHeard>=0&&V.alarmSeq>alarmHeard){
-    try{new Audio(ALARM_URL).play().catch(function(){});}catch(e){}
+    try{
+      var audio = new Audio(ALARM_URL)
+      audio.volume=0.5;
+      audio.play().catch(function(){});
+    }catch(e){}
   }
   alarmHeard=V.alarmSeq;
+}
+var hintSeen=-1;
+function checkHintGlow(){
+  if(typeof V.hintSeq!=='number')return;
+  if(hintSeen>=0&&V.hintSeq>hintSeen&&V.hintCids){
+    V.hintCids.forEach(function(id){
+      var w=el('h-game').querySelector('[data-cid="'+id+'"]');
+      if(w&&w.firstChild&&w.firstChild.classList)w.firstChild.classList.add('h-hintglow');
+    });
+  }
+  hintSeen=V.hintSeq;
 }
 function animate(prev){
   // FLIP: toda carta con data-cid (mano, pila, descartes) se desliza
@@ -437,6 +457,7 @@ function render(){
   el('h-game').innerHTML=h;
   if(V.phase==='playing'||V.phase==='ended')animate(prev);
   checkAlarm();
+  checkHintGlow();
 }
 
 // ---------- eventos ----------
