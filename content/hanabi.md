@@ -84,7 +84,6 @@ var CINFO={R:{name:'Rojo',bg:'#dc2626',em:'🔴'},G:{name:'Verde',bg:'#16a34a',e
 var PREFIX='hanabi-xiang-';
 var MAXP=5;
 var TOTALS={1:3,2:2,3:2,4:2,5:1};
-var ALARM_URL='/hanabi-alarm.mp3'; // suena cuando se pierde la última copia de una carta
 
 // ---------- estado ----------
 var peer=null,isHost=false,hostConn=null,roomCode='';
@@ -116,12 +115,12 @@ function mkDeck(){
 function newGame(){
   G={phase:'lobby',players:[],hands:[],deck:[],piles:{},pileTops:{},discard:[],
      hints:8,fuses:3,turn:0,turnsLeft:null,justEmptied:false,log:[],result:null,
-     alarmSeq:0,hintSeq:0,hintCids:[]};
+     failSeq:0,failIdx:0,successSeq:0,successIdx:0,hintSeq:0,hintCids:[]};
 }
 function startGame(){
   G.deck=mkDeck();G.discard=[];G.hints=8;G.fuses=3;G.turnsLeft=null;
   G.justEmptied=false;G.result=null;G.turn=0;G.log=['🎆 Empieza la partida'];
-  G.pileTops={};G.alarmSeq=0;G.hintSeq=0;G.hintCids=[];
+  G.pileTops={};G.failSeq=0;G.failIdx=0;G.successSeq=0;G.successIdx=0;G.hintSeq=0;G.hintCids=[];
   COLORS.forEach(function(c){G.piles[c]=0;});
   var hs=G.players.length<=3?5:4;
   G.hands=G.players.map(function(){return [];});
@@ -132,12 +131,13 @@ function startGame(){
 function pname(i){return G.players[i].name;}
 function glog(m){G.log.push(m);if(G.log.length>60)G.log.shift();}
 function checkLostForever(card){
-  // la carta aún hacía falta y ya no queda ninguna copia viva
+  if(G.phase!=='playing')return;
   if(card.n<=G.piles[card.c])return;
   var disc=G.discard.filter(function(d){return d.c===card.c&&d.n===card.n;}).length;
   if(disc>=TOTALS[card.n]){
-    G.alarmSeq++;
+    G.failSeq++;G.failIdx=Math.floor(Math.random()*Math.max(1,FAIL_SOUNDS.length));
     glog('🚨 ¡'+cardTxt(card)+' perdida para siempre!');
+    finish('lost');
   }
 }
 function draw(p){
@@ -152,7 +152,8 @@ function finish(reason){
   if(reason==='boom')score=0;
   G.result={reason:reason,score:score};
   glog(reason==='boom'?'💥 ¡Tercer fallo! Los fuegos artificiales explotan':
-       reason==='win'?'🎆 ¡Espectáculo perfecto!':'🏁 Fin de la partida');
+       reason==='win'?'🎆 ¡Espectáculo perfecto!':
+       reason==='lost'?'💀 Carta irrecuperable — la partida es imposible':'🏁 Fin de la partida');
 }
 function sendErr(p,msg){
   if(p===0)toast(msg);
@@ -175,13 +176,14 @@ function applyAction(p,a){
     card=hand.splice(a.idx,1)[0];
     if(G.piles[card.c]===card.n-1){
       G.piles[card.c]=card.n;G.pileTops[card.c]=card.id;
-      if(card.n===5&&G.hints<8)G.hints++;
+      if(card.n===5){if(G.hints<8)G.hints++;G.successSeq++;G.successIdx=Math.floor(Math.random()*Math.max(1,SUCCESS_SOUNDS.length));}
       glog(pname(p)+' juega '+cardTxt(card)+' ✔');
       if(COLORS.every(function(c){return G.piles[c]===5;})){finish('win');return broadcast();}
     }else{
-      G.fuses--;G.discard.push(card);
+      G.fuses--;G.discard.push(card);G.failSeq++;G.failIdx=Math.floor(Math.random()*Math.max(1,FAIL_SOUNDS.length));
       glog('💥 '+pname(p)+' intenta jugar '+cardTxt(card)+' y falla ('+G.fuses+' mechas)');
       checkLostForever(card);
+      if(G.phase!=='playing'){return broadcast();}
       if(G.fuses===0){finish('boom');return broadcast();}
     }
     draw(p);
@@ -192,6 +194,7 @@ function applyAction(p,a){
     G.discard.push(card);G.hints++;
     glog(pname(p)+' descarta '+cardTxt(card));
     checkLostForever(card);
+    if(G.phase!=='playing'){return broadcast();}
     draw(p);
   }else if(a.kind==='hint'){
     if(G.hints<=0)return sendErr(p,'No quedan fichas de pista');
@@ -212,7 +215,7 @@ function viewFor(i){
   return {
     phase:G.phase,me:i,turn:G.turn,hints:G.hints,fuses:G.fuses,
     deckCount:G.deck.length,turnsLeft:G.turnsLeft,result:G.result,
-    alarmSeq:G.alarmSeq,hintSeq:G.hintSeq,hintCids:G.hintCids.slice(),
+    failSeq:G.failSeq,failIdx:G.failIdx,successSeq:G.successSeq,successIdx:G.successIdx,hintSeq:G.hintSeq,hintCids:G.hintCids.slice(),
     piles:JSON.parse(JSON.stringify(G.piles)),
     pileTops:JSON.parse(JSON.stringify(G.pileTops)),
     discard:G.discard.map(function(c){return {id:c.id,c:c.c,n:c.n};}),
@@ -325,17 +328,42 @@ function cardHtml(card,pl,idx,clickable){
     '" style="background:'+bg+'">'+label+'</div>'+
     (full?'<div class="h-mini" title="Lo que sabe">'+mini+'</div>':'')+'</div>';
 }
-var alarmHeard=-1;
-function checkAlarm(){
-  if(typeof V.alarmSeq!=='number')return;
-  if(alarmHeard>=0&&V.alarmSeq>alarmHeard){
-    try{
-      var audio = new Audio(ALARM_URL)
-      audio.volume=0.2;
-      audio.play().catch(function(){});
-    }catch(e){}
+var FAIL_SOUNDS=[
+  'https://www.myinstants.com/media/sounds/jixaw-metal-pipe-falling-sound.mp3',
+  'https://www.myinstants.com/media/sounds/fahhhh-6.mp3',
+  'https://www.myinstants.com/media/sounds/wrong_5.mp3',
+  'https://www.myinstants.com/media/sounds/faaah.mp3',
+  'https://www.myinstants.com/media/sounds/oh-no.mp3',
+  'https://www.myinstants.com/media/sounds/movie_1.mp3',
+  'https://www.myinstants.com/media/sounds/el-diablo_MicOe0x.mp3',
+  'https://www.myinstants.com/media/sounds/lego-yoda-death-sound.mp3',
+  'https://www.myinstants.com/media/sounds/dio-wryyy.mp3',
+  'https://www.myinstants.com/media/sounds/shizaaaaaa.mp3',
+];
+var SUCCESS_SOUNDS=[
+  'https://www.myinstants.com/media/sounds/answer-correct.mp3',
+  'https://www.myinstants.com/media/sounds/click-nice.mp3',
+  'https://www.myinstants.com/media/sounds/kids-saying-yay-sound-effect_3.mp3',
+  'https://www.myinstants.com/media/sounds/correct-answer-sound-effect.mp3',
+  'https://www.myinstants.com/media/sounds/anime-wow-sound-effect.mp3',
+  'https://www.myinstants.com/media/sounds/789-audio-extractor.mp3',
+  'https://www.myinstants.com/media/sounds/fairy-dust-sound-effect.mp3',
+  'https://www.myinstants.com/media/sounds/yes-yes-yes-yes-yes.mp3',
+];
+function playAt(arr,idx){
+  if(!arr.length)return;
+  try{var a=new Audio(arr[idx%arr.length]);a.volume=0.2;a.play().catch(function(){});}catch(e){}
+}
+var failHeard=-1,successHeard=-1;
+function checkSounds(){
+  if(typeof V.failSeq==='number'){
+    if(failHeard>=0&&V.failSeq>failHeard)playAt(FAIL_SOUNDS,V.failIdx||0);
+    failHeard=V.failSeq;
   }
-  alarmHeard=V.alarmSeq;
+  if(typeof V.successSeq==='number'){
+    if(successHeard>=0&&V.successSeq>successHeard)playAt(SUCCESS_SOUNDS,V.successIdx||0);
+    successHeard=V.successSeq;
+  }
 }
 var hintSeen=-1;
 function checkHintGlow(){
@@ -388,6 +416,7 @@ function render(){
     if(V.phase==='ended'){
       var r=V.result,msg;
       if(r.reason==='boom')msg='💥 ¡Tres fallos! Puntuación: 0';
+      else if(r.reason==='lost')msg='💀 Carta perdida irrecuperablemente. Puntuación: '+r.score;
       else{
         var adj=r.score===25?'¡LEGENDARIA! 🎆':r.score>=21?'¡Memorable!':
           r.score>=16?'¡Muy buena!':r.score>=11?'Honorable':r.score>=6?'Mediocre...':'Horrible 💀';
@@ -456,7 +485,7 @@ function render(){
   }
   el('h-game').innerHTML=h;
   if(V.phase==='playing'||V.phase==='ended')animate(prev);
-  checkAlarm();
+  checkSounds();
   checkHintGlow();
 }
 
