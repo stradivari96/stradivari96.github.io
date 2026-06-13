@@ -1014,7 +1014,7 @@ if(!c.revealed&amp;&amp;!c.own)return '&lt;div class="tb-cable tb-cable-hidden">
 var cls=c.type==='safe'?'tb-cable-safe':c.type==='success'?'tb-cable-success':'tb-cable-exp';
 var lbl=c.type==='safe'?'✓':c.type==='success'?'⚡':'💥';
 var title=c.type==='safe'?'A salvo':c.type==='success'?'Exito':'Explosion';
-var extra=(!c.revealed&amp;&amp;c.own)?';opacity:.45':'';
+var extra=(!c.revealed&amp;&amp;c.own)?'opacity:.45':'';
 return '&lt;div class="tb-cable '+cls+'" style="'+extra+'" title="'+title+'">'+lbl+'&lt;/div>';}
 function render(){
 if(!V)return;
