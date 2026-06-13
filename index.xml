@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Just another developer</title><link>https://xiang.es/</link><description>Recent content on Just another developer</description><generator>Hugo -- 0.143.0</generator><language>en-us</language><lastBuildDate>Sat, 13 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://xiang.es/index.xml" rel="self" type="application/rss+xml"/><item><title>✨ Recipes for Google OR-Tools</title><link>https://xiang.es/posts/cp-sat/</link><pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate><guid>https://xiang.es/posts/cp-sat/</guid><description>&lt;p>Some tips and tricks for the CP-SAT solver.&lt;/p></description></item><item><title>🔨 My Development Tools</title><link>https://xiang.es/posts/tooling/</link><pubDate>Sun, 03 Apr 2022 00:00:00 +0000</pubDate><guid>https://xiang.es/posts/tooling/</guid><description>&lt;p>List of tools I use daily&lt;/p></description></item><item><title>🏰 Fantasy Realms</title><link>https://xiang.es/fantasy-realms/</link><pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate><guid>https://xiang.es/fantasy-realms/</guid><description>&lt;p>Juego de cartas para 3–6 jugadores. Uno crea la sala y comparte el enlace. La partida vive en el navegador del anfitrión.&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://wizkids.com/posters/repository/wizkids/FR_Rulebook-WEB.pdf">Reglamento&lt;/a>&lt;/li>
+&lt;/ul>
 &lt;style>
 #fr-app{--bg:#1b1f27;--panel:#252b36;--text:#e8eaf0;--mut:#9aa3b2;--border:#3a4252;--blue:#3b82f6;
 background:var(--bg);color:var(--text);border-radius:12px;padding:16px;
@@ -16,10 +19,13 @@ padding:8px 14px;font-size:14px;cursor:pointer;margin:2px}
 .fr-mut{color:var(--mut);font-size:13px;margin:4px 0}
 .fr-name{font-weight:600;margin-bottom:6px;font-size:14px}
 /* own hand: single scrollable row of full-size cards */
-.fr-hand{display:flex;flex-wrap:nowrap;gap:10px;margin:4px 0;align-items:flex-end;
-overflow-x:auto;padding-bottom:10px;scrollbar-width:thin}
-/* large card (hand) */
-.fr-card{width:220px;height:308px;border-radius:10px;border:2px solid rgba(0,0,0,.45);
+.fr-hand{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0;align-items:flex-start;
+align-content:flex-start;padding-bottom:4px}
+/* large card (own hand) */
+.fr-card{width:145px;height:203px;border-radius:8px;border:2px solid rgba(0,0,0,.45);
+flex:none;position:relative;user-select:none;background-color:#2a3040}
+/* small card (opponent hands) */
+.fr-card-opp{width:80px;height:112px;border-radius:6px;border:2px solid rgba(0,0,0,.45);
 flex:none;position:relative;user-select:none;background-color:#2a3040}
 /* small card (deck + discard pile) */
 .fr-card-sm{width:65px;height:91px;border-radius:6px;border:2px solid rgba(0,0,0,.45);
@@ -32,7 +38,7 @@ position:absolute;bottom:10px;right:12px}
 border:2px dashed var(--border)!important;background:transparent!important;color:var(--mut)}
 .fr-card-sm.fr-empty{font-size:18px}
 .fr-clickable{cursor:pointer;transition:transform .12s}
-.fr-card.fr-clickable:hover{transform:translateY(-8px)}
+.fr-card.fr-clickable:hover{transform:translateY(-6px)}
 .fr-card-sm.fr-clickable:hover{transform:translateY(-4px)}
 .fr-pickup-target{outline:4px solid #fbbf24;outline-offset:3px}
 .fr-discard-target{outline:4px solid #f87171;outline-offset:3px}
@@ -56,7 +62,7 @@ position:fixed;z-index:200;pointer-events:none;display:none}
 @keyframes fr-fadein{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
 .fr-new{animation:fr-fadein .4s ease}
 .fr-dragging{opacity:.25!important}
-.fr-drop-line{width:5px;height:308px;background:#fbbf24;border-radius:3px;flex:none;
+.fr-drop-line{width:5px;height:203px;background:#fbbf24;border-radius:3px;flex:none;
 box-shadow:0 0 10px #fbbf24}
 &lt;/style>
 &lt;div id="fr-app">
@@ -391,9 +397,9 @@ if(isDropTarget&amp;&amp;!dragBefore)h+='&lt;div class="fr-drop-line">&lt;/div>'
 }else{
 V.hands[i].forEach(function(card){
 if(card.hidden){
-h+='&lt;div class="fr-card fr-back" style="background-image:url('+BACK+');background-size:cover;background-position:center" title="Carta oculta">&lt;/div>';
+h+='&lt;div class="fr-card-opp fr-back" style="background-image:url('+BACK+');background-size:cover;background-position:center" title="Carta oculta">&lt;/div>';
 }else{
-h+=cardHtml(card,'fr-card','',null);
+h+=cardHtml(card,'fr-card-opp','',null);
 }
 });
 }
