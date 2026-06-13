@@ -70,7 +70,7 @@ Juego cooperativo de cartas para 2-5 jugadores. Uno crea la sala y comparte el c
 </style>
 <div id="hanabi-app">
   <div id="h-setup">
-    <div class="h-row"><label>Tu nombre: <input id="h-name" maxlength="14" placeholder="Xiang"></label></div>
+    <div class="h-row"><label>Tu nombre: <input id="h-name" maxlength="14" placeholder="Nombre"></label></div>
     <div class="h-row"><button id="h-create">🎇 Crear sala</button></div>
     <div class="h-row"><input id="h-code" maxlength="4" placeholder="CÓDIGO" style="text-transform:uppercase;width:110px"><button id="h-join">Unirse</button></div>
     <div id="h-setupmsg" class="h-mut"></div>
@@ -485,28 +485,31 @@ function render(){
     h+='<div class="h-mut">⚠️ En peligro (última copia): '+(danger.join(' &nbsp;')||'—')+
        (dead.length?' &nbsp;&nbsp; 💀 Perdidas: '+dead.join(' &nbsp;'):'')+'</div></div>';
     // manos
+    var actionRendered=false;
     V.names.forEach(function(n,i){
       var turn=V.phase==='playing'&&V.turn===i;
       h+='<div class="h-panel'+(turn?' h-turn':'')+'"><div class="h-name">'+
          (turn?'▶ ':'')+esc(n)+(i===V.me?' (tú)':'')+(V.connected[i]?'':' 🔌❌')+'</div><div class="h-row">';
       V.hands[i].forEach(function(c,j){h+=cardHtml(c,i,j,V.phase==='playing'&&V.turn===V.me);});
       h+='</div></div>';
-    });
-    // barra de acciones
-    if(V.phase==='playing'&&V.turn===V.me&&sel){
-      h+='<div class="h-panel"><b>Carta '+(sel.idx+1)+' de '+esc(V.names[sel.pl])+':</b> ';
-      if(sel.pl===V.me){
-        h+='<button data-act="play">🎇 Jugar</button>'+
-           '<button data-act="discard" class="h-red" '+(V.hints>=8?'disabled':'')+'>🗑 Descartar'+
-           (V.hints>=8?' (8 pistas)':'')+'</button>';
-      }else{
-        var sc=V.hands[sel.pl][sel.idx];
-        h+='<button data-act="hintc" '+(V.hints<1?'disabled':'')+'>Pista: '+
-           CINFO[sc.c].em+' '+CINFO[sc.c].name+'</button>'+
-           '<button data-act="hintn" '+(V.hints<1?'disabled':'')+'>Pista: número '+sc.n+'</button>';
+      // barra de acciones: aparece justo debajo del jugador seleccionado
+      if(V.phase==='playing'&&V.turn===V.me&&sel&&sel.pl===i){
+        h+='<div class="h-panel"><b>Carta '+(sel.idx+1)+' de '+esc(V.names[sel.pl])+':</b> ';
+        if(sel.pl===V.me){
+          h+='<button data-act="play">🎇 Jugar</button>'+
+             '<button data-act="discard" class="h-red" '+(V.hints>=8?'disabled':'')+'>🗑 Descartar'+
+             (V.hints>=8?' (8 pistas)':'')+'</button>';
+        }else{
+          var sc=V.hands[sel.pl][sel.idx];
+          h+='<button data-act="hintc" '+(V.hints<1?'disabled':'')+'>Pista: '+
+             CINFO[sc.c].em+' '+CINFO[sc.c].name+'</button>'+
+             '<button data-act="hintn" '+(V.hints<1?'disabled':'')+'>Pista: número '+sc.n+'</button>';
+        }
+        h+='</div>';
+        actionRendered=true;
       }
-      h+='</div>';
-    }else if(V.phase==='playing'){
+    });
+    if(V.phase==='playing'&&!actionRendered){
       h+='<div class="h-mut">'+(V.turn===V.me?
         '✨ Tu turno: toca una carta tuya (jugar/descartar) o una ajena (dar pista)':
         'Turno de '+esc(V.names[V.turn])+'...')+'</div>';
