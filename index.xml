@@ -21,7 +21,14 @@ text-shadow:0 1px 2px rgba(0,0,0,.5);position:relative;flex:none}
 #hanabi-app .h-cardwrap{display:flex;flex-direction:column;align-items:center;gap:3px}
 #hanabi-app .h-new{animation:h-deal .45s ease}
 @keyframes h-deal{from{transform:translateX(-50px) scale(.5);opacity:0}to{transform:none;opacity:1}}
-#hanabi-app .h-fly{position:fixed;z-index:98;margin:0;transition:left .55s ease,top .55s ease,opacity .55s ease,transform .55s ease}
+#hanabi-app .h-fan{display:flex;align-items:center;flex-wrap:wrap;margin-left:14px;
+padding-left:10px;border-left:1px solid #3a4252;min-height:60px}
+#hanabi-app .h-disc{width:32px;height:44px;border-radius:6px;display:inline-flex;
+align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;
+border:1.5px solid rgba(0,0,0,.35);margin-left:-13px;flex:none;
+text-shadow:0 1px 2px rgba(0,0,0,.5)}
+#hanabi-app .h-disc:first-child{margin-left:0}
+#hanabi-app .h-discempty{background:transparent;border:1.5px dashed #4a5366;color:#6a7488;font-size:18px}
 #hanabi-app .h-mini{font-size:12px;color:var(--hmut);letter-spacing:1px}
 #hanabi-app .h-pile{width:44px;height:60px;border-radius:8px;display:inline-flex;
 align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#fff;
@@ -84,14 +91,13 @@ d.forEach(function(c,k){c.id=k;});
 return d;
 }
 function newGame(){
-G={phase:'lobby',players:[],hands:[],deck:[],piles:{},discard:[],
-hints:8,fuses:3,turn:0,turnsLeft:null,justEmptied:false,log:[],result:null,
-lastMove:null,moveSeq:0};
+G={phase:'lobby',players:[],hands:[],deck:[],piles:{},pileTops:{},discard:[],
+hints:8,fuses:3,turn:0,turnsLeft:null,justEmptied:false,log:[],result:null};
 }
 function startGame(){
 G.deck=mkDeck();G.discard=[];G.hints=8;G.fuses=3;G.turnsLeft=null;
 G.justEmptied=false;G.result=null;G.turn=0;G.log=['🎆 Empieza la partida'];
-G.lastMove=null;G.moveSeq=0;
+G.pileTops={};
 COLORS.forEach(function(c){G.piles[c]=0;});
 var hs=G.players.length&lt;=3?5:4;
 G.hands=G.players.map(function(){return [];});
@@ -131,14 +137,11 @@ function applyAction(p,a){
 if(!G||G.phase!=='playing')return;
 if(G.turn!==p)return sendErr(p,'No es tu turno');
 var hand=G.hands[p],card;
-G.lastMove=null;
 if(a.kind==='play'){
 if(!hand[a.idx])return;
 card=hand.splice(a.idx,1)[0];
-G.moveSeq++;
-G.lastMove={cid:card.id,c:card.c,n:card.n,kind:G.piles[card.c]===card.n-1?'play':'fail'};
 if(G.piles[card.c]===card.n-1){
-G.piles[card.c]=card.n;
+G.piles[card.c]=card.n;G.pileTops[card.c]=card.id;
 if(card.n===5&amp;&amp;G.hints&lt;8)G.hints++;
 glog(pname(p)+' juega '+cardTxt(card)+' ✔');
 if(COLORS.every(function(c){return G.piles[c]===5;})){finish('win');return broadcast();}
@@ -152,8 +155,6 @@ draw(p);
 if(G.hints>=8)return sendErr(p,'Ya tenéis las 8 fichas de pista');
 if(!hand[a.idx])return;
 card=hand.splice(a.idx,1)[0];
-G.moveSeq++;
-G.lastMove={cid:card.id,c:card.c,n:card.n,kind:'discard'};
 G.discard.push(card);G.hints++;
 glog(pname(p)+' descarta '+cardTxt(card));
 draw(p);
@@ -175,9 +176,9 @@ function viewFor(i){
 return {
 phase:G.phase,me:i,turn:G.turn,hints:G.hints,fuses:G.fuses,
 deckCount:G.deck.length,turnsLeft:G.turnsLeft,result:G.result,
-lastMove:G.lastMove,moveSeq:G.moveSeq,
 piles:JSON.parse(JSON.stringify(G.piles)),
-discard:G.discard.map(function(c){return {c:c.c,n:c.n};}),
+pileTops:JSON.parse(JSON.stringify(G.pileTops)),
+discard:G.discard.map(function(c){return {id:c.id,c:c.c,n:c.n};}),
 log:G.log.slice(-30),
 names:G.players.map(function(p){return p.name;}),
 connected:G.players.map(function(p){return p.connected;}),
@@ -285,38 +286,22 @@ return '&lt;div class="h-cardwrap" data-cid="'+card.id+'">&lt;div class="'+cls+'
 '" style="background:'+bg+'">'+label+'&lt;/div>'+
 (full?'&lt;div class="h-mini" title="Lo que sabe">'+mini+'&lt;/div>':'')+'&lt;/div>';
 }
-var animSeq=-1;
-function flyCard(rect,move){
-var d=document.createElement('div');
-d.className='hcard h-noclick h-fly';
-d.style.background=CINFO[move.c].bg;
-d.style.left=rect.left+'px';d.style.top=rect.top+'px';
-d.textContent=move.n;
-document.body.appendChild(d);
-var target=move.kind==='play'?
-document.querySelector('#h-game [data-pile="'+move.c+'"]'):el('h-discard');
-var tr=target?target.getBoundingClientRect():null;
-requestAnimationFrame(function(){requestAnimationFrame(function(){
-if(tr){d.style.left=tr.left+'px';d.style.top=tr.top+'px';}
-d.style.opacity='0';
-if(move.kind==='fail')d.style.transform='rotate(35deg) scale(1.2)';
-});});
-setTimeout(function(){d.remove();},650);
-}
 function animate(prev){
-// carta jugada/descartada: vuela desde su sitio hasta la pila o los descartes
-if(V.lastMove&amp;&amp;V.moveSeq!==animSeq&amp;&amp;prev[V.lastMove.cid])flyCard(prev[V.lastMove.cid],V.lastMove);
-animSeq=V.moveSeq;
-// FLIP: las cartas que siguen en mesa se deslizan de su posición vieja a la nueva
+// FLIP: toda carta con data-cid (mano, pila, descartes) se desliza
+// desde su posición del render anterior hasta la nueva
 var els=el('h-game').querySelectorAll('[data-cid]');
 for(var i=0;i&lt;els.length;i++){
 var e=els[i],r0=prev[e.getAttribute('data-cid')];
-if(!r0){e.firstChild.classList.add('h-new');continue;}
+if(!r0){
+if(e.classList.contains('h-cardwrap'))e.firstChild.classList.add('h-new');
+continue;
+}
 var r1=e.getBoundingClientRect(),dx=r0.left-r1.left,dy=r0.top-r1.top;
 if(dx||dy){
-e.style.transition='none';e.style.transform='translate('+dx+'px,'+dy+'px)';
+var base=e.style.transform||''; // conserva la rotación del abanico
+e.style.transition='none';e.style.transform='translate('+dx+'px,'+dy+'px) '+base;
 e.getBoundingClientRect();
-e.style.transition='transform .4s ease';e.style.transform='';
+e.style.transition='transform .45s ease';e.style.transform=base;
 }
 }
 }
@@ -351,16 +336,20 @@ h+='&lt;div class="h-banner">'+msg+(V.me===0?' &lt;button data-act="start">🔄 
 // tablero central
 h+='&lt;div class="h-panel">&lt;div class="h-row">';
 COLORS.forEach(function(c){
-h+='&lt;div class="h-pile" data-pile="'+c+'" style="background:'+CINFO[c].bg+(V.piles[c]===0?';opacity:.3':'')+
+h+='&lt;div class="h-pile"'+(V.piles[c]?' data-cid="'+V.pileTops[c]+'"':'')+
+' style="background:'+CINFO[c].bg+(V.piles[c]===0?';opacity:.3':'')+
 '">'+(V.piles[c]||'·')+'&lt;/div>';});
+// abanico de descartes, agrupado por color
+var ds=V.discard.slice().sort(function(a,b){
+return COLORS.indexOf(a.c)-COLORS.indexOf(b.c)||a.n-b.n;});
+h+='&lt;div class="h-fan" title="Descartes">&lt;div class="h-disc h-discempty">🗑&lt;/div>';
+ds.forEach(function(d){
+h+='&lt;div class="h-disc" data-cid="'+d.id+'" style="background:'+CINFO[d.c].bg+
+';transform:rotate('+((d.id%5)-2)*4+'deg)">'+d.n+'&lt;/div>';});
+h+='&lt;/div>';
 h+='&lt;/div>&lt;div class="h-row">💡 Pistas: &lt;b>'+V.hints+'&lt;/b>/8 &amp;nbsp; 🧨 Mechas: &lt;b>'+
 V.fuses+'&lt;/b>/3 &amp;nbsp; 🂠 Mazo: &lt;b>'+V.deckCount+'&lt;/b>'+
 (V.turnsLeft!==null?' &amp;nbsp; ⏳ Turnos finales: &lt;b>'+V.turnsLeft+'&lt;/b>':'')+'&lt;/div>';
-var dByColor=COLORS.map(function(c){
-var ns=V.discard.filter(function(d){return d.c===c;}).map(function(d){return d.n;}).sort();
-return ns.length?CINFO[c].em+ns.join(''):'';
-}).filter(Boolean).join(' &amp;nbsp;');
-h+='&lt;div class="h-mut" id="h-discard">Descartes: '+(dByColor||'—')+'&lt;/div>';
 // en peligro: cartas aún necesarias con una sola copia viva (por descartes/fallos)
 var TOTALS={1:3,2:2,3:2,4:2,5:1},danger=[],dead=[];
 COLORS.forEach(function(c){
