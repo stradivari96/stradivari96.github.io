@@ -60,6 +60,12 @@ Juego cooperativo de cartas para 2-5 jugadores. Uno crea la sala y comparte el c
   box-shadow:0 4px 14px rgba(0,0,0,.4)}
 #hanabi-app .h-code{font-size:22px;font-weight:800;letter-spacing:4px;color:#fbbf24}
 #hanabi-app .h-mut{color:var(--hmut);font-size:13px}
+#hanabi-app .h-noob{display:flex;flex-direction:column;align-items:center;gap:2px;margin-top:3px}
+#hanabi-app .h-noob-colors{display:flex;gap:3px}
+#hanabi-app .h-noob-dot{width:9px;height:9px;border-radius:50%;flex:none}
+#hanabi-app .h-noob-nums{font-size:11px;color:var(--hmut);letter-spacing:1px;line-height:1}
+#hanabi-app button.h-noob-toggle{background:#2d3748;font-size:13px;padding:5px 10px}
+#hanabi-app button.h-noob-toggle.h-active{background:#4a3728;border:1px solid #f59e0b}
 </style>
 <div id="hanabi-app">
   <div id="h-setup">
@@ -91,6 +97,7 @@ var G=null;   // estado completo (solo host)
 var V=null;   // vista personalizada (lo que se renderiza)
 var sel=null; // carta seleccionada {pl, idx}
 var myName='';
+var noobMode=false;
 
 function el(id){return document.getElementById(id);}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){
@@ -105,7 +112,7 @@ function cardTxt(c){return CINFO[c.c].em+c.n;}
 function mkDeck(){
   var d=[],counts=[[1,3],[2,2],[3,2],[4,2],[5,1]];
   COLORS.forEach(function(c){counts.forEach(function(p){
-    for(var i=0;i<p[1];i++)d.push({c:c,n:p[0],kc:false,kn:false});});});
+    for(var i=0;i<p[1];i++)d.push({c:c,n:p[0],kc:false,kn:false,notC:[],notN:[]});});});
   for(var i=d.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));
     var t=d[i];d[i]=d[j];d[j]=t;}
   // ids tras barajar: que el id no delate la carta
@@ -202,7 +209,15 @@ function applyAction(p,a){
     var matches=G.hands[a.target].filter(function(c){
       return a.htype==='color'?c.c===a.value:c.n===a.value;});
     if(!matches.length)return sendErr(p,'La pista debe señalar al menos una carta');
-    matches.forEach(function(c){if(a.htype==='color')c.kc=true;else c.kn=true;});
+    G.hands[a.target].forEach(function(c){
+      if(a.htype==='color'){
+        if(c.c===a.value)c.kc=true;
+        else if(c.notC.indexOf(a.value)===-1)c.notC.push(a.value);
+      }else{
+        if(c.n===a.value)c.kn=true;
+        else if(c.notN.indexOf(a.value)===-1)c.notN.push(a.value);
+      }
+    });
     G.hints--;
     G.hintSeq++;G.hintCids=matches.map(function(c){return c.id;});
     var what=a.htype==='color'?CINFO[a.value].em+' '+CINFO[a.value].name:'número '+a.value;
@@ -223,7 +238,7 @@ function viewFor(i){
     names:G.players.map(function(p){return p.name;}),
     connected:G.players.map(function(p){return p.connected;}),
     hands:G.hands.map(function(h,j){return h.map(function(c){
-      if(j===i)return {id:c.id,c:c.kc?c.c:null,n:c.kn?c.n:null,kc:c.kc,kn:c.kn};
+      if(j===i)return {id:c.id,c:c.kc?c.c:null,n:c.kn?c.n:null,kc:c.kc,kn:c.kn,notC:c.notC,notN:c.notN};
       return {id:c.id,c:c.c,n:c.n,kc:c.kc,kn:c.kn};});})
   };
 }
@@ -323,10 +338,19 @@ function cardHtml(card,pl,idx,clickable){
   var label=card.n!==null&&card.n!==undefined?card.n:'?';
   var cls='hcard'+(sel&&sel.pl===pl&&sel.idx===idx?' h-sel':'')+(clickable?'':' h-noclick');
   var mini=(card.kc&&card.c?CINFO[card.c].em:'·')+' '+(card.kn?card.n:'·');
-  var full=pl!==V.me; // carta ajena: enseño también lo que sabe el dueño
+  var isOwn=pl===V.me;
+  var extra='';
+  if(isOwn&&noobMode){
+    var nc=card.notC||[],nn=card.notN||[];
+    var posC=card.kc&&card.c?[card.c]:COLORS.filter(function(c){return nc.indexOf(c)===-1;});
+    var posN=card.kn&&card.n?[card.n]:[1,2,3,4,5].filter(function(n){return nn.indexOf(n)===-1;});
+    var dots=posC.map(function(c){return '<div class="h-noob-dot" style="background:'+CINFO[c].bg+'" title="'+CINFO[c].name+'"></div>';}).join('');
+    extra='<div class="h-noob"><div class="h-noob-colors">'+dots+'</div>'+
+          '<div class="h-noob-nums">'+posN.join('')+'</div></div>';
+  }
   return '<div class="h-cardwrap" data-cid="'+card.id+'"><div class="'+cls+'" data-pl="'+pl+'" data-idx="'+idx+
     '" style="background:'+bg+'">'+label+'</div>'+
-    (full?'<div class="h-mini" title="Lo que sabe">'+mini+'</div>':'')+'</div>';
+    (!isOwn?'<div class="h-mini" title="Lo que sabe">'+mini+'</div>':extra)+'</div>';
 }
 var FAIL_SOUNDS=[
   'https://www.myinstants.com/media/sounds/jixaw-metal-pipe-falling-sound.mp3',
@@ -403,7 +427,8 @@ function render(){
   var h='';
   var shareUrl=location.origin+location.pathname+'?sala='+roomCode;
   h+='<div class="h-row">Sala: <span class="h-code">'+roomCode+'</span> '+
-     '<button data-act="copy">📋 Copiar enlace</button></div>';
+     '<button data-act="copy">📋 Copiar enlace</button>'+
+     '<button data-act="noob" class="h-noob-toggle'+(noobMode?' h-active':'')+'">🔰 Modo noob'+(noobMode?' ✓':'')+'</button></div>';
   if(V.phase==='lobby'){
     h+='<div class="h-panel"><h3>Jugadores ('+V.names.length+'/5)</h3>';
     V.names.forEach(function(n,i){
@@ -500,6 +525,7 @@ el('h-game').addEventListener('click',function(e){
       navigator.clipboard.writeText(location.origin+location.pathname+'?sala='+roomCode)
         .then(function(){toast('Enlace copiado 📋');});
     }
+    else if(act==='noob'){noobMode=!noobMode;render();}
     else if(act==='start'&&isHost)startGame();
     else if(act==='play')sendAction({kind:'play',idx:sel.idx});
     else if(act==='discard')sendAction({kind:'discard',idx:sel.idx});
