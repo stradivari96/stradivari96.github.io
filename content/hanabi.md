@@ -79,6 +79,8 @@ var CINFO={R:{name:'Rojo',bg:'#dc2626',em:'🔴'},G:{name:'Verde',bg:'#16a34a',e
   W:{name:'Blanco',bg:'#64748b',em:'⚪'}};
 var PREFIX='hanabi-xiang-';
 var MAXP=5;
+var TOTALS={1:3,2:2,3:2,4:2,5:1};
+var ALARM_URL='/hanabi-alarm.mp3'; // suena cuando se pierde la última copia de una carta
 
 // ---------- estado ----------
 var peer=null,isHost=false,hostConn=null,roomCode='';
@@ -109,12 +111,13 @@ function mkDeck(){
 }
 function newGame(){
   G={phase:'lobby',players:[],hands:[],deck:[],piles:{},pileTops:{},discard:[],
-     hints:8,fuses:3,turn:0,turnsLeft:null,justEmptied:false,log:[],result:null};
+     hints:8,fuses:3,turn:0,turnsLeft:null,justEmptied:false,log:[],result:null,
+     alarmSeq:0};
 }
 function startGame(){
   G.deck=mkDeck();G.discard=[];G.hints=8;G.fuses=3;G.turnsLeft=null;
   G.justEmptied=false;G.result=null;G.turn=0;G.log=['🎆 Empieza la partida'];
-  G.pileTops={};
+  G.pileTops={};G.alarmSeq=0;
   COLORS.forEach(function(c){G.piles[c]=0;});
   var hs=G.players.length<=3?5:4;
   G.hands=G.players.map(function(){return [];});
@@ -124,6 +127,15 @@ function startGame(){
 }
 function pname(i){return G.players[i].name;}
 function glog(m){G.log.push(m);if(G.log.length>60)G.log.shift();}
+function checkLostForever(card){
+  // la carta aún hacía falta y ya no queda ninguna copia viva
+  if(card.n<=G.piles[card.c])return;
+  var disc=G.discard.filter(function(d){return d.c===card.c&&d.n===card.n;}).length;
+  if(disc>=TOTALS[card.n]){
+    G.alarmSeq++;
+    glog('🚨 ¡'+cardTxt(card)+' perdida para siempre!');
+  }
+}
 function draw(p){
   if(!G.deck.length)return;
   G.hands[p].unshift(G.deck.pop()); // la carta nueva entra por la izquierda
@@ -165,6 +177,7 @@ function applyAction(p,a){
     }else{
       G.fuses--;G.discard.push(card);
       glog('💥 '+pname(p)+' intenta jugar '+cardTxt(card)+' y falla ('+G.fuses+' mechas)');
+      checkLostForever(card);
       if(G.fuses===0){finish('boom');return broadcast();}
     }
     draw(p);
@@ -174,6 +187,7 @@ function applyAction(p,a){
     card=hand.splice(a.idx,1)[0];
     G.discard.push(card);G.hints++;
     glog(pname(p)+' descarta '+cardTxt(card));
+    checkLostForever(card);
     draw(p);
   }else if(a.kind==='hint'){
     if(G.hints<=0)return sendErr(p,'No quedan fichas de pista');
@@ -193,6 +207,7 @@ function viewFor(i){
   return {
     phase:G.phase,me:i,turn:G.turn,hints:G.hints,fuses:G.fuses,
     deckCount:G.deck.length,turnsLeft:G.turnsLeft,result:G.result,
+    alarmSeq:G.alarmSeq,
     piles:JSON.parse(JSON.stringify(G.piles)),
     pileTops:JSON.parse(JSON.stringify(G.pileTops)),
     discard:G.discard.map(function(c){return {id:c.id,c:c.c,n:c.n};}),
@@ -305,6 +320,14 @@ function cardHtml(card,pl,idx,clickable){
     '" style="background:'+bg+'">'+label+'</div>'+
     (full?'<div class="h-mini" title="Lo que sabe">'+mini+'</div>':'')+'</div>';
 }
+var alarmHeard=-1;
+function checkAlarm(){
+  if(typeof V.alarmSeq!=='number')return;
+  if(alarmHeard>=0&&V.alarmSeq>alarmHeard){
+    try{new Audio(ALARM_URL).play().catch(function(){});}catch(e){}
+  }
+  alarmHeard=V.alarmSeq;
+}
 function animate(prev){
   // FLIP: toda carta con data-cid (mano, pila, descartes) se desliza
   // desde su posición del render anterior hasta la nueva
@@ -370,7 +393,7 @@ function render(){
        V.fuses+'</b>/3 &nbsp; 🂠 Mazo: <b>'+V.deckCount+'</b>'+
        (V.turnsLeft!==null?' &nbsp; ⏳ Turnos finales: <b>'+V.turnsLeft+'</b>':'')+'</div>';
     // en peligro: cartas aún necesarias con una sola copia viva (por descartes/fallos)
-    var TOTALS={1:3,2:2,3:2,4:2,5:1},danger=[],dead=[];
+    var danger=[],dead=[];
     COLORS.forEach(function(c){
       for(var n=V.piles[c]+1;n<=5;n++){
         var disc=V.discard.filter(function(d){return d.c===c&&d.n===n;}).length;
@@ -413,6 +436,7 @@ function render(){
   }
   el('h-game').innerHTML=h;
   if(V.phase==='playing'||V.phase==='ended')animate(prev);
+  checkAlarm();
 }
 
 // ---------- eventos ----------
