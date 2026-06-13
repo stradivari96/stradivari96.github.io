@@ -66,6 +66,7 @@ Juego cooperativo de cartas para 2-5 jugadores. Uno crea la sala y comparte el c
 #hanabi-app .h-noob-nums{font-size:11px;color:var(--hmut);letter-spacing:1px;line-height:1}
 #hanabi-app button.h-noob-toggle{background:#2d3748;font-size:13px;padding:5px 10px}
 #hanabi-app button.h-noob-toggle.h-active{background:#4a3728;border:1px solid #f59e0b}
+#hanabi-app .h-hinthover{box-shadow:0 0 16px 6px rgba(251,191,36,.8);transition:box-shadow .15s}
 </style>
 <div id="hanabi-app">
   <div id="h-setup">
@@ -291,6 +292,7 @@ function createRoom(){
   peer.on('open',function(){
     isHost=true;newGame();
     G.players.push({name:myName,conn:null,connected:true});
+    history.pushState(null,'',location.pathname+'?sala='+roomCode);
     el('h-setup').style.display='none';el('h-game').style.display='block';
     broadcast();
   });
@@ -543,6 +545,24 @@ el('h-game').addEventListener('click',function(e){
     sel=(sel&&sel.pl===pl&&sel.idx===idx)?null:{pl:pl,idx:idx};
     render();
   }
+});
+// hover preview de pista
+el('h-game').addEventListener('mouseover',function(e){
+  var b=e.target.closest('[data-act="hintc"],[data-act="hintn"]');
+  if(!b||!sel||sel.pl===V.me)return;
+  var act=b.getAttribute('data-act'),sc=V.hands[sel.pl][sel.idx];
+  var val=act==='hintc'?sc.c:sc.n;
+  V.hands[sel.pl].forEach(function(c,j){
+    if((act==='hintc'?c.c:c.n)===val){
+      var ce=el('h-game').querySelector('[data-pl="'+sel.pl+'"][data-idx="'+j+'"]');
+      if(ce)ce.classList.add('h-hinthover');
+    }
+  });
+});
+el('h-game').addEventListener('mouseout',function(e){
+  var b=e.target.closest('[data-act="hintc"],[data-act="hintn"]');
+  if(!b||b.contains(e.relatedTarget))return;
+  el('h-game').querySelectorAll('.h-hinthover').forEach(function(c){c.classList.remove('h-hinthover');});
 });
 // código por URL: ?sala=ABCD
 var m=location.search.match(/sala=([A-Za-z0-9]{4})/);
