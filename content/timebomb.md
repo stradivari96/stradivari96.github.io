@@ -306,7 +306,7 @@ function cableHtml(c){
   var cls=c.type==='safe'?'tb-cable-safe':c.type==='success'?'tb-cable-success':'tb-cable-exp';
   var lbl=c.type==='safe'?'✓':c.type==='success'?'⚡':'💥';
   var title=c.type==='safe'?'A salvo':c.type==='success'?'Exito':'Explosion';
-  var extra=(!c.revealed&&c.own)?';opacity:.45':'';
+  var extra=(!c.revealed&&c.own)?'opacity:.45':'';
   return '<div class="tb-cable '+cls+'" style="'+extra+'" title="'+title+'">'+lbl+'</div>';}
 
 function render(){
@@ -407,14 +407,19 @@ if(m)el('tb-code').value=m[1].toUpperCase();
 
 Time Bomb es un juego de **deducción social**: los **agentes** intentan cortar todos los cables de éxito, los **terroristas** intentan sabotearlos.
 
-**Identidades:** Cada jugador recibe en secreto una carta de identidad (🕵️ Agente o 💣 Terrorista). Antes de repartirlas, se barajan todas las cartas del pool y se retira **una al azar sin revelar**, así nadie sabe con certeza cuántos terroristas hay en mesa.
+**Identidades:** Cada jugador recibe en secreto una carta de identidad (🕵️ Agente o 💣 Terrorista). El número de terroristas en mesa según jugadores:
+- 4 jugadores → 1 o 2 terroristas
+- 5 jugadores → 2 terroristas
+- 6 jugadores → 2 terroristas
+- 7 jugadores → 2 o 3 terroristas
+- 8 jugadores → 3 terroristas
 
 **Cables:** Cada jugador tiene varios cables boca abajo frente a él:
 - ✓ **A salvo** — no pasa nada
 - ⚡ **Éxito** — los agentes avanzan hacia la victoria
 - 💥 **Explosión** — ¡solo hay una! Si se corta, los terroristas ganan de inmediato
 
-**Cada ronda** los cables se redistribuyen aleatoriamente en silencio (nadie ve los suyos). En tu turno debes **cortar un cable de otro jugador**: se revela uno aleatorio de entre sus cables sin cortar. El jugador cuyo cable se acaba de cortar es el siguiente en actuar (esto se mantiene entre rondas).
+**Cada ronda** los cables se redistribuyen aleatoriamente en silencio. Cada jugador ve sus propios cables pero no los de los demás. En tu turno debes **cortar un cable de otro jugador**: se revela uno aleatorio de entre sus cables sin cortar. El jugador cuyo cable se acaba de cortar es el siguiente en actuar (esto se mantiene entre rondas).
 
 La ronda termina cuando se han hecho tantos cortes como jugadores. Hay un máximo de **4 rondas**.
 
