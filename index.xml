@@ -741,7 +741,374 @@ var label = el.dataset.label || '';
 attachHover(el, m.img, m.size, bp, label);
 });
 })();
-&lt;/script></description></item><item><title>🎆 Hanabi</title><link>https://xiang.es/hanabi/</link><pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate><guid>https://xiang.es/hanabi/</guid><description>&lt;p>Juego cooperativo de cartas para 2-5 jugadores. Uno crea la sala y comparte el código (o el enlace) con los demás. La partida vive en el navegador del anfitrión: si lo cierra, se acaba la fiesta.&lt;/p>
+&lt;/script></description></item><item><title>💣 Time Bomb</title><link>https://xiang.es/timebomb/</link><pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate><guid>https://xiang.es/timebomb/</guid><description>&lt;p>Juego de deducción social para 4-8 jugadores.&lt;/p>
+&lt;style>
+#tb-app{--tbg:#0f1117;--tpanel:#1a1f2c;--ttext:#e8eaf0;--tmut:#9aa3b2;
+background:var(--tbg);color:var(--ttext);border-radius:12px;padding:16px;
+font-family:system-ui,sans-serif;font-size:15px;line-height:1.4}
+#tb-app h3{margin:8px 0 6px;color:var(--ttext)}
+#tb-app input{background:#11141a;color:var(--ttext);border:1px solid #3a4252;
+border-radius:8px;padding:8px 10px;font-size:15px;max-width:160px}
+#tb-app button{background:#3b82f6;color:#fff;border:0;border-radius:8px;
+padding:8px 14px;font-size:14px;cursor:pointer;margin:2px}
+#tb-app button:disabled{background:#3a4252;color:var(--tmut);cursor:not-allowed}
+#tb-app .tb-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0}
+#tb-app .tb-panel{background:var(--tpanel);border-radius:10px;padding:10px 12px;margin:8px 0}
+#tb-app .tb-turn{box-shadow:0 0 0 2px #fbbf24 inset;border-radius:10px}
+#tb-app .tb-code{font-size:22px;font-weight:800;letter-spacing:4px;color:#fbbf24}
+#tb-app .tb-mut{color:var(--tmut);font-size:13px;margin:4px 0}
+#tb-app .tb-cable{width:42px;height:58px;border-radius:8px;display:inline-flex;
+align-items:center;justify-content:center;font-size:20px;font-weight:700;
+border:2px solid rgba(0,0,0,.35);user-select:none;flex:none;
+text-shadow:0 1px 2px rgba(0,0,0,.5);margin:2px}
+#tb-app .tb-cable-hidden{background:#2a3040;border:2px dashed #4a5366;color:#6a7488;font-size:16px}
+#tb-app .tb-cable-safe{background:#64748b;color:#fff}
+#tb-app .tb-cable-success{background:#16a34a;color:#fff}
+#tb-app .tb-cable-exp{background:#dc2626;color:#fff}
+#tb-app .tb-cables-row{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0}
+#tb-app .tb-pname{font-weight:600;margin-bottom:4px}
+#tb-app .tb-identity{border-radius:10px;padding:10px 14px;margin:8px 0;font-weight:600;font-size:14px}
+#tb-app .tb-agent{background:#1a2f4a;border:1px solid #3b82f6}
+#tb-app .tb-terrorist{background:#3b1515;border:1px solid #dc2626}
+#tb-app .tb-banner{background:#3b2f12;border:1px solid #fbbf24;border-radius:10px;
+padding:10px 14px;margin:8px 0;font-weight:600}
+#tb-app .tb-log{max-height:140px;overflow-y:auto;font-size:13px;color:var(--tmut)}
+#tb-app .tb-log div{padding:1px 0}
+#tb-app .tb-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+background:#dc2626;color:#fff;padding:10px 18px;border-radius:10px;z-index:99;
+box-shadow:0 4px 14px rgba(0,0,0,.4)}
+&lt;/style>
+&lt;div id="tb-app">
+&lt;div id="tb-setup">
+&lt;div class="tb-row">&lt;label>Tu nombre: &lt;input id="tb-name" maxlength="14" placeholder="Nombre">&lt;/label>&lt;/div>
+&lt;div class="tb-row">&lt;button id="tb-create">💣 Crear sala&lt;/button>&lt;/div>
+&lt;div class="tb-row">&lt;input id="tb-code" maxlength="4" placeholder="CÓDIGO" style="text-transform:uppercase;width:110px">&lt;button id="tb-join">Unirse&lt;/button>&lt;/div>
+&lt;div id="tb-setupmsg" class="tb-mut">&lt;/div>
+&lt;/div>
+&lt;div id="tb-game" style="display:none">&lt;/div>
+&lt;/div>
+&lt;script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js">&lt;/script>
+&lt;script>
+(function(){
+'use strict';
+// ---------- constantes ----------
+var CABLE_COUNTS={4:{safe:15,success:4,exp:1},5:{safe:19,success:5,exp:1},
+6:{safe:23,success:6,exp:1},7:{safe:27,success:7,exp:1},8:{safe:31,success:8,exp:1}};
+// pool de identidades (se barajan y se reparten np de ellas; la sobrante se retira sin revelar)
+var ID_POOL={4:{a:3,t:2},5:{a:3,t:2},6:{a:4,t:2},7:{a:5,t:3},8:{a:5,t:3}};
+var PREFIX='timebomb-xiang-';
+var MINP=4,MAXP=8;
+// ---------- estado ----------
+var peer=null,isHost=false,hostConn=null,roomCode='';
+var G=null,V=null,myName='';
+function el(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/[&amp;&lt;>"']/g,function(c){
+return{'&amp;':'&amp;amp;','&lt;':'&amp;lt;','>':'&amp;gt;','"':'&amp;quot;',"'":'&amp;#39;'}[c];});}
+function toast(msg){
+var t=document.createElement('div');t.className='tb-toast';t.textContent=msg;
+el('tb-app').appendChild(t);setTimeout(function(){t.remove();},3500);}
+function setupMsg(m){el('tb-setupmsg').textContent=m;}
+function shuffle(arr){
+for(var i=arr.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));
+var tmp=arr[i];arr[i]=arr[j];arr[j]=tmp;}
+return arr;}
+// ---------- lógica de juego (host) ----------
+function newGame(){
+G={phase:'lobby',players:[],cables:[],hands:[],round:0,cutsThisRound:0,
+turn:0,log:[],result:null,cutSeq:0,lastCutType:null};}
+function startGame(){
+var np=G.players.length;
+// Roles: se barajan todas las cartas del pool y se reparte una a cada jugador;
+// la(s) sobrante(s) quedan fuera sin revelar, creando incertidumbre en mesa.
+var pool=ID_POOL[np],roles=[];
+for(var i=0;i&lt;pool.a;i++)roles.push('agent');
+for(var i=0;i&lt;pool.t;i++)roles.push('terrorist');
+shuffle(roles);
+roles=roles.slice(0,np); // retira la(s) carta(s) sobrante(s) al azar
+G.players.forEach(function(p,i){p.role=roles[i];});
+// Cables
+var cc=CABLE_COUNTS[np];
+G.cables=[];var id=0;
+for(var i=0;i&lt;cc.safe;i++)G.cables.push({id:id++,type:'safe',revealed:false});
+for(var i=0;i&lt;cc.success;i++)G.cables.push({id:id++,type:'success',revealed:false});
+G.cables.push({id:id++,type:'exp',revealed:false});
+G.round=1;G.cutsThisRound=0;G.result=null;G.cutSeq=0;G.lastCutType=null;
+G.turn=Math.floor(Math.random()*np);
+G.log=['💣 ¡Empieza la partida! Ronda 1 · '+np+' jugadores'];
+G.phase='playing';
+dealRound();broadcast();}
+function dealRound(){
+var np=G.players.length;
+var uncut=G.cables.filter(function(c){return !c.revealed;});
+shuffle(uncut);
+// uncut.length siempre es divisible por np: ronda 1→5, 2→4, 3→3, 4→2 cartas por jugador
+var perP=uncut.length/np;
+G.hands=[];
+for(var i=0;i&lt;np;i++)
+G.hands.push(uncut.slice(i*perP,(i+1)*perP).map(function(c){return c.id;}));}
+function pname(i){return G.players[i].name;}
+function glog(m){G.log.push(m);if(G.log.length>60)G.log.shift();}
+function applyAction(p,a){
+if(!G||G.phase!=='playing')return;
+if(G.turn!==p)return sendErr(p,'No es tu turno');
+if(a.kind==='cut'){
+var tgt=a.target;
+if(tgt===p)return sendErr(p,'No puedes cortar tus propios cables');
+if(tgt&lt;0||tgt>=G.players.length)return;
+var uncut=G.hands[tgt].filter(function(cid){return !G.cables[cid].revealed;});
+if(!uncut.length)return sendErr(p,'Sin cables disponibles');
+var cid=uncut[Math.floor(Math.random()*uncut.length)];
+var cable=G.cables[cid];
+cable.revealed=true;
+G.cutSeq++;G.lastCutType=cable.type;G.cutsThisRound++;
+G.turn=tgt; // el cortado es el siguiente en jugar
+var label=cable.type==='safe'?'✂️ A salvo':cable.type==='success'?'⚡ ¡Éxito!':'💥 ¡EXPLOSIÓN!';
+glog(pname(p)+' → '+pname(tgt)+': '+label);
+// Comprobar victoria
+if(cable.type==='exp'){
+G.phase='ended';G.result={winner:'terrorists',reason:'explosion'};
+glog('💥 ¡La bomba explota! Los terroristas ganan.');
+return broadcast();
+}
+var sc=G.cables.filter(function(c){return c.revealed&amp;&amp;c.type==='success';}).length;
+if(sc>=CABLE_COUNTS[G.players.length].success){
+G.phase='ended';G.result={winner:'agents',reason:'success'};
+glog('⚡ ¡Todos los cables de éxito cortados! Los agentes ganan.');
+return broadcast();
+}
+// Fin de ronda
+if(G.cutsThisRound>=G.players.length){
+if(G.round>=4){
+G.phase='ended';G.result={winner:'terrorists',reason:'timeout'};
+glog('⏰ Fin de la última ronda. Los terroristas ganan.');
+}else{
+G.round++;G.cutsThisRound=0;
+dealRound();
+glog('🔄 Ronda '+G.round+' — los cables se barajan sin revelar.');}
+}
+broadcast();
+}
+}
+function sendErr(p,msg){
+if(p===0)toast(msg);
+else if(G.players[p].conn)G.players[p].conn.send({t:'error',msg:msg});}
+function viewFor(i){
+var np=G.players.length;
+var sc=G.phase!=='lobby'?G.cables.filter(function(c){return c.revealed&amp;&amp;c.type==='success';}).length:0;
+var ts=np>=MINP?CABLE_COUNTS[np].success:0;
+return{
+phase:G.phase,me:i,myRole:G.players[i].role||null,
+turn:G.turn,round:G.round,cutsThisRound:G.cutsThisRound,cutsPerRound:np,
+result:G.result,
+names:G.players.map(function(p){return p.name;}),
+connected:G.players.map(function(p){return p.connected;}),
+roles:G.result?G.players.map(function(p){return p.role;}):null,
+hands:G.hands.length?G.hands.map(function(hand,j){
+return hand.map(function(cid){
+var c=G.cables[cid];
+if(c.revealed)return{id:cid,revealed:true,type:c.type};
+if(j===i)return{id:cid,revealed:false,type:c.type,own:true};
+return{id:cid,revealed:false,type:null};});}):
+G.players.map(function(){return[];}),
+log:G.log.slice(-30),
+successCut:sc,totalSuccess:ts,
+cutSeq:G.cutSeq,lastCutType:G.lastCutType};}
+function broadcast(){
+G.players.forEach(function(p,i){
+if(i===0)return;
+if(p.conn&amp;&amp;p.connected)p.conn.send({t:'state',s:viewFor(i)});});
+V=viewFor(0);render();}
+// ---------- red ----------
+function setupHostConn(c){
+c.on('data',function(msg){
+if(!msg||typeof msg!=='object')return;
+if(msg.t==='join'){
+var name=String(msg.name||'???').slice(0,14);
+if(G.phase!=='lobby'){
+var old=G.players.findIndex(function(p){return !p.connected&amp;&amp;p.name===name;});
+if(old>=0){G.players[old].conn=c;G.players[old].connected=true;
+c._hIdx=old;glog('🔌 '+name+' ha vuelto');broadcast();}
+else c.send({t:'error',msg:'Partida en curso, no puedes entrar'});
+return;}
+if(G.players.length>=MAXP)return c.send({t:'error',msg:'Sala llena (máx 8)'});
+while(G.players.some(function(p){return p.name===name;}))name+='2';
+G.players.push({name:name,conn:c,connected:true,role:null});
+c._hIdx=G.players.length-1;
+broadcast();
+}else if(msg.t==='action'&amp;&amp;typeof c._hIdx==='number'){
+applyAction(c._hIdx,msg.a);}});
+c.on('close',function(){
+if(typeof c._hIdx!=='number')return;
+if(G.phase==='lobby'){G.players.splice(c._hIdx,1);
+G.players.forEach(function(p,i){if(p.conn)p.conn._hIdx=i;});}
+else{G.players[c._hIdx].connected=false;glog('🔌 '+pname(c._hIdx)+' se ha desconectado');}
+broadcast();});}
+function createRoom(){
+myName=el('tb-name').value.trim();
+if(!myName)return setupMsg('Pon tu nombre primero');
+var alpha='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+roomCode='';for(var i=0;i&lt;4;i++)roomCode+=alpha[Math.floor(Math.random()*alpha.length)];
+setupMsg('Creando sala...');
+peer=new Peer(PREFIX+roomCode);
+peer.on('open',function(){
+isHost=true;newGame();
+G.players.push({name:myName,conn:null,connected:true,role:null});
+history.pushState(null,'',location.pathname+'?sala='+roomCode);
+el('tb-setup').style.display='none';el('tb-game').style.display='block';
+broadcast();});
+peer.on('connection',setupHostConn);
+peer.on('error',function(e){
+if(e.type==='unavailable-id')setupMsg('Código ocupado, prueba otra vez');
+else setupMsg('Error de conexión: '+e.type);});}
+function joinRoom(){
+myName=el('tb-name').value.trim();
+roomCode=el('tb-code').value.trim().toUpperCase();
+if(!myName)return setupMsg('Pon tu nombre primero');
+if(roomCode.length!==4)return setupMsg('El código tiene 4 letras');
+setupMsg('Conectando...');
+peer=new Peer();
+peer.on('open',function(){
+hostConn=peer.connect(PREFIX+roomCode,{reliable:true});
+hostConn.on('open',function(){hostConn.send({t:'join',name:myName});});
+hostConn.on('data',function(msg){
+if(!msg)return;
+if(msg.t==='state'){
+V=msg.s;
+el('tb-setup').style.display='none';el('tb-game').style.display='block';
+render();
+}else if(msg.t==='error'){V?toast(msg.msg):setupMsg(msg.msg);}});
+hostConn.on('close',function(){toast('Se ha perdido la conexión con el anfitrión 😢');});});
+peer.on('error',function(e){
+if(e.type==='peer-unavailable')setupMsg('No existe la sala '+roomCode);
+else setupMsg('Error de conexión: '+e.type);});}
+function sendAction(a){
+if(isHost)applyAction(0,a);
+else hostConn.send({t:'action',a:a});}
+// ---------- sonidos ----------
+var FAIL_SOUNDS=[
+'https://www.myinstants.com/media/sounds/jixaw-metal-pipe-falling-sound.mp3',
+'https://www.myinstants.com/media/sounds/fahhhh-6.mp3',
+'https://www.myinstants.com/media/sounds/wrong_5.mp3',
+'https://www.myinstants.com/media/sounds/oh-no.mp3',
+'https://www.myinstants.com/media/sounds/movie_1.mp3',
+'https://www.myinstants.com/media/sounds/el-diablo_MicOe0x.mp3'];
+var SUCCESS_SOUNDS=[
+'https://www.myinstants.com/media/sounds/answer-correct.mp3',
+'https://www.myinstants.com/media/sounds/kids-saying-yay-sound-effect_3.mp3',
+'https://www.myinstants.com/media/sounds/anime-wow-sound-effect.mp3',
+'https://www.myinstants.com/media/sounds/yes-yes-yes-yes-yes.mp3',
+'https://www.myinstants.com/media/sounds/yippeeeeeeeeeeeeee.mp3'];
+function playAt(arr,idx){if(!arr.length)return;
+try{var a=new Audio(arr[idx%arr.length]);a.volume=0.3;a.play().catch(function(){});}catch(e){}}
+var lastCutSeq=-1;
+function checkSounds(){
+if(!V||typeof V.cutSeq!=='number')return;
+if(lastCutSeq>=0&amp;&amp;V.cutSeq>lastCutSeq){
+if(V.lastCutType==='exp')playAt(FAIL_SOUNDS,Math.floor(Math.random()*FAIL_SOUNDS.length));
+else if(V.lastCutType==='success')playAt(SUCCESS_SOUNDS,Math.floor(Math.random()*SUCCESS_SOUNDS.length));
+}
+lastCutSeq=V.cutSeq;}
+// ---------- render ----------
+function cableHtml(c){
+if(!c.revealed&amp;&amp;!c.own)return '&lt;div class="tb-cable tb-cable-hidden">?&lt;/div>';
+var cls=c.type==='safe'?'tb-cable-safe':c.type==='success'?'tb-cable-success':'tb-cable-exp';
+var lbl=c.type==='safe'?'✓':c.type==='success'?'⚡':'💥';
+var title=c.type==='safe'?'A salvo':c.type==='success'?'Exito':'Explosion';
+var extra=(!c.revealed&amp;&amp;c.own)?';opacity:.45':'';
+return '&lt;div class="tb-cable '+cls+'" style="'+extra+'" title="'+title+'">'+lbl+'&lt;/div>';}
+function render(){
+if(!V)return;
+var np=V.names.length;
+var h='';
+h+='&lt;div class="tb-row">Sala: &lt;span class="tb-code">'+roomCode+'&lt;/span> '+
+'&lt;button data-act="copy">📋 Copiar enlace&lt;/button>&lt;/div>';
+if(V.phase==='lobby'){
+h+='&lt;div class="tb-panel">&lt;h3>Jugadores ('+np+'/8, mín 4)&lt;/h3>';
+V.names.forEach(function(n,i){
+h+='&lt;div>'+esc(n)+(i===0?' 👑':'')+(i===V.me?' (tú)':'')+'&lt;/div>';});
+h+='&lt;/div>';
+if(V.me===0)
+h+='&lt;button data-act="start"'+(np&lt;MINP?' disabled':'')+'>💣 Empezar ('+
+(np&lt;MINP?'mínimo 4':np+' jugadores')+')&lt;/button>';
+else h+='&lt;div class="tb-mut">Esperando a que '+esc(V.names[0])+' empiece...&lt;/div>';
+}else{
+// Banner de identidad
+if(V.myRole){
+var rc=V.myRole==='agent'?'tb-agent':'tb-terrorist';
+var re=V.myRole==='agent'?'🕵️':'💣';
+var rn=V.myRole==='agent'?'Agente':'Terrorista';
+var hint=V.myRole==='agent'
+?' — Cortad todos los cables ⚡ antes de que acaben las rondas'
+:' — Haz que corten la explosión 💥 o sobrevive hasta el final';
+h+='&lt;div class="tb-identity '+rc+'">'+re+' Eres &lt;b>'+rn+'&lt;/b>'+hint+'&lt;/div>';
+}
+// Banner de fin
+if(V.phase==='ended'){
+var r=V.result;
+var endMsg=r.winner==='agents'?'⚡ ¡Los agentes ganan! Todos los éxitos cortados.':
+r.reason==='explosion'?'💥 ¡BOOM! Los terroristas ganan.':
+'⏰ Se acaban las rondas. Los terroristas ganan.';
+h+='&lt;div class="tb-banner">'+endMsg;
+if(V.roles){
+h+='&lt;div style="margin-top:8px;font-size:13px">';
+V.names.forEach(function(n,i){
+var badge=V.roles[i]==='agent'?'🕵️ Agente':'💣 Terrorista';
+h+='&lt;span style="margin-right:12px">'+esc(n)+': '+badge+'&lt;/span>';});
+h+='&lt;/div>';}
+if(V.me===0)h+=' &lt;button data-act="start" style="margin-top:6px">🔄 Otra partida&lt;/button>';
+h+='&lt;/div>';
+}
+// Estado
+h+='&lt;div class="tb-panel">&lt;div class="tb-row">⚡ Éxitos: &lt;b>'+V.successCut+'/'+V.totalSuccess+
+'&lt;/b> &amp;nbsp; 🔄 Ronda: &lt;b>'+V.round+'/4&lt;/b>'+
+' &amp;nbsp; ✂️ Cortes: &lt;b>'+V.cutsThisRound+'/'+V.cutsPerRound+'&lt;/b>&lt;/div>&lt;/div>';
+// Manos de los jugadores
+V.names.forEach(function(n,i){
+var isTurn=V.phase==='playing'&amp;&amp;V.turn===i;
+var canCut=V.phase==='playing'&amp;&amp;V.turn===V.me&amp;&amp;i!==V.me;
+var hand=V.hands[i]||[];
+var hasUncut=hand.some(function(c){return !c.revealed;});
+h+='&lt;div class="tb-panel'+(isTurn?' tb-turn':'')+'">'+
+'&lt;div class="tb-pname">'+(isTurn?'▶ ':'')+esc(n)+(i===V.me?' (tú)':'')+
+(!V.connected[i]?' 🔌❌':'')+'&lt;/div>'+
+'&lt;div class="tb-cables-row">';
+hand.forEach(function(c){h+=cableHtml(c);});
+if(!hand.length)h+='&lt;span class="tb-mut">Sin cables esta ronda&lt;/span>';
+h+='&lt;/div>';
+if(canCut&amp;&amp;hasUncut)
+h+='&lt;button data-act="cut" data-target="'+i+'">✂️ Cortar cable aleatorio&lt;/button>';
+h+='&lt;/div>';
+});
+// Indicación de turno
+if(V.phase==='playing')
+h+='&lt;div class="tb-mut">'+(V.turn===V.me
+?'✂️ Tu turno: elige a quién cortarle un cable'
+:'Turno de '+esc(V.names[V.turn])+'...')+'&lt;/div>';
+// Log
+h+='&lt;div class="tb-panel tb-log">'+V.log.slice().reverse().map(function(l){
+return'&lt;div>'+esc(l)+'&lt;/div>';}).join('')+'&lt;/div>';
+}
+el('tb-game').innerHTML=h;
+checkSounds();}
+// ---------- eventos ----------
+el('tb-create').addEventListener('click',createRoom);
+el('tb-join').addEventListener('click',joinRoom);
+el('tb-game').addEventListener('click',function(e){
+var b=e.target.closest('[data-act]');if(!b)return;
+var act=b.getAttribute('data-act');
+if(act==='copy'){
+navigator.clipboard.writeText(location.origin+location.pathname+'?sala='+roomCode)
+.then(function(){toast('Enlace copiado 📋');});
+}else if(act==='start'&amp;&amp;isHost){startGame();}
+else if(act==='cut'){sendAction({kind:'cut',target:+b.getAttribute('data-target')});}
+});
+// Código por URL: ?sala=ABCD
+var m=location.search.match(/sala=([A-Za-z0-9]{4})/);
+if(m)el('tb-code').value=m[1].toUpperCase();
+})();
+&lt;/script>
+&lt;h2 id="cómo-se-juega">¿Cómo se juega?&lt;/h2>
+&lt;p>Time Bomb es un juego de &lt;strong>deducción social&lt;/strong>: los &lt;strong>agentes&lt;/strong> intentan cortar todos los cables de éxito, los &lt;strong>terroristas&lt;/strong> intentan sabotearlos.&lt;/p></description></item><item><title>🎆 Hanabi</title><link>https://xiang.es/hanabi/</link><pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate><guid>https://xiang.es/hanabi/</guid><description>&lt;p>Juego cooperativo de cartas para 2-5 jugadores. Uno crea la sala y comparte el código (o el enlace) con los demás. La partida vive en el navegador del anfitrión: si lo cierra, se acaba la fiesta.&lt;/p>
 &lt;style>
 #hanabi-app{--hbg:#1b1f27;--hpanel:#252b36;--htext:#e8eaf0;--hmut:#9aa3b2;
 background:var(--hbg);color:var(--htext);border-radius:12px;padding:16px;
@@ -801,7 +1168,7 @@ box-shadow:0 4px 14px rgba(0,0,0,.4)}
 &lt;/style>
 &lt;div id="hanabi-app">
 &lt;div id="h-setup">
-&lt;div class="h-row">&lt;label>Tu nombre: &lt;input id="h-name" maxlength="14" placeholder="Xiang">&lt;/label>&lt;/div>
+&lt;div class="h-row">&lt;label>Tu nombre: &lt;input id="h-name" maxlength="14" placeholder="Nombre">&lt;/label>&lt;/div>
 &lt;div class="h-row">&lt;button id="h-create">🎇 Crear sala&lt;/button>&lt;/div>
 &lt;div class="h-row">&lt;input id="h-code" maxlength="4" placeholder="CÓDIGO" style="text-transform:uppercase;width:110px">&lt;button id="h-join">Unirse&lt;/button>&lt;/div>
 &lt;div id="h-setupmsg" class="h-mut">&lt;/div>
@@ -1209,15 +1576,15 @@ if(rem===1&amp;&amp;disc>0)danger.push(CINFO[c].em+n);
 h+='&lt;div class="h-mut">⚠️ En peligro (última copia): '+(danger.join(' &amp;nbsp;')||'—')+
 (dead.length?' &amp;nbsp;&amp;nbsp; 💀 Perdidas: '+dead.join(' &amp;nbsp;'):'')+'&lt;/div>&lt;/div>';
 // manos
+var actionRendered=false;
 V.names.forEach(function(n,i){
 var turn=V.phase==='playing'&amp;&amp;V.turn===i;
 h+='&lt;div class="h-panel'+(turn?' h-turn':'')+'">&lt;div class="h-name">'+
 (turn?'▶ ':'')+esc(n)+(i===V.me?' (tú)':'')+(V.connected[i]?'':' 🔌❌')+'&lt;/div>&lt;div class="h-row">';
 V.hands[i].forEach(function(c,j){h+=cardHtml(c,i,j,V.phase==='playing'&amp;&amp;V.turn===V.me);});
 h+='&lt;/div>&lt;/div>';
-});
-// barra de acciones
-if(V.phase==='playing'&amp;&amp;V.turn===V.me&amp;&amp;sel){
+// barra de acciones: aparece justo debajo del jugador seleccionado
+if(V.phase==='playing'&amp;&amp;V.turn===V.me&amp;&amp;sel&amp;&amp;sel.pl===i){
 h+='&lt;div class="h-panel">&lt;b>Carta '+(sel.idx+1)+' de '+esc(V.names[sel.pl])+':&lt;/b> ';
 if(sel.pl===V.me){
 h+='&lt;button data-act="play">🎇 Jugar&lt;/button>'+
@@ -1230,7 +1597,10 @@ CINFO[sc.c].em+' '+CINFO[sc.c].name+'&lt;/button>'+
 '&lt;button data-act="hintn" '+(V.hints&lt;1?'disabled':'')+'>Pista: número '+sc.n+'&lt;/button>';
 }
 h+='&lt;/div>';
-}else if(V.phase==='playing'){
+actionRendered=true;
+}
+});
+if(V.phase==='playing'&amp;&amp;!actionRendered){
 h+='&lt;div class="h-mut">'+(V.turn===V.me?
 '✨ Tu turno: toca una carta tuya (jugar/descartar) o una ajena (dar pista)':
 'Turno de '+esc(V.names[V.turn])+'...')+'&lt;/div>';
