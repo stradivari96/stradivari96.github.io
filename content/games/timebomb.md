@@ -101,6 +101,8 @@ function startGame(){
   for(var i=0;i<pool.t;i++)roles.push('terrorist');
   shuffle(roles);
   roles=roles.slice(0,np); // retira la(s) carta(s) sobrante(s) al azar
+  // Acorazado: con 50% de probabilidad sustituye un agente al azar
+  if(Math.random()<0.5){var ai=roles.indexOf('agent');if(ai>=0)roles[ai]='armored';}
   G.players.forEach(function(p,i){p.role=roles[i];});
 
   // Cables
@@ -149,8 +151,12 @@ function applyAction(p,a){
 
     // Comprobar victoria
     if(cable.type==='exp'){
-      G.phase='ended';G.result={winner:'terrorists',reason:'explosion'};
-      glog('💥 ¡La bomba explota! Los terroristas ganan.');
+      if(G.players[p].role==='armored'){
+        G.phase='ended';G.result={winner:'agents',reason:'armored'};
+        glog('🛡️ '+pname(p)+' es el Acorazado y cortó la bomba. ¡Los agentes ganan!');
+      }else{
+        G.phase='ended';G.result={winner:'terrorists',reason:'explosion'};
+        glog('💥 ¡La bomba explota! Los terroristas ganan.');}
       return broadcast();
     }
     var sc=G.cables.filter(function(c){return c.revealed&&c.type==='success';}).length;
@@ -328,10 +334,12 @@ function render(){
   }else{
     // Banner de identidad
     if(V.myRole){
-      var rc=V.myRole==='agent'?'tb-agent':'tb-terrorist';
-      var re=V.myRole==='agent'?'🕵️':'💣';
-      var rn=V.myRole==='agent'?'Agente':'Terrorista';
-      var hint=V.myRole==='agent'
+      var rc=V.myRole==='terrorist'?'tb-terrorist':'tb-agent';
+      var re=V.myRole==='armored'?'🛡️':V.myRole==='agent'?'🕵️':'💣';
+      var rn=V.myRole==='armored'?'Acorazado':V.myRole==='agent'?'Agente':'Terrorista';
+      var hint=V.myRole==='armored'
+        ?' — Si TÚ cortas la explosión 💥, ¡los agentes ganan!'
+        :V.myRole==='agent'
         ?' — Cortad todos los cables ⚡ antes de que acaben las rondas'
         :' — Haz que corten la explosión 💥 o sobrevive hasta el final';
       h+='<div class="tb-identity '+rc+'">'+re+' Eres <b>'+rn+'</b>'+hint+'</div>';
@@ -339,14 +347,15 @@ function render(){
     // Banner de fin
     if(V.phase==='ended'){
       var r=V.result;
-      var endMsg=r.winner==='agents'?'⚡ ¡Los agentes ganan! Todos los éxitos cortados.':
+      var endMsg=r.reason==='armored'?'🛡️ ¡El Acorazado cortó la bomba! Los agentes ganan.':
+                 r.winner==='agents'?'⚡ ¡Los agentes ganan! Todos los éxitos cortados.':
                  r.reason==='explosion'?'💥 ¡BOOM! Los terroristas ganan.':
                  '⏰ Se acaban las rondas. Los terroristas ganan.';
       h+='<div class="tb-banner">'+endMsg;
       if(V.roles){
         h+='<div style="margin-top:8px;font-size:13px">';
         V.names.forEach(function(n,i){
-          var badge=V.roles[i]==='agent'?'🕵️ Agente':'💣 Terrorista';
+          var badge=V.roles[i]==='armored'?'🛡️ Acorazado':V.roles[i]==='agent'?'🕵️ Agente':'💣 Terrorista';
           h+='<span style="margin-right:12px">'+esc(n)+': '+badge+'</span>';});
         h+='</div>';}
       if(V.me===0)h+=' <button data-act="start" style="margin-top:6px">🔄 Otra partida</button>';
@@ -407,12 +416,14 @@ if(m)el('tb-code').value=m[1].toUpperCase();
 
 Time Bomb es un juego de **deducción social**: los **agentes** intentan cortar todos los cables de éxito, los **terroristas** intentan sabotearlos.
 
-**Identidades:** Cada jugador recibe en secreto una carta de identidad (🕵️ Agente o 💣 Terrorista). El número de terroristas en mesa según jugadores:
+**Identidades:** Cada jugador recibe en secreto una carta de identidad (🕵️ Agente, 💣 Terrorista, o 🛡️ Acorazado). El número de terroristas en mesa según jugadores:
 - 4 jugadores → 1 o 2 terroristas
 - 5 jugadores → 2 terroristas
 - 6 jugadores → 2 terroristas
 - 7 jugadores → 2 o 3 terroristas
 - 8 jugadores → 3 terroristas
+
+**Acorazado:** Con un 50% de probabilidad, una carta de agente se sustituye por la carta de Acorazado antes de repartir. Nadie sabe si hay Acorazado en la partida salvo el propio Acorazado. El Acorazado es un agente con un superpoder: si **él** corta la explosión 💥, ¡los agentes ganan de inmediato en lugar de los terroristas!
 
 **Cables:** Cada jugador tiene varios cables boca abajo frente a él:
 - ✓ **A salvo** — no pasa nada
