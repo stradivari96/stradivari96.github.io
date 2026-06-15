@@ -193,7 +193,7 @@ function buildStateFor(me){
     deckCount:G.deck.length,
     discard:G.discard.map(function(c){return{id:c.id,name:c.name,cardId:c.cardId,suit:c.suit};}),
     hands:G.hands.map(function(h,i){return h.map(function(c){
-      if(i===me)return{id:c.id,name:c.name,cardId:c.cardId,suit:c.suit};
+      if(i===me||G.phase==='ended')return{id:c.id,name:c.name,cardId:c.cardId,suit:c.suit};
       return{id:c.id,hidden:true};
     });}),
     names:G.players.map(function(p){return p.name;}),
