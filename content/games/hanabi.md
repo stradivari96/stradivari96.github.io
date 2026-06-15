@@ -200,6 +200,7 @@ function applyAction(p,a){
     if(!hand[a.idx])return;
     card=hand.splice(a.idx,1)[0];
     G.discard.push(card);G.hints++;
+    if(G.piles[card.c]===card.n-1){G.failSeq++;G.failIdx=Math.floor(Math.random()*Math.max(1,FAIL_SOUNDS.length));}
     glog(pname(p)+' descarta '+cardTxt(card));
     checkLostForever(card);
     if(G.phase!=='playing'){return broadcast();}
