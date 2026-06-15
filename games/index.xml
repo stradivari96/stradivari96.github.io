@@ -1601,8 +1601,11 @@ if(rem===1&amp;&amp;disc>0)danger.push(CINFO[c].em+n);
 h+='&lt;div class="h-mut">⚠️ En peligro (última copia): '+(danger.join(' &amp;nbsp;')||'—')+
 (dead.length?' &amp;nbsp;&amp;nbsp; 💀 Perdidas: '+dead.join(' &amp;nbsp;'):'')+'&lt;/div>&lt;/div>';
 // manos
+var playerOrder=[];
+for(var oi=0;oi&lt;V.names.length;oi++)playerOrder.push((V.me+oi)%V.names.length);
 var actionRendered=false;
-V.names.forEach(function(n,i){
+playerOrder.forEach(function(i){
+var n=V.names[i];
 var turn=V.phase==='playing'&amp;&amp;V.turn===i;
 h+='&lt;div class="h-panel'+(turn?' h-turn':'')+'">&lt;div class="h-name">'+
 (turn?'▶ ':'')+esc(n)+(i===V.me?' (tú)':'')+(V.connected[i]?'':' 🔌❌')+'&lt;/div>&lt;div class="h-row">';
