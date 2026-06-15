@@ -1174,6 +1174,7 @@ box-shadow:0 4px 14px rgba(0,0,0,.4)}
 #hanabi-app button.h-noob-toggle{background:#2d3748;font-size:13px;padding:5px 10px}
 #hanabi-app button.h-noob-toggle.h-active{background:#4a3728;border:1px solid #f59e0b}
 #hanabi-app .h-hinthover{box-shadow:0 0 16px 6px rgba(251,191,36,.8);transition:box-shadow .15s}
+#hanabi-app .h-intent{position:absolute;top:-9px;right:-7px;font-size:13px;line-height:1;pointer-events:none}
 &lt;/style>
 &lt;div id="hanabi-app">
 &lt;div id="h-setup">
@@ -1225,12 +1226,12 @@ return d;
 function newGame(){
 G={phase:'lobby',players:[],hands:[],deck:[],piles:{},pileTops:{},discard:[],
 hints:8,fuses:3,turn:0,turnsLeft:null,justEmptied:false,log:[],result:null,
-failSeq:0,failIdx:0,successSeq:0,successIdx:0,hintSeq:0,hintCids:[]};
+failSeq:0,failIdx:0,successSeq:0,successIdx:0,hintSeq:0,hintCids:[],intentions:{}};
 }
 function startGame(){
 G.deck=mkDeck();G.discard=[];G.hints=8;G.fuses=3;G.turnsLeft=null;
 G.justEmptied=false;G.result=null;G.turn=0;G.log=['🎆 Empieza la partida'];
-G.pileTops={};G.failSeq=0;G.failIdx=0;G.successSeq=0;G.successIdx=0;G.hintSeq=0;G.hintCids=[];
+G.pileTops={};G.failSeq=0;G.failIdx=0;G.successSeq=0;G.successIdx=0;G.hintSeq=0;G.hintCids=[];G.intentions={};
 COLORS.forEach(function(c){G.piles[c]=0;});
 var hs=G.players.length&lt;=3?5:4;
 G.hands=G.players.map(function(){return [];});
@@ -1279,11 +1280,18 @@ G.turn=(G.turn+1)%G.players.length;
 }
 function applyAction(p,a){
 if(!G||G.phase!=='playing')return;
+if(a.kind==='intent'){
+if(!G.intentions[p])G.intentions[p]={};
+if(a.value===null||a.value===undefined)delete G.intentions[p][a.cid];
+else G.intentions[p][a.cid]=a.value;
+broadcast();return;
+}
 if(G.turn!==p)return sendErr(p,'No es tu turno');
 var hand=G.hands[p],card;
 if(a.kind==='play'){
 if(!hand[a.idx])return;
 card=hand.splice(a.idx,1)[0];
+if(G.intentions[p])delete G.intentions[p][card.id];
 if(G.piles[card.c]===card.n-1){
 G.piles[card.c]=card.n;G.pileTops[card.c]=card.id;
 if(card.n===5){if(G.hints&lt;8)G.hints++;G.successSeq++;G.successIdx=Math.floor(Math.random()*Math.max(1,SUCCESS_SOUNDS.length));}
@@ -1301,6 +1309,7 @@ draw(p);
 if(G.hints>=8)return sendErr(p,'Ya tenéis las 8 fichas de pista');
 if(!hand[a.idx])return;
 card=hand.splice(a.idx,1)[0];
+if(G.intentions[p])delete G.intentions[p][card.id];
 G.discard.push(card);G.hints++;
 if(G.piles[card.c]===card.n-1){G.failSeq++;G.failIdx=Math.floor(Math.random()*Math.max(1,FAIL_SOUNDS.length));}
 glog(pname(p)+' descarta '+cardTxt(card));
@@ -1343,7 +1352,8 @@ names:G.players.map(function(p){return p.name;}),
 connected:G.players.map(function(p){return p.connected;}),
 hands:G.hands.map(function(h,j){return h.map(function(c){
 if(j===i)return {id:c.id,c:c.kc?c.c:null,n:c.kn?c.n:null,kc:c.kc,kn:c.kn,notC:c.notC,notN:c.notN};
-return {id:c.id,c:c.c,n:c.n,kc:c.kc,kn:c.kn};});})
+return {id:c.id,c:c.c,n:c.n,kc:c.kc,kn:c.kn};}); }),
+intentions:JSON.parse(JSON.stringify(G.intentions))
 };
 }
 function broadcast(){
@@ -1434,6 +1444,13 @@ if(isHost)applyAction(0,a);
 else hostConn.send({t:'action',a:a});
 sel=null;render();
 }
+function sendIntent(idx,value){
+var cid=V.hands[V.me][idx].id;
+var a={kind:'intent',cid:cid,value:value};
+if(isHost)applyAction(0,a);
+else hostConn.send({t:'action',a:a});
+sel=null;render();
+}
 function setupMsg(m){el('h-setupmsg').textContent=m;}
 // ---------- render ----------
 function cardHtml(card,pl,idx,clickable){
@@ -1451,8 +1468,10 @@ var dots=posC.map(function(c){return '&lt;div class="h-noob-dot" style="backgrou
 extra='&lt;div class="h-noob">&lt;div class="h-noob-colors">'+dots+'&lt;/div>'+
 '&lt;div class="h-noob-nums">'+posN.join('')+'&lt;/div>&lt;/div>';
 }
+var intent=V.intentions&amp;&amp;V.intentions[pl]&amp;&amp;V.intentions[pl][card.id];
+var intentBadge=intent==='play'?'&lt;span class="h-intent">🎇&lt;/span>':intent==='discard'?'&lt;span class="h-intent">🗑️&lt;/span>':'';
 return '&lt;div class="h-cardwrap" data-cid="'+card.id+'">&lt;div class="'+cls+'" data-pl="'+pl+'" data-idx="'+idx+
-'" style="background:'+bg+'">'+label+'&lt;/div>'+
+'" style="background:'+bg+'">'+label+intentBadge+'&lt;/div>'+
 (!isOwn?'&lt;div class="h-mini" title="Lo que sabe">'+mini+'&lt;/div>':extra)+'&lt;/div>';
 }
 var FAIL_SOUNDS=[
@@ -1609,8 +1628,18 @@ var n=V.names[i];
 var turn=V.phase==='playing'&amp;&amp;V.turn===i;
 h+='&lt;div class="h-panel'+(turn?' h-turn':'')+'">&lt;div class="h-name">'+
 (turn?'▶ ':'')+esc(n)+(i===V.me?' (tú)':'')+(V.connected[i]?'':' 🔌❌')+'&lt;/div>&lt;div class="h-row">';
-V.hands[i].forEach(function(c,j){h+=cardHtml(c,i,j,V.phase==='playing'&amp;&amp;V.turn===V.me);});
+V.hands[i].forEach(function(c,j){h+=cardHtml(c,i,j,V.phase==='playing'&amp;&amp;(V.turn===V.me||i===V.me));});
 h+='&lt;/div>&lt;/div>';
+// intención: aparece debajo de tus propias cartas cuando no es tu turno
+if(V.phase==='playing'&amp;&amp;V.turn!==V.me&amp;&amp;sel&amp;&amp;sel.pl===V.me&amp;&amp;i===V.me){
+var intentCard=V.hands[V.me][sel.idx];
+var curIntent=intentCard&amp;&amp;V.intentions&amp;&amp;V.intentions[V.me]&amp;&amp;V.intentions[V.me][intentCard.id];
+h+='&lt;div class="h-panel">&lt;b>Carta '+(sel.idx+1)+' tuya — marcar intención:&lt;/b> '+
+'&lt;button data-act="intent-play"'+(curIntent==='play'?' style="outline:2px solid #fbbf24;outline-offset:1px"':'')+'>🎇 Jugar&lt;/button>'+
+'&lt;button data-act="intent-discard"'+(curIntent==='discard'?' style="outline:2px solid #fbbf24;outline-offset:1px"':'')+'>🗑️ Descartar&lt;/button>'+
+'&lt;/div>';
+actionRendered=true;
+}
 // barra de acciones: aparece justo debajo del jugador seleccionado
 if(V.phase==='playing'&amp;&amp;V.turn===V.me&amp;&amp;sel&amp;&amp;sel.pl===i){
 h+='&lt;div class="h-panel">&lt;b>Carta '+(sel.idx+1)+' de '+esc(V.names[sel.pl])+':&lt;/b> ';
@@ -1658,13 +1687,17 @@ else if(act==='play')sendAction({kind:'play',idx:sel.idx});
 else if(act==='discard')sendAction({kind:'discard',idx:sel.idx});
 else if(act==='hintc')sendAction({kind:'hint',target:sel.pl,htype:'color',value:V.hands[sel.pl][sel.idx].c});
 else if(act==='hintn')sendAction({kind:'hint',target:sel.pl,htype:'number',value:V.hands[sel.pl][sel.idx].n});
+else if(act==='intent-play'){var ci=V.hands[V.me][sel.idx].id;sendIntent(sel.idx,V.intentions&amp;&amp;V.intentions[V.me]&amp;&amp;V.intentions[V.me][ci]==='play'?null:'play');}
+else if(act==='intent-discard'){var ci=V.hands[V.me][sel.idx].id;sendIntent(sel.idx,V.intentions&amp;&amp;V.intentions[V.me]&amp;&amp;V.intentions[V.me][ci]==='discard'?null:'discard');}
 return;
 }
 var c=e.target.closest('[data-pl]');
-if(c&amp;&amp;V&amp;&amp;V.phase==='playing'&amp;&amp;V.turn===V.me){
+if(c&amp;&amp;V&amp;&amp;V.phase==='playing'){
 var pl=+c.getAttribute('data-pl'),idx=+c.getAttribute('data-idx');
+if(V.turn===V.me||pl===V.me){
 sel=(sel&amp;&amp;sel.pl===pl&amp;&amp;sel.idx===idx)?null:{pl:pl,idx:idx};
 render();
+}
 }
 });
 // hover preview de pista
