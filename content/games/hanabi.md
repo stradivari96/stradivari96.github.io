@@ -502,8 +502,11 @@ function render(){
     h+='<div class="h-mut">⚠️ En peligro (última copia): '+(danger.join(' &nbsp;')||'—')+
        (dead.length?' &nbsp;&nbsp; 💀 Perdidas: '+dead.join(' &nbsp;'):'')+'</div></div>';
     // manos
+    var playerOrder=[];
+    for(var oi=0;oi<V.names.length;oi++)playerOrder.push((V.me+oi)%V.names.length);
     var actionRendered=false;
-    V.names.forEach(function(n,i){
+    playerOrder.forEach(function(i){
+      var n=V.names[i];
       var turn=V.phase==='playing'&&V.turn===i;
       h+='<div class="h-panel'+(turn?' h-turn':'')+'"><div class="h-name">'+
          (turn?'▶ ':'')+esc(n)+(i===V.me?' (tú)':'')+(V.connected[i]?'':' 🔌❌')+'</div><div class="h-row">';
