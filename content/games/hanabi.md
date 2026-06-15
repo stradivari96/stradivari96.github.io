@@ -367,6 +367,16 @@ var FAIL_SOUNDS=[
   'https://www.myinstants.com/media/sounds/dio-wryyy.mp3',
   'https://www.myinstants.com/media/sounds/shizaaaaaa.mp3',
   'https://www.myinstants.com/media/sounds/jotaro-no.mp3',
+  'https://www.myinstants.com/media/sounds/preview_4.mp3',
+  'https://www.myinstants.com/media/sounds/sound-fail-fallo.mp3',
+  'https://www.myinstants.com/media/sounds/mission-failed-well-get-em-next-time.mp3',
+  'https://www.myinstants.com/media/sounds/defeat_90KWHvE.mp3',
+  'https://www.myinstants.com/media/sounds/ping_missing.mp3',
+  'https://www.myinstants.com/media/sounds/among-us-role-reveal-sound.mp3',
+  'https://www.myinstants.com/media/sounds/y-se-marcho_VhXz4Hd.mp3',
+  'https://www.myinstants.com/media/sounds/penalti-a-favor-del-real-madrid-jajaja.mp3',
+  'https://www.myinstants.com/media/sounds/no-no-no-la-policia.mp3',
+
 ];
 var SUCCESS_SOUNDS=[
   'https://www.myinstants.com/media/sounds/answer-correct.mp3',
@@ -380,6 +390,12 @@ var SUCCESS_SOUNDS=[
   'https://www.myinstants.com/media/sounds/mercadona.mp3',
   'https://www.myinstants.com/media/sounds/yippeeeeeeeeeeeeee.mp3',
   'https://www.myinstants.com/media/sounds/tuturu_1.mp3',
+  'https://www.myinstants.com/media/sounds/e33-monoco-owowow.mp3',
+  'https://www.myinstants.com/media/sounds/rajoy-japones.mp3',
+  'https://www.myinstants.com/media/sounds/mission-success.mp3',
+  'https://www.myinstants.com/media/sounds/129-received-an-item.mp3',
+  'https://www.myinstants.com/media/sounds/reeeee-2.mp3',
+  'https://www.myinstants.com/media/sounds/es-la-hora-de-la-paja-video-original-audiotrimmer.mp3',
 ];
 function playAt(arr,idx){
   if(!arr.length)return;
