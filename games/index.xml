@@ -825,6 +825,8 @@ for(var i=0;i&lt;pool.a;i++)roles.push('agent');
 for(var i=0;i&lt;pool.t;i++)roles.push('terrorist');
 shuffle(roles);
 roles=roles.slice(0,np); // retira la(s) carta(s) sobrante(s) al azar
+// Acorazado: con 50% de probabilidad sustituye un agente al azar
+if(Math.random()&lt;0.5){var ai=roles.indexOf('agent');if(ai>=0)roles[ai]='armored';}
 G.players.forEach(function(p,i){p.role=roles[i];});
 // Cables
 var cc=CABLE_COUNTS[np];
@@ -866,8 +868,12 @@ var label=cable.type==='safe'?'✂️ A salvo':cable.type==='success'?'⚡ ¡Éx
 glog(pname(p)+' → '+pname(tgt)+': '+label);
 // Comprobar victoria
 if(cable.type==='exp'){
+if(G.players[p].role==='armored'){
+G.phase='ended';G.result={winner:'agents',reason:'armored'};
+glog('🛡️ '+pname(p)+' es el Acorazado y cortó la bomba. ¡Los agentes ganan!');
+}else{
 G.phase='ended';G.result={winner:'terrorists',reason:'explosion'};
-glog('💥 ¡La bomba explota! Los terroristas ganan.');
+glog('💥 ¡La bomba explota! Los terroristas ganan.');}
 return broadcast();
 }
 var sc=G.cables.filter(function(c){return c.revealed&amp;&amp;c.type==='success';}).length;
@@ -1034,10 +1040,12 @@ else h+='&lt;div class="tb-mut">Esperando a que '+esc(V.names[0])+' empiece...&l
 }else{
 // Banner de identidad
 if(V.myRole){
-var rc=V.myRole==='agent'?'tb-agent':'tb-terrorist';
-var re=V.myRole==='agent'?'🕵️':'💣';
-var rn=V.myRole==='agent'?'Agente':'Terrorista';
-var hint=V.myRole==='agent'
+var rc=V.myRole==='terrorist'?'tb-terrorist':'tb-agent';
+var re=V.myRole==='armored'?'🛡️':V.myRole==='agent'?'🕵️':'💣';
+var rn=V.myRole==='armored'?'Acorazado':V.myRole==='agent'?'Agente':'Terrorista';
+var hint=V.myRole==='armored'
+?' — Si TÚ cortas la explosión 💥, ¡los agentes ganan!'
+:V.myRole==='agent'
 ?' — Cortad todos los cables ⚡ antes de que acaben las rondas'
 :' — Haz que corten la explosión 💥 o sobrevive hasta el final';
 h+='&lt;div class="tb-identity '+rc+'">'+re+' Eres &lt;b>'+rn+'&lt;/b>'+hint+'&lt;/div>';
@@ -1045,14 +1053,15 @@ h+='&lt;div class="tb-identity '+rc+'">'+re+' Eres &lt;b>'+rn+'&lt;/b>'+hint+'&l
 // Banner de fin
 if(V.phase==='ended'){
 var r=V.result;
-var endMsg=r.winner==='agents'?'⚡ ¡Los agentes ganan! Todos los éxitos cortados.':
+var endMsg=r.reason==='armored'?'🛡️ ¡El Acorazado cortó la bomba! Los agentes ganan.':
+r.winner==='agents'?'⚡ ¡Los agentes ganan! Todos los éxitos cortados.':
 r.reason==='explosion'?'💥 ¡BOOM! Los terroristas ganan.':
 '⏰ Se acaban las rondas. Los terroristas ganan.';
 h+='&lt;div class="tb-banner">'+endMsg;
 if(V.roles){
 h+='&lt;div style="margin-top:8px;font-size:13px">';
 V.names.forEach(function(n,i){
-var badge=V.roles[i]==='agent'?'🕵️ Agente':'💣 Terrorista';
+var badge=V.roles[i]==='armored'?'🛡️ Acorazado':V.roles[i]==='agent'?'🕵️ Agente':'💣 Terrorista';
 h+='&lt;span style="margin-right:12px">'+esc(n)+': '+badge+'&lt;/span>';});
 h+='&lt;/div>';}
 if(V.me===0)h+=' &lt;button data-act="start" style="margin-top:6px">🔄 Otra partida&lt;/button>';
