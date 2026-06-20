@@ -1,4 +1,417 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Games on Just another developer</title><link>https://xiang.es/games/</link><description>Recent content in Games on Just another developer</description><generator>Hugo -- 0.143.0</generator><language>en-us</language><lastBuildDate>Sat, 13 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://xiang.es/games/index.xml" rel="self" type="application/rss+xml"/><item><title>🏰 Fantasy Realms</title><link>https://xiang.es/games/fantasy-realms/</link><pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate><guid>https://xiang.es/games/fantasy-realms/</guid><description>&lt;p>Juego de cartas para 3–6 jugadores. Uno crea la sala y comparte el enlace. La partida vive en el navegador del anfitrión.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Games on Just another developer</title><link>https://xiang.es/games/</link><description>Recent content in Games on Just another developer</description><generator>Hugo -- 0.143.0</generator><language>en-us</language><lastBuildDate>Fri, 19 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://xiang.es/games/index.xml" rel="self" type="application/rss+xml"/><item><title>⏱ Take Time</title><link>https://xiang.es/games/take-time/</link><pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate><guid>https://xiang.es/games/take-time/</guid><description>&lt;p>Juego cooperativo para 3–4 jugadores. Un anfitrión crea la sala y comparte el enlace.&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://cdn.svc.asmodee.net/production-libellud/uploads/2025/09/TT_RULES_PRINT_MASTER_EN.pdf">Reglamento&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;style>
+#tt-app{--bg:#0d1117;--panel:#161b27;--text:#e2e6f0;--mut:#6b7590;--border:#252d42;
+--blue:#3b82f6;--gold:#fbbf24;--solar:#f59e0b;--lunar:#818cf8;
+background:var(--bg);color:var(--text);border-radius:12px;padding:16px;
+font-family:system-ui,sans-serif;font-size:15px;line-height:1.4;min-height:200px}
+#tt-app h3{margin:10px 0 6px}
+#tt-app input{background:#0a0d14;color:var(--text);border:1px solid var(--border);
+border-radius:8px;padding:8px 10px;font-size:15px;max-width:160px}
+#tt-app button{background:var(--blue);color:#fff;border:0;border-radius:8px;
+padding:7px 13px;font-size:14px;cursor:pointer;margin:2px}
+#tt-app button.tt-btn-sm{padding:5px 10px;font-size:13px}
+#tt-app button:disabled{background:var(--border);color:var(--mut);cursor:not-allowed}
+#tt-app button.tt-btn-warn{background:#dc2626}
+#tt-app button.tt-btn-ok{background:#16a34a}
+.tt-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}
+.tt-panel{background:var(--panel);border-radius:10px;padding:10px 12px;margin:6px 0}
+.tt-code{font-size:22px;font-weight:800;letter-spacing:4px;color:var(--gold)}
+.tt-mut{color:var(--mut);font-size:13px;margin:3px 0}
+.tt-name{font-weight:600;font-size:14px;margin-bottom:5px}
+/* Cards */
+.tt-card{width:72px;height:101px;border-radius:7px;border:2px solid rgba(0,0,0,.5);
+flex:none;position:relative;user-select:none;background-color:#1e2535;cursor:default}
+.tt-card-sm{width:54px;height:76px;border-radius:6px;border:2px solid rgba(0,0,0,.5);
+flex:none;position:relative;user-select:none;background-color:#1e2535}
+.tt-card-xs{width:40px;height:56px;border-radius:5px;border:1px solid rgba(0,0,0,.4);
+flex:none;position:relative;user-select:none;background-color:#1e2535}
+.tt-back-img{background-size:cover!important;background-position:center!important}
+.tt-empty{display:flex;align-items:center;justify-content:center;
+border:2px dashed var(--border)!important;background:transparent!important;color:var(--mut)}
+.tt-suit-badge{position:absolute;top:2px;left:3px;font-size:13px;line-height:1}
+.tt-val-badge{position:absolute;bottom:2px;right:4px;font-size:11px;font-weight:800;
+color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.9)}
+.tt-hour{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+font-size:13px;color:var(--mut);font-weight:700}
+/* Clock */
+.tt-clock-wrap{position:relative;width:min(360px,90vw);aspect-ratio:1;margin:8px auto}
+.tt-clock-bg{position:absolute;inset:0;border-radius:50%;border:2px solid var(--border);
+background:radial-gradient(circle,#1a2035 60%,#0d1117 100%)}
+.tt-clock-slot{position:absolute;transform:translate(-50%,-50%)}
+/* Slot highlight */
+.tt-slot-target{cursor:pointer;outline:3px solid var(--gold);outline-offset:2px;border-radius:7px}
+.tt-slot-target:hover{outline-color:#fff}
+/* Hand */
+.tt-hand{display:flex;flex-wrap:wrap;gap:7px;padding:4px 0}
+.tt-selected{outline:3px solid var(--gold)!important;outline-offset:2px;border-radius:7px;cursor:pointer}
+.tt-clickable{cursor:pointer}
+.tt-card.tt-selectable{cursor:pointer}
+.tt-card.tt-selectable:hover{outline:2px solid var(--blue);outline-offset:2px;border-radius:7px}
+/* Phases */
+.tt-phase-disc{background:#1a2a1a;border:1px solid #16a34a;border-radius:10px;padding:10px 14px;margin:6px 0}
+.tt-phase-place{background:#1a1a2e;border:1px solid var(--blue);border-radius:10px;padding:10px 14px;margin:6px 0}
+.tt-banner-win{background:#14391c;border:2px solid #22c55e;border-radius:10px;padding:12px 16px;margin:6px 0;font-weight:700;font-size:16px}
+.tt-banner-lose{background:#3b1212;border:2px solid #ef4444;border-radius:10px;padding:12px 16px;margin:6px 0;font-weight:700;font-size:16px}
+/* Log */
+.tt-log{max-height:120px;overflow-y:auto;font-size:13px;color:var(--mut)}
+.tt-log div{padding:1px 0}
+/* Toast */
+.tt-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+background:#dc2626;color:#fff;padding:10px 18px;border-radius:10px;z-index:99;
+box-shadow:0 4px 14px rgba(0,0,0,.4)}
+/* Aside */
+.tt-aside{display:flex;flex-wrap:wrap;gap:5px}
+/* Solar/Lunar labels */
+.tt-solar{color:var(--solar)}
+.tt-lunar{color:var(--lunar)}
+/* turn highlight (hanabi style) */
+.tt-active{box-shadow:0 0 0 2px #fbbf24 inset;border-radius:10px}
+/* resolution highlight */
+.tt-ok{outline:3px solid #22c55e!important;outline-offset:2px;border-radius:7px}
+.tt-fail{outline:3px solid #ef4444!important;outline-offset:2px;border-radius:7px}
+&lt;/style>
+&lt;div id="tt-app">
+&lt;div id="tt-setup">
+&lt;div class="tt-row">&lt;label>Tu nombre: &lt;input id="tt-name" maxlength="14" placeholder="Xiang">&lt;/label>&lt;/div>
+&lt;div class="tt-row">&lt;button id="tt-create">⏱ Crear sala&lt;/button>&lt;/div>
+&lt;div class="tt-row">
+&lt;input id="tt-code" maxlength="4" placeholder="CÓDIGO" style="text-transform:uppercase;width:100px">
+&lt;button id="tt-join">Unirse&lt;/button>
+&lt;/div>
+&lt;div id="tt-setupmsg" class="tt-mut">&lt;/div>
+&lt;/div>
+&lt;div id="tt-game" style="display:none">&lt;/div>
+&lt;/div>
+&lt;script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js">&lt;/script>
+&lt;script>
+(function(){
+'use strict';
+var SPRITE='https://steamusercontent-a.akamaihd.net/ugc/12794565721592296659/D2D66AE2BD54BBD369AB95725B49A87E9E19D455/';
+var BACK='https://steamusercontent-a.akamaihd.net/ugc/10900776384674959786/3BEEBA5CE8F56A8B2D7041793909E528AF64565A/';
+var PREFIX='take-time-xiang-';
+var MAXP=4,MINP=3,CLOCK_SIZE=12;
+// 6×4 sprite sheet (24 cards). Assumed: Lunar (negra) rows 0-1 (cardId 0-11), Solar (blanca) rows 2-3 (cardId 12-23)
+var CARDS_DEF=[];
+for(var _i=0;_i&lt;12;_i++)CARDS_DEF.push({name:'Lunar '+(_i+1),value:_i+1,suit:'lunar',cardId:_i});
+for(var _i=0;_i&lt;12;_i++)CARDS_DEF.push({name:'Solar '+(_i+1),value:_i+1,suit:'solar',cardId:_i+12});
+var peer=null,isHost=false,hostConn=null,roomCode='';
+var G=null,V=null,myName='';
+var selectedCardId=null,pendingSlot=null;
+function el(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/[&amp;&lt;>"']/g,function(c){return{'&amp;':'&amp;amp;','&lt;':'&amp;lt;','>':'&amp;gt;','"':'&amp;quot;',"'":'&amp;#39;'}[c];});}
+function toast(msg){var t=document.createElement('div');t.className='tt-toast';t.textContent=msg;el('tt-app').appendChild(t);setTimeout(function(){t.remove();},3000);}
+function setupMsg(m){el('tt-setupmsg').textContent=m;}
+// ---- sprite ----
+function spriteStyle(cardId){
+var col=cardId%6,row=Math.floor(cardId/6);
+return 'background-image:url('+SPRITE+');background-size:600% 400%;background-position:'+(col/5*100).toFixed(1)+'% '+(row/3*100).toFixed(1)+'%';
+}
+function backStyle(cardId){
+var col=cardId%6,row=Math.floor(cardId/6);
+return 'background-image:url('+BACK+');background-size:600% 400%;background-position:'+(col/5*100).toFixed(1)+'% '+(row/3*100).toFixed(1)+'%';
+}
+// ---- deck ----
+function mkDeck(){
+var d=CARDS_DEF.map(function(def,i){return{id:i,name:def.name,value:def.value,suit:def.suit,cardId:def.cardId};});
+for(var i=d.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=d[i];d[i]=d[j];d[j]=t;}
+return d;
+}
+// ---- game logic (host) ----
+function newGame(){G={phase:'lobby',players:[],hands:[],aside:[],clock:[],turn:0,log:[],result:null};}
+function startGame(){
+var full=mkDeck();
+var toDeal=full.slice(0,CLOCK_SIZE);
+G.aside=full.slice(CLOCK_SIZE);
+G.clock=[];for(var i=0;i&lt;CLOCK_SIZE;i++)G.clock.push(null);
+G.hands=G.players.map(function(){return[];});
+toDeal.forEach(function(card,k){G.hands[k%G.players.length].push(card);});
+G.placeTurn=0;
+G.phase='discussion';
+G.result=null;
+G.log=['⏱ ¡Partida iniciada! Fase de discusión — planificad sin mirar vuestras cartas.'];
+broadcast();
+}
+function pname(i){return G.players[i].name;}
+function glog(m){G.log.push(m);if(G.log.length>80)G.log.shift();}
+function checkWin(){
+var vals=G.clock.map(function(s){return s?s.value:0;});
+for(var i=1;i&lt;CLOCK_SIZE;i++){if(vals[i]&lt;vals[i-1])return false;}
+return true;
+}
+function buildStateFor(me){
+return{
+me:me,phase:G.phase,placeTurn:G.placeTurn,
+aside:G.aside.map(function(c){return{id:c.id,name:c.name,cardId:c.cardId,suit:c.suit,value:c.value};}),
+clock:G.clock.map(function(slot){
+if(!slot)return null;
+if(G.phase==='resolution'||slot.faceUp)return{id:slot.id,value:slot.value,suit:slot.suit,cardId:slot.cardId,owner:slot.owner,faceUp:slot.faceUp};
+return{id:slot.id,cardId:slot.cardId,owner:slot.owner}; // face-down: back for everyone, no value
+}),
+hands:G.hands.map(function(h,i){
+if(i===me)return h.map(function(c){return{id:c.id,name:c.name,cardId:c.cardId,suit:c.suit,value:c.value};});
+return h.map(function(c){return{id:c.id,cardId:c.cardId,hidden:true};});
+}),
+names:G.players.map(function(p){return p.name;}),
+connected:G.players.map(function(p){return p.connected;}),
+log:G.log.slice(-30),result:G.result
+};
+}
+function broadcast(){
+G.players.forEach(function(p,i){if(i===0)return;if(p.conn&amp;&amp;p.connected)p.conn.send({t:'state',s:buildStateFor(i)});});
+V=buildStateFor(0);selectedCardId=null;pendingSlot=null;render();
+}
+function sendErr(p,msg){if(p===0)toast(msg);else if(G.players[p].conn)G.players[p].conn.send({t:'error',msg:msg});}
+function applyAction(p,a){
+if(!G)return;
+if(a.kind==='setFirst'){
+if(!isHost||G.phase!=='discussion')return;
+var fp=+a.p;if(fp&lt;0||fp>=G.players.length)return;
+G.placeTurn=fp;
+glog('👉 '+pname(fp)+' irá primero');
+broadcast();return;
+}
+if(a.kind==='startPlacement'){
+if(!isHost||G.phase!=='discussion')return;
+G.phase='placement';
+glog('🤫 ¡Silencio! Fase de colocación. Turno: '+pname(G.placeTurn));
+broadcast();return;
+}
+if(a.kind==='place'){
+if(G.phase!=='placement')return;
+if(G.placeTurn!==p)return sendErr(p,'No es tu turno de colocar');
+var si=a.slot;
+if(si&lt;0||si>=CLOCK_SIZE||G.clock[si]!==null)return sendErr(p,'Posición no válida');
+var hIdx=G.hands[p].findIndex(function(c){return c.id===a.cid;});
+if(hIdx===-1)return sendErr(p,'Carta no encontrada');
+var card=G.hands[p].splice(hIdx,1)[0];
+var fu=!!a.faceUp;
+if(fu){
+var fuCount=G.clock.filter(function(s){return s&amp;&amp;s.faceUp;}).length;
+if(fuCount>=G.players.length)return sendErr(p,'Máximo '+G.players.length+' cartas boca arriba');
+}
+G.clock[si]={id:card.id,value:card.value,suit:card.suit,cardId:card.cardId,owner:p,faceUp:fu};
+glog('🎴 '+pname(p)+' coloca en posición '+(si+1)+' ('+(fu?'boca arriba':'boca abajo')+')');
+var allEmpty=G.hands.every(function(h){return h.length===0;});
+if(allEmpty){
+G.phase='resolution';
+G.result={win:checkWin()};
+glog(G.result.win?'✅ ¡Victoria! El orden del reloj es correcto.':'❌ Derrota. El orden no es ascendente.');
+}else{
+var next=(p+1)%G.players.length;
+while(G.hands[next].length===0)next=(next+1)%G.players.length;
+G.placeTurn=next;
+glog('👉 Turno de '+pname(next));
+}
+broadcast();return;
+}
+if(a.kind==='restart'){if(!isHost)return;startGame();return;}
+}
+// ---- network ----
+function setupHostConn(c){
+c.on('data',function(msg){
+if(!msg||typeof msg!=='object')return;
+if(msg.t==='join'){
+var name=String(msg.name||'???').slice(0,14);
+if(G.phase!=='lobby'){
+var old=G.players.findIndex(function(p){return!p.connected&amp;&amp;p.name===name;});
+if(old>=0){G.players[old].conn=c;G.players[old].connected=true;c._hIdx=old;glog('🔌 '+name+' ha vuelto');broadcast();}
+else c.send({t:'error',msg:'Partida en curso'});return;
+}
+if(G.players.length>=MAXP)return c.send({t:'error',msg:'Sala llena (máx '+MAXP+')'});
+while(G.players.some(function(p){return p.name===name;}))name+='2';
+G.players.push({name:name,conn:c,connected:true});
+c._hIdx=G.players.length-1;broadcast();
+}else if(msg.t==='action'&amp;&amp;typeof c._hIdx==='number'){applyAction(c._hIdx,msg.a);}
+});
+c.on('close',function(){
+if(typeof c._hIdx!=='number')return;
+if(G.phase==='lobby'){G.players.splice(c._hIdx,1);G.players.forEach(function(p,i){if(p.conn)p.conn._hIdx=i;});}
+else{G.players[c._hIdx].connected=false;glog('🔌 '+pname(c._hIdx)+' se ha desconectado');}
+broadcast();
+});
+}
+function createRoom(){
+myName=el('tt-name').value.trim();
+if(!myName)return setupMsg('Pon tu nombre primero');
+var alpha='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+roomCode='';for(var i=0;i&lt;4;i++)roomCode+=alpha[Math.floor(Math.random()*alpha.length)];
+setupMsg('Creando sala...');
+peer=new Peer(PREFIX+roomCode);
+peer.on('open',function(){isHost=true;newGame();G.players.push({name:myName,conn:null,connected:true});el('tt-setup').style.display='none';el('tt-game').style.display='block';broadcast();});
+peer.on('connection',setupHostConn);
+peer.on('error',function(e){setupMsg(e.type==='unavailable-id'?'Código ocupado, prueba otra vez':'Error: '+e.type);});
+}
+function joinRoom(){
+myName=el('tt-name').value.trim();roomCode=el('tt-code').value.trim().toUpperCase();
+if(!myName)return setupMsg('Pon tu nombre primero');
+if(roomCode.length!==4)return setupMsg('El código tiene 4 letras');
+setupMsg('Conectando...');peer=new Peer();
+peer.on('open',function(){
+hostConn=peer.connect(PREFIX+roomCode,{reliable:true});
+hostConn.on('open',function(){hostConn.send({t:'join',name:myName});});
+hostConn.on('data',function(msg){
+if(!msg)return;
+if(msg.t==='state'){V=msg.s;selectedCardId=null;pendingSlot=null;el('tt-setup').style.display='none';el('tt-game').style.display='block';render();}
+else if(msg.t==='error'){V?toast(msg.msg):setupMsg(msg.msg);}
+});
+hostConn.on('close',function(){toast('Conexión perdida con el anfitrión 😢');});
+});
+peer.on('error',function(e){setupMsg(e.type==='peer-unavailable'?'No existe la sala '+roomCode:'Error: '+e.type);});
+}
+function sendAction(a){if(isHost)applyAction(0,a);else hostConn.send({t:'action',a:a});}
+// ---- render ----
+function suitLabel(suit){return suit==='solar'?'&lt;span class="tt-solar">☀️ Solar&lt;/span>':'&lt;span class="tt-lunar">🌙 Lunar&lt;/span>';}
+function clockSlotHtml(slot,si,canPlace){
+var angle=(si*30-90)*Math.PI/180;
+var x=(50+40*Math.cos(angle)).toFixed(2);
+var y=(50+40*Math.sin(angle)).toFixed(2);
+var pos='left:'+x+'%;top:'+y+'%';
+if(!slot){
+var cls='tt-clock-slot tt-card-sm tt-empty'+(canPlace?' tt-slot-target':'');
+return '&lt;div class="'+cls+'" style="'+pos+'" data-slot="'+si+'" data-act="'+(canPlace?'placeCard':'')+'">'
++'&lt;span class="tt-hour">'+(si+1)+'&lt;/span>&lt;/div>';
+}
+// Occupied: show front if value is known (own card, face-up, or resolution)
+var hasFront=slot.value!==undefined;
+var isOk=V.result&amp;&amp;V.result.win; // checked in resolution
+var isFail=V.result&amp;&amp;!V.result.win;
+var failSlot=isFail&amp;&amp;si>0&amp;&amp;V.clock[si-1]&amp;&amp;slot.value&lt;V.clock[si-1].value;
+var cls='tt-clock-slot tt-card-sm'+(failSlot?' tt-fail':'');
+var style=pos+';'+(hasFront?spriteStyle(slot.cardId):backStyle(slot.cardId));
+return '&lt;div class="'+cls+'" style="'+style+'" title="'+(hasFront?esc(slot.suit)+' '+slot.value:esc(slot.suit))+'">&lt;/div>';
+}
+function render(){
+if(!V)return;
+var h='';
+h+='&lt;div class="tt-row">Sala: &lt;span class="tt-code">'+roomCode+'&lt;/span> &lt;button data-act="copy" class="tt-btn-sm">📋 Copiar enlace&lt;/button>&lt;/div>';
+if(V.phase==='lobby'){
+h+='&lt;div class="tt-panel">&lt;h3>Jugadores ('+V.names.length+'/'+MAXP+')&lt;/h3>';
+V.names.forEach(function(n,i){h+='&lt;div>'+esc(n)+(i===0?' 👑':'')+(i===V.me?' (tú)':'')+(V.connected[i]?'':' 🔌❌')+'&lt;/div>';});
+h+='&lt;/div>';
+if(V.me===0){
+h+='&lt;button data-act="start"'+(V.names.length&lt;MINP?' disabled':'')+'>🚀 Empezar ('+(V.names.length&lt;MINP?'mínimo '+MINP:V.names.length+' jugadores')+')&lt;/button>';
+}else{h+='&lt;div class="tt-mut">Esperando a que '+esc(V.names[0])+' empiece...&lt;/div>';}
+}else{
+// Result banner
+if(V.result){
+if(V.result.win){h+='&lt;div class="tt-banner-win">✅ ¡Victoria! Las cartas están en orden ascendente.'+(V.me===0?' &lt;button data-act="restart">🔄 Repetir&lt;/button>':'')+'&lt;/div>';}
+else{h+='&lt;div class="tt-banner-lose">❌ Derrota. El orden del reloj no es ascendente.'+(V.me===0?' &lt;button data-act="restart">🔄 Repetir&lt;/button>':'')+'&lt;/div>';}
+}
+// Phase banner
+if(V.phase==='discussion'){
+h+='&lt;div class="tt-phase-disc">💬 &lt;b>Discusión&lt;/b> — ¡Sin mirar las cartas! Planificad la estrategia.';
+if(V.me===0){
+h+='&lt;div class="tt-row" style="margin-top:6px;gap:5px">&lt;span class="tt-mut" style="font-size:13px">Primer jugador:&lt;/span>';
+V.names.forEach(function(n,i){
+h+='&lt;button data-act="setFirst" data-p="'+i+'" class="tt-btn-sm'+(V.placeTurn===i?' tt-btn-ok':'')+'">'+esc(n)+'&lt;/button>';
+});
+h+='&lt;/div>';
+h+='&lt;button data-act="startPlacement" class="tt-btn-sm tt-btn-ok" style="margin-top:4px">🤫 Iniciar colocación&lt;/button>';
+}else{
+h+='&lt;div class="tt-mut" style="margin-top:4px">Esperando al anfitrión... (primero: &lt;b>'+esc(V.names[V.placeTurn])+'&lt;/b>)&lt;/div>';
+}
+h+='&lt;/div>';
+}else if(V.phase==='placement'){
+if(V.placeTurn===V.me){
+if(pendingSlot!==null){
+var fuNow=V.clock.filter(function(s){return s&amp;&amp;s.faceUp;}).length;
+var fuMax=V.names.length;
+var canFaceUp=fuNow&lt;fuMax;
+h+='&lt;div class="tt-phase-place">📍 Posición '+(pendingSlot.slot+1)+' — ¿Cómo colocarla?'
++' &lt;button data-act="placeFace" data-fu="1" class="tt-btn-sm tt-btn-ok"'+(canFaceUp?'':' disabled')+'>Boca arriba ('+fuNow+'/'+fuMax+')&lt;/button>'
++' &lt;button data-act="placeFace" data-fu="0" class="tt-btn-sm tt-btn-warn">Boca abajo&lt;/button>'
++' &lt;button data-act="cancelPlace" class="tt-btn-sm">Cancelar&lt;/button>&lt;/div>';
+}else{
+h+='&lt;div class="tt-phase-place">🎴 &lt;b>Tu turno&lt;/b> — '+(selectedCardId!==null?'Elige posición en el reloj':'Selecciona una carta')+'&lt;/div>';
+}
+}else{
+h+='&lt;div class="tt-phase-place">⏳ Turno de &lt;b>'+esc(V.names[V.placeTurn])+'&lt;/b> — coloca su carta en silencio&lt;/div>';
+}
+}else if(V.phase==='resolution'){
+h+='&lt;div class="tt-mut">🔍 Resolución — Orden: '+V.clock.map(function(s){return s?s.value:'?';}).join(' → ')+'&lt;/div>';
+}
+// Clock
+h+='&lt;div class="tt-clock-wrap">&lt;div class="tt-clock-bg">&lt;/div>';
+var myTurn=V.phase==='placement'&amp;&amp;V.placeTurn===V.me;
+var canPlace=myTurn&amp;&amp;selectedCardId!==null;
+for(var si=0;si&lt;CLOCK_SIZE;si++)h+=clockSlotHtml(V.clock[si],si,canPlace);
+h+='&lt;/div>';
+// Hands
+var nP=V.names.length;
+Array.from({length:nP},function(_,k){return(V.me+k)%nP;}).forEach(function(i){
+var isMe=i===V.me;
+var isTurn=V.phase==='placement'&amp;&amp;V.placeTurn===i;
+h+='&lt;div class="tt-panel'+(isTurn?' tt-active':'')+'">&lt;div class="tt-name">'+(isTurn?'▶ ':'')+esc(V.names[i])+(isMe?' (tú)':'')+(V.connected[i]?'':' 🔌❌')+'&lt;/div>';
+h+='&lt;div class="tt-hand">';
+if(isMe){
+V.hands[i].forEach(function(card){
+var isSel=selectedCardId===card.id;
+var selectable=myTurn;
+var cls='tt-card'+(isSel?' tt-selected':selectable?' tt-selectable':'');
+h+='&lt;div class="'+cls+'" style="'+spriteStyle(card.cardId)+'" data-cid="'+card.id+'" data-act="selectCard" title="'+esc(card.name)+'">&lt;/div>';
+});
+if(V.hands[i].length===0)h+='&lt;div class="tt-mut" style="padding:4px">Sin cartas en mano&lt;/div>';
+}else{
+V.hands[i].forEach(function(card){
+h+='&lt;div class="tt-card" style="'+backStyle(card.cardId)+'" title="Carta oculta">&lt;/div>';
+});
+if(V.hands[i].length===0)h+='&lt;div class="tt-mut" style="padding:4px">Sin cartas&lt;/div>';
+}
+h+='&lt;/div>&lt;/div>';
+});
+// Log
+h+='&lt;div class="tt-panel tt-log">'+V.log.slice().reverse().map(function(l){return'&lt;div>'+esc(l)+'&lt;/div>';}).join('')+'&lt;/div>';
+}
+el('tt-game').innerHTML=h;
+}
+// ---- events ----
+el('tt-create').addEventListener('click',createRoom);
+el('tt-join').addEventListener('click',joinRoom);
+el('tt-game').addEventListener('click',function(e){
+var b=e.target.closest('[data-act]');
+if(!b)return;
+var act=b.getAttribute('data-act');
+var cid=b.getAttribute('data-cid');
+if(act==='copy'){
+navigator.clipboard.writeText(location.origin+location.pathname+'?sala='+roomCode).then(function(){toast('Enlace copiado 📋');});
+}else if(act==='start'&amp;&amp;isHost){
+startGame();
+}else if(act==='startPlacement'){
+sendAction({kind:'startPlacement'});
+}else if(act==='selectCard'){
+if(V&amp;&amp;V.phase==='placement'&amp;&amp;V.placeTurn===V.me){
+selectedCardId=(selectedCardId===+cid)?null:+cid;
+render();
+}
+}else if(act==='setFirst'){
+sendAction({kind:'setFirst',p:+b.getAttribute('data-p')});
+}else if(act==='placeCard'){
+if(V&amp;&amp;V.phase==='placement'&amp;&amp;V.placeTurn===V.me&amp;&amp;selectedCardId!==null){
+pendingSlot={cid:selectedCardId,slot:+b.getAttribute('data-slot')};
+selectedCardId=null;
+render();
+}
+}else if(act==='placeFace'){
+if(V&amp;&amp;V.phase==='placement'&amp;&amp;V.placeTurn===V.me&amp;&amp;pendingSlot!==null){
+sendAction({kind:'place',cid:pendingSlot.cid,slot:pendingSlot.slot,faceUp:+b.getAttribute('data-fu')===1});
+pendingSlot=null;
+}
+}else if(act==='cancelPlace'){
+selectedCardId=null;pendingSlot=null;render();
+}else if(act==='restart'){
+sendAction({kind:'restart'});
+}
+});
+// ---- URL auto-fill ----
+var m=location.search.match(/sala=([A-Za-z0-9]{4})/);
+if(m)el('tt-code').value=m[1].toUpperCase();
+})();
+&lt;/script>
+&lt;h2 id="cómo-se-juega">¿Cómo se juega?&lt;/h2>
+&lt;p>Take Time es un juego &lt;strong>cooperativo&lt;/strong>: todos ganan o pierden juntos. El objetivo es colocar las &lt;strong>12 cartas repartidas&lt;/strong> en los 12 segmentos del reloj siguiendo un orden ascendente, sin poder comunicarse durante la colocación.&lt;/p></description></item><item><title>🏰 Fantasy Realms</title><link>https://xiang.es/games/fantasy-realms/</link><pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate><guid>https://xiang.es/games/fantasy-realms/</guid><description>&lt;p>Juego de cartas para 3–6 jugadores. Uno crea la sala y comparte el enlace. La partida vive en el navegador del anfitrión.&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://wizkids.com/posters/repository/wizkids/FR_Rulebook-WEB.pdf">Reglamento&lt;/a>&lt;/li>
 &lt;/ul>
