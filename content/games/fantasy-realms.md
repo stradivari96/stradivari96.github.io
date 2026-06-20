@@ -80,7 +80,7 @@ Juego de cartas para 3–6 jugadores. Uno crea la sala y comparte el enlace. La 
 
 <div id="fr-app">
   <div id="fr-setup">
-    <div class="fr-row"><label>Tu nombre: <input id="fr-name" maxlength="14" placeholder="Xiang"></label></div>
+    <div class="fr-row"><label>Tu nombre: <input id="fr-name" maxlength="14" placeholder="Nombre"></label></div>
     <div class="fr-row"><button id="fr-create">🏰 Crear sala</button></div>
     <div class="fr-row"><input id="fr-code" maxlength="4" placeholder="CÓDIGO" style="text-transform:uppercase;width:110px"><button id="fr-join">Unirse</button></div>
     <div id="fr-setupmsg" class="fr-mut"></div>
