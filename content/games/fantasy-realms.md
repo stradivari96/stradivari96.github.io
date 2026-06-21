@@ -9,7 +9,7 @@ ShowShareButtons: false
 comments: false
 ---
 
-Juego de cartas para 3–6 jugadores. Uno crea la sala y comparte el enlace. La partida vive en el navegador del anfitrión.
+Juego de cartas para 2–6 jugadores. Uno crea la sala y comparte el enlace. La partida vive en el navegador del anfitrión.
 
 - [Reglamento](https://wizkids.com/posters/repository/wizkids/FR_Rulebook-WEB.pdf)
 
@@ -73,9 +73,6 @@ Juego de cartas para 3–6 jugadores. Uno crea la sala y comparte el enlace. La 
   position:fixed;z-index:200;pointer-events:none;display:none}
 @keyframes fr-fadein{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
 .fr-new{animation:fr-fadein .4s ease}
-.fr-dragging{opacity:.25!important}
-.fr-drop-line{width:5px;height:203px;background:#fbbf24;border-radius:3px;flex:none;
-  box-shadow:0 0 10px #fbbf24}
 </style>
 
 <div id="fr-app">
@@ -97,32 +94,48 @@ Juego de cartas para 3–6 jugadores. Uno crea la sala y comparte el enlace. La 
 var SPRITE='https://steamusercontent-a.akamaihd.net/ugc/1812114214287641959/29522BD4EC40B09E56541D728732C149E9819365/';
 var BACK='https://steamusercontent-a.akamaihd.net/ugc/1786218626612222249/734934D88FAE55BC72C969D3B1E649A45015B405/';
 var PREFIX='fantasy-realms-xiang-';
-var MAXP=6,MINP=3,MAX_DISCARD=10,HAND_SIZE=7;
+var MAXP=6,MINP=2,MAX_DISCARD=10,HAND_SIZE=7,DUEL_MIN_DISCARD=12;
 
 // [name, cardId, suit]
 var CARDS_DEF=[
-  ['Mountain',600,'Land'],['Cavern',601,'Land'],['Forest',603,'Land'],
-  ['Earth Elemental',604,'Land'],['Swamp',606,'Land'],['Island',608,'Land'],
-  ['Water Elemental',609,'Flood'],['Rainstorm',610,'Flood'],['Blizzard',611,'Flood'],
-  ['Smoke',612,'Flood'],['Whirlwind',613,'Flood'],['Air Elemental',614,'Flood'],
+  // Land (5)
+  ['Mountain',600,'Land'],['Cavern',601,'Land'],['Bell Tower',602,'Land'],
+  ['Forest',603,'Land'],['Earth Elemental',604,'Land'],
+  // Flood (5)
+  ['Fountain of Life',605,'Flood'],['Swamp',606,'Flood'],['Great Flood',607,'Flood'],
+  ['Island',608,'Flood'],['Water Elemental',609,'Flood'],
+  // Weather (5)
+  ['Rainstorm',610,'Weather'],['Blizzard',611,'Weather'],['Smoke',612,'Weather'],
+  ['Whirlwind',613,'Weather'],['Air Elemental',614,'Weather'],
+  // Flame (5)
   ['Wildfire',615,'Flame'],['Candle',616,'Flame'],['Forge',617,'Flame'],
   ['Lightning',618,'Flame'],['Fire Elemental',619,'Flame'],
+  // Army (5)
   ['Knights',620,'Army'],['Elven Archers',621,'Army'],['Light Cavalry',622,'Army'],
-  ['Dwarvish Infantry',623,'Army'],
-  ['Collector',625,'Leader'],['Beastmaster',626,'Leader'],['Warlock Lord',628,'Leader'],
-  ['Enchantress',629,'Leader'],['King',630,'Leader'],['Queen',631,'Leader'],
-  ['Princess',632,'Leader'],['Warlord',633,'Leader'],['Empress',634,'Leader'],
+  ['Dwarvish Infantry',623,'Army'],['Rangers',624,'Army'],
+  // Wizard (5)
+  ['Collector',625,'Wizard'],['Beastmaster',626,'Wizard'],['Necromancer',627,'Wizard'],
+  ['Warlock Lord',628,'Wizard'],['Enchantress',629,'Wizard'],
+  // Leader (5)
+  ['King',630,'Leader'],['Queen',631,'Leader'],['Princess',632,'Leader'],
+  ['Warlord',633,'Leader'],['Empress',634,'Leader'],
+  // Beast (5)
   ['Unicorn',635,'Beast'],['Basilisk',636,'Beast'],['Warhorse',637,'Beast'],
   ['Dragon',638,'Beast'],['Hydra',639,'Beast'],
-  ['Warship',640,'Artifact'],['Magic Wand',641,'Artifact'],['Sword of Keth',642,'Artifact'],
-  ['Elven Longbow',643,'Artifact'],['War Dirigible',644,'Artifact'],
-  ['Shield of Keth',645,'Artifact'],['Gem of Order',646,'Artifact'],
-  ['Book of Changes',648,'Spell'],['Protection Rune',649,'Spell'],['Doppelganger',652,'Spell']
+  // Weapon (5)
+  ['Warship',640,'Weapon'],['Magic Wand',641,'Weapon'],['Sword of Keth',642,'Weapon'],
+  ['Elven Longbow',643,'Weapon'],['War Dirigible',644,'Weapon'],
+  // Artifact (5)
+  ['Shield of Keth',645,'Artifact'],['Gem of Order',646,'Artifact'],['World Tree',647,'Artifact'],
+  ['Book of Changes',648,'Artifact'],['Protection Rune',649,'Artifact'],
+  // Wild (3)
+  ['Shapeshifter',650,'Wild'],['Mirage',651,'Wild'],['Doppelganger',652,'Wild']
 ];
 
 var SUIT_COLOR={
-  Land:'#65a30d',Flood:'#0284c7',Flame:'#ef4444',Army:'#92400e',
-  Leader:'#7c3aed',Beast:'#d97706',Artifact:'#6b7280',Spell:'#be185d'
+  Land:'#65a30d',Flood:'#0284c7',Weather:'#38bdf8',Flame:'#ef4444',
+  Army:'#92400e',Wizard:'#be185d',Leader:'#7c3aed',Beast:'#d97706',
+  Weapon:'#475569',Artifact:'#6b7280',Wild:'#0d9488'
 };
 
 // ---------- state ----------
@@ -152,13 +165,13 @@ function cardHtml(card,cls,act,extra){
 }
 
 // ---------- hand order ----------
-var myOrder=[];
-var dragId=null,dragDropId=null,dragBefore=true,isDragging=false;
-
-function reconcileOrder(hand){
-  var ids=hand.map(function(c){return c.id;});
-  myOrder=myOrder.filter(function(id){return ids.indexOf(id)!==-1;});
-  ids.forEach(function(id){if(myOrder.indexOf(id)===-1)myOrder.push(id);});
+// La mano se ordena por tipo (suit) y, dentro del tipo, por id de carta.
+var SUIT_ORDER=['Land','Flood','Weather','Flame','Army','Wizard','Leader','Beast','Weapon','Artifact','Wild'];
+function sortByType(hand){
+  return hand.slice().sort(function(a,b){
+    var d=SUIT_ORDER.indexOf(a.suit)-SUIT_ORDER.indexOf(b.suit);
+    return d!==0?d:a.cardId-b.cardId;
+  });
 }
 
 // ---------- game logic (host) ----------
@@ -176,9 +189,14 @@ function startGame(){
   G.deck=mkDeck();G.discard=[];G.result=null;
   G.turn=Math.floor(Math.random()*G.players.length);
   G.turnPhase='pickup';
-  G.log=['🏰 ¡Empieza la partida! Turno inicial: '+pname(G.turn)];
   G.hands=G.players.map(function(){return[];});
-  for(var k=0;k<HAND_SIZE;k++)G.players.forEach(function(_,i){G.hands[i].push(G.deck.pop());});
+  if(isDuel()){
+    // Variante duelo (2 jugadores): se empieza sin cartas.
+    G.log=['⚔️ ¡Duelo a 2! Empezáis sin cartas. Turno inicial: '+pname(G.turn)];
+  }else{
+    for(var k=0;k<HAND_SIZE;k++)G.players.forEach(function(_,i){G.hands[i].push(G.deck.pop());});
+    G.log=['🏰 ¡Empieza la partida! Turno inicial: '+pname(G.turn)];
+  }
   G.phase='playing';
   broadcast();
 }
@@ -186,9 +204,46 @@ function startGame(){
 function pname(i){return G.players[i].name;}
 function glog(m){G.log.push(m);if(G.log.length>60)G.log.shift();}
 
+// ---------- reglas según variante ----------
+// Con 2 jugadores se juega la variante "duelo" (manos vacías + robar 2/descartar 1).
+function isDuel(){return G.players.length===2;}
+
+// ¿Sigue este jugador formando su mano inicial? (solo aplica en duelo)
+function isBuilding(p){return isDuel()&&G.hands[p].length<HAND_SIZE;}
+
+function endGame(msg){G.phase='ended';G.result={};glog(msg);}
+
+// Condición de fin según la variante. Devuelve true si la partida ha terminado.
+function checkEnd(){
+  if(isDuel()){
+    if(G.hands[0].length===HAND_SIZE&&G.hands[1].length===HAND_SIZE&&
+       G.discard.length>=DUEL_MIN_DISCARD){
+      endGame('🏁 ¡Ambos tenéis 7 cartas y hay '+G.discard.length+
+        ' en el descarte — fin de la partida!');
+      return true;
+    }
+    return false;
+  }
+  if(G.discard.length>=MAX_DISCARD){
+    endGame('🏁 ¡El descarte tiene '+G.discard.length+' cartas — fin de la partida!');
+    return true;
+  }
+  return false;
+}
+
+function nextTurn(){
+  G.turn=(G.turn+1)%G.players.length;
+  G.turnPhase='pickup';
+  glog('👉 Turno de '+pname(G.turn));
+}
+
+// Cierra el turno actual: comprueba el fin y, si no, pasa al siguiente jugador.
+function finishTurn(){if(!checkEnd())nextTurn();}
+
 function buildStateFor(me){
   return{
     me:me,
+    duel:isDuel(),
     phase:G.phase,turn:G.turn,turnPhase:G.turnPhase,
     deckCount:G.deck.length,
     discard:G.discard.map(function(c){return{id:c.id,name:c.name,cardId:c.cardId,suit:c.suit};}),
@@ -220,12 +275,21 @@ function sendErr(p,msg){
 function applyAction(p,a){
   if(!G||G.phase!=='playing')return;
   if(G.turn!==p)return sendErr(p,'No es tu turno');
+  var building=isBuilding(p);
 
   if(a.kind==='draw'){
     if(G.turnPhase!=='pickup')return sendErr(p,'Ya has cogido carta, ahora descarta');
-    if(!G.deck.length)return sendErr(p,'El mazo está vacío');
-    G.hands[p].push(G.deck.pop());
-    glog('🂠 '+pname(p)+' roba una carta del mazo');
+    if(building){
+      // Duelo, formando mano: roba 2 y luego descarta 1 (neto +1).
+      if(G.deck.length<2)return sendErr(p,'No quedan 2 cartas en el mazo');
+      G.hands[p].push(G.deck.pop());
+      G.hands[p].push(G.deck.pop());
+      glog('🂠🂠 '+pname(p)+' roba 2 cartas del mazo');
+    }else{
+      if(!G.deck.length)return sendErr(p,'El mazo está vacío');
+      G.hands[p].push(G.deck.pop());
+      glog('🂠 '+pname(p)+' roba una carta del mazo');
+    }
     G.turnPhase='discard';
   }else if(a.kind==='take'){
     if(G.turnPhase!=='pickup')return sendErr(p,'Ya has cogido carta, ahora descarta');
@@ -235,6 +299,10 @@ function applyAction(p,a){
     var taken=G.discard.splice(dIdx,1)[0];
     G.hands[p].push(taken);
     glog('✋ '+pname(p)+' toma '+taken.name+' del descarte');
+    if(building){
+      // En duelo, tomar del descarte completa el turno sin descartar.
+      finishTurn();broadcast();return;
+    }
     G.turnPhase='discard';
   }else if(a.kind==='discard'){
     if(G.turnPhase!=='discard')return sendErr(p,'Primero roba o toma una carta');
@@ -243,14 +311,7 @@ function applyAction(p,a){
     var disc=G.hands[p].splice(hIdx,1)[0];
     G.discard.push(disc);
     glog('🗑 '+pname(p)+' descarta '+disc.name);
-    if(G.discard.length>=MAX_DISCARD){
-      G.phase='ended';G.result={};
-      glog('🏁 ¡El descarte tiene '+G.discard.length+' cartas — fin de la partida!');
-      broadcast();return;
-    }
-    G.turn=(G.turn+1)%G.players.length;
-    G.turnPhase='pickup';
-    glog('👉 Turno de '+pname(G.turn));
+    finishTurn();broadcast();return;
   }else return;
   broadcast();
 }
@@ -344,9 +405,6 @@ function setupMsg(m){el('fr-setupmsg').textContent=m;}
 function render(){
   if(!V)return;
 
-  // reconcile local hand order with new state
-  if(V.hands&&V.hands[V.me])reconcileOrder(V.hands[V.me]);
-
   // snapshot card positions and deck rect before DOM wipe
   var prev={};
   el('fr-game').querySelectorAll('[data-cid]').forEach(function(e){
@@ -379,10 +437,17 @@ function render(){
     var myTurn=V.phase==='playing'&&V.turn===V.me;
     var canPickup=myTurn&&V.turnPhase==='pickup';
     var canDiscard=myTurn&&V.turnPhase==='discard';
+    // Duelo: ¿estoy aún formando mi mano inicial (al inicio del turno, antes de robar)?
+    var iAmBuilding=V.duel&&V.hands[V.me]&&V.hands[V.me].length<HAND_SIZE;
+    var drawTitle=iAmBuilding?'Robar 2 del mazo':'Robar del mazo';
+    var discMax=V.duel?(DUEL_MIN_DISCARD+'+'):MAX_DISCARD;
 
     if(V.phase==='playing'){
       if(myTurn){
-        if(canPickup)h+='<div class="fr-action-hint">✨ Tu turno: roba del mazo <b>o</b> toma una carta del descarte</div>';
+        if(canPickup){
+          if(iAmBuilding)h+='<div class="fr-action-hint">✨ Tu turno ('+V.hands[V.me].length+'/'+HAND_SIZE+' cartas): roba <b>2</b> del mazo (descartarás 1) <b>o</b> toma 1 del descarte (sin descartar)</div>';
+          else h+='<div class="fr-action-hint">✨ Tu turno: roba del mazo <b>o</b> toma una carta del descarte</div>';
+        }
         else h+='<div class="fr-action-hint">🗑 Ahora elige una carta de tu mano para descartar</div>';
       }else{
         h+='<div class="fr-mut">Turno de <b>'+esc(V.names[V.turn])+'</b>'+
@@ -398,7 +463,7 @@ function render(){
     if(V.deckCount>0){
       var deckCls='fr-card-sm fr-back'+(canPickup?' fr-clickable fr-pickup-target':'');
       h+='<div class="'+deckCls+'" data-zone="deck"'+(canPickup?' data-act="draw"':'')+
-         ' style="background-image:url('+BACK+');background-size:cover;background-position:center" title="Robar del mazo ('+V.deckCount+')">'+
+         ' style="background-image:url('+BACK+');background-size:cover;background-position:center" title="'+drawTitle+' ('+V.deckCount+')">'+
          '<span class="fr-back-count">'+V.deckCount+'</span></div>';
     }else{
       h+='<div class="fr-card-sm fr-empty" title="Mazo vacío">∅</div>';
@@ -406,7 +471,7 @@ function render(){
     h+='</div>';
 
     // Discard
-    h+='<div class="fr-zone fr-discard-zone"><div class="fr-zone-label">Descarte ('+V.discard.length+'/'+MAX_DISCARD+')</div>';
+    h+='<div class="fr-zone fr-discard-zone"><div class="fr-zone-label">Descarte ('+V.discard.length+'/'+discMax+')</div>';
     h+='<div class="fr-discard-fan">';
     if(!V.discard.length){
       h+='<div class="fr-card-sm fr-empty" title="Descarte vacío">🗑</div>';
@@ -430,18 +495,11 @@ function render(){
          '<div class="fr-name">'+(isTurn?'▶ ':'')+esc(name)+(isMe?' (tú)':'')+(V.connected[i]?'':' 🔌❌')+'</div>';
       h+='<div class="fr-hand" data-pl="'+i+'">';
       if(isMe){
-        // sort by myOrder, show drop lines while dragging
-        var sorted=V.hands[i].slice().sort(function(a,b){
-          return myOrder.indexOf(a.id)-myOrder.indexOf(b.id);});
-        sorted.forEach(function(card){
-          var isDraggingThis=isDragging&&dragId===card.id;
-          var isDropTarget=isDragging&&dragDropId===card.id;
-          if(isDropTarget&&dragBefore)h+='<div class="fr-drop-line"></div>';
-          var clickable=canDiscard&&!isDragging;
-          var cls='fr-card'+(clickable?' fr-clickable fr-discard-target':'')+(isDraggingThis?' fr-dragging':'');
+        sortByType(V.hands[i]).forEach(function(card){
+          var clickable=canDiscard;
+          var cls='fr-card'+(clickable?' fr-clickable fr-discard-target':'');
           var act=clickable?'discard':null;
-          h+=cardHtml(card,cls,act,'draggable="true" data-hand="1"');
-          if(isDropTarget&&!dragBefore)h+='<div class="fr-drop-line"></div>';
+          h+=cardHtml(card,cls,act,null);
         });
       }else{
         V.hands[i].forEach(function(card){
@@ -463,8 +521,7 @@ function render(){
 
   el('fr-game').innerHTML=h;
 
-  // FLIP animation (skip during drag to avoid jank)
-  if(isDragging)return;
+  // FLIP animation
   el('fr-game').querySelectorAll('[data-cid]').forEach(function(e){
     var cid=e.getAttribute('data-cid');
     var r0=prev[cid];
@@ -544,50 +601,6 @@ el('fr-game').addEventListener('mouseout',function(e){
   if(!e.target.closest('.fr-discard-fan'))tip.style.display='none';
 });
 
-// ---------- drag to reorder ----------
-el('fr-game').addEventListener('dragstart',function(e){
-  var card=e.target.closest('[draggable="true"][data-cid]');
-  if(!card)return;
-  dragId=+card.getAttribute('data-cid');
-  isDragging=true;
-  e.dataTransfer.effectAllowed='move';
-  e.dataTransfer.setData('text/plain',String(dragId));
-  tip.style.display='none';
-  setTimeout(render,0);
-});
-
-el('fr-game').addEventListener('dragend',function(){
-  isDragging=false;dragId=null;dragDropId=null;
-  render();
-});
-
-el('fr-game').addEventListener('dragover',function(e){
-  var card=e.target.closest('[draggable="true"][data-cid]');
-  if(!card){e.preventDefault();return;}
-  e.preventDefault();
-  var overId=+card.getAttribute('data-cid');
-  var rect=card.getBoundingClientRect();
-  var before=e.clientX<rect.left+rect.width/2;
-  if(overId!==dragDropId||before!==dragBefore){
-    dragDropId=overId;dragBefore=before;
-    render();
-  }
-});
-
-el('fr-game').addEventListener('drop',function(e){
-  e.preventDefault();
-  if(dragId===null||dragDropId===null||dragId===dragDropId){
-    isDragging=false;dragId=null;dragDropId=null;render();return;
-  }
-  var fromIdx=myOrder.indexOf(dragId);
-  myOrder.splice(fromIdx,1);
-  var toIdx=myOrder.indexOf(dragDropId);
-  if(!dragBefore)toIdx++;
-  myOrder.splice(toIdx,0,dragId);
-  isDragging=false;dragId=null;dragDropId=null;
-  render();
-});
-
 var m=location.search.match(/sala=([A-Za-z0-9]{4})/);
 if(m)el('fr-code').value=m[1].toUpperCase();
 })();
@@ -606,4 +619,15 @@ Fantasy Realms es un juego de **colección de sets**: cada jugador construye una
 
 **Fin de partida:** La partida termina cuando hay **10 cartas** en el descarte. Todos los jugadores revelan sus manos y calculan su puntuación.
 
-Las cartas están agrupadas por suit (color del nombre): **Land** · **Flood** · **Flame** · **Army** · **Leader** · **Beast** · **Artifact** · **Spell**. La puntuación depende de las sinergias entre cartas — consultad el reglamento para los efectos exactos.
+### Variante a 2 jugadores (duelo)
+
+Con **2 jugadores** la app activa automáticamente la variante en duelo, con reglas distintas:
+
+- Empezáis **sin cartas** en la mano.
+- **En tu turno**, elige una de dos:
+  1. **Roba 2** del mazo y **descarta 1** (tu mano crece en 1), *o bien*
+  2. **Toma 1 carta del descarte** (sin descartar nada).
+- Cuando un jugador llega a **7 cartas**, sigue jugando turnos normales (roba 1 del mazo o del descarte y descarta 1, manteniéndose en 7).
+- **Fin:** cuando **ambos** jugadores tenéis 7 cartas **y** hay **al menos 12** cartas en el descarte.
+
+Las cartas están agrupadas por suit: **Land** · **Flood** · **Weather** · **Flame** · **Army** · **Wizard** · **Leader** · **Beast** · **Weapon** · **Artifact** · **Wild**. La puntuación depende de las sinergias entre cartas — consultad el reglamento para los efectos exactos.
