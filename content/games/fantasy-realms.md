@@ -272,12 +272,15 @@ function computeHandScore(handCards,assign){
     if(ex&&NECRO_SUITS.indexOf(ex.suit)>=0&&!scs.some(function(s){return s.id===ex.id;}))
       scs.push(Object.assign({},ex));
   }
-  // 1) Comodines (Doppelgänger, Mirage, Shapeshifter): copian nombre/fuerza/suit/bonus.
+  // 1) Comodines (todos copian nombre + tipo):
+  //    - Shapeshifter / Mirage: SOLO nombre y tipo (mantienen fuerza 0, sin bonus ni penalización).
+  //    - Doppelgänger: además la fuerza base y la PENALIZACIÓN (no el bonus).
   scs.forEach(function(sc){
-    if(sc.id==='FR51'||sc.id==='FR52'||sc.id==='FR53'){
-      var t=assign[sc.id]&&FRDEF[assign[sc.id]];
-      if(t){sc.name=t.name;sc.suit=t.suit;sc.strength=t.strength;sc.bonusScore=t.bonusScore;}
-    }
+    if(sc.id!=='FR51'&&sc.id!=='FR52'&&sc.id!=='FR53')return;
+    var t=assign[sc.id]&&FRDEF[assign[sc.id]];
+    if(!t)return;
+    sc.name=t.name;sc.suit=t.suit;
+    if(sc.id==='FR53'){sc.strength=t.strength;sc.penaltyScore=t.penaltyScore;sc.blanks=t.blanks;sc.blankedIf=t.blankedIf;}
   });
   // 2) Book of Changes: cambia el suit de otra carta.
   scs.forEach(function(sc){
@@ -645,17 +648,19 @@ function renderEnded(V){
         h+='</select>';
       }else if(c.id==='FR51'||c.id==='FR52'){ // Shapeshifter / Mirage
         var suits=IMPERSONATE_SUITS[c.id];
-        h+='imita a: <select data-assign="single" data-card="'+gid+'"><option value="">— elige carta —</option>';
+        h+='copia el nombre y tipo (mantiene fuerza 0, sin bonus ni penalización) de: '+
+           '<select data-assign="single" data-card="'+gid+'"><option value="">— elige carta —</option>';
         suits.forEach(function(su){
           Object.keys(FRDEF).forEach(function(frid){
             var d=FRDEF[frid];
-            if(d.suit===su)h+=opt(frid,suitEs(su)+': '+d.name+' ('+d.strength+')',sel);
+            if(d.suit===su)h+=opt(frid,suitEs(su)+': '+d.name,sel);
           });
         });
         h+='</select>';
       }else if(c.id==='FR53'){ // Doppelganger
         var others=myHand.filter(function(x){return !x.hidden&&x.id!==gid&&x.suit!=='wild';});
-        h+='duplica una carta de tu mano: <select data-assign="single" data-card="'+gid+'"><option value="">— ninguna —</option>';
+        h+='copia el tipo, fuerza y <b>penalización</b> (no el bonus) de una carta de tu mano: '+
+           '<select data-assign="single" data-card="'+gid+'"><option value="">— ninguna —</option>';
         others.forEach(function(x){h+=opt(x.id,x.name,sel);});
         h+='</select>';
       }
