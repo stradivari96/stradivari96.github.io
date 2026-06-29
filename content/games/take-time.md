@@ -117,7 +117,9 @@ Juego cooperativo para 3–4 jugadores. Un anfitrión crea la sala y comparte el
 'use strict';
 
 var SPRITE='https://steamusercontent-a.akamaihd.net/ugc/12794565721592296659/D2D66AE2BD54BBD369AB95725B49A87E9E19D455/';
-var BACK='https://steamusercontent-a.akamaihd.net/ugc/10900776384674959786/3BEEBA5CE8F56A8B2D7041793909E528AF64565A/';
+// Dorsos: solo hay 2 imágenes distintas (Lunar/Solar). Recortadas del sprite original
+// (31MB) y servidas desde el propio dominio. El palo se deduce del cardId.
+var BACK_LUNAR='/tt-back-lunar.png',BACK_SOLAR='/tt-back-solar.png';
 var PREFIX='take-time-xiang-';
 var MAXP=4,MINP=3,CLOCK_SIZE=12,SECTORS=6;
 
@@ -185,8 +187,7 @@ function spriteStyle(cardId){
   return 'background-image:url('+SPRITE+');background-size:600% 400%;background-position:'+(col/5*100).toFixed(1)+'% '+(row/3*100).toFixed(1)+'%';
 }
 function backStyle(cardId){
-  var col=cardId%6,row=Math.floor(cardId/6);
-  return 'background-image:url('+BACK+');background-size:600% 400%;background-position:'+(col/5*100).toFixed(1)+'% '+(row/3*100).toFixed(1)+'%';
+  return 'background-image:url('+(cardId<12?BACK_LUNAR:BACK_SOLAR)+');background-size:cover;background-position:center';
 }
 
 // ---- deck ----
