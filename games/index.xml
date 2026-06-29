@@ -136,8 +136,8 @@ var CHAPTERS=[
 {n:'6.2',img:'https://steamusercontent-a.akamaihd.net/ugc/18120938985591900711/DD56AF52EE61EC43BE6B691AE93CC7BBF1DB17DE/',rules:{maxAll:2,score:'diff',s:{5:{maxSuit:{solar:1,lunar:1}},4:{noVal:[1,2,3]}}}},
 {n:'6.3',img:'https://steamusercontent-a.akamaihd.net/ugc/12543330935849795254/7055DBEB8380F6BD43C126F82F98BF23AD46B589/',rules:{maxAll:2,score:'diff',order:[0,5,5]}},
 {n:'6.4',img:'https://steamusercontent-a.akamaihd.net/ugc/15670765100291722138/D13C58481B51CF8F7CF889F8782CD2AB3EF29CF9/',rules:{maxAll:2,score:'diff'}},
-{n:'7.1',img:'https://steamusercontent-a.akamaihd.net/ugc/12824740814417941728/C233DFDE69A9562F0EB06E26FFDBF55003EE7EF5/'},
-{n:'7.2',img:'https://steamusercontent-a.akamaihd.net/ugc/13676744455971127771/DF88B5917F70A080939F2AB2BAF6A9C589057A2D/'},
+{n:'7.1',img:'https://steamusercontent-a.akamaihd.net/ugc/12824740814417941728/C233DFDE69A9562F0EB06E26FFDBF55003EE7EF5/',rules:{s:{3:{noVal:[7,8,9]},4:{noVal:[7,8,9]}},draw:[1]}},
+{n:'7.2',img:'https://steamusercontent-a.akamaihd.net/ugc/13676744455971127771/DF88B5917F70A080939F2AB2BAF6A9C589057A2D/',rules:{draw:[6,3]}},
 {n:'7.3',img:'https://steamusercontent-a.akamaihd.net/ugc/13398618883690484413/57173EFA23834F99670F8238472EB848DB928C34/'},
 {n:'7.4',img:'https://steamusercontent-a.akamaihd.net/ugc/16939947217815271747/11331B9F4F9AB17C6BB00E4FE963AE3996FCA825/'},
 {n:'8.1',img:'https://steamusercontent-a.akamaihd.net/ugc/9611437470663852418/B216C8D23748622481772E25EBFE9B1DCE2562B4/'},
@@ -276,6 +276,7 @@ var out=[];
 if(R.order)R.order.forEach(function(s,i){if(s)out.push('La carta nº'+(i+1)+' va en el sector '+s);});
 if(R.maxAll!==undefined)out.push('Todos los sectores: máx. '+R.maxAll+' carta'+(R.maxAll===1?'':'s'));
 if(R.score==='diff')out.push('Puntuación de cada sector: carta más alta − más baja (en vez de la suma)');
+if(R.draw)out.push('Si juegas en el sector '+R.draw.join('/')+' robas una carta');
 if(R.s)Object.keys(R.s).forEach(function(k){
 var r=R.s[k],parts=[];
 if(r.max!==undefined)parts.push('máx. '+r.max+' carta'+(r.max===1?'':'s'));
@@ -330,6 +331,11 @@ if(cerr)return sendErr(p,cerr);
 G.hands[p].splice(hIdx,1);
 G.sectors[si].push({id:card.id,value:card.value,suit:card.suit,cardId:card.cardId,owner:p,faceUp:fu});
 glog('🎴 '+pname(p)+' coloca en sector '+(si+1)+' ('+(fu?'boca arriba':'boca abajo')+')');
+var cr=CHAPTERS[G.chapter].rules;
+if(cr&amp;&amp;cr.draw&amp;&amp;cr.draw.indexOf(si+1)>=0&amp;&amp;G.aside.length){
+G.hands[p].push(G.aside.shift());
+glog('🃏 '+pname(p)+' roba una carta al jugar en el sector '+(si+1));
+}
 var allEmpty=G.hands.every(function(h){return h.length===0;});
 if(allEmpty){
 G.phase='resolution';
