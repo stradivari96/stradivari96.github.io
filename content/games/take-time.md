@@ -18,7 +18,7 @@ Juego cooperativo para 3–4 jugadores. Un anfitrión crea la sala y comparte el
   --blue:#3b82f6;--gold:#fbbf24;--solar:#f59e0b;--lunar:#818cf8;
   background:var(--bg);color:var(--text);border-radius:12px;padding:16px;
   font-family:system-ui,sans-serif;font-size:15px;line-height:1.4;min-height:200px}
-#tt-app h3{margin:10px 0 6px}
+#tt-app h3{margin:10px 0 6px;color:var(--text)}
 #tt-app input{background:#0a0d14;color:var(--text);border:1px solid var(--border);
   border-radius:8px;padding:8px 10px;font-size:15px;max-width:160px}
 #tt-app button{background:var(--blue);color:#fff;border:0;border-radius:8px;
