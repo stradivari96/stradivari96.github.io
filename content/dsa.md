@@ -35,16 +35,16 @@ Some notes about DSA
 
 
 <button onclick="openRandomLink(true, '?ez')" style="border: solid; border-width:1px; margin: 5px; padding: 5px" >
-Neetcode ez
+Neetcode easy
 </button>
 <button onclick="openRandomLink(true, '?md')" style="border: solid; border-width:1px; margin: 5px; padding: 5px" >
-Neetcode md
+Neetcode medium
 </button>
 <button onclick="openRandomLink(true, '?hd')" style="border: solid; border-width:1px; margin: 5px; padding: 5px" >
 Neetcode hard
 </button>
 <button onclick="openRandomLink(false, '?md')" style="border: solid; border-width:1px; margin: 5px; padding: 5px" >
-Random md
+Any medium
 </button>
 
 ### Big O
