@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Games on Just another developer</title><link>https://xiang.es/games/</link><description>Recent content in Games on Just another developer</description><generator>Hugo -- 0.143.0</generator><language>en-us</language><lastBuildDate>Wed, 15 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://xiang.es/games/index.xml" rel="self" type="application/rss+xml"/><item><title>🧵 ito</title><link>https://xiang.es/games/ito/</link><pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate><guid>https://xiang.es/games/ito/</guid><description>&lt;p>Juego cooperativo para 2-10 jugadores. Las pistas se dicen &lt;strong>hablando&lt;/strong> (en persona o por llamada); la web solo lleva las cartas. Uno crea la sala y comparte el código (o el enlace) con los demás. La partida vive en el navegador del anfitrión: si lo cierra, se corta el hilo.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Games on Just another developer</title><link>https://xiang.dev/games/</link><description>Recent content in Games on Just another developer</description><generator>Hugo -- 0.143.0</generator><language>en-us</language><lastBuildDate>Wed, 15 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://xiang.dev/games/index.xml" rel="self" type="application/rss+xml"/><item><title>🧵 ito</title><link>https://xiang.dev/games/ito/</link><pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate><guid>https://xiang.dev/games/ito/</guid><description>&lt;p>Juego cooperativo para 2-10 jugadores. Las pistas se dicen &lt;strong>hablando&lt;/strong> (en persona o por llamada); la web solo lleva las cartas. Uno crea la sala y comparte el código (o el enlace) con los demás. La partida vive en el navegador del anfitrión: si lo cierra, se corta el hilo.&lt;/p>
 &lt;style>
 #ito-app{--ibg:#1b1f27;--ipanel:#252b36;--itext:#e8eaf0;--imut:#9aa3b2;
 background:var(--ibg);color:var(--itext);border-radius:12px;padding:16px;
@@ -683,7 +683,7 @@ if(m)el('i-code').value=m[1].toUpperCase();
 })();
 &lt;/script>
 &lt;h2 id="cómo-se-juega">¿Cómo se juega?&lt;/h2>
-&lt;p>ito es &lt;strong>cooperativo&lt;/strong>: o ganáis todos, o nada. Cada uno recibe una carta con un número del &lt;strong>1 al 100&lt;/strong> que solo ve su dueño. El objetivo es colocar todas las cartas en el hilo &lt;strong>en orden ascendente&lt;/strong>&amp;hellip; sin poder decir los números.&lt;/p></description></item><item><title>🤫 Just One</title><link>https://xiang.es/games/just-one/</link><pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate><guid>https://xiang.es/games/just-one/</guid><description>&lt;p>Juego cooperativo de palabras para 3-7 jugadores. Uno crea la sala y comparte el código (o el enlace) con los demás. La partida vive en el navegador del anfitrión: si lo cierra, se acaba la fiesta.&lt;/p>
+&lt;p>ito es &lt;strong>cooperativo&lt;/strong>: o ganáis todos, o nada. Cada uno recibe una carta con un número del &lt;strong>1 al 100&lt;/strong> que solo ve su dueño. El objetivo es colocar todas las cartas en el hilo &lt;strong>en orden ascendente&lt;/strong>&amp;hellip; sin poder decir los números.&lt;/p></description></item><item><title>🤫 Just One</title><link>https://xiang.dev/games/just-one/</link><pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate><guid>https://xiang.dev/games/just-one/</guid><description>&lt;p>Juego cooperativo de palabras para 3-7 jugadores. Uno crea la sala y comparte el código (o el enlace) con los demás. La partida vive en el navegador del anfitrión: si lo cierra, se acaba la fiesta.&lt;/p>
 &lt;style>
 #justone-app{--jbg:#1b1f27;--jpanel:#252b36;--jtext:#e8eaf0;--jmut:#9aa3b2;
 background:var(--jbg);color:var(--jtext);border-radius:12px;padding:16px;
@@ -1246,7 +1246,7 @@ if(m)el('j-codein').value=m[1].toUpperCase();
 })();
 &lt;/script>
 &lt;h2 id="cómo-se-juega">¿Cómo se juega?&lt;/h2>
-&lt;p>Just One es &lt;strong>cooperativo&lt;/strong>: entre todos intentáis acertar &lt;strong>13 palabras misteriosas&lt;/strong>. En cada carta uno de vosotros es el &lt;strong>adivinador&lt;/strong> 🕵️ y los demás le dan pistas&amp;hellip; con trampa.&lt;/p></description></item><item><title>⏱ Take Time</title><link>https://xiang.es/games/take-time/</link><pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate><guid>https://xiang.es/games/take-time/</guid><description>&lt;p>Juego cooperativo para 3–4 jugadores. Un anfitrión crea la sala y comparte el enlace.&lt;/p>
+&lt;p>Just One es &lt;strong>cooperativo&lt;/strong>: entre todos intentáis acertar &lt;strong>13 palabras misteriosas&lt;/strong>. En cada carta uno de vosotros es el &lt;strong>adivinador&lt;/strong> 🕵️ y los demás le dan pistas&amp;hellip; con trampa.&lt;/p></description></item><item><title>⏱ Take Time</title><link>https://xiang.dev/games/take-time/</link><pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate><guid>https://xiang.dev/games/take-time/</guid><description>&lt;p>Juego cooperativo para 3–4 jugadores. Un anfitrión crea la sala y comparte el enlace.&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://cdn.svc.asmodee.net/production-libellud/uploads/2025/09/TT_RULES_PRINT_MASTER_EN.pdf">Reglamento&lt;/a>&lt;/li>
 &lt;/ul>
@@ -1850,7 +1850,7 @@ if(m)el('tt-code').value=m[1].toUpperCase();
 })();
 &lt;/script>
 &lt;h2 id="cómo-se-juega">¿Cómo se juega?&lt;/h2>
-&lt;p>Take Time es un juego &lt;strong>cooperativo&lt;/strong>: todos ganan o pierden juntos. El objetivo es colocar las &lt;strong>12 cartas repartidas&lt;/strong> en los &lt;strong>6 sectores del reloj&lt;/strong>, sin poder comunicarse durante la colocación.&lt;/p></description></item><item><title>🏰 Fantasy Realms</title><link>https://xiang.es/games/fantasy-realms/</link><pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate><guid>https://xiang.es/games/fantasy-realms/</guid><description>&lt;p>Juego de cartas para 2–6 jugadores. Uno crea la sala y comparte el enlace. La partida vive en el navegador del anfitrión.&lt;/p>
+&lt;p>Take Time es un juego &lt;strong>cooperativo&lt;/strong>: todos ganan o pierden juntos. El objetivo es colocar las &lt;strong>12 cartas repartidas&lt;/strong> en los &lt;strong>6 sectores del reloj&lt;/strong>, sin poder comunicarse durante la colocación.&lt;/p></description></item><item><title>🏰 Fantasy Realms</title><link>https://xiang.dev/games/fantasy-realms/</link><pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate><guid>https://xiang.dev/games/fantasy-realms/</guid><description>&lt;p>Juego de cartas para 2–6 jugadores. Uno crea la sala y comparte el enlace. La partida vive en el navegador del anfitrión.&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://wizkids.com/posters/repository/wizkids/FR_Rulebook-WEB.pdf">Reglamento&lt;/a>&lt;/li>
 &lt;/ul>
@@ -2699,7 +2699,7 @@ if(m)el('fr-code').value=m[1].toUpperCase();
 })();
 &lt;/script>
 &lt;h2 id="cómo-se-juega">¿Cómo se juega?&lt;/h2>
-&lt;p>Fantasy Realms es un juego de &lt;strong>colección de sets&lt;/strong>: cada jugador construye una mano de &lt;strong>7 cartas&lt;/strong> que combinen bien entre sí. Las cartas tienen efectos sinérgicos que aumentan o reducen la puntuación final.&lt;/p></description></item><item><title>💍 LotR Trick-Taking</title><link>https://xiang.es/games/lotr/</link><pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate><guid>https://xiang.es/games/lotr/</guid><description>&lt;p>Juego cooperativo de bazas para 3–4 jugadores. Un anfitrión crea la sala y comparte el enlace.&lt;/p>
+&lt;p>Fantasy Realms es un juego de &lt;strong>colección de sets&lt;/strong>: cada jugador construye una mano de &lt;strong>7 cartas&lt;/strong> que combinen bien entre sí. Las cartas tienen efectos sinérgicos que aumentan o reducen la puntuación final.&lt;/p></description></item><item><title>💍 LotR Trick-Taking</title><link>https://xiang.dev/games/lotr/</link><pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate><guid>https://xiang.dev/games/lotr/</guid><description>&lt;p>Juego cooperativo de bazas para 3–4 jugadores. Un anfitrión crea la sala y comparte el enlace.&lt;/p>
 &lt;style>
 #lotr-app{--bg:#0d1117;--panel:#161b27;--text:#e6edf3;--mut:#7d8aa3;--border:#252d42;
 --blue:#58a6ff;--gold:#fbbf24;--ring:#d4af37;--green:#16a34a;--red:#dc2626;
@@ -3347,7 +3347,7 @@ if(m)el('l-codein').value=m[1].toUpperCase();
 })();
 &lt;/script>
 &lt;h2 id="cómo-se-juega">¿Cómo se juega?&lt;/h2>
-&lt;p>Juego &lt;strong>cooperativo&lt;/strong> de bazas para 3–4 jugadores. Las &lt;strong>37 cartas&lt;/strong> son de 5 palos: ⛰️ Mountain, 🏔️ Hill, 🌲 Forest y 🌑 Shadow (1–8 cada uno) más 💍 &lt;strong>Ring&lt;/strong> (1–5), que es el &lt;strong>triunfo&lt;/strong>.&lt;/p></description></item><item><title>💣 Time Bomb</title><link>https://xiang.es/games/timebomb/</link><pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate><guid>https://xiang.es/games/timebomb/</guid><description>&lt;p>Juego de deducción social para 4-8 jugadores.&lt;/p>
+&lt;p>Juego &lt;strong>cooperativo&lt;/strong> de bazas para 3–4 jugadores. Las &lt;strong>37 cartas&lt;/strong> son de 5 palos: ⛰️ Mountain, 🏔️ Hill, 🌲 Forest y 🌑 Shadow (1–8 cada uno) más 💍 &lt;strong>Ring&lt;/strong> (1–5), que es el &lt;strong>triunfo&lt;/strong>.&lt;/p></description></item><item><title>💣 Time Bomb</title><link>https://xiang.dev/games/timebomb/</link><pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate><guid>https://xiang.dev/games/timebomb/</guid><description>&lt;p>Juego de deducción social para 4-8 jugadores.&lt;/p>
 &lt;style>
 #tb-app{--tbg:#0f1117;--tpanel:#1a1f2c;--ttext:#e8eaf0;--tmut:#9aa3b2;
 background:var(--tbg);color:var(--ttext);border-radius:12px;padding:16px;
@@ -3723,7 +3723,7 @@ if(m)el('tb-code').value=m[1].toUpperCase();
 })();
 &lt;/script>
 &lt;h2 id="cómo-se-juega">¿Cómo se juega?&lt;/h2>
-&lt;p>Time Bomb es un juego de &lt;strong>deducción social&lt;/strong>: los &lt;strong>agentes&lt;/strong> intentan cortar todos los cables de éxito, los &lt;strong>terroristas&lt;/strong> intentan sabotearlos.&lt;/p></description></item><item><title>🎆 Hanabi</title><link>https://xiang.es/games/hanabi/</link><pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate><guid>https://xiang.es/games/hanabi/</guid><description>&lt;p>Juego cooperativo de cartas para 2-5 jugadores. Uno crea la sala y comparte el código (o el enlace) con los demás. La partida vive en el navegador del anfitrión: si lo cierra, se acaba la fiesta.&lt;/p>
+&lt;p>Time Bomb es un juego de &lt;strong>deducción social&lt;/strong>: los &lt;strong>agentes&lt;/strong> intentan cortar todos los cables de éxito, los &lt;strong>terroristas&lt;/strong> intentan sabotearlos.&lt;/p></description></item><item><title>🎆 Hanabi</title><link>https://xiang.dev/games/hanabi/</link><pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate><guid>https://xiang.dev/games/hanabi/</guid><description>&lt;p>Juego cooperativo de cartas para 2-5 jugadores. Uno crea la sala y comparte el código (o el enlace) con los demás. La partida vive en el navegador del anfitrión: si lo cierra, se acaba la fiesta.&lt;/p>
 &lt;style>
 #hanabi-app{--hbg:#1b1f27;--hpanel:#252b36;--htext:#e8eaf0;--hmut:#9aa3b2;
 background:var(--hbg);color:var(--htext);border-radius:12px;padding:16px;
