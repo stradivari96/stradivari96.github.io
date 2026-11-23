@@ -1,4 +1,4 @@
-baseURL: https://xiang.es/
+baseURL: https://xiang.dev/
 languageCode: en-us
 title: Just another developer
 theme: ["hugo-notice", "PaperMod"]
